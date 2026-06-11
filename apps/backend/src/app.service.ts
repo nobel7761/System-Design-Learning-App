@@ -6,4 +6,3 @@ export class AppService {
     return 'Hello from NestJS Backend!';
   }
 }
-

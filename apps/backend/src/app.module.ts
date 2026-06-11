@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { resolve, join } from 'path';
+import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
