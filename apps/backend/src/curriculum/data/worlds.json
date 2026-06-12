@@ -1,0 +1,1055 @@
+[
+  {
+    "id": "w0",
+    "order": 0,
+    "title": "ইন্টারনেটের গল্প",
+    "titleEn": "Internet Fundamentals",
+    "description": "Internet আসলে কীভাবে কাজ করে — DNS, TCP/UDP, HTTP/HTTPS, cookies, API। সব কিছুর ভিত্তি।",
+    "lessons": [
+      {
+        "id": "w0l1",
+        "order": 1,
+        "title": "Internet আসলে কী?",
+        "titleEn": "What is the Internet?",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l2",
+        "order": 2,
+        "title": "DNS — Internet-এর Phonebook",
+        "titleEn": "DNS — The Internet's Phonebook",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l3",
+        "order": 3,
+        "title": "IP, TCP vs UDP",
+        "titleEn": "IP, TCP vs UDP",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l4",
+        "order": 4,
+        "title": "HTTP — Web-এর ভাষা",
+        "titleEn": "HTTP — The Language of the Web",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l5",
+        "order": 5,
+        "title": "HTTPS ও SSL Handshake",
+        "titleEn": "HTTPS & the SSL Handshake",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l6",
+        "order": 6,
+        "title": "Cookies, Sessions, JWT",
+        "titleEn": "Cookies, Sessions, JWT",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l7",
+        "order": 7,
+        "title": "API ও REST",
+        "titleEn": "APIs & REST",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "w0l8",
+        "order": 8,
+        "title": "BOSS: google.com-এ Enter চাপলে কী হয়?",
+        "titleEn": "BOSS: What happens when you type google.com?",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": true
+      }
+    ]
+  },
+  {
+    "id": "w1",
+    "order": 1,
+    "title": "প্রথম Server",
+    "titleEn": "Building Blocks",
+    "description": "GolpoGram-এর প্রথম server — load balancer, CDN, caching, Nginx, Redis।",
+    "lessons": [
+      {
+        "id": "w1l1",
+        "order": 1,
+        "title": "Client-Server ও Scaling-এর শুরু",
+        "titleEn": "Client-Server & Intro to Scaling",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l2",
+        "order": 2,
+        "title": "Load Balancer + Nginx",
+        "titleEn": "Load Balancer + Nginx",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l3",
+        "order": 3,
+        "title": "Reverse Proxy vs API Gateway vs LB",
+        "titleEn": "Reverse Proxy vs API Gateway vs LB",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l4",
+        "order": 4,
+        "title": "CDN — Push vs Pull",
+        "titleEn": "CDN — Push vs Pull",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l5",
+        "order": 5,
+        "title": "Caching Fundamentals + Redis (পর্ব ১)",
+        "titleEn": "Caching Fundamentals + Redis (Part 1)",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l6",
+        "order": 6,
+        "title": "Caching Strategies + Redis (পর্ব ২)",
+        "titleEn": "Caching Strategies + Redis (Part 2)",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l7",
+        "order": 7,
+        "title": "Cache Eviction ও Cache-এর বিপদ",
+        "titleEn": "Cache Eviction & Cache Pitfalls",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w1l8",
+        "order": 8,
+        "title": "BOSS: GolpoGram-এ ১০K Users!",
+        "titleEn": "BOSS: GolpoGram hits 10K users!",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w2",
+    "order": 2,
+    "title": "Database রাজ্য",
+    "titleEn": "The Database Kingdom",
+    "description": "ACID, indexing, SQL vs NoSQL, replication, sharding, consistent hashing, transactions।",
+    "lessons": [
+      {
+        "id": "w2l1",
+        "order": 1,
+        "title": "RDBMS ও ACID + PostgreSQL",
+        "titleEn": "RDBMS & ACID + PostgreSQL",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l2",
+        "order": 2,
+        "title": "Indexing ও B-Tree",
+        "titleEn": "Indexing & B-Trees",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l3",
+        "order": 3,
+        "title": "NoSQL-এর জগৎ",
+        "titleEn": "The World of NoSQL",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l4",
+        "order": 4,
+        "title": "SQL vs NoSQL — কবে কোনটা?",
+        "titleEn": "SQL vs NoSQL — When to Use What?",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l5",
+        "order": 5,
+        "title": "Replication",
+        "titleEn": "Replication",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l6",
+        "order": 6,
+        "title": "Sharding ও Partitioning",
+        "titleEn": "Sharding & Partitioning",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l7",
+        "order": 7,
+        "title": "Consistent Hashing",
+        "titleEn": "Consistent Hashing",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l8",
+        "order": 8,
+        "title": "LSM-Tree vs B-Tree, Bloom Filters",
+        "titleEn": "LSM-Tree vs B-Tree, Bloom Filters",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l9",
+        "order": 9,
+        "title": "Transactions ও Isolation Levels",
+        "titleEn": "Transactions & Isolation Levels",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w2l10",
+        "order": 10,
+        "title": "BOSS: ১০০K Users-এ Database গলে যাচ্ছে!",
+        "titleEn": "BOSS: The database melts at 100K users!",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w3",
+    "order": 3,
+    "title": "Distributed দুনিয়া",
+    "titleEn": "The Distributed World",
+    "description": "CAP theorem, message queues, Kafka, pub/sub, idempotency, CDC, consensus।",
+    "lessons": [
+      {
+        "id": "w3l1",
+        "order": 1,
+        "title": "CAP Theorem",
+        "titleEn": "The CAP Theorem",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l2",
+        "order": 2,
+        "title": "Strong vs Eventual Consistency",
+        "titleEn": "Strong vs Eventual Consistency",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l3",
+        "order": 3,
+        "title": "Message Queues + RabbitMQ",
+        "titleEn": "Message Queues + RabbitMQ",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l4",
+        "order": 4,
+        "title": "Kafka Deep-Dive (পর্ব ১)",
+        "titleEn": "Kafka Deep-Dive (Part 1)",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l5",
+        "order": 5,
+        "title": "Kafka Deep-Dive (পর্ব ২)",
+        "titleEn": "Kafka Deep-Dive (Part 2)",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l6",
+        "order": 6,
+        "title": "Pub/Sub, Fan-out, Push vs Pull",
+        "titleEn": "Pub/Sub, Fan-out, Push vs Pull",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l7",
+        "order": 7,
+        "title": "Idempotency ও Exactly-Once",
+        "titleEn": "Idempotency & Exactly-Once",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l8",
+        "order": 8,
+        "title": "CDC ও Event Sourcing",
+        "titleEn": "CDC & Event Sourcing",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l9",
+        "order": 9,
+        "title": "Consensus, Quorum, Leader Election",
+        "titleEn": "Consensus, Quorum, Leader Election",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w3l10",
+        "order": 10,
+        "title": "BOSS: Multi-Region, ১M Users!",
+        "titleEn": "BOSS: Multi-region, 1M users!",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w4",
+    "order": 4,
+    "title": "Reliability ও আন্দাজের খেলা",
+    "titleEn": "Reliability & The Estimation Game",
+    "description": "Availability nines, rate limiting, circuit breakers, observability, latency numbers, back-of-envelope math।",
+    "lessons": [
+      {
+        "id": "w4l1",
+        "order": 1,
+        "title": "Availability — The Nines",
+        "titleEn": "Availability — The Nines",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l2",
+        "order": 2,
+        "title": "Rate Limiting",
+        "titleEn": "Rate Limiting",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l3",
+        "order": 3,
+        "title": "Circuit Breakers, Timeouts, Retries",
+        "titleEn": "Circuit Breakers, Timeouts, Retries",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l4",
+        "order": 4,
+        "title": "Monitoring ও Observability",
+        "titleEn": "Monitoring & Observability",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l5",
+        "order": 5,
+        "title": "Latency Numbers — আন্দাজের খেলা",
+        "titleEn": "Latency Numbers — The Estimation Game",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l6",
+        "order": 6,
+        "title": "Back-of-the-Envelope Math",
+        "titleEn": "Back-of-the-Envelope Math",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l7",
+        "order": 7,
+        "title": "Resiliency ও Chaos Engineering",
+        "titleEn": "Resiliency & Chaos Engineering",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w4l8",
+        "order": 8,
+        "title": "BOSS: Viral Spike থেকে বাঁচাও!",
+        "titleEn": "BOSS: Survive the viral spike!",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w5",
+    "order": 5,
+    "title": "Design Dojo: Easy",
+    "titleEn": "Design Dojo: Easy",
+    "description": "১০টা easy design problem — প্রতিটা ২ session: আগে নিজে design, পরে model solution-এর সাথে compare।",
+    "lessons": [
+      {
+        "id": "w5p1a",
+        "order": 1,
+        "title": "URL Shortener — নিজে Design করো",
+        "titleEn": "URL Shortener — Design It Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p1b",
+        "order": 2,
+        "title": "URL Shortener — Solution Compare",
+        "titleEn": "URL Shortener — Compare Solutions",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p2a",
+        "order": 3,
+        "title": "Autocomplete — নিজে Design করো",
+        "titleEn": "Autocomplete — Design It Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p2b",
+        "order": 4,
+        "title": "Autocomplete — Solution Compare",
+        "titleEn": "Autocomplete — Compare Solutions",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p3a",
+        "order": 5,
+        "title": "Load Balancer Design — নিজে",
+        "titleEn": "Design a Load Balancer — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p3b",
+        "order": 6,
+        "title": "Load Balancer Design — Compare",
+        "titleEn": "Design a Load Balancer — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p4a",
+        "order": 7,
+        "title": "CDN Design — নিজে",
+        "titleEn": "Design a CDN — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p4b",
+        "order": 8,
+        "title": "CDN Design — Compare",
+        "titleEn": "Design a CDN — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p5a",
+        "order": 9,
+        "title": "Distributed KV Store — নিজে",
+        "titleEn": "Distributed KV Store — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p5b",
+        "order": 10,
+        "title": "Distributed KV Store — Compare",
+        "titleEn": "Distributed KV Store — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p6a",
+        "order": 11,
+        "title": "Distributed Cache — নিজে",
+        "titleEn": "Distributed Cache — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p6b",
+        "order": 12,
+        "title": "Distributed Cache — Compare",
+        "titleEn": "Distributed Cache — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p7a",
+        "order": 13,
+        "title": "Auth System — নিজে",
+        "titleEn": "Auth System — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p7b",
+        "order": 14,
+        "title": "Auth System — Compare",
+        "titleEn": "Auth System — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p8a",
+        "order": 15,
+        "title": "Parking Garage — নিজে",
+        "titleEn": "Parking Garage — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p8b",
+        "order": 16,
+        "title": "Parking Garage — Compare",
+        "titleEn": "Parking Garage — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p9a",
+        "order": 17,
+        "title": "Vending Machine — নিজে",
+        "titleEn": "Vending Machine — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p9b",
+        "order": 18,
+        "title": "Vending Machine — Compare",
+        "titleEn": "Vending Machine — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p10a",
+        "order": 19,
+        "title": "Notification Basics — নিজে",
+        "titleEn": "Notification Basics — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w5p10b",
+        "order": 20,
+        "title": "Notification Basics — Compare",
+        "titleEn": "Notification Basics — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w6",
+    "order": 6,
+    "title": "Design Dojo: Medium",
+    "titleEn": "Design Dojo: Medium",
+    "description": "১২টা medium problem — WhatsApp, Instagram, YouTube, Payment System… real case study সহ।",
+    "lessons": [
+      {
+        "id": "w6p1a",
+        "order": 1,
+        "title": "WhatsApp — নিজে Design করো",
+        "titleEn": "WhatsApp — Design It Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p1b",
+        "order": 2,
+        "title": "WhatsApp — Solution Compare",
+        "titleEn": "WhatsApp — Compare Solutions",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p2a",
+        "order": 3,
+        "title": "Instagram — নিজে",
+        "titleEn": "Instagram — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p2b",
+        "order": 4,
+        "title": "Instagram — Compare",
+        "titleEn": "Instagram — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p3a",
+        "order": 5,
+        "title": "Twitter Feed — নিজে",
+        "titleEn": "Twitter Feed — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p3b",
+        "order": 6,
+        "title": "Twitter Feed — Compare",
+        "titleEn": "Twitter Feed — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p4a",
+        "order": 7,
+        "title": "YouTube/Netflix — নিজে",
+        "titleEn": "YouTube/Netflix — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p4b",
+        "order": 8,
+        "title": "YouTube/Netflix — Compare",
+        "titleEn": "YouTube/Netflix — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p5a",
+        "order": 9,
+        "title": "Rate Limiter — নিজে",
+        "titleEn": "Rate Limiter — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p5b",
+        "order": 10,
+        "title": "Rate Limiter — Compare",
+        "titleEn": "Rate Limiter — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p6a",
+        "order": 11,
+        "title": "Notification Service — নিজে",
+        "titleEn": "Notification Service — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p6b",
+        "order": 12,
+        "title": "Notification Service — Compare",
+        "titleEn": "Notification Service — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p7a",
+        "order": 13,
+        "title": "Job Scheduler — নিজে",
+        "titleEn": "Job Scheduler — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p7b",
+        "order": 14,
+        "title": "Job Scheduler — Compare",
+        "titleEn": "Job Scheduler — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p8a",
+        "order": 15,
+        "title": "Kafka-র মতো Queue — নিজে",
+        "titleEn": "A Kafka-like Queue — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p8b",
+        "order": 16,
+        "title": "Kafka-র মতো Queue — Compare",
+        "titleEn": "A Kafka-like Queue — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p9a",
+        "order": 17,
+        "title": "Payment System — নিজে",
+        "titleEn": "Payment System — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p9b",
+        "order": 18,
+        "title": "Payment System — Compare",
+        "titleEn": "Payment System — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p10a",
+        "order": 19,
+        "title": "E-commerce (Amazon) — নিজে",
+        "titleEn": "E-commerce (Amazon) — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p10b",
+        "order": 20,
+        "title": "E-commerce (Amazon) — Compare",
+        "titleEn": "E-commerce (Amazon) — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p11a",
+        "order": 21,
+        "title": "Spotify — নিজে",
+        "titleEn": "Spotify — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p11b",
+        "order": 22,
+        "title": "Spotify — Compare",
+        "titleEn": "Spotify — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p12a",
+        "order": 23,
+        "title": "Google Search Basics — নিজে",
+        "titleEn": "Google Search Basics — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w6p12b",
+        "order": 24,
+        "title": "Google Search Basics — Compare",
+        "titleEn": "Google Search Basics — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "w7",
+    "order": 7,
+    "title": "Hard Mode + Mock Interviews",
+    "titleEn": "Hard Mode + Mock Interviews",
+    "description": "Uber, Google Docs, Google Maps, Dropbox, Web Crawler, S3 + timer সহ mock interview + graduation exam।",
+    "lessons": [
+      {
+        "id": "w7p1a",
+        "order": 1,
+        "title": "Uber — নিজে Design করো",
+        "titleEn": "Uber — Design It Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p1b",
+        "order": 2,
+        "title": "Uber — Solution Compare",
+        "titleEn": "Uber — Compare Solutions",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p2a",
+        "order": 3,
+        "title": "Google Docs — নিজে",
+        "titleEn": "Google Docs — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p2b",
+        "order": 4,
+        "title": "Google Docs — Compare",
+        "titleEn": "Google Docs — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p3a",
+        "order": 5,
+        "title": "Google Maps — নিজে",
+        "titleEn": "Google Maps — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p3b",
+        "order": 6,
+        "title": "Google Maps — Compare",
+        "titleEn": "Google Maps — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p4a",
+        "order": 7,
+        "title": "Dropbox — নিজে",
+        "titleEn": "Dropbox — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p4b",
+        "order": 8,
+        "title": "Dropbox — Compare",
+        "titleEn": "Dropbox — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p5a",
+        "order": 9,
+        "title": "Web Crawler — নিজে",
+        "titleEn": "Web Crawler — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p5b",
+        "order": 10,
+        "title": "Web Crawler — Compare",
+        "titleEn": "Web Crawler — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p6a",
+        "order": 11,
+        "title": "S3 (Cloud Storage) — নিজে",
+        "titleEn": "S3 (Cloud Storage) — Yourself",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7p6b",
+        "order": 12,
+        "title": "S3 (Cloud Storage) — Compare",
+        "titleEn": "S3 (Cloud Storage) — Compare",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m1",
+        "order": 13,
+        "title": "Mock Interview #1",
+        "titleEn": "Mock Interview #1",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m2",
+        "order": 14,
+        "title": "Mock Interview #2",
+        "titleEn": "Mock Interview #2",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m3",
+        "order": 15,
+        "title": "Mock Interview #3",
+        "titleEn": "Mock Interview #3",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m4",
+        "order": 16,
+        "title": "Mock Interview #4",
+        "titleEn": "Mock Interview #4",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m5",
+        "order": 17,
+        "title": "Mock Interview #5",
+        "titleEn": "Mock Interview #5",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m6",
+        "order": 18,
+        "title": "Mock Interview #6",
+        "titleEn": "Mock Interview #6",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m7",
+        "order": 19,
+        "title": "Mock Interview #7",
+        "titleEn": "Mock Interview #7",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7m8",
+        "order": 20,
+        "title": "Mock Interview #8",
+        "titleEn": "Mock Interview #8",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "w7final",
+        "order": 21,
+        "title": "🎓 Graduation Exam",
+        "titleEn": "🎓 Graduation Exam",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ]
+  }
+]

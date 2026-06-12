@@ -1,0 +1,172 @@
+{
+  "lessonId": "w0l1",
+  "questions": [
+    {
+      "id": "w0l1-q01",
+      "difficulty": "easy",
+      "question": "Internet-এ data পাঠানোর সময় data-কে ছোট ছোট টুকরায় ভাগ করা হয়। এই টুকরাগুলোর নাম কী?",
+      "options": ["Block", "Packet", "Frame", "Chunk"],
+      "answerIndex": 1,
+      "explanation": "Data ছোট ছোট packet-এ ভাগ হয়ে পাঠানো হয় — গল্পের সেই একেকটা খামের মতো।"
+    },
+    {
+      "id": "w0l1-q02",
+      "difficulty": "easy",
+      "question": "ডাকঘরের গল্পে 'খামের উপরের ঠিকানা'-র সাথে Internet-এর কোন জিনিসটা মেলে?",
+      "options": ["ISP", "Packet", "Router", "IP address"],
+      "answerIndex": 3,
+      "explanation": "IP address-ই বলে দেয় packet কোথা থেকে এলো আর কোথায় যাবে — খামের ঠিকানার মতো।"
+    },
+    {
+      "id": "w0l1-q03",
+      "difficulty": "easy",
+      "question": "Router-এর প্রধান কাজ কী?",
+      "options": [
+        "Website-এর content store করা",
+        "Password verify করা",
+        "Packet-কে destination-এর দিকে forward করা",
+        "Data encrypt করা"
+      ],
+      "answerIndex": 2,
+      "explanation": "Router হলো ডাকঘরের কর্মী — destination address দেখে packet-কে পরের ধাপে (next hop) পাঠায়।"
+    },
+    {
+      "id": "w0l1-q04",
+      "difficulty": "easy",
+      "question": "তোমার browser যখন facebook.com খোলে, তখন তোমার browser-টা কী হিসেবে কাজ করে?",
+      "options": ["Server", "ISP", "Router", "Client"],
+      "answerIndex": 3,
+      "explanation": "যে চায় সে client, যে দেয় সে server — browser request পাঠায়, তাই সে client।"
+    },
+    {
+      "id": "w0l1-q05",
+      "difficulty": "easy",
+      "question": "ISP (যেমন Link3 বা Grameenphone)-এর কাজ কী?",
+      "options": [
+        "Website বানানো",
+        "Virus scan করা",
+        "তোমার ছবি store করে রাখা",
+        "তোমার network-কে বড় Internet-এর সাথে যুক্ত করা"
+      ],
+      "answerIndex": 3,
+      "explanation": "ISP = Internet Service Provider — তোমার ছোট network-কে বিশ্বের network-এর সাথে জুড়ে দেয়।"
+    },
+    {
+      "id": "w0l1-q06",
+      "difficulty": "easy",
+      "question": "Internet-কে এক কথায় কী বলা যায়?",
+      "options": [
+        "একটা software",
+        "Google-এর মালিকানাধীন system",
+        "একটা বিশাল computer",
+        "Network of networks"
+      ],
+      "answerIndex": 3,
+      "explanation": "লাখ লাখ ছোট-বড় network একসাথে জুড়ে গিয়ে তৈরি হয়েছে Internet — তাই 'network of networks'।"
+    },
+    {
+      "id": "w0l1-q07",
+      "difficulty": "medium",
+      "question": "তুমি একটা 3 MB-র ছবি পাঠালে। একই ছবির দুটো packet দুটো ভিন্ন route দিয়ে গেলো। ফলাফল কী হবে?",
+      "options": [
+        "ছবিটা corrupt হয়ে যাবে",
+        "দ্বিতীয় packet টা হারিয়ে যাবে",
+        "ছবিটা দুইবার পৌঁছাবে",
+        "কোনো সমস্যা নেই — destination-এ sequence number দিয়ে আবার সাজানো হবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "প্রতিটা packet-এ sequence number থাকে, তাই ভিন্ন পথে গেলেও গন্তব্যে ঠিকঠাক সাজানো যায়।"
+    },
+    {
+      "id": "w0l1-q08",
+      "difficulty": "medium",
+      "question": "একটা router সম্পর্কে কোন কথাটা সত্যি?",
+      "options": [
+        "সে শুধু packet-এর next hop ঠিক করে",
+        "সে source থেকে destination পর্যন্ত পুরো পথটা জানে",
+        "সে সব packet নিজের কাছে copy রাখে",
+        "সে শুধু একটা নির্দিষ্ট website-এর traffic handle করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "কোনো router পুরো পথ জানে না — routing table দেখে শুধু পরের ধাপ ঠিক করে। এটাই Internet-কে resilient বানায়।"
+    },
+    {
+      "id": "w0l1-q09",
+      "difficulty": "medium",
+      "question": "বড় data-কে ছোট packet-এ ভাঙার মূল সুবিধা কী?",
+      "options": [
+        "Data ছোট হয়ে যায়, তাই খরচ কম",
+        "Packet হারালে পুরো data আবার পাঠাতে হয় না — শুধু হারানো অংশটুকু",
+        "B এবং C দুটোই",
+        "Network-এর পথ কেউ একা দখল করে রাখে না, সবাই ভাগাভাগি করে চলতে পারে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Packet-এ ভাঙলে network share করা যায়, আর কোনো অংশ হারালে শুধু সেটাই resend করলে চলে।"
+    },
+    {
+      "id": "w0l1-q10",
+      "difficulty": "medium",
+      "question": "GolpoGram-এর server ঢাকায়, user আমেরিকায়। User-এর request server-এ পৌঁছানোর সবচেয়ে সম্ভাব্য পথ কোনটা?",
+      "options": [
+        "আমেরিকার ISP সরাসরি ঢাকার server-এ তার টেনে রেখেছে",
+        "Satellite দিয়ে সরাসরি",
+        "Wi-Fi signal একটানা উড়ে এসে",
+        "অনেকগুলো router hop পেরিয়ে submarine cable হয়ে"
+      ],
+      "answerIndex": 3,
+      "explanation": "আন্তর্জাতিক traffic-এর প্রায় সবটাই সমুদ্রের নিচের fiber optic cable দিয়ে যায়, মাঝে ১৫-২০টা router hop পেরিয়ে।"
+    },
+    {
+      "id": "w0l1-q11",
+      "difficulty": "medium",
+      "question": "Server সম্পর্কে কোন বর্ণনাটা সবচেয়ে সঠিক?",
+      "options": [
+        "যেকোনো দামি computer",
+        "যে computer শুধু email পাঠায়",
+        "যে computer-এ শুধু database থাকে",
+        "যে computer সবসময় চালু থাকে আর request-এর অপেক্ষায় থেকে response দেয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "Server-এর পরিচয় তার ভূমিকায় — সে service দেয়: ২৪/৭ অপেক্ষা করে, request এলে response পাঠায়।"
+    },
+    {
+      "id": "w0l1-q12",
+      "difficulty": "hard",
+      "question": "মাঝপথের একটা শহরে বন্যায় কয়েকটা router অচল হয়ে গেলো। তোমার packet-গুলোর কী হবে?",
+      "options": [
+        "Packet-গুলো চিরতরে হারিয়ে যাবে",
+        "বাকি router-রা বিকল্প পথে packet forward করবে — Internet এভাবেই fault-tolerant",
+        "ISP নতুন তার লাগানো পর্যন্ত অপেক্ষা করতে হবে",
+        "Internet বন্ধ হয়ে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Internet-এর design-ই এমন: কোনো নির্দিষ্ট পথের উপর নির্ভরতা নেই, routing table update হয়ে packet বিকল্প পথে চলে।"
+    },
+    {
+      "id": "w0l1-q13",
+      "difficulty": "hard",
+      "question": "তোমার phone একই সাথে YouTube দেখছে আর WhatsApp message পাঠাচ্ছে। Network-এ এটা কীভাবে সম্ভব হয়?",
+      "options": [
+        "YouTube থেমে থেমে চলে যখন WhatsApp পাঠায়",
+        "দুই app-এর packet-গুলো ভাগাভাগি করে একই connection দিয়ে যায় — packet switching-এর জাদু",
+        "Phone দুটো আলাদা Internet connection ব্যবহার করে",
+        "ISP দুটো আলাদা তার দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Packet switching-এর মূল সুবিধা: ভিন্ন ভিন্ন কাজের packet একই link interleave করে চলতে পারে।"
+    },
+    {
+      "id": "w0l1-q14",
+      "difficulty": "hard",
+      "question": "একটা packet-এ সাধারণত কোন কোন তথ্য থাকে?",
+      "options": [
+        "Source IP, destination IP, sequence number এবং data-র অংশ",
+        "পুরো ফাইল আর password",
+        "শুধু destination-এর নাম (যেমন facebook.com)",
+        "শুধু data"
+      ],
+      "answerIndex": 0,
+      "explanation": "প্রতিটা packet-এর header-এ source/destination IP ও sequence number থাকে, payload-এ data-র টুকরা। Domain name নয় — IP address।"
+    }
+  ]
+}

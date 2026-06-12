@@ -1,5 +1,5 @@
-import { ShowcaseLanding } from "@/components/showcase/ShowcaseLanding";
+import { DashboardScreen } from "@/components/dashboard/DashboardScreen";
 
 export default function Home() {
-  return <ShowcaseLanding />;
+  return <DashboardScreen />;
 }

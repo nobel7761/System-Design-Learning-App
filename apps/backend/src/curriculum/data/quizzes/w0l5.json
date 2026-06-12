@@ -1,0 +1,182 @@
+{
+  "lessonId": "w0l5",
+  "questions": [
+    {
+      "id": "w0l5-q01",
+      "difficulty": "easy",
+      "question": "গল্পের 'খোলা তালা'-টা কীসের প্রতীক?",
+      "options": ["Session key", "Public key", "Password", "Private key"],
+      "answerIndex": 1,
+      "explanation": "Public key সবাইকে দেওয়া যায় — তালা আটকানো (encrypt) যায়, কিন্তু খোলা যায় শুধু private key (চাবি) দিয়ে।"
+    },
+    {
+      "id": "w0l5-q02",
+      "difficulty": "easy",
+      "question": "HTTPS আসলে কী?",
+      "options": [
+        "HTTP + TLS encryption",
+        "HTTP-র নতুন version",
+        "শুধু password-ওয়ালা HTTP",
+        "আলাদা একটা দ্রুত protocol"
+      ],
+      "answerIndex": 0,
+      "explanation": "HTTPS = একই HTTP ভাষা, কিন্তু TLS-এর encrypted টানেলের ভেতর দিয়ে।"
+    },
+    {
+      "id": "w0l5-q03",
+      "difficulty": "easy",
+      "question": "Plain HTTP-তে password পাঠালে মূল বিপদ কী?",
+      "options": [
+        "Server টা বুঝবে না",
+        "Request ধীর হয়",
+        "Password ভুল হয়ে যায়",
+        "পথের যে কেউ (একই Wi-Fi, ISP) পড়ে ফেলতে পারে"
+      ],
+      "answerIndex": 3,
+      "explanation": "HTTP মানে খোলা postcard — পথের সব node-এর চোখের সামনে দিয়ে plain text যায়।"
+    },
+    {
+      "id": "w0l5-q04",
+      "difficulty": "easy",
+      "question": "Certificate Authority (CA)-র ভূমিকা গল্পের কার মতো?",
+      "options": [
+        "চিঠির লেখক",
+        "নোটারি/সিলমোহরদাতা — তালাটা আসল মালিকের কিনা প্রত্যয়ন করে",
+        "তালার কারিগর",
+        "ডাক পিয়ন"
+      ],
+      "answerIndex": 1,
+      "explanation": "CA প্রমাণ নিয়ে certificate-এ সই করে — browser সেই সই দেখেই server-কে বিশ্বাস করে।"
+    },
+    {
+      "id": "w0l5-q05",
+      "difficulty": "easy",
+      "question": "Symmetric encryption-এর সবচেয়ে বড় সুবিধা কী?",
+      "options": [
+        "খুব দ্রুত",
+        "চাবি হারালেও চলে",
+        "চাবি লাগে না",
+        "সবচেয়ে নিরাপদ"
+      ],
+      "answerIndex": 0,
+      "explanation": "একই চাবিতে লক-আনলক — হিসাব হালকা, তাই দ্রুত। ঝামেলা শুধু চাবি পৌঁছানো নিয়ে।"
+    },
+    {
+      "id": "w0l5-q06",
+      "difficulty": "easy",
+      "question": "TLS handshake সফল হলে browser-এ কী দেখা যায়?",
+      "options": [
+        "ঠিকানার পাশে 🔒 (তালা) চিহ্ন",
+        "Certificate-এর পুরো লেখা",
+        "'HTTP' লেখা",
+        "একটা সবুজ tick সব লেখায়"
+      ],
+      "answerIndex": 0,
+      "explanation": "তালা চিহ্নের মানে: connection encrypted এবং certificate বৈধ।"
+    },
+    {
+      "id": "w0l5-q07",
+      "difficulty": "medium",
+      "question": "TLS দ্রুত symmetric আর ধীর asymmetric — দুটোই ব্যবহার করে। ভাগাভাগিটা কীভাবে?",
+      "options": [
+        "Server ঠিক করে কোনটা কখন",
+        "Asymmetric দিয়ে শুধু session key বিনিময়; তারপর সব data দ্রুত symmetric-এ",
+        "আগে সব asymmetric, পরের visit-এ symmetric",
+        "অর্ধেক data symmetric, অর্ধেক asymmetric"
+      ],
+      "answerIndex": 1,
+      "explanation": "ভারী asymmetric শুধু ছোট্ট চাবি-বিনিময়ের কাজে; বাকি লক্ষ লক্ষ byte চলে হালকা symmetric তালায়।"
+    },
+    {
+      "id": "w0l5-q08",
+      "difficulty": "medium",
+      "question": "Browser একটা certificate যাচাইয়ের সময় কোনটা দেখে **না**?",
+      "options": [
+        "বিশ্বস্ত CA-র সই আছে কিনা",
+        "Server-এর code-এ bug আছে কিনা",
+        "Domain নামটা মিলছে কিনা",
+        "মেয়াদ আছে কিনা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Certificate পরিচয় প্রমাণ করে — server-এর ভেতরের code/নিরাপত্তার মান নয়। HTTPS পথ পাহারা দেয়, গন্তব্য না।"
+    },
+    {
+      "id": "w0l5-q09",
+      "difficulty": "medium",
+      "question": "Public key যে কেউ দেখে-কপি করে ফেললেও সমস্যা নেই কেন?",
+      "options": [
+        "Public key প্রতি সেকেন্ডে বদলায়",
+        "আসলে সমস্যা হয়, তাই lock লাগে",
+        "Public key টা encrypted থাকে",
+        "Public key দিয়ে শুধু lock করা যায় — unlock করতে লাগে private key, যেটা কখনোই পাঠানো হয় না"
+      ],
+      "answerIndex": 3,
+      "explanation": "খোলা তালা কপি করে লাভ নেই — চিঠি খুলতে চাবিই লাগবে, আর চাবি (private key) মালিকের কাছেই থাকে।"
+    },
+    {
+      "id": "w0l5-q10",
+      "difficulty": "medium",
+      "question": "Cafe-র Wi-Fi-তে বসে HTTPS site-এ password দিলে, Wi-Fi-র মালিক কী দেখতে পাবে?",
+      "options": [
+        "কিছুই না, এমনকি কোন site তাও না",
+        "Password টা পুরোটাই",
+        "শুধু তোমার username",
+        "তুমি কোন domain-এ যাচ্ছো তা মোটামুটি বুঝবে, কিন্তু ভেতরের content/password নয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "DNS query ও connection-এর গন্তব্য দৃশ্যমান থাকে, কিন্তু TLS টানেলের ভেতরের সব data encrypted।"
+    },
+    {
+      "id": "w0l5-q11",
+      "difficulty": "medium",
+      "question": "TLS handshake-এর ধাপগুলোর সঠিক ক্রম কোনটা?",
+      "options": [
+        "Client Hello → Server Hello + Certificate → যাচাই → Key exchange → Encrypted data",
+        "Certificate যাচাই → Client Hello → Key exchange → Server Hello",
+        "Key exchange → Client Hello → Server Hello → যাচাই",
+        "Server Hello → Client Hello → Encrypted data → Certificate"
+      ],
+      "answerIndex": 0,
+      "explanation": "আগে পরিচয় ও সামর্থ্যের আলাপ (Hello), তারপর certificate যাচাই, তারপর session key — তবেই encrypted আলাপ।"
+    },
+    {
+      "id": "w0l5-q12",
+      "difficulty": "hard",
+      "question": "আক্রমণকারী মাঝে বসে দু'দিকেই নিজের তালা ধরিয়ে দিতে চায় (man-in-the-middle)। HTTPS-এ এটা সাধারণত ব্যর্থ হয় কেন?",
+      "options": [
+        "TCP handshake তাকে block করে",
+        "আক্রমণকারীর কাছে golpogram.com-এর বৈধ (CA-সই করা) certificate নেই — browser তার ভুয়াটা ধরে warning দেয়",
+        "Session key টা DNS-এ লুকানো থাকে",
+        "মাঝে বসা প্রযুক্তিগতভাবে অসম্ভব"
+      ],
+      "answerIndex": 1,
+      "explanation": "নিজেকে server সাজাতে হলে ওই domain-এর CA-সই করা certificate লাগে — CA-রা সেটা প্রমাণ ছাড়া দেয় না। তাই MITM আটকায় বিশ্বাসের শিকড়ে।"
+    },
+    {
+      "id": "w0l5-q13",
+      "difficulty": "hard",
+      "question": "একটা phishing সাইট https:// আর বৈধ 🔒 নিয়ে বসে আছে (যেমন g0lpogram.com)। এখান থেকে শিক্ষা কী?",
+      "options": [
+        "🔒 মানে শুধু 'এই domain-এর সাথে connection encrypted' — domain-টা ভালো লোকের কিনা তা নয়; নাম ভালো করে দেখতে হবে",
+        "CA-রা phishing site-কে certificate দেয় না কখনো",
+        "তালা চিহ্ন থাকলেই সাইট বিশ্বাসযোগ্য",
+        "HTTPS ব্যর্থ প্রযুক্তি"
+      ],
+      "answerIndex": 0,
+      "explanation": "Certificate প্রমাণ করে তুমি g0lpogram.com-এর সাথেই encrypted কথা বলছো — কিন্তু সেটা প্রতারকের সাইট! Encryption ≠ সততা।"
+    },
+    {
+      "id": "w0l5-q14",
+      "difficulty": "hard",
+      "question": "TLS-এ প্রতি connection-এ **নতুন** session key বানানোর একটা বড় সুবিধা কী?",
+      "options": [
+        "Certificate আর লাগে না",
+        "একটা session-এর key ফাঁস হলেও অন্য session-গুলোর data পড়া যায় না — ক্ষতি সীমাবদ্ধ থাকে",
+        "Handshake দ্রুত হয়",
+        "Server-এর RAM বাঁচে"
+      ],
+      "answerIndex": 1,
+      "explanation": "এক চাবি সব দরজা খুললে এক ফাঁসেই সর্বনাশ। Session-প্রতি আলাদা key মানে ক্ষতির গণ্ডি ছোট — security design-এর বড় নীতি।"
+    }
+  ]
+}

@@ -5,6 +5,10 @@ import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { CurriculumModule } from './curriculum/curriculum.module';
+import { ProgressModule } from './progress/progress.module';
+import { QuizModule } from './quiz/quiz.module';
 import { UsersModule } from './users/users.module';
 
 // Resolve .env file path - try multiple locations
@@ -71,6 +75,10 @@ if (!existsSync(envPath)) {
       inject: [ConfigService],
     }),
     UsersModule,
+    AuthModule,
+    CurriculumModule,
+    ProgressModule,
+    QuizModule,
   ],
   controllers: [AppController],
   providers: [AppService],

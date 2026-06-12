@@ -1,0 +1,208 @@
+{
+  "lessonId": "w0l8",
+  "questions": [
+    {
+      "id": "w0l8-q01",
+      "difficulty": "medium",
+      "question": "golpogram.com-এ Enter চাপার পর সঠিক ক্রম কোনটা?",
+      "options": [
+        "TLS → DNS → TCP → HTTP",
+        "TCP → DNS → TLS → HTTP",
+        "DNS → TCP → TLS → HTTP",
+        "HTTP → DNS → TCP → TLS"
+      ],
+      "answerIndex": 2,
+      "explanation": "আগে নাম থেকে IP (DNS), তারপর লাইন (TCP), তারপর তালা (TLS), তবেই অর্ডার (HTTP)।"
+    },
+    {
+      "id": "w0l8-q02",
+      "difficulty": "medium",
+      "question": "DNS lookup-টা TCP connection-এর **আগে** হতেই হবে কেন?",
+      "options": [
+        "নিয়ম তাই",
+        "TCP connection খুলতে destination-এর IP address লাগে — সেটাই DNS এনে দেয়",
+        "TLS-এর জন্য DNS দরকার",
+        "DNS দ্রুত বলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "SYN packet পাঠাবে কোথায়? গন্তব্যের IP ছাড়া TCP শুরুই হয় না।"
+    },
+    {
+      "id": "w0l8-q03",
+      "difficulty": "medium",
+      "question": "TCP 3-way handshake-এর তিনটা বার্তা ক্রমানুসারে —",
+      "options": [
+        "ACK, SYN, SYN-ACK",
+        "HELLO, OK, START",
+        "SYN, SYN-ACK, ACK",
+        "SYN, ACK, SYN-ACK"
+      ],
+      "answerIndex": 2,
+      "explanation": "Client: SYN → Server: SYN-ACK → Client: ACK। তারপরেই data চলে।"
+    },
+    {
+      "id": "w0l8-q04",
+      "difficulty": "medium",
+      "question": "TLS handshake-এ browser server-এর certificate-এ কী কী যাচাই করে?",
+      "options": [
+        "বিশ্বস্ত CA-র সই, domain নামের মিল, মেয়াদ",
+        "Server-এর দেশ",
+        "Server-এর গতি আর RAM",
+        "HTML-টা ঠিক আছে কিনা"
+      ],
+      "answerIndex": 0,
+      "explanation": "সিলমোহর (CA সই) + নাম + মেয়াদ — যেকোনোটা না মিললে লাল warning।"
+    },
+    {
+      "id": "w0l8-q05",
+      "difficulty": "medium",
+      "question": "https://golpogram.com/feed — port লেখা নেই; connection হবে কোন port-এ?",
+      "options": ["53", "3000", "80", "443"],
+      "answerIndex": 3,
+      "explanation": "https-এর default port 443 (http হলে 80, DNS-এর 53)।"
+    },
+    {
+      "id": "w0l8-q06",
+      "difficulty": "medium",
+      "question": "Browser দ্বিতীয়বার একই ছবি চাইলে server দিলো 304 Not Modified। মানে কী?",
+      "options": [
+        "ছবিটা মুছে গেছে",
+        "তোমার cache-এর কপিটাই তাজা — আবার পাঠানোর দরকার নেই",
+        "ছবিটা অন্য server-এ",
+        "Request-এ ভুল আছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "304 = cache validation সফল — bandwidth বাঁচলো, পাতা দ্রুত খুললো।"
+    },
+    {
+      "id": "w0l8-q07",
+      "difficulty": "medium",
+      "question": "Login-করা user-এর request-এ server তাকে চেনে কীভাবে?",
+      "options": [
+        "প্রতি request-এর সাথে যাওয়া cookie/JWT token দেখে",
+        "প্রতিবার password চেয়ে",
+        "Browser-এর নাম দেখে",
+        "IP address দেখে"
+      ],
+      "answerIndex": 0,
+      "explanation": "HTTP stateless — পরিচয় বহন করে token (সিনেমা হলের স্ট্যাম্প/টোকেন), প্রতি request-এ সাথে যায়।"
+    },
+    {
+      "id": "w0l8-q08",
+      "difficulty": "medium",
+      "question": "DNS query সাধারণত যায় UDP-তে, কিন্তু পাতার HTML আসে TCP-তে। এই ভাগাভাগির যুক্তি কী?",
+      "options": [
+        "TCP-তে DNS নিষিদ্ধ",
+        "UDP নিরাপদ বেশি",
+        "DNS পুরনো প্রযুক্তি",
+        "ছোট এক প্রশ্ন-উত্তরে গতি জরুরি, হারালে re-query সহজ (UDP); পাতার data-য় নির্ভুলতা ও ক্রম জরুরি (TCP)"
+      ],
+      "answerIndex": 3,
+      "explanation": "যার যেখানে মানায়: ক্ষণস্থায়ী ছোট কাজ = UDP; নির্ভুল লম্বা আলাপ = TCP।"
+    },
+    {
+      "id": "w0l8-q09",
+      "difficulty": "medium",
+      "question": "Browser cache, resolver cache — এত cache রাখার মূল লাভ কী?",
+      "options": [
+        "Data নিরাপদ থাকে",
+        "ISP-র আইনি বাধ্যবাধকতা",
+        "বারবার এক প্রশ্নের জন্য পুরো সিঁড়ি (root→TLD→authoritative) না ভেঙে কাছেই উত্তর — সময় ও চাপ দুটোই বাঁচে",
+        "Cache ছাড়া DNS চলে না"
+      ],
+      "answerIndex": 2,
+      "explanation": "কাছের উত্তর = কম দেরি + উপরের server-গুলোর উপর কম চাপ। Caching-এর এই দর্শনই World 1-এ বড় হয়ে ফিরবে।"
+    },
+    {
+      "id": "w0l8-q10",
+      "difficulty": "medium",
+      "question": "GET / request-টা পাঠানো হয় কখন?",
+      "options": [
+        "TCP handshake-এর মাঝখানে",
+        "DNS-এর আগেই",
+        "Certificate যাচাইয়ের আগে",
+        "TLS handshake শেষ হয়ে encrypted টানেল তৈরি হওয়ার পর"
+      ],
+      "answerIndex": 3,
+      "explanation": "অর্ডার-slip (HTTP) যায় সবশেষে — খোলা পথে পাঠালে তো postcard হয়ে যেত!"
+    },
+    {
+      "id": "w0l8-q11",
+      "difficulty": "hard",
+      "question": "User অভিযোগ করলো: 'golpogram.com খুলছেই না, অথচ IP দিয়ে (76.76.21.21) ঢুকলে খুলছে!' সবচেয়ে সম্ভাব্য কারণ কী?",
+      "options": [
+        "TLS certificate-এর মেয়াদ শেষ",
+        "User-এর browser পুরনো",
+        "DNS-এ সমস্যা — নাম resolve হচ্ছে না, কিন্তু server দিব্যি চালু",
+        "Server down"
+      ],
+      "answerIndex": 2,
+      "explanation": "IP-তে কাজ করা মানে TCP/TLS/HTTP সব সুস্থ — ভাঙা শুধু নাম→IP ধাপটা, অর্থাৎ DNS। Facebook 2021 মনে আছে?"
+    },
+    {
+      "id": "w0l8-q12",
+      "difficulty": "hard",
+      "question": "ঢাকা থেকে আমেরিকার server-এ পাতা খুলতে নতুন connection-এ এতগুলো round-trip লাগে: TCP handshake ১, TLS ১-২, HTTP request-response ১। মোট দেরির মূল উৎস কী, আর কী শিখলে এটা কমানো যায় (পরের world-গুলোর trailer)?",
+      "options": [
+        "দূরত্বজনিত round-trip গুলোই খরচ; connection reuse (keep-alive), cache, আর user-এর কাছে server/CDN রাখা শিখলে কমে",
+        "Server-এর ধীর CPU; দ্রুত server কিনলেই হবে",
+        "কমানো অসম্ভব",
+        "JSON-এর সাইজ; XML-এ গেলে কমবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "প্রতিটা round-trip ≈ আলোর গতিতেও ২০০+ ms (ঢাকা-আমেরিকা)। তাই হয় trip কমাও (reuse/cache), নয় দূরত্ব কমাও (CDN) — World 1-এর মূল গল্প।"
+    },
+    {
+      "id": "w0l8-q13",
+      "difficulty": "hard",
+      "question": "ভুয়া Wi-Fi-র মালিক DNS-এর উত্তর বদলে তোমাকে নিজের নকল server-এর IP দিলো। তুমি https://golpogram.com খুললে। কী ঘটবে?",
+      "options": [
+        "নকল সাইট খুলে যাবে, কিছু বোঝা যাবে না",
+        "TLS-এ ধরা পড়বে — নকল server-এর কাছে golpogram.com-এর CA-সই করা certificate নেই, browser warning দেবে",
+        "DNS নিজে থেকেই ঠিক হয়ে যাবে",
+        "TCP connect-ই হবে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "DNS প্রতারণা করা গেলেও TLS-এর নোটারি-ব্যবস্থা পার হওয়া যায় না — স্তরে স্তরে রক্ষা (defense in depth)।"
+    },
+    {
+      "id": "w0l8-q14",
+      "difficulty": "hard",
+      "question": "TTL ৬০ সেকেন্ডের DNS record আর TTL ১ দিনের record — দুই site-এ। দুটোরই server-IP বদলাতে হবে এক্ষুনি। তুলনাটা কী দাঁড়াবে?",
+      "options": [
+        "দুটোই সমান দ্রুত নতুন IP পাবে",
+        "TTL-এর সাথে এর সম্পর্ক নেই",
+        "৬০s-ওয়ালা প্রায় সাথে সাথে সবার কাছে নতুন IP পৌঁছাবে; ১-দিনওয়ালার পুরনো cache সারাদিন পুরনো ঠিকানায় পাঠাতে থাকবে",
+        "১-দিনওয়ালা আগে আপডেট হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Cache-এর মেয়াদই পরিবর্তনের গতি ঠিক করে — ছোট TTL মানে চটপটে পরিবর্তন, কিন্তু রোজকার বেশি query। সেই চিরচেনা trade-off।"
+    },
+    {
+      "id": "w0l8-q15",
+      "difficulty": "hard",
+      "question": "API design-এর দিক থেকে: browser-এর prefetcher মাঝে মাঝে link-গুলোতে আগেভাগে GET request পাঠিয়ে রাখে। তোমার সাইটে 'GET /logout' link আছে। বিপদটা কী?",
+      "options": [
+        "Logout দুইবার হবে",
+        "Prefetch-এ DNS ভেঙে যায়",
+        "Prefetcher 'নিরাপদ' ভেবে GET /logout ডেকে user-কে অজান্তেই logout করিয়ে দিতে পারে — state-বদলানো কাজ GET-এ রাখার শাস্তি",
+        "কোনো বিপদ নেই"
+      ],
+      "answerIndex": 2,
+      "explanation": "GET-এর চুক্তি 'safe'। চুক্তি ভাঙলে browser/bot-এর স্বাভাবিক আচরণই তোমার শত্রু হয়ে যায়। Logout হোক POST।"
+    },
+    {
+      "id": "w0l8-q16",
+      "difficulty": "hard",
+      "question": "পুরো যাত্রায় (DNS→TCP→TLS→HTTP→render) GolpoGram-এর JWT token-টা ঠিক কোন ধাপে server-এ পৌঁছায়, আর কোন রক্ষাকবচের ভেতর দিয়ে?",
+      "options": [
+        "TLS certificate-এর ভেতরে",
+        "TCP SYN packet-এ",
+        "DNS query-র সাথে, plain text-এ",
+        "HTTP request-এর header-এ (Cookie/Authorization), TLS-এর encrypted টানেলের ভেতর দিয়ে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Token যায় HTTP header-এ — কিন্তু ততক্ষণে TLS টানেল তৈরি, তাই পথে কেউ পড়তে পারে না। স্তরগুলো ঠিক এই কারণেই এই ক্রমে।"
+    }
+  ]
+}

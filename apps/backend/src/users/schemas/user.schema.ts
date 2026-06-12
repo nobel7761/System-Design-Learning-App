@@ -11,6 +11,10 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
+  // Never returned by default; explicitly select('+passwordHash') when needed
+  @Prop({ select: false })
+  passwordHash?: string;
+
   @Prop()
   phone?: string;
 

@@ -1,0 +1,167 @@
+{
+  "lessonId": "w0l2",
+  "questions": [
+    {
+      "id": "w0l2-q01",
+      "difficulty": "easy",
+      "question": "DNS-এর মূল কাজ কী?",
+      "options": [
+        "Password নিরাপদ রাখা",
+        "Internet-এর গতি বাড়ানো",
+        "Domain name-কে IP address-এ রূপান্তর করা",
+        "Website-এর content দ্রুত পাঠানো"
+      ],
+      "answerIndex": 2,
+      "explanation": "DNS হলো phonebook — নাম (youtube.com) থেকে নম্বর (IP address) বের করে দেয়।"
+    },
+    {
+      "id": "w0l2-q02",
+      "difficulty": "easy",
+      "question": "Phonebook-এর গল্পে 'Contacts app-এ নাম লিখে নম্বর বের করা'-র সাথে কোনটা মেলে?",
+      "options": ["DNS lookup", "Packet routing", "Encryption", "Caching"],
+      "answerIndex": 0,
+      "explanation": "নাম দিয়ে নম্বর খোঁজা = domain দিয়ে IP খোঁজা = DNS lookup।"
+    },
+    {
+      "id": "w0l2-q03",
+      "difficulty": "easy",
+      "question": "কোন DNS record টা domain name থেকে IPv4 address-এ map করে?",
+      "options": ["CNAME", "MX", "NS", "A"],
+      "answerIndex": 3,
+      "explanation": "A record = Address record — নাম থেকে IPv4। IPv6-এর জন্য AAAA।"
+    },
+    {
+      "id": "w0l2-q04",
+      "difficulty": "easy",
+      "question": "TTL (Time To Live) কী বলে দেয়?",
+      "options": [
+        "Server কত দ্রুত response দেবে",
+        "Website কতদিন চালু থাকবে",
+        "Domain-এর মেয়াদ কবে শেষ",
+        "একটা DNS উত্তর cache-এ কতক্ষণ বিশ্বাসযোগ্য"
+      ],
+      "answerIndex": 3,
+      "explanation": "TTL হলো cache-এর মেয়াদ — এর পরে resolver-কে আবার জিজ্ঞেস করতে হয়।"
+    },
+    {
+      "id": "w0l2-q05",
+      "difficulty": "easy",
+      "question": "`.com`, `.org`, `.bd` — এগুলোর দায়িত্বে থাকা server-কে কী বলে?",
+      "options": [
+        "TLD server",
+        "Resolver",
+        "Authoritative server",
+        "Root server"
+      ],
+      "answerIndex": 0,
+      "explanation": "TLD = Top Level Domain। .com-এর TLD server জানে কোন domain-এর authoritative server কোনটা।"
+    },
+    {
+      "id": "w0l2-q06",
+      "difficulty": "easy",
+      "question": "Email কোন server-এ যাবে সেটা কোন record ঠিক করে?",
+      "options": ["MX", "CNAME", "NS", "A"],
+      "answerIndex": 0,
+      "explanation": "MX = Mail Exchange — এই domain-এর email কোথায় deliver হবে তা বলে।"
+    },
+    {
+      "id": "w0l2-q07",
+      "difficulty": "medium",
+      "question": "তুমি browser-এ golpogram.com লিখলে, কিন্তু কয়েক মিনিট আগেই বন্ধু একই Wi-Fi-তে একই site খুলেছিল। সম্ভবত কী ঘটবে?",
+      "options": [
+        "DNS কাজ করবে না, IP লিখতে হবে",
+        "Resolver-এর cache থেকেই উত্তর চলে আসবে — দ্রুত",
+        "TLD server সরাসরি browser-কে উত্তর দেবে",
+        "আবার root server থেকে পুরো lookup হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Resolver সদ্য খোঁজা উত্তর cache করে রাখে — TTL-এর মধ্যে হলে root/TLD পর্যন্ত যেতেই হয় না।"
+    },
+    {
+      "id": "w0l2-q08",
+      "difficulty": "medium",
+      "question": "www.golpogram.com আসলে golpogram.com-এরই আরেক নাম। এটা সেট করতে কোন record লাগবে?",
+      "options": ["MX", "AAAA", "CNAME", "A"],
+      "answerIndex": 2,
+      "explanation": "CNAME = Canonical Name — এক নামকে আরেক নামের ডাকনাম বানায়।"
+    },
+    {
+      "id": "w0l2-q09",
+      "difficulty": "medium",
+      "question": "DNS lookup-এর সঠিক ক্রম কোনটা (cache খালি ধরে)?",
+      "options": [
+        "TLD → Root → Resolver → Authoritative",
+        "Resolver → Root → TLD → Authoritative",
+        "Authoritative → TLD → Root → Resolver",
+        "Root → Resolver → Authoritative → TLD"
+      ],
+      "answerIndex": 1,
+      "explanation": "Resolver তোমার হয়ে root-কে জিজ্ঞেস করে, root পাঠায় TLD-তে, TLD পাঠায় authoritative server-এ — আসল উত্তর সেখানেই।"
+    },
+    {
+      "id": "w0l2-q10",
+      "difficulty": "medium",
+      "question": "তুমি server migrate করবে আগামীকাল, চাও user-রা যেন দ্রুত নতুন IP পেয়ে যায়। আজ কী করা বুদ্ধিমানের কাজ?",
+      "options": [
+        "TTL বাড়িয়ে ১ দিন করে দেওয়া",
+        "DNS record আজই মুছে ফেলা",
+        "কিছুই করতে হবে না, DNS নিজে বুঝে নেবে",
+        "TTL কমিয়ে (যেমন ৬০ সেকেন্ড) রাখা, migration-এর পর record বদলানো"
+      ],
+      "answerIndex": 3,
+      "explanation": "TTL ছোট রাখলে পুরনো cache দ্রুত মেয়াদোত্তীর্ণ হয়, তাই IP বদলের খবর তাড়াতাড়ি ছড়ায়।"
+    },
+    {
+      "id": "w0l2-q11",
+      "difficulty": "medium",
+      "question": "`dig google.com` চালিয়ে দেখলে: `google.com. 290 IN A 142.250.193.78`। এখানে 290 মানে কী?",
+      "options": [
+        "Response time (ms)",
+        "Server-এর port number",
+        "এই উত্তরটা আর ২৯০ সেকেন্ড cache-এ বৈধ",
+        "Google-এর server সংখ্যা"
+      ],
+      "answerIndex": 2,
+      "explanation": "ওই সংখ্যাটা TTL-এর বাকি সময় — প্রতি সেকেন্ডে কমতে থাকে, শূন্য হলে নতুন lookup লাগে।"
+    },
+    {
+      "id": "w0l2-q12",
+      "difficulty": "hard",
+      "question": "২০২১-এ Facebook-এর DNS outage-এ WhatsApp আর Instagram-ও বন্ধ ছিল। সবচেয়ে ভালো ব্যাখ্যা কোনটা?",
+      "options": [
+        "তিনটা app-ই একই code ব্যবহার করে",
+        "সবগুলোর domain resolution একই DNS infrastructure-এর উপর নির্ভরশীল ছিল — সেটাই unreachable হয়ে যায়",
+        "তিনটা app-এর server একই machine-এ ছিল",
+        "Hacker তিনটা app-ই হack করেছিল"
+      ],
+      "answerIndex": 1,
+      "explanation": "Facebook নিজের DNS route withdraw করে ফেলায় নাম resolve-ই হচ্ছিল না — server চালু থাকলেও কেউ খুঁজে পাচ্ছিল না। Shared dependency = shared failure।"
+    },
+    {
+      "id": "w0l2-q13",
+      "difficulty": "hard",
+      "question": "GolpoGram-এর TTL ৮৬৪০০ সেকেন্ড (১ দিন)। হঠাৎ server crash করলো, তুমি ৫ মিনিটে নতুন server-এ নতুন IP দিয়ে DNS update করলে। তবুও user-রা ঢুকতে পারছে না কেন?",
+      "options": [
+        "DNS update হতে টাকা লাগে",
+        "নতুন server টা slow",
+        "Root server এখনো জানে না",
+        "Resolver-দের cache-এ পুরনো IP এখনো ১ দিন পর্যন্ত বৈধ — তারা পুরনো ঠিকানাতেই যাচ্ছে"
+      ],
+      "answerIndex": 3,
+      "explanation": "বড় TTL-এর দাম: পৃথিবীজুড়ে cache-এ বসে থাকা পুরনো উত্তর TTL শেষ না হওয়া পর্যন্ত ব্যবহৃত হবে।"
+    },
+    {
+      "id": "w0l2-q14",
+      "difficulty": "hard",
+      "question": "একই domain-এর A record-এ একাধিক IP রাখলে (যেমন ৩টা server-এর IP) কী সুবিধা পাওয়া যেতে পারে?",
+      "options": [
+        "তিনগুণ দ্রুত DNS lookup",
+        "Website-এর তিনগুণ content দেখা যায়",
+        "Traffic তিনটা server-এ ভাগ হয়ে যেতে পারে — সহজ DNS load balancing",
+        "কোনো সুবিধা নেই, এটা error"
+      ],
+      "answerIndex": 2,
+      "explanation": "Resolver-রা ভিন্ন ভিন্ন IP আগে-পরে ফেরত দেয় (round-robin), ফলে user-রা ভিন্ন server-এ ছড়িয়ে পড়ে — load balancing-এর সবচেয়ে সরল রূপ।"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "lessonId": "w0l7",
+  "questions": [
+    {
+      "id": "w0l7-q01",
+      "difficulty": "easy",
+      "question": "Restaurant-এর গল্পে 'menu'-টা কীসের প্রতীক?",
+      "options": ["Frontend", "Database", "API (চুক্তি)", "Server"],
+      "answerIndex": 2,
+      "explanation": "Menu = কী চাওয়া যায়, কীভাবে চাইতে হয়, কী পাওয়া যাবে — এটাই API-র চুক্তি।"
+    },
+    {
+      "id": "w0l7-q02",
+      "difficulty": "easy",
+      "question": "REST রীতিতে কোন URL-টা সঠিক?",
+      "options": [
+        "/api/fetchPostList",
+        "/api/getAllPosts",
+        "/api/posts",
+        "/api/doGetPosts"
+      ],
+      "answerIndex": 2,
+      "explanation": "URL-এ noun (resource), verb না — কাজটা বোঝায় HTTP method।"
+    },
+    {
+      "id": "w0l7-q03",
+      "difficulty": "easy",
+      "question": "REST API-তে post নম্বর ৯ মুছতে সঠিক request কোনটা?",
+      "options": [
+        "DELETE /api/posts/9",
+        "POST /api/deletePost?id=9",
+        "PATCH /api/posts/9",
+        "GET /api/posts/9/delete"
+      ],
+      "answerIndex": 0,
+      "explanation": "Noun URL-এ (/posts/9), কাজ method-এ (DELETE) — দুই মিলে পূর্ণ বাক্য।"
+    },
+    {
+      "id": "w0l7-q04",
+      "difficulty": "easy",
+      "question": "আধুনিক REST API-তে data সাধারণত কোন format-এ আদান-প্রদান হয়?",
+      "options": ["JSON", "CSV", "Plain text", "XML"],
+      "answerIndex": 0,
+      "explanation": "JSON হালকা, পড়তে সহজ, সব ভাষায় সমর্থিত — তাই এখনকার রাজা।"
+    },
+    {
+      "id": "w0l7-q05",
+      "difficulty": "easy",
+      "question": "GET /api/posts?page=3&limit=20 — এটা কীসের উদাহরণ?",
+      "options": ["Pagination", "Versioning", "Authentication", "Caching"],
+      "answerIndex": 0,
+      "explanation": "Pagination: ২০টা করে ভাগ করে ৩ নম্বর পাতা চাওয়া — সব data একসাথে না।"
+    },
+    {
+      "id": "w0l7-q06",
+      "difficulty": "easy",
+      "question": "API-র মূল সুবিধা কোনটা?",
+      "options": [
+        "Server দ্রুত হয়",
+        "Database লাগে না",
+        "Code ছোট হয়",
+        "ভেতরের implementation লুকিয়ে দুই পক্ষকে স্বাধীনভাবে বদলাতে দেয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "রান্নাঘর বদলালেও menu এক — frontend-এর কিছু জানার দরকার নেই backend ভেতরে কী করছে।"
+    },
+    {
+      "id": "w0l7-q07",
+      "difficulty": "medium",
+      "question": "/api/v1/posts-এর পাশাপাশি /api/v2/posts খোলা হয় কেন?",
+      "options": [
+        "চুক্তি বদলাতে হলে পুরনো client-দের না ভেঙে নতুনদের নতুন নিয়মে আনতে",
+        "v1 hack হয়ে গেছে",
+        "দুটো আলাদা database",
+        "v2 দ্রুত চলে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Versioning = প্রতিশ্রুতি রক্ষা: পুরনোরা v1-এ চলুক, নতুন বদল v2-তে।"
+    },
+    {
+      "id": "w0l7-q08",
+      "difficulty": "medium",
+      "question": "GolpoGram-এ user 42-এর সব post আনতে সবচেয়ে RESTful URL কোনটা?",
+      "options": [
+        "GET /api/users/42/posts",
+        "POST /api/posts/fetch {\"user\": 42}",
+        "GET /api/getPosts?user=42",
+        "GET /api/posts/users?id=42"
+      ],
+      "answerIndex": 0,
+      "explanation": "Resource-এর ভেতরে resource — nested noun path: users/42-এর posts। পড়েই বোঝা যায়।"
+    },
+    {
+      "id": "w0l7-q09",
+      "difficulty": "medium",
+      "question": "১ কোটি post-ওয়ালা API-তে pagination না রাখলে সবচেয়ে সম্ভাব্য পরিণতি কী?",
+      "options": [
+        "Security ভেঙে যাবে",
+        "Data sort হবে না",
+        "JSON কাজ করবে না",
+        "এক request-এ বিশাল payload — server-এর memory/bandwidth শেষ, client-ও hang; timeout আর crash"
+      ],
+      "answerIndex": 3,
+      "explanation": "সব একসাথে পাঠানো মানে দুই পাশই ডুবানো। তাই বড় তালিকা সবসময় পাতা ভাগ করে।"
+    },
+    {
+      "id": "w0l7-q10",
+      "difficulty": "medium",
+      "question": "ভালো error response-এর উদাহরণ কোনটা?",
+      "options": [
+        "200 + {\"error\": true}",
+        "404 সব ভুলের জন্য",
+        "500 — body খালি",
+        "400 + {\"message\": \"email টা ঠিক ফরম্যাটে নেই\"}"
+      ],
+      "answerIndex": 3,
+      "explanation": "সঠিক status code + মানুষের ভাষায় কারণ। 200 দিয়ে error পাঠানো API-র মিথ্যাচার!"
+    },
+    {
+      "id": "w0l7-q11",
+      "difficulty": "medium",
+      "question": "Frontend team আর backend team আলাদাভাবে দ্রুত কাজ করতে পারে — API-র কোন গুণে?",
+      "options": [
+        "চুক্তিটা (endpoint, request/response shape) আগে ঠিক করে নিলে দুই দল সমান্তরালে নিজ নিজ পাশ বানাতে পারে",
+        "API server আলাদা বলে",
+        "REST-এ bug হয় না",
+        "JSON ছোট বলে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Contract-first কাজের ধারা: menu আগে লেখো, রান্নাঘর আর dining পরে যে যার মতো।"
+    },
+    {
+      "id": "w0l7-q12",
+      "difficulty": "hard",
+      "question": "Payment API-তে client 'Idempotency-Key: abc-123' পাঠায়। Network timeout-এ client একই key দিয়ে retry করলো, কিন্তু আসলে প্রথম request টা server-এ পৌঁছে কাজ করে ফেলেছিল। Server-এর সঠিক আচরণ কী?",
+      "options": [
+        "Key টা চেনা, তাই আগের ফলাফলটাই ফেরত দেওয়া — দ্বিতীয়বার টাকা না কাটা",
+        "Error 500 দেওয়া",
+        "আবার টাকা কাটা — request তো দুটো",
+        "দুটো request-ই বাতিল করা"
+      ],
+      "answerIndex": 0,
+      "explanation": "Idempotency key-র পুরো উদ্দেশ্যই এটা: retry নিরাপদ করা। Stripe এভাবেই double-charge ঠেকায়।"
+    },
+    {
+      "id": "w0l7-q13",
+      "difficulty": "hard",
+      "question": "একটা API endpoint: GET /api/reports/generate — ডাকলেই নতুন report তৈরি হয়ে database-এ জমা হয়। REST-এর দৃষ্টিতে মূল আপত্তি কী?",
+      "options": [
+        "URL টা বড়",
+        "Report JSON-এ আসছে না",
+        "GET-এর চুক্তি 'safe — কিছু বদলাবে না'; এখানে GET state বদলাচ্ছে — crawler/prefetch/retry অজান্তে বারবার report বানিয়ে ফেলতে পারে",
+        "generate শব্দটা ইংরেজি"
+      ],
+      "answerIndex": 2,
+      "explanation": "Method-এর প্রতিশ্রুতি ভাঙলে অদৃশ্য বিপদ: browser prefetch, monitoring bot, retry — সবাই GET-কে নিরাপদ ভেবে ডাকে। এটা হওয়া উচিত POST /api/reports।"
+    },
+    {
+      "id": "w0l7-q14",
+      "difficulty": "hard",
+      "question": "তোমার public API-র response থেকে একটা field (\"nickname\") সরিয়ে দিলে — version না বাড়িয়ে। এক মাস পরে এক client-এর app crash করছে। এটা কোন ভুলের উদাহরণ?",
+      "options": [
+        "Breaking change বিনা versioning-এ — চুক্তির এক পক্ষ একতরফা বদলানোয় নির্ভরশীল client ভেঙেছে",
+        "Client-এর ভুল, API-র কিছু না",
+        "Pagination ভুল",
+        "JSON-এর bug"
+      ],
+      "answerIndex": 0,
+      "explanation": "Field সরানো = চুক্তি ভাঙা (breaking change)। হয় v2 খোলো, নয় field রেখে deprecate ঘোষণা দিয়ে সময় দাও — Twitter-এর গল্পের শিক্ষা।"
+    }
+  ]
+}

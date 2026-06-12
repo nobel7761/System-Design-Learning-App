@@ -1,0 +1,167 @@
+{
+  "lessonId": "w0l4",
+  "questions": [
+    {
+      "id": "w0l4-q01",
+      "difficulty": "easy",
+      "question": "Server থেকে শুধু data পড়তে (কিছু না বদলে) কোন HTTP method ব্যবহার করা উচিত?",
+      "options": ["POST", "GET", "PUT", "DELETE"],
+      "answerIndex": 1,
+      "explanation": "GET = 'menu-টা দেখান' — শুধু পড়ে, কিছু বদলায় না (safe method)।"
+    },
+    {
+      "id": "w0l4-q02",
+      "difficulty": "easy",
+      "question": "Status code 404 মানে কী?",
+      "options": [
+        "যা চেয়েছো তা পাওয়া যায়নি",
+        "Request সফল",
+        "Server crash করেছে",
+        "Login লাগবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "404 Not Found — restaurant-এ 'এই item আমাদের নেই'।"
+    },
+    {
+      "id": "w0l4-q03",
+      "difficulty": "easy",
+      "question": "Status code-এর প্রথম digit 5 (যেমন 500, 503) হলে বুঝবে —",
+      "options": [
+        "ভুলটা client-এর",
+        "Redirect হচ্ছে",
+        "ভুলটা server-এর দিকে",
+        "সব ঠিকঠাক"
+      ],
+      "answerIndex": 2,
+      "explanation": "5xx = রান্নাঘরে সমস্যা — server-side error। 4xx হলে আগে নিজের request চেক করো।"
+    },
+    {
+      "id": "w0l4-q04",
+      "difficulty": "easy",
+      "question": "নতুন একটা resource (যেমন নতুন user account) বানাতে সাধারণত কোন method?",
+      "options": ["HEAD", "POST", "PATCH", "GET"],
+      "answerIndex": 1,
+      "explanation": "POST = 'নতুন অর্ডার নিন' — নতুন কিছু তৈরি করে, সফল হলে প্রায়ই 201 Created আসে।"
+    },
+    {
+      "id": "w0l4-q05",
+      "difficulty": "easy",
+      "question": "HTTP request-এ 'Content-Type: application/json'-এর মতো বাড়তি তথ্যগুলো কোথায় থাকে?",
+      "options": ["Port-এ", "Header-এ", "Body-তে", "URL-এ"],
+      "answerIndex": 1,
+      "explanation": "Header = অর্ডার slip-এর মেটাডেটা: কে পাঠালো, কী format, কত বড় ইত্যাদি।"
+    },
+    {
+      "id": "w0l4-q06",
+      "difficulty": "easy",
+      "question": "HTTP 'stateless' মানে —",
+      "options": [
+        "Request encrypt হয় না",
+        "Server আগের request-এর কিছু মনে রাখে না",
+        "HTTP-তে data থাকে না",
+        "Server বন্ধ থাকে"
+      ],
+      "answerIndex": 1,
+      "explanation": "প্রতিটা request স্বাধীন — waiter-এর স্মৃতি নেই। এজন্যই যেকোনো server request-টা ধরতে পারে।"
+    },
+    {
+      "id": "w0l4-q07",
+      "difficulty": "medium",
+      "question": "User-এর profile-এ শুধু নাম-টা বদলাতে চাও, বাকি সব আগের মতোই। সবচেয়ে মানানসই method কোনটা?",
+      "options": ["POST", "PATCH", "GET", "PUT"],
+      "answerIndex": 1,
+      "explanation": "PATCH = আংশিক পরিবর্তন ('শুধু ঝাল কমান')। PUT হলে পুরো object-টা পাঠাতে হতো।"
+    },
+    {
+      "id": "w0l4-q08",
+      "difficulty": "medium",
+      "question": "Internet ধীর থাকায় user 'Order দিন' button-এ পরপর ৩ বার চাপ দিলো, আর form-টা POST request পাঠায়। সম্ভাব্য বিপদ কী?",
+      "options": [
+        "কিছুই হবে না, HTTP নিজেই duplicate আটকায়",
+        "Server 403 দেবে",
+        "৩টা আলাদা অর্ডার তৈরি হয়ে যেতে পারে — POST idempotent নয়",
+        "User logout হয়ে যাবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "POST বারবার = বারবার নতুন resource। তাই দরকার idempotency-র ব্যবস্থা — World 3-এ বিস্তারিত।"
+    },
+    {
+      "id": "w0l4-q09",
+      "difficulty": "medium",
+      "question": "তোমার request-এ server পাঠালো 401। 403-এর সাথে এর পার্থক্য কী?",
+      "options": [
+        "401 = পরিচয়ই দাওনি/ভুল (login করো); 403 = চিনেছি, কিন্তু এই জিনিসে তোমার অধিকার নেই",
+        "401 server-এর ভুল, 403 client-এর",
+        "403 মানে পাওয়া যায়নি",
+        "একই জিনিস, দুটো নাম"
+      ],
+      "answerIndex": 0,
+      "explanation": "401 Unauthorized = authentication সমস্যা; 403 Forbidden = authorization সমস্যা। কে তুমি বনাম কী করতে পারো।"
+    },
+    {
+      "id": "w0l4-q10",
+      "difficulty": "medium",
+      "question": "Browser একটা ছবি আবার চাইলো, server দিলো 304 Not Modified (body খালি)। এতে লাভ কী?",
+      "options": [
+        "ছবিটা অন্য server-এ সরানো হয়েছে",
+        "Browser-এর cache-এ থাকা কপিটাই তাজা — পুরো ছবি আবার পাঠাতে হলো না, bandwidth বাঁচলো",
+        "Server ব্যস্ত বোঝানো",
+        "ছবিটা মুছে গেছে বোঝানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "304 = 'তোমার কাছে যা আছে সেটাই দেখাও'। Cache validation-এর প্রাণ — দ্রুত আর সস্তা।"
+    },
+    {
+      "id": "w0l4-q11",
+      "difficulty": "medium",
+      "question": "Statelessness কীভাবে scaling সহজ করে?",
+      "options": [
+        "Database লাগে না",
+        "Server-এর RAM বাঁচে",
+        "Request ছোট হয়",
+        "যেকোনো request যেকোনো server handle করতে পারে — server বাড়ালেই load ভাগ হয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "কোনো server-ই user-এর state ধরে রাখে না, তাই ১০টা server-এ request যেমন খুশি ছড়ানো যায়।"
+    },
+    {
+      "id": "w0l4-q12",
+      "difficulty": "hard",
+      "question": "GolpoGram-এ likes দেখাচ্ছে API: `GET /api/posts/42/likes`। হঠাৎ সেটা 503 দিচ্ছে, সাথে `Retry-After: 30` header। সবচেয়ে ভালো client-আচরণ কোনটা?",
+      "options": [
+        "সাথে সাথে আবার ১০০ বার চেষ্টা করা",
+        "404 ধরে নিয়ে post মুছে ফেলা",
+        "৩০ সেকেন্ড অপেক্ষা করে আবার চেষ্টা করা — server overload থেকে সেরে উঠছে",
+        "Request-টা POST-এ বদলে দেওয়া"
+      ],
+      "answerIndex": 2,
+      "explanation": "503 + Retry-After = 'এখন পারছি না, এত পরে এসো'। সাথে সাথে retry-র ঝড় server-কে আরো ডোবায়।"
+    },
+    {
+      "id": "w0l4-q13",
+      "difficulty": "hard",
+      "question": "DELETE idempotent — অথচ একই DELETE দ্বিতীয়বার পাঠালে প্রথমে 204, পরে 404 আসতে পারে। তাহলে idempotent বলা হয় কেন?",
+      "options": [
+        "বলা ভুল, DELETE idempotent না",
+        "404 আসা bug",
+        "Idempotency মানে server-এর অবস্থা একই থাকা — দু'বার DELETE-এর পরেও ফল এক: জিনিসটা নেই; response code ভিন্ন হতেই পারে",
+        "দ্বিতীয়বার জিনিসটা আবার তৈরি হয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "Idempotency বিচার হয় server-এর শেষ অবস্থা দিয়ে, response দিয়ে নয়। দুই DELETE-এর পরেই resource অনুপস্থিত — অবস্থা অভিন্ন।"
+    },
+    {
+      "id": "w0l4-q14",
+      "difficulty": "hard",
+      "question": "HTTP/1.1-এ একটা connection-এ আগের request-এর response না আসা পর্যন্ত পরেরটা আটকে থাকে। HTTP/2 এটা কীভাবে সামলায়?",
+      "options": [
+        "Request ছোট করে",
+        "আরো বেশি connection খুলে",
+        "Multiplexing — এক connection-এই অনেক request/response পাশাপাশি interleave হয়ে চলে",
+        "UDP ব্যবহার করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "HTTP/2-এর multiplexing এক TCP connection-এ সমান্তরাল stream চালায়। (HTTP/3 আরো এগিয়ে QUIC/UDP-তে গেছে।)"
+    }
+  ]
+}

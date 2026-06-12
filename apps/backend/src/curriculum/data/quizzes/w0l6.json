@@ -1,0 +1,182 @@
+{
+  "lessonId": "w0l6",
+  "questions": [
+    {
+      "id": "w0l6-q01",
+      "difficulty": "easy",
+      "question": "সিনেমা হলের গল্পে 'হাতের স্ট্যাম্প'-টা কীসের প্রতীক?",
+      "options": ["Session", "JWT", "Password", "Cookie"],
+      "answerIndex": 1,
+      "explanation": "স্ট্যাম্পে সব তথ্য নিজের গায়েই, আর বিশেষ সিল (signature) নকল ঠেকায় — এটাই JWT।"
+    },
+    {
+      "id": "w0l6-q02",
+      "difficulty": "easy",
+      "question": "Cookie কী?",
+      "options": [
+        "Login form",
+        "Browser-এ রাখা ছোট data, যা ওই site-এর প্রতি request-এ আপনাআপনি যায়",
+        "Server-এর database",
+        "এক ধরনের encryption"
+      ],
+      "answerIndex": 1,
+      "explanation": "Cookie হলো বহনকারী পকেট — server Set-Cookie দিয়ে রাখে, browser প্রতিবার ফেরত পাঠায়।"
+    },
+    {
+      "id": "w0l6-q03",
+      "difficulty": "easy",
+      "question": "Session পদ্ধতিতে user-এর আসল তথ্য (কে, কী অধিকার) কোথায় থাকে?",
+      "options": [
+        "URL-এ",
+        "JWT-র payload-এ",
+        "Cookie-র ভেতরে",
+        "Server-এর storage-এ (খাতায়) — cookie-তে থাকে শুধু session ID"
+      ],
+      "answerIndex": 3,
+      "explanation": "টোকেনে শুধু নম্বর (ID); আসল তথ্য server-এর খাতায় — এটাই session-এর মূল কথা।"
+    },
+    {
+      "id": "w0l6-q04",
+      "difficulty": "easy",
+      "question": "JWT-র তিনটা অংশ কী কী?",
+      "options": [
+        "Username, password, email",
+        "Header, payload, signature",
+        "Public key, private key, certificate",
+        "Cookie, session, token"
+      ],
+      "answerIndex": 1,
+      "explanation": "header.payload.signature — দুটো ডট দিয়ে জোড়া তিন অংশ।"
+    },
+    {
+      "id": "w0l6-q05",
+      "difficulty": "easy",
+      "question": "HTTP stateless হওয়া সত্ত্বেও login 'মনে থাকে' কীভাবে?",
+      "options": [
+        "HTTP আসলে stateful",
+        "Browser প্রতিবার গোপনে password পাঠায় না, একবারই যথেষ্ট",
+        "Server সব user-এর মুখ মনে রাখে",
+        "প্রতি request-এর সাথে টোকেন/credential (cookie বা Authorization header-এ) যায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "প্রতিটা request নিজের পরিচয়পত্র সাথে নিয়ে আসে (session ID বা JWT) — server-এর কিছু মনে রাখা লাগে না।"
+    },
+    {
+      "id": "w0l6-q06",
+      "difficulty": "easy",
+      "question": "তোমার GolpoGram app-এ login-এর পর API call-গুলোতে token কীভাবে যায়?",
+      "options": [
+        "প্রতিবার password আবার পাঠিয়ে",
+        "DNS record-এ",
+        "URL-এর শেষে",
+        "Authorization: Bearer <token> header-এ"
+      ],
+      "answerIndex": 3,
+      "explanation": "Bearer scheme: 'এই token-এর বাহকই অনুমোদিত' — REST API-র সবচেয়ে প্রচলিত রীতি।"
+    },
+    {
+      "id": "w0l6-q07",
+      "difficulty": "medium",
+      "question": "JWT-র payload-এ user-এর password রাখা ভয়ানক ভুল কেন?",
+      "options": [
+        "Payload শুধু base64-encoded — যে কেউ decode করে পড়ে ফেলতে পারে; signature পড়া ঠেকায় না",
+        "Password থাকলে signature কাজ করে না",
+        "Server password ভুলে যায়",
+        "Payload-এ জায়গা কম"
+      ],
+      "answerIndex": 0,
+      "explanation": "JWT-র signature বদল ঠেকায়, গোপনীয়তা দেয় না। Payload = খোলা চিঠি, সই করা।"
+    },
+    {
+      "id": "w0l6-q08",
+      "difficulty": "medium",
+      "question": "একজন user-কে এক্ষুনি (এই মুহূর্তে) block করতে হবে। কোন পদ্ধতিতে এটা সহজ, কেন?",
+      "options": [
+        "JWT — token মুছে দিলেই হয়",
+        "দুটোতেই সমান সহজ",
+        "কোনোটাতেই সম্ভব না",
+        "Session — server-এর খাতা থেকে session-টা মুছলেই সে সাথে সাথে বাতিল"
+      ],
+      "answerIndex": 3,
+      "explanation": "Session-এ নিয়ন্ত্রণ server-এর হাতে। JWT তো user-এর হাতের স্ট্যাম্প — মেয়াদ (exp) শেষ না হওয়া পর্যন্ত নিজে নিজেই বৈধ।"
+    },
+    {
+      "id": "w0l6-q09",
+      "difficulty": "medium",
+      "question": "GolpoGram-এ ১০টা backend server। JWT এখানে session-এর চেয়ে সুবিধাজনক কেন?",
+      "options": [
+        "যেকোনো server গোপন চাবি দিয়ে token যাচাই করতে পারে — shared session store লাগে না",
+        "JWT ছোট হয়",
+        "JWT দ্রুত travel করে",
+        "Session ১০টা server-এ কাজই করে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "Session হলে ১০টা server-কেই এক খাতা (Redis ইত্যাদি) দেখতে হতো। JWT stateless — চাবি জানা যেকোনো server-ই যাচাইকারী।"
+    },
+    {
+      "id": "w0l6-q10",
+      "difficulty": "medium",
+      "question": "HttpOnly flag দেওয়া cookie-র লাভ কী?",
+      "options": [
+        "Page-এর JavaScript cookie-টা পড়তে পারে না — XSS দিয়ে টোকেন চুরি কঠিন হয়",
+        "Cookie শুধু HTTP-তে যায়, HTTPS-এ না",
+        "Cookie-র মেয়াদ বাড়ে",
+        "Cookie encrypt হয়ে যায়"
+      ],
+      "answerIndex": 0,
+      "explanation": "দুষ্টু script ঢুকে পড়লেও document.cookie দিয়ে HttpOnly cookie ছোঁয়া যায় না — চুরির বড় পথ বন্ধ।"
+    },
+    {
+      "id": "w0l6-q11",
+      "difficulty": "medium",
+      "question": "JWT-র 'exp' field-টার কাজ কী?",
+      "options": [
+        "Server-এর port number",
+        "Encryption-এর ধরন",
+        "Token-এর experience point",
+        "Token কখন মেয়াদোত্তীর্ণ হবে — এরপর server আর মানবে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "Expiry timestamp। JWT সাথে সাথে বাতিল করা যায় না বলেই ছোট exp রাখা নিরাপত্তার মূল কৌশল।"
+    },
+    {
+      "id": "w0l6-q12",
+      "difficulty": "hard",
+      "question": "চোর একটা JWT চুরি করে payload-এ \"role\": \"user\"-কে \"admin\" বানিয়ে পাঠালো। Server-এ কী ঘটবে?",
+      "options": [
+        "Token টা session-এ বদলে যাবে",
+        "চোর admin হয়ে যাবে — এজন্যই JWT বিপজ্জনক",
+        "Payload বদলানোয় signature আর মিলবে না — server token-টা প্রত্যাখ্যান করবে",
+        "Server নতুন signature বানিয়ে নেবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Signature হিসাব হয়েছিল আসল payload দিয়ে। এক অক্ষর বদলালেই যাচাই ব্যর্থ — এটাই 'নকল-অযোগ্য সিল'-এর জাদু।"
+    },
+    {
+      "id": "w0l6-q13",
+      "difficulty": "hard",
+      "question": "Access token (মেয়াদ ১৫ মিনিট) + refresh token (মেয়াদ ৭ দিন) — এই জোড়া-নকশার মূল যুক্তি কী?",
+      "options": [
+        "দুটো token মানে দ্বিগুণ নিরাপত্তা — এমনিই ভালো",
+        "Refresh token দ্রুত কাজ করে",
+        "Access token চুরি হলেও ক্ষতি ১৫ মিনিটে সীমিত; আর refresh token দিয়ে server-এর কাছে গিয়ে নতুন token নিতে হয় বলে সেখানে server চাইলে আটকাতে পারে",
+        "একটা mobile-এর জন্য, একটা desktop-এর"
+      ],
+      "answerIndex": 2,
+      "explanation": "ছোট মেয়াদ = চুরির ক্ষতি ছোট; refresh-এর সময় server-এর হাতে নিয়ন্ত্রণ ফেরে (বাতিল/block করার সুযোগ)। Stateless গতি + নিয়ন্ত্রণ — দুই জগতের আপস।"
+    },
+    {
+      "id": "w0l6-q14",
+      "difficulty": "hard",
+      "question": "একটা banking app আর একটা public API platform — কোনটায় কোন পদ্ধতি বেশি মানানসই?",
+      "options": [
+        "দুটোতেই session",
+        "Banking-এ session (তাৎক্ষণিক বাতিল/নিয়ন্ত্রণ জরুরি), public API-তে JWT (হাজারো client/server-এ stateless যাচাই)",
+        "দুটোতেই JWT",
+        "Banking-এ cookie নিষিদ্ধ"
+      ],
+      "answerIndex": 1,
+      "explanation": "ঝুঁকি-প্রধান জগতে নিয়ন্ত্রণ জেতে (session); বিশাল বিতরণ-প্রধান জগতে statelessness জেতে (JWT)। প্রসঙ্গই রাজা — system design-এর চিরসত্য।"
+    }
+  ]
+}
