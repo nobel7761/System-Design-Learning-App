@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd0l1",
+  "questions": [
+    {
+      "id": "wd0l1-q01",
+      "difficulty": "easy",
+      "question": "Docker Container কী?",
+      "options": [
+        "একটি পূর্ণ Virtual Machine যার নিজস্ব OS আছে",
+        "একটি cloud server যেখানে app deploy করা হয়",
+        "শুধুমাত্র Linux-এ চলে এমন একটি program",
+        "App এবং তার সব dependencies একসাথে package করা isolated environment"
+      ],
+      "answerIndex": 3,
+      "explanation": "Container হলো app এবং তার সব dependencies (runtime, libraries, config) একসাথে sealed করা একটি isolated environment। VM-এর মতো পুরো OS নয় — host OS-এর kernel share করে।"
+    },
+    {
+      "id": "wd0l1-q02",
+      "difficulty": "easy",
+      "question": "Docker Image এবং Docker Container-এর মধ্যে সম্পর্ক কোনটি সঠিক?",
+      "options": [
+        "Container থেকে Image তৈরি হয়",
+        "প্রতিটি Image-এ শুধু একটি Container থাকতে পারে",
+        "Image হলো blueprint, Container হলো সেই blueprint থেকে চলমান instance",
+        "Image এবং Container একই জিনিস"
+      ],
+      "answerIndex": 2,
+      "explanation": "Image হলো recipe বা blueprint — এটি নিজে চলে না। Image থেকে Container তৈরি হয় যেটি actually run করে। OOP-এর ভাষায় Image = Class, Container = Object।"
+    },
+    {
+      "id": "wd0l1-q03",
+      "difficulty": "easy",
+      "question": "Docker Hub কী?",
+      "options": [
+        "Docker-এর official documentation website",
+        "Docker container চালানোর জন্য cloud platform",
+        "Docker images-এর public registry যেখান থেকে images download করা যায়",
+        "Docker-এর command line interface"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker Hub হলো images-এর ভান্ডার — GitHub যেমন code-এর জন্য, Docker Hub তেমন Docker images-এর জন্য। এখানে ubuntu, node, python-এর মতো হাজার হাজার official image পাওয়া যায়।"
+    },
+    {
+      "id": "wd0l1-q04",
+      "difficulty": "easy",
+      "question": "`docker ps` command কী দেখায়?",
+      "options": [
+        "শুধু currently running container-এর তালিকা",
+        "Docker Hub-এর available images",
+        "সব Docker image-এর তালিকা",
+        "সব container-এর তালিকা (running এবং stopped উভয়ই)"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker ps` শুধু currently running container দেখায়। Stopped container-সহ সব container দেখতে হলে `docker ps -a` ব্যবহার করতে হবে, যেখানে `-a` মানে 'all'।"
+    },
+    {
+      "id": "wd0l1-q05",
+      "difficulty": "easy",
+      "question": "Container-এর তুলনায় VM-এর startup time কেমন?",
+      "options": [
+        "Container এবং VM-এর startup time প্রায় সমান",
+        "VM start হতে মিনিট লাগতে পারে, Container সেকেন্ডে start হয়",
+        "VM দ্রুত start হয়, Container ধীরে",
+        "উভয়ই মিলিসেকেন্ডে start হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "VM-কে পুরো OS boot করতে হয় বলে মিনিট লাগে। Container host OS-এর kernel share করে এবং শুধু process হিসেবে চলে, তাই মাত্র সেকেন্ডে start হয়।"
+    },
+    {
+      "id": "wd0l1-q06",
+      "difficulty": "easy",
+      "question": "Docker-এ `docker images` command দিয়ে কী দেখা যায়?",
+      "options": [
+        "শুধু running container-এর images",
+        "Docker daemon-এর status",
+        "তোমার local machine-এ download করা সব Docker image",
+        "Docker Hub-এ available সব image"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker images` command তোমার local machine-এ যে সব Docker image আছে সেগুলো দেখায় — REPOSITORY, TAG, IMAGE ID, CREATED এবং SIZE সহ।"
+    },
+    {
+      "id": "wd0l1-q07",
+      "difficulty": "medium",
+      "question": "`docker run hello-world` command দিলে Docker কোন ক্রমে কাজ করে?",
+      "options": [
+        "Container create → Image pull → Container start",
+        "Container start → Image pull → Container create",
+        "Image pull → Container start (create step নেই)",
+        "Image pull (যদি local না থাকে) → Container create → Container start"
+      ],
+      "answerIndex": 3,
+      "explanation": "`docker run` প্রথমে locally image খোঁজে। না পেলে Docker Hub থেকে pull করে। তারপর সেই image থেকে container create করে। সবশেষে container start করে। তাই ক্রমটি: pull → create → start।"
+    },
+    {
+      "id": "wd0l1-q08",
+      "difficulty": "medium",
+      "question": "Container-রা কেন VM-এর চেয়ে কম memory ও disk space ব্যবহার করে?",
+      "options": [
+        "Container-রা host OS-এর kernel share করে, তাই আলাদা পুরো OS রাখতে হয় না",
+        "Container-রা শুধু RAM-এ চলে, disk ব্যবহার করে না",
+        "Container-রা কম feature সহ তৈরি তাই ছোট",
+        "Container-রা compressed format-এ data store করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "VM-এর প্রতিটি instance একটি সম্পূর্ণ OS চালায় — এতে GBs লাগে। Container host OS-এর kernel share করে তাই শুধু app এবং তার dependencies রাখলেই হয় — এতে MBs লাগে।"
+    },
+    {
+      "id": "wd0l1-q09",
+      "difficulty": "medium",
+      "question": "তুমি `docker run -it ubuntu bash` চালালে কী হবে?",
+      "options": [
+        "Ubuntu VM তৈরি হবে এবং reboot হবে",
+        "Ubuntu container-এর ভেতরে interactive bash terminal পাবে",
+        "Ubuntu image build হবে",
+        "Docker Hub থেকে ubuntu image delete হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`-i` flag stdin খোলা রাখে (interactive), `-t` flag একটি terminal (tty) দেয়, এবং `bash` হলো container-এর ভেতরে চালানোর command। ফলে তুমি সরাসরি ubuntu container-এর ভেতরে bash shell-এ ঢুকে যাবে।"
+    },
+    {
+      "id": "wd0l1-q10",
+      "difficulty": "medium",
+      "question": "Docker-এ 'works on my machine' সমস্যা কীভাবে solve হয়?",
+      "options": [
+        "Docker container-এ app এবং তার পুরো environment একসাথে package হয়, তাই যেকোনো machine-এ same behavior পাওয়া যায়",
+        "Docker সব machine-এ একই hardware simulate করে",
+        "Docker automatically code-এর bugs fix করে দেয়",
+        "Docker সব developer-কে একই operating system use করতে বাধ্য করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Docker-এ app-এর সাথে তার environment (runtime version, dependencies, config) সব কিছু একসাথে image-এ package হয়। তাই developer-এর laptop-এ যা চলে, production server-এ হুবহু তাই চলে — environment আলাদা থাকে না।"
+    },
+    {
+      "id": "wd0l1-q11",
+      "difficulty": "medium",
+      "question": "Docker architecture-এ Docker Daemon (dockerd)-এর কাজ কী?",
+      "options": [
+        "User-এর terminal-এ docker command type নেওয়া",
+        "Background-এ চলে container তৈরি, চালানো এবং বন্ধ করার actual কাজ করা",
+        "Docker image-এর code compile করা",
+        "Docker Hub থেকে images browse করা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Docker Daemon হলো background service যে সব actual কাজ করে — container create, start, stop, image manage ইত্যাদি। CLI শুধু তোমার command নিয়ে REST API-এর মাধ্যমে daemon-কে জানায়।"
+    },
+    {
+      "id": "wd0l1-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker run hello-world` দুইবার চালালে কী হবে?",
+      "options": [
+        "দ্বিতীয়বারও Docker Hub থেকে image re-download করবে",
+        "দ্বিতীয়বার আগের container-টিই restart হবে",
+        "দ্বিতীয়বার error আসবে কারণ image already exists",
+        "প্রথমবার image pull করবে এবং container চালাবে; দ্বিতীয়বার local image ব্যবহার করে নতুন একটি আলাদা container চালাবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "প্রথম `docker run`-এ image pull হয় এবং একটি container তৈরি ও চলে। দ্বিতীয়বার image locally থাকায় pull হয় না — কিন্তু `docker run` প্রতিবার নতুন container তৈরি করে। তাই `docker ps -a`-তে দুটো আলাদা stopped container দেখবে।"
+    },
+    {
+      "id": "wd0l1-q13",
+      "difficulty": "hard",
+      "question": "একজন developer বলছে 'আমি VM ব্যবহার করি, Container দরকার নেই।' নিচের কোন scenario-তে তার কথা সবচেয়ে যুক্তিযুক্ত হবে?",
+      "options": [
+        "যখন তাকে প্রতি মিনিটে নতুন instances scale up করতে হয়",
+        "যখন তার অনেকগুলো microservice আছে",
+        "যখন তাকে দ্রুত deploy করতে হবে",
+        "যখন তার app-এর environment টা host OS-এর kernel-এর সাথে সম্পূর্ণ আলাদা OS-এ চালাতে হবে, যেমন Linux app-কে Windows kernel-এ চালানো"
+      ],
+      "answerIndex": 3,
+      "explanation": "Container host OS-এর kernel share করে — তাই Windows host-এ Linux kernel-ভিত্তিক কাজ directly container-এ করা যায় না (Docker Desktop এটা internally একটি tiny VM দিয়ে handle করে)। কিন্তু যদি সত্যিই আলাদা OS kernel দরকার হয় (যেমন Windows-specific kernel features), সেখানে VM-ই সঠিক choice।"
+    },
+    {
+      "id": "wd0l1-q14",
+      "difficulty": "hard",
+      "question": "তোমার colleague বলল 'আমি একটা image থেকে ৫টা container চালু করেছি। একটা container-এ কিছু file পরিবর্তন করলে বাকি ৪টা container-এও কি সেই পরিবর্তন দেখা যাবে?'",
+      "options": [
+        "না, প্রতিটি container তার নিজস্ব isolated filesystem-এ চলে — একটির পরিবর্তন অন্যটিতে যায় না",
+        "না, তবে সেই container বন্ধ করে পুনরায় চালু করলে পরিবর্তন অন্য container-এ যাবে",
+        "হ্যাঁ, তবে শুধু read-only file-এর ক্ষেত্রে",
+        "হ্যাঁ, সব container একই image share করে তাই সব পরিবর্তন সব container-এ দেখা যাবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "প্রতিটি container তার নিজস্ব isolated writable layer নিয়ে চলে। Image-এর layer গুলো read-only এবং shared, কিন্তু container-এ যেকোনো পরিবর্তন শুধু সেই container-এর নিজস্ব layer-এ হয়। তাই এক container-এর file change অন্য container-এ দেখা যাবে না — এটাই isolation-এর মূল বৈশিষ্ট্য।"
+    }
+  ]
+}

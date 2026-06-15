@@ -1,0 +1,213 @@
+{
+  "lessonId": "wd0l8",
+  "questions": [
+    {
+      "id": "wd0l8-q01",
+      "difficulty": "medium",
+      "question": "তোমার Express app-এ MongoDB connect করার জন্য MONGO_URL লিখছো। `web` container থেকে `db` container-এ connect করার সঠিক URL কোনটি?",
+      "options": [
+        "mongodb://db:27017/myapp",
+        "mongodb://localhost:27017/myapp",
+        "mongodb://mongo:27017/myapp",
+        "mongodb://127.0.0.1:27017/myapp"
+      ],
+      "answerIndex": 0,
+      "explanation": "Docker-এর user-defined network-এ প্রতিটি service তার service name দিয়ে DNS resolve করে। `db` হলো service-এর নাম, তাই `db:27017` সঠিক। `localhost` মানে container নিজেই — সেখানে MongoDB নেই।"
+    },
+    {
+      "id": "wd0l8-q02",
+      "difficulty": "medium",
+      "question": "Dockerfile-এ `COPY package*.json ./` করার পরে `RUN npm install` করা হয়, তারপর `COPY . .` করা হয়। এই order-এর কারণ কী?",
+      "options": [
+        "package.json আগে copy না করলে node_modules তৈরি হয় না",
+        "COPY . . করলে package.json overwrite হয়ে যায়",
+        "এটা Docker-এর mandatory syntax, অন্য order কাজ করে না",
+        "Layer caching — source code বদলালে npm install আবার করতে না হয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker প্রতিটি instruction-এর জন্য layer cache রাখে। `package*.json` আলাদা copy করলে, শুধু source code বদলালে Docker cached `npm install` layer ব্যবহার করে। এতে build অনেক দ্রুত হয়।"
+    },
+    {
+      "id": "wd0l8-q03",
+      "difficulty": "medium",
+      "question": "docker-compose.yml-এ `mongo_data:/data/db` volume দেওয়া আছে। `docker compose down` করার পরে MongoDB-র data কী হবে?",
+      "options": [
+        "data host filesystem-এ project folder-এ save হবে",
+        "সব data মুছে যাবে",
+        "data Docker-এ থাকবে, পরের `up`-এ ফিরে পাবে",
+        "data container-এর ভেতরেই থাকবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Named volume (`mongo_data`) Docker-এর নিজস্ব storage-এ থাকে। `docker compose down` শুধু container বন্ধ করে, volume delete করে না। পরের `docker compose up`-এ ওই data ফিরে পাবে। শুধু `docker compose down -v` দিলে volume মুছে যায়।"
+    },
+    {
+      "id": "wd0l8-q04",
+      "difficulty": "medium",
+      "question": "docker-compose.yml-এ web service-এ দুটো volume দেওয়া আছে: `.:/app` এবং `/app/node_modules`। `/app/node_modules`-কে আলাদা volume দেওয়ার কারণ কী?",
+      "options": [
+        "node_modules খুব বড় হয়, তাই আলাদা রাখতে হয়",
+        "Docker Compose-এ node_modules সবসময় আলাদা volume লাগে",
+        "node_modules-কে volume না দিলে npm install কাজ করে না",
+        "bind mount করলে host-এর node_modules (ভুল platform-এর) container-এর node_modules overwrite করে — এটা prevent করে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`.:/app` bind mount করলে host-এর সব কিছু container-এ আসে। Host-এর `node_modules` অন্য OS-এর জন্য compiled হতে পারে। `/app/node_modules`-কে anonymous volume দিলে এটা container-এর নিজস্ব থাকে এবং host-এর overwrite হয় না।"
+    },
+    {
+      "id": "wd0l8-q05",
+      "difficulty": "medium",
+      "question": "`docker compose logs -f web` command কী করে?",
+      "options": [
+        "web container-এ shell session খোলে",
+        "web service-এর real-time logs stream করে দেখায়",
+        "web service বন্ধ করে নতুন করে চালু করে",
+        "web service-এর সব environment variables দেখায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker compose logs` service-এর logs দেখায়। `-f` flag মানে follow — real-time-এ নতুন log আসতে থাকলে সেটাও দেখায়। `web` মানে শুধু web service-এর logs। Shell এ ঢুকতে `exec` command লাগে।"
+    },
+    {
+      "id": "wd0l8-q06",
+      "difficulty": "medium",
+      "question": "তোমার Compose file-এ `depends_on: - db` দেওয়া আছে। এর মানে কী?",
+      "options": [
+        "db service সম্পূর্ণ ready হওয়ার পরেই web service start হবে",
+        "db container start হওয়ার পরে web container start হবে, কিন্তু db ready কিনা নিশ্চিত না",
+        "web service db-ছাড়া কোনোভাবেই চলবে না",
+        "db service crash করলে web service-ও automatically বন্ধ হয়ে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`depends_on` শুধু startup order নিশ্চিত করে — db container start হওয়ার পরে web start হবে। কিন্তু MongoDB-র ভেতরে ready হতে আরো সময় লাগে। `service_healthy` condition এবং healthcheck দিয়ে সেটা নিশ্চিত করতে হয়।"
+    },
+    {
+      "id": "wd0l8-q07",
+      "difficulty": "medium",
+      "question": "`.dockerignore`-এ `node_modules` না লিখলে কী সমস্যা হবে?",
+      "options": [
+        "Host machine-এর node_modules image-এ copy হবে, যা ভুল platform-এর জন্য compiled",
+        "Build হবে না, Docker error দেবে",
+        "npm install skip হয়ে যাবে",
+        "Image size একটু বড় হবে, কিন্তু কাজ করবে ঠিকই"
+      ],
+      "answerIndex": 0,
+      "explanation": "`.dockerignore`-এ `node_modules` না থাকলে `COPY . .` instruction host-এর node_modules image-এ নিয়ে যাবে। এগুলো host OS-এর জন্য compiled — container Linux-এ চললে এগুলো কাজ নাও করতে পারে এবং image অনেক বড় হয়।"
+    },
+    {
+      "id": "wd0l8-q08",
+      "difficulty": "medium",
+      "question": "`docker compose exec web sh` command-এর কাজ কী?",
+      "options": [
+        "web container-কে restart করে interactive mode-এ",
+        "web service-এর Dockerfile দেখায়",
+        "চলমান web container-এর ভেতরে shell session খোলে",
+        "web service-এর নতুন একটা container তৈরি করে shell সহ"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker compose exec` চলমান container-এ command execute করে। `web sh` মানে web service-এর চলমান container-এ `sh` shell চালাও। এটা debugging-এর জন্য খুব কাজের — ভেতরে ঢুকে environment check করা যায়।"
+    },
+    {
+      "id": "wd0l8-q09",
+      "difficulty": "medium",
+      "question": "docker-compose.yml-এ database-এর জন্য `named volume` ব্যবহার করা হয়, কিন্তু source code-এর জন্য `bind mount` ব্যবহার করা হয়। এই পার্থক্যের মূল কারণ কী?",
+      "options": [
+        "Database data Docker manage করুক (persistent), কিন্তু code changes যেন live reflect হয় host থেকে",
+        "Bind mount বেশি secure, তাই code-এর জন্য ভালো",
+        "Named volume শুধু database image-এ কাজ করে",
+        "Named volume read-only হয়, তাই source code-এ কাজ করে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "Named volume দিয়ে Docker data persist রাখে — container মুছে গেলেও data থাকে। Bind mount দিয়ে host filesystem-এর folder সরাসরি container-এ দেখা যায় — তুমি editor-এ code save করলেই container-এ reflect হয়। দুটোর উদ্দেশ্য আলাদা।"
+    },
+    {
+      "id": "wd0l8-q10",
+      "difficulty": "medium",
+      "question": "Production-ready setup-এ `depends_on` এর পাশাপাশি কী যোগ করলে নিশ্চিত হওয়া যায় যে db সত্যিই ready হওয়ার পরে web start হবে?",
+      "options": [
+        "network: host",
+        "প্রতিটি service-এ environment: WAIT_FOR_DB=true",
+        "healthcheck এবং condition: service_healthy",
+        "restart: always"
+      ],
+      "answerIndex": 2,
+      "explanation": "db service-এ `healthcheck` define করো (যেমন `mongosh --eval 'db.adminCommand(\"ping\")'`) এবং web service-এ `depends_on: db: condition: service_healthy` লিখলে, MongoDB সত্যিই ready হওয়ার পরেই web start হবে।"
+    },
+    {
+      "id": "wd0l8-q11",
+      "difficulty": "hard",
+      "question": "তোমার team-এর একজন developer অভিযোগ করছে যে `docker compose up` করার পর Express app crash করছে — 'MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017'। তুমি docker-compose.yml দেখলে: web আর db দুটো আলাদা network-এ আছে এবং MONGO_URL=mongodb://localhost:27017/myapp। কোন দুটো ভুল একসাথে আছে?",
+      "options": [
+        "depends_on নেই এবং volume define করা হয়নি",
+        "localhost use করা হচ্ছে এবং দুটো service একই network-এ নেই",
+        "Port mapping ভুল এবং image version পুরনো",
+        "EXPOSE instruction Dockerfile-এ নেই এবং restart policy নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "দুটো ভুল: (১) `localhost` মানে web container নিজে — সেখানে MongoDB নেই, `db` service name দিতে হবে। (২) আলাদা network-এ থাকলে container দুটো একে অপরকে দেখতেই পারবে না। দুটো service একই user-defined network-এ রাখতে হবে।"
+    },
+    {
+      "id": "wd0l8-q12",
+      "difficulty": "hard",
+      "question": "Develop করতে করতে তুমি লক্ষ্য করলে `docker compose up --build` প্রতিবার npm install করছে, যদিও তুমি শুধু `src/index.js` বদলেছো। Dockerfile-এ কী ভুল আছে?",
+      "options": [
+        "FROM node:20-alpine-এর বদলে node:20 লিখলে caching কাজ করে",
+        "WORKDIR /app না লিখলে layer caching কাজ করে না",
+        "RUN npm install-এর পরিবর্তে RUN npm ci লিখতে হবে",
+        "COPY . . instruction-টা package*.json copy করার আগে লেখা আছে, তাই সব layer invalidate হচ্ছে"
+      ],
+      "answerIndex": 3,
+      "explanation": "যদি Dockerfile-এ `COPY . .` আগে থাকে এবং তারপর `RUN npm install`, তাহলে যেকোনো file change হলে `COPY . .` layer invalidate হয় এবং তার পরের সব layer (npm install সহ) আবার চলে। সঠিক order: আগে `COPY package*.json ./`, তারপর `RUN npm install`, তারপর `COPY . .`।"
+    },
+    {
+      "id": "wd0l8-q13",
+      "difficulty": "hard",
+      "question": "একজন developer `docker compose down` করে আবার `docker compose up` করলো — কিন্তু দেখলো MongoDB-তে আগের সব data নেই! docker-compose.yml-এ এটা ছিল: `volumes: - /data/db`। কী ভুল হয়েছে?",
+      "options": [
+        "Named volume-এর বদলে anonymous volume দেওয়া হয়েছে — container delete হলে anonymous volume-ও যায়",
+        "Bind mount path ভুল দেওয়া হয়েছে",
+        "MongoDB image-এর version বদলে গেছে",
+        "docker compose down-এর বদলে docker compose stop দিতে হতো"
+      ],
+      "answerIndex": 0,
+      "explanation": "`/data/db` একটা anonymous volume — শুধু container-side path। এটা named volume না। `docker compose down` করলে anonymous volume delete হতে পারে। সঠিক: `volumes: - mongo_data:/data/db` এবং top-level-এ `volumes: mongo_data:` declare করো। Named volume container-এর lifecycle-এর সাথে delete হয় না।"
+    },
+    {
+      "id": "wd0l8-q14",
+      "difficulty": "hard",
+      "question": "তুমি Express app-এ একটা নতুন npm package যোগ করেছো। `docker compose up` করলে app চলছে কিন্তু `Cannot find module 'new-package'` error দিচ্ছে। কেন?",
+      "options": [
+        "Bind mount থাকলে package.json container-এ যায় না",
+        "npm package যোগ করার পর docker compose down -v দিতে হয়",
+        "Docker container-এ npm install automatically হয় না, manually করতে হয়",
+        "Image rebuild না করলে নতুন package install হয় না — `docker compose up --build` লাগবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Bind mount দিয়ে `package.json` update container-এ দেখা যায়, কিন্তু `npm install` image build করার সময় হয়। নতুন package যোগ করলে image rebuild করতে হবে: `docker compose up --build`। তারপর নতুন package install হবে।"
+    },
+    {
+      "id": "wd0l8-q15",
+      "difficulty": "hard",
+      "question": "তুমি চাও web container যদি crash করে তাহলে automatically restart হোক, কিন্তু তুমি যদি নিজে `docker compose stop` করো তাহলে restart না হোক। কোন restart policy ব্যবহার করবে?",
+      "options": [
+        "restart: on-failure",
+        "restart: unless-stopped",
+        "restart: always",
+        "restart: no"
+      ],
+      "answerIndex": 1,
+      "explanation": "`restart: unless-stopped` মানে container crash করলে Docker automatically restart করবে, কিন্তু তুমি নিজে `docker compose stop` বা `docker stop` করলে restart হবে না। `restart: always` সবসময় restart করে — Docker daemon restart হলেও। `on-failure` শুধু non-zero exit code-এ restart করে।"
+    },
+    {
+      "id": "wd0l8-q16",
+      "difficulty": "hard",
+      "question": "তোমার docker-compose.yml-এ web service আছে port 3000 expose করা, db service আছে কিন্তু কোনো port expose করা নেই। বাইরে থেকে কি MongoDB-তে connect করা যাবে? এবং এটা কি ঠিক আছে?",
+      "options": [
+        "হ্যাঁ, যাবে — কারণ web আর db একই network-এ আছে",
+        "না, যাবে না — এটা ভুল, db-ও port expose করতে হবে",
+        "না, যাবে না — এবং এটা ঠিকই আছে, db শুধু internal network-এ accessible হওয়া উচিত",
+        "হ্যাঁ, যাবে — Docker automatically সব port open করে দেয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "db service-এ `ports` না দিলে MongoDB শুধু internal Docker network-এ accessible — মানে web container connect করতে পারবে কিন্তু host machine বা internet থেকে direct connect করা যাবে না। এটা security-র দিক থেকে সঠিক — database কখনো publicly expose করা উচিত না।"
+    }
+  ]
+}

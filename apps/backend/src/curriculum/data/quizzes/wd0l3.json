@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd0l3",
+  "questions": [
+    {
+      "id": "wd0l3-q01",
+      "difficulty": "easy",
+      "question": "Docker image-এর প্রতিটা layer কোন ধরনের?",
+      "options": [
+        "Write-only (শুধু লেখা যায়)",
+        "Executable-only (শুধু execute করা যায়)",
+        "Read-write (পড়া এবং লেখা দুটোই যায়)",
+        "Read-only (শুধু পড়া যায়, লেখা যায় না)"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker image-এর সব layer read-only। শুধু container চালানোর সময় উপরে একটা পাতলা writable layer যোগ হয়। এই কারণে একই image থেকে অনেক container চালালে তারা base layer share করতে পারে।"
+    },
+    {
+      "id": "wd0l3-q02",
+      "difficulty": "easy",
+      "question": "`docker images` command চালালে কী দেখা যায়?",
+      "options": [
+        "Docker Hub-এ available সব image-এর তালিকা",
+        "সব stopped container-এর তালিকা",
+        "তোমার machine-এ locally stored সব image-এর তালিকা",
+        "চলমান সব container-এর তালিকা"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker images` command তোমার local machine-এ যে image-গুলো আছে সেগুলোর তালিকা দেখায় — repository name, tag, image ID, creation date এবং size সহ। চলমান container দেখতে `docker ps` ব্যবহার করতে হয়।"
+    },
+    {
+      "id": "wd0l3-q03",
+      "difficulty": "easy",
+      "question": "Docker Hub হলো —",
+      "options": [
+        "Docker-এর official command line tool",
+        "Docker-এর official public image registry যেখানে images store এবং share করা হয়",
+        "Docker container চালানোর একটি GUI tool",
+        "Docker-এর paid enterprise version"
+      ],
+      "answerIndex": 1,
+      "explanation": "Docker Hub (docker.io) হলো Docker-এর official public registry। এখানে official images (node, ubuntu, nginx ইত্যাদি) এবং developer-দের নিজের images store করা থাকে। `docker pull` করলে default-এ Docker Hub থেকে image নামিয়ে আনে।"
+    },
+    {
+      "id": "wd0l3-q04",
+      "difficulty": "easy",
+      "question": "`docker pull node:18-alpine` command চালানোর সময় কোনো layer-এর পাশে \"Already exists\" দেখা গেলে এর মানে কী?",
+      "options": [
+        "সেই layer টি empty এবং কোনো কাজের না",
+        "সেই layer টি corrupt হয়ে গেছে",
+        "Docker Hub-এ সেই layer টি পাওয়া যাচ্ছে না",
+        "সেই layer টি আগেই local machine-এ cached আছে, আবার download হচ্ছে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "\"Already exists\" মানে layer cache hit! সেই layer আগের কোনো image pull-এর সময় তোমার machine-এ নেমে গেছে। Docker বুদ্ধিমানের মতো আবার download করে না — cached version ব্যবহার করে। এটাই layer caching-এর সুবিধা।"
+    },
+    {
+      "id": "wd0l3-q05",
+      "difficulty": "easy",
+      "question": "`node:18-alpine` image-এ \"alpine\" কী নির্দেশ করে?",
+      "options": [
+        "Alpine পর্বতমালার নামে একটি high-performance mode",
+        "Advanced Linux Package Installation নামক একটি tool",
+        "Node.js-এর একটি বিশেষ feature",
+        "Alpine Linux — একটি super minimal Linux distro যা image size অনেক ছোট করে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Alpine Linux হলো একটি minimalist Linux distribution — মাত্র দরকারি জিনিসগুলো আছে, বাকি সব বাদ। `node:18-alpine` image মাত্র ~180MB, কিন্তু `node:18` (full Debian-based) ~1GB। Production-এ alpine use করলে deployment অনেক দ্রুত হয়।"
+    },
+    {
+      "id": "wd0l3-q06",
+      "difficulty": "easy",
+      "question": "`docker image prune` command কী করে?",
+      "options": [
+        "Dangling (tag-বিহীন, অব্যবহৃত) image-গুলো মুছে দিয়ে disk space খালি করে",
+        "Image-এর size compress করে ছোট করে",
+        "চলমান container থেকে image তৈরি করে",
+        "সব Docker image delete করে দেয়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker image prune` শুধু dangling image মুছে — যেগুলোর কোনো নাম বা tag নেই এবং কোনো container-এ ব্যবহার হচ্ছে না। বারবার build করলে এই ধরনের image জমে disk ভরে যায়। সব unused image মুছতে `docker image prune -a` ব্যবহার করতে হয়।"
+    },
+    {
+      "id": "wd0l3-q07",
+      "difficulty": "medium",
+      "question": "নিচের Dockerfile snippet দুটির মধ্যে কোনটি বেশি efficient এবং কেন?\n\nA: `COPY . .` → `RUN npm install`\nB: `COPY package.json ./` → `RUN npm install` → `COPY . .`",
+      "options": [
+        "A বেশি efficient কারণ কম command আছে",
+        "দুটো একই — Docker layer caching-এ এটা কোনো ফারাক করে না",
+        "B বেশি efficient কারণ source code বদলালেও npm install layer cache থেকে আসে, আবার চলে না",
+        "A বেশি efficient কারণ সব file একবারে copy করা দ্রুত"
+      ],
+      "answerIndex": 2,
+      "explanation": "B অনেক বেশি efficient। Docker build-এ যখন কোনো layer বদলায়, সেটা থেকে উপরের সব layer আবার build হয়। B-তে `package.json` না বদলালে `npm install` layer cache-এ থাকে — শুধু source code-এর layer নতুনভাবে copy হয়। A-তে যেকোনো file বদললেই `npm install` আবার চলে — অনেক সময় নষ্ট।"
+    },
+    {
+      "id": "wd0l3-q08",
+      "difficulty": "medium",
+      "question": "একটি container চলার সময় container-এর ভেতরে একটি নতুন file তৈরি করা হলো। Container বন্ধ হয়ে গেলে সেই file-এর কী হবে?",
+      "options": [
+        "File টি host machine-এর /tmp folder-এ চলে যাবে",
+        "File টি base image-এ স্থায়ীভাবে save হয়ে যাবে",
+        "File টি Docker Hub-এ upload হয়ে যাবে",
+        "File টি হারিয়ে যাবে কারণ container-এর writable layer temporary"
+      ],
+      "answerIndex": 3,
+      "explanation": "Container-এর উপরের writable layer টি temporary। Container বন্ধ (stop) হলে layer থাকলেও, `docker rm` করলে সেই layer সহ সব data মুছে যায়। Persistent data রাখতে Docker Volume ব্যবহার করতে হয় — এটা পরের lesson-এ শিখবে।"
+    },
+    {
+      "id": "wd0l3-q09",
+      "difficulty": "medium",
+      "question": "তুমি `docker history node:18-alpine` চালালে কী তথ্য পাবে?",
+      "options": [
+        "Docker Hub-এ এই image কতবার download হয়েছে",
+        "প্রতিটা layer কোন Dockerfile command থেকে তৈরি এবং তার size",
+        "এই image দিয়ে কতবার container চালানো হয়েছে",
+        "এই image-এর সব environment variable-এর তালিকা"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker history` command image-এর প্রতিটা layer-এর history দেখায় — কোন command (RUN, COPY, ADD ইত্যাদি) থেকে layer তৈরি হয়েছে, কখন, এবং সেই layer কত বড়। এটা image optimize করার সময় কোন layer সবচেয়ে বড় তা বুঝতে কাজে লাগে।"
+    },
+    {
+      "id": "wd0l3-q10",
+      "difficulty": "medium",
+      "question": "Image naming-এ `:latest` tag ব্যবহার করা production-এ কেন এড়িয়ে চলা উচিত?",
+      "options": [
+        "`:latest` যেকোনো সময় নতুন version point করতে পারে — তোমার app কোন exact version-এ চলছে নিশ্চিত নয়, breaking change আসতে পারে",
+        "`:latest` tag ব্যবহার করলে Docker Hub থেকে pull করা যায় না",
+        "`:latest` tag দিলে image অনেক বড় হয়ে যায়",
+        "`:latest` tag শুধু development environment-এ কাজ করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`:latest` মানে 'সবচেয়ে নতুন' — কিন্তু এটা একটি floating reference। আজকে `node:latest` হয়তো Node 18, কাল Node 20 হয়ে যেতে পারে। Production-এ `node:18.20.4` এর মতো exact version pin করা উচিত — তাহলে কোথায় কোন version চলছে নিশ্চিত থাকবে এবং অপ্রত্যাশিত breaking change এড়ানো যাবে।"
+    },
+    {
+      "id": "wd0l3-q11",
+      "difficulty": "medium",
+      "question": "একই image থেকে ১০টি container চালালে disk-এ কতটি image layer copy তৈরি হয়?",
+      "options": [
+        "১০টি সম্পূর্ণ copy — প্রতিটি container-এর জন্য আলাদা",
+        "শূন্য — container-গুলো সরাসরি Docker Hub থেকে চলে",
+        "২০টি — প্রতিটি container-এর জন্য ২টি করে",
+        "মাত্র ১টি set of read-only layers, শুধু ১০টি পাতলা writable layer আলাদা"
+      ],
+      "answerIndex": 3,
+      "explanation": "এটাই Union Filesystem-এর জাদু! Base image-এর read-only layer-গুলো সব container share করে — শুধু একটাই copy থাকে disk-এ। প্রতিটি container-এর জন্য শুধু একটি পাতলা writable layer আলাদা। এতে disk space এবং memory দুটোই বাঁচে।"
+    },
+    {
+      "id": "wd0l3-q12",
+      "difficulty": "hard",
+      "question": "তুমি `FROM node:18-alpine` দিয়ে একটি image build করলে, তারপর পরের দিন Docker Hub-এ `node:18-alpine` update হলো। তোমার build করা image-এ কি পরিবর্তন আসবে?",
+      "options": [
+        "না, এবং এটা ঠিক করার কোনো উপায় নেই",
+        "হ্যাঁ, Docker স্বয়ংক্রিয়ভাবে base image update করে দেবে",
+        "না, তোমার build করা image-এ পরিবর্তন আসবে না — rebuild করতে হবে `docker build --no-cache` দিয়ে",
+        "হ্যাঁ, কিন্তু শুধু container restart করলেই update আসবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker image build হয়ে গেলে সেটা immutable — base image পরে update হলেও তোমার built image বদলায় না। Security patch পেতে বা নতুন base পেতে `docker build --no-cache` দিয়ে পুনরায় build করতে হবে। এই কারণেই CI/CD pipeline-এ নিয়মিত rebuild করা best practice — নাহলে পুরনো vulnerable base image production-এ থেকে যাবে।"
+    },
+    {
+      "id": "wd0l3-q13",
+      "difficulty": "hard",
+      "question": "তুমি `node:18-alpine` থেকে তোমার app-এর image build করলে production deploy করতে গিয়ে দেখলে app crash করছে। Locally `node:18` দিয়ে ঠিকই চলছে। সবচেয়ে সম্ভাব্য কারণ কী?",
+      "options": [
+        "Alpine image-এ internet connection কাজ করে না",
+        "তোমার কোনো dependency `glibc` (GNU C library) use করে কিন্তু Alpine-এ `musl libc` আছে — দুটো compatible না",
+        "Alpine Linux-এ Node.js properly install হয় না",
+        "`node:18-alpine` শুধু ARM processor-এ কাজ করে, x86-এ না"
+      ],
+      "answerIndex": 1,
+      "explanation": "এটা একটি classic Alpine incompatibility সমস্যা। Alpine `musl libc` ব্যবহার করে, কিন্তু অনেক npm package (যেমন `sharp`, `bcrypt`, `canvas`) native C binding সহ compile হয় এবং `glibc` expect করে। সমাধান: হয় development-এও alpine use করো, অথবা Alpine-এ `libc6-compat` বা `gcompat` install করো, অথবা সেই package-এর pure JavaScript alternative খোঁজো।"
+    },
+    {
+      "id": "wd0l3-q14",
+      "difficulty": "hard",
+      "question": "নিচের দুটি Dockerfile-এ final image size কি একই হবে?\n\nDockerfile A:\n```\nFROM ubuntu\nRUN apt-get install -y curl\nRUN apt-get remove -y curl\n```\n\nDockerfile B:\n```\nFROM ubuntu\nRUN apt-get install -y curl && apt-get remove -y curl\n```",
+      "options": [
+        "Dockerfile B বড় হবে — কারণ একটি layer-এ দুটো command চালানো বেশি জায়গা নেয়",
+        "দুটোই base ubuntu-এর সমান — কারণ curl temporary",
+        "Dockerfile A বড় হবে — কারণ install layer-এ curl-এর data আছে, remove করলেও সেই layer থেকে যায়",
+        "হ্যাঁ, দুটোই একই size — কারণ curl শেষে remove করা হয়েছে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dockerfile A-তে final image বড় হবে! কারণ প্রতিটা RUN command আলাদা layer তৈরি করে। প্রথম layer-এ curl install হয় এবং সেই layer-এ curl-এর data থাকে। দ্বিতীয় layer-এ remove করলেও, প্রথম layer মুছে যায় না — শুধু উপরের layer-এ deletion mark হয়। Dockerfile B-তে একটাই layer তৈরি হয় এবং curl কখনো layer-এ persist হয় না। তাই B অনেক ছোট হবে — এটাই multi-layer command chaining-এর কারণ।"
+    }
+  ]
+}

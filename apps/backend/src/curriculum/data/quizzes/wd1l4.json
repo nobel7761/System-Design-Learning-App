@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd1l4",
+  "questions": [
+    {
+      "id": "wd1l4-q01",
+      "difficulty": "easy",
+      "question": "NestJS backend-এর Dockerfile-এ Stage 1 (builder)-এর কাজ কী?",
+      "options": [
+        "Docker Hub-এ image push করা",
+        "Database migration চালানো",
+        "Production server চালু করা",
+        "TypeScript থেকে JavaScript compile করা এবং dist/ folder তৈরি করা"
+      ],
+      "answerIndex": 3,
+      "explanation": "Builder stage হলো রান্নাঘর — এখানে TypeScript compiler এবং dev dependencies ব্যবহার করে `pnpm run build` চালানো হয়, ফলে TypeScript source থেকে JavaScript `dist/` folder তৈরি হয়।"
+    },
+    {
+      "id": "wd1l4-q02",
+      "difficulty": "easy",
+      "question": "Multi-stage Dockerfile-এ `COPY --from=builder` line-টা কী করে?",
+      "options": [
+        "Builder stage থেকে শুধু নির্দিষ্ট file বা folder নিয়ে আসে",
+        "Builder stage restart করে",
+        "Builder stage-কে delete করে",
+        "Builder stage-এর পুরো filesystem copy করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`COPY --from=builder /app/apps/backend/dist ./apps/backend/dist` — এই command builder stage থেকে শুধু compiled `dist/` folder নিয়ে আসে। TypeScript source, dev dependencies — কিছুই আসে না। এটাই multi-stage build-এর মূল শক্তি।"
+    },
+    {
+      "id": "wd1l4-q03",
+      "difficulty": "easy",
+      "question": "Docker-এ `pnpm` ব্যবহার করতে সঠিক পদ্ধতি কোনটা?",
+      "options": [
+        "RUN apt-get install pnpm",
+        "RUN npm install pnpm",
+        "RUN corepack enable && corepack prepare pnpm@latest --activate",
+        "RUN yarn add pnpm"
+      ],
+      "answerIndex": 2,
+      "explanation": "`corepack` হলো Node.js-এর built-in package manager switcher — `node:20-alpine`-এ আগে থেকেই আছে। `corepack enable && corepack prepare pnpm@latest --activate` দিয়ে pnpm activate করাটাই modern এবং correct পদ্ধতি।"
+    },
+    {
+      "id": "wd1l4-q04",
+      "difficulty": "easy",
+      "question": "NestJS backend-এর জন্য `EXPOSE 3001` দেওয়ার মানে কী?",
+      "options": [
+        "Container কে internet-এ expose করে",
+        "Port 3001-এ firewall খুলে দেয়",
+        "Automatically host-এর 3001 port container-এ map করে",
+        "Documentation হিসেবে জানায় container 3001 port ব্যবহার করে — actual mapping `docker run -p`-এ হয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "`EXPOSE` শুধু metadata/documentation — এটা বলে container এই port ব্যবহার করে। Actual port mapping হয় `docker run -p 3001:3001` দিয়ে। Docker Compose আর infrastructure tools এই info ব্যবহার করে।"
+    },
+    {
+      "id": "wd1l4-q05",
+      "difficulty": "easy",
+      "question": "`USER node` Dockerfile-এ কেন দেওয়া হয়?",
+      "options": [
+        "Container-এর নাম node রাখার জন্য",
+        "pnpm কে node user-এ switch করার জন্য",
+        "Node.js install করার জন্য",
+        "App-কে root-এর পরিবর্তে non-root user হিসেবে চালানো — security-র জন্য"
+      ],
+      "answerIndex": 3,
+      "explanation": "`USER node` দিয়ে app non-root user হিসেবে চলে। Container breach হলে attacker root access পাবে না — এটাই security best practice। `node:20-alpine` image-এ `node` user আগে থেকেই তৈরি করা আছে।"
+    },
+    {
+      "id": "wd1l4-q06",
+      "difficulty": "easy",
+      "question": "Monorepo-তে backend image build করার সঠিক command কোনটা (workspace root থেকে)?",
+      "options": [
+        "docker build -f apps/backend/Dockerfile -t learning-platform-backend .",
+        "cd apps/backend && docker build -t backend .",
+        "docker build --context apps/backend/ -t backend .",
+        "docker build apps/backend/"
+      ],
+      "answerIndex": 0,
+      "explanation": "`-f apps/backend/Dockerfile` দিয়ে Dockerfile location বলা হয়, আর শেষের `.` মানে build context হলো current directory (workspace root)। Monorepo-তে workspace root থেকে build করা must — না হলে `pnpm-workspace.yaml` পাওয়া যাবে না।"
+    },
+    {
+      "id": "wd1l4-q07",
+      "difficulty": "medium",
+      "question": "Monorepo-র backend Dockerfile-এ workspace root-এর `package.json` এবং `pnpm-workspace.yaml` copy করা কেন দরকার?",
+      "options": [
+        "Docker image-এর নাম ঠিক করতে",
+        "Git repository information রাখতে",
+        "Frontend-এর dependencies install করতে",
+        "pnpm workspace setup-এর জন্য — এই files ছাড়া `pnpm install` monorepo context বুঝতে পারবে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "pnpm workspace `pnpm-workspace.yaml` দেখে বোঝে কোন কোন directory workspace member। Root `package.json`-এ workspace-wide scripts থাকে। এই files ছাড়া `pnpm install --filter backend` কাজ করবে না — pnpm জানবে না workspace structure কেমন।"
+    },
+    {
+      "id": "wd1l4-q08",
+      "difficulty": "medium",
+      "question": "Stage 2 (runner)-এ `pnpm install --frozen-lockfile --prod` চালানো হয় — এখানে `--prod` flag কী করে?",
+      "options": [
+        "শুধু production dependencies install করে, devDependencies বাদ দেয়",
+        "pnpm-কে production mode-এ চালায়",
+        "Production server-এ deploy করে",
+        "Faster install mode চালু করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`--prod` flag মানে শুধু `dependencies` install হবে, `devDependencies` বাদ যাবে। NestJS-এর TypeScript compiler, `@types/*`, testing tools — এগুলো `devDependencies`। Production-এ এসব দরকার নেই — তাই বাদ দিলেই image ছোট হয়।"
+    },
+    {
+      "id": "wd1l4-q09",
+      "difficulty": "medium",
+      "question": "Alpine Linux-ভিত্তিক container-এ debug করতে ঢুকতে চাইলে কোন command ব্যবহার করবে?",
+      "options": [
+        "docker exec -it backend_container sh",
+        "docker run -it backend_container",
+        "docker exec -it backend_container bash",
+        "docker attach backend_container"
+      ],
+      "answerIndex": 0,
+      "explanation": "Alpine Linux-এ `bash` নেই — শুধু `sh` (POSIX shell) আছে। `docker exec -it backend_container sh` দিয়ে container-এর ভেতরে ঢোকা যাবে। `bash` দিলে 'executable file not found' error আসবে।"
+    },
+    {
+      "id": "wd1l4-q10",
+      "difficulty": "medium",
+      "question": "`.dockerignore`-এ `apps/frontend` রাখার উদ্দেশ্য কী?",
+      "options": [
+        "Frontend-কে আলাদা network-এ রাখা",
+        "Frontend-এর deployment block করা",
+        "Backend image build করার সময় frontend source code build context-এ না পাঠানো — context ছোট রাখতে",
+        "Frontend app বন্ধ করে দেওয়া"
+      ],
+      "answerIndex": 2,
+      "explanation": "Backend image build করতে frontend source code একদমই দরকার নেই। `.dockerignore`-এ `apps/frontend` রাখলে `docker build`-এর সময় সেই folder Docker daemon-এ পাঠানো হয় না — build context ছোট থাকে, build দ্রুত হয়।"
+    },
+    {
+      "id": "wd1l4-q11",
+      "difficulty": "medium",
+      "question": "NestJS-এ `/health` endpoint রাখার কারণ কী?",
+      "options": [
+        "Developer health tracking করতে",
+        "API documentation generate করতে",
+        "Docker Compose বা Kubernetes কে জানাতে app সঠিকভাবে চলছে কিনা — orchestrator health check করে",
+        "Database-এর health check করতে শুধু"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker Compose-এর `healthcheck` বা Kubernetes-এর `livenessProbe` এই endpoint-এ request করে বোঝে container healthy কিনা। Unhealthy container-কে orchestrator automatically restart করে বা traffic দেওয়া বন্ধ করে। এটা production resilience-এর জন্য জরুরি।"
+    },
+    {
+      "id": "wd1l4-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker build -f apps/backend/Dockerfile -t backend .` চালিয়েছো কিন্তু error আসছে: `ERROR: failed to solve: failed to read dockerfile: open apps/backend/Dockerfile: no such file or directory`। সমস্যা কী?",
+      "options": [
+        "`-t backend` flag ভুল জায়গায় আছে",
+        "Dockerfile-এ syntax error আছে",
+        "Command টা `apps/backend/` directory-এর ভেতর থেকে চালানো হচ্ছে, workspace root থেকে নয়",
+        "Docker daemon চালু নেই"
+      ],
+      "answerIndex": 2,
+      "explanation": "Error মানে Docker `apps/backend/Dockerfile` খুঁজে পাচ্ছে না। এটা হয় যখন command ভুল directory থেকে চালানো হয়। যদি `apps/backend/` থেকে চালানো হয়, তাহলে path হবে `Dockerfile` (বর্তমান directory), workspace root থেকে চালালে `apps/backend/Dockerfile`। Monorepo-তে সবসময় workspace root থেকে চালাতে হয়।"
+    },
+    {
+      "id": "wd1l4-q13",
+      "difficulty": "hard",
+      "question": "Production deployment-এ দেখা গেল container start হয় কিন্তু কয়েক সেকেন্ড পরে বন্ধ হয়ে যায়, `docker logs backend_container` দেখাচ্ছে: `Cannot find module 'dist/main'`। Dockerfile-এ কোন সমস্যা?",
+      "options": [
+        "`USER node` দেওয়া হয়নি",
+        "`ENV NODE_ENV=production` বাদ গেছে",
+        "`EXPOSE 3001` দেওয়া হয়নি",
+        "`COPY --from=builder` line-এ path ভুল — builder stage-এ যে path-এ dist তৈরি হয় সেটা runner stage-এ সঠিকভাবে copy হয়নি"
+      ],
+      "answerIndex": 3,
+      "explanation": "`Cannot find module 'dist/main'` মানে Node.js `dist/main.js` file খুঁজে পাচ্ছে না। `COPY --from=builder` command-এ source path (builder stage-এ dist-এর location) বা destination path (runner stage-এ কোথায় রাখা হবে) ভুল। `CMD`-এ যে path দেওয়া আছে সেই path-এ dist পৌঁছায়নি।"
+    },
+    {
+      "id": "wd1l4-q14",
+      "difficulty": "hard",
+      "question": "Backend container চলছে, কিন্তু `docker run -p 3001:3001 --env-file .env learning-platform-backend` চালানোর পরে `/health` endpoint-এ `curl http://localhost:3001/health` দিলে `Connection refused` আসছে। Container-এর log দেখাচ্ছে app সফলভাবে start হয়েছে এবং `Listening on port 3000`। সমস্যা কী?",
+      "options": [
+        "`USER node` দেওয়ার কারণে 3001 port bind করতে পারছে না",
+        "Alpine Linux-এ port 3001 restricted",
+        "App container-এ 3000 port-এ listen করছে কিন্তু container expose করেছে 3001 — port mismatch, `.env`-এ PORT=3000 সেট করা আছে",
+        "Health endpoint implement করা হয়নি"
+      ],
+      "answerIndex": 2,
+      "explanation": "App `PORT=3000`-এ listen করছে (`.env` থেকে নেওয়া), কিন্তু `docker run -p 3001:3001` করা হয়েছে — host-এর 3001 container-এর 3001-এ map হচ্ছে, কিন্তু app container-এর 3000-এ আছে। ঠিক করার উপায়: হয় `.env`-এ `PORT=3001` করো, অথবা `docker run -p 3001:3000` করো (host 3001 → container 3000)।"
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd1l5",
+  "questions": [
+    {
+      "id": "wd1l5-q01",
+      "difficulty": "easy",
+      "question": "Next.js-এ `output: 'standalone'` option কোথায় দিতে হয়?",
+      "options": [
+        "Dockerfile-এর ENV instruction-এ",
+        ".env ফাইলে",
+        "package.json-এর scripts section-এ",
+        "next.config.js ফাইলে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`output: 'standalone'` option `next.config.js` ফাইলে দিতে হয়। এই option দিলে Next.js build করার সময় `.next/standalone/` folder তৈরি করে যেখানে সব প্রয়োজনীয় files bundled থাকে।"
+    },
+    {
+      "id": "wd1l5-q02",
+      "difficulty": "easy",
+      "question": "Standalone output তৈরি হওয়ার পর Next.js app চালাতে কোন command ব্যবহার করা হয়?",
+      "options": [
+        "node server.js",
+        "npx next serve",
+        "next start",
+        "npm start"
+      ],
+      "answerIndex": 0,
+      "explanation": "Standalone output ব্যবহার করলে `node server.js` দিয়ে সরাসরি app চালানো যায়। `.next/standalone/` folder-এর মধ্যে `server.js` file থাকে যা Node.js দিয়ে directly run করা যায় — `next start` লাগে না।"
+    },
+    {
+      "id": "wd1l5-q03",
+      "difficulty": "easy",
+      "question": "Next.js standalone output ব্যবহার করলে image size কেমন হয়?",
+      "options": [
+        "Standalone ছাড়ার চেয়ে বড় হয়, কারণ extra files যোগ হয়",
+        "একই থাকে, কোনো পার্থক্য নেই",
+        "Standalone ছাড়া ~1 GB, standalone দিয়ে ~150-250 MB",
+        "Standalone দিলে image size 10 MB-এর নিচে নেমে আসে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Standalone output ছাড়া Next.js Docker image প্রায় 1 GB হয় কারণ পুরো `node_modules` include হয়। Standalone দিলে শুধু প্রয়োজনীয় modules bundle হয়, ফলে image নামে ~150-250 MB-এ — প্রায় 5 গুণ ছোট।"
+    },
+    {
+      "id": "wd1l5-q04",
+      "difficulty": "easy",
+      "question": "`NEXT_PUBLIC_` prefix দিয়ে শুরু environment variable কখন JavaScript bundle-এ bake হয়?",
+      "options": [
+        "Browser-এ page প্রথমবার load হওয়ার সময়",
+        "Container start হওয়ার সময়",
+        "docker run command চালানোর সময়",
+        "Build time-এ (npm run build চলার সময়)"
+      ],
+      "answerIndex": 3,
+      "explanation": "`NEXT_PUBLIC_` variables build time-এ অর্থাৎ `npm run build` চলার সময় JavaScript bundle-এর মধ্যে hardcode হয়ে যায়। এই কারণে runtime-এ `-e` flag দিয়ে পরিবর্তন করা সম্ভব হয় না।"
+    },
+    {
+      "id": "wd1l5-q05",
+      "difficulty": "easy",
+      "question": "Next.js Dockerfile-এ runner stage-এ কোন তিনটি folder copy করতে হয়?",
+      "options": [
+        ".next/cache, .next/static, node_modules",
+        "dist, public, package.json",
+        ".next/standalone, node_modules, src",
+        ".next/standalone, .next/static, public"
+      ],
+      "answerIndex": 3,
+      "explanation": "Runner stage-এ শুধু `.next/standalone` (server code + bundled modules), `.next/static` (CSS, JS chunks), এবং `public` (static assets) folder copy করতে হয়। বাকি সব — source code, devDependencies, build tools — বাদ যায়।"
+    },
+    {
+      "id": "wd1l5-q06",
+      "difficulty": "easy",
+      "question": "`.dockerignore` file-এ `node_modules` না দিলে কী সমস্যা হয়?",
+      "options": [
+        "Build context-এ local node_modules ঢুকে build অনেক slow হয়",
+        "Image তৈরি হয় না",
+        "Container চলে না",
+        "Dockerfile syntax error আসে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`.dockerignore`-এ `node_modules` না দিলে `COPY . .` command-এর সময় তোমার local `node_modules` folder (যা GB-তে হতে পারে) Docker build context-এ ঢুকে যায়। এতে build শুরুই হতে অনেক সময় লাগে।"
+    },
+    {
+      "id": "wd1l5-q07",
+      "difficulty": "medium",
+      "question": "Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` এবং `ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL` — এই দুই line কোন stage-এ থাকা উচিত?",
+      "options": [
+        "deps stage-এ, যেখানে dependencies install হয়",
+        "builder stage-এ, যেখানে `npm run build` চলে",
+        "runner stage-এ, যেখানে container চালু হয়",
+        "সব stage-এ একসাথে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`ARG` এবং `ENV` instruction `builder` stage-এ থাকতে হবে কারণ এখানেই `npm run build` চলে। `NEXT_PUBLIC_` variables build time-এ bake হয়, তাই build হওয়ার আগেই variable-এর value থাকা দরকার।"
+    },
+    {
+      "id": "wd1l5-q08",
+      "difficulty": "medium",
+      "question": "তুমি `docker build --build-arg NEXT_PUBLIC_API_URL=http://api.dev.com -t frontend .` দিয়ে image build করেছো। Production-এ deploy করতে URL পরিবর্তন করতে চাইলে কী করতে হবে?",
+      "options": [
+        "Docker Hub-এ image push করলে URL আপনাআপনি update হবে",
+        "`docker run -e NEXT_PUBLIC_API_URL=http://api.prod.com frontend` দিলেই হবে",
+        "নতুন URL দিয়ে image আবার build করতে হবে",
+        "Running container-এ `docker exec` দিয়ে value পরিবর্তন করা যাবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`NEXT_PUBLIC_API_URL` build time-এ bake হয়ে যায়, তাই production URL দিয়ে নতুন করে image build করতে হবে: `docker build --build-arg NEXT_PUBLIC_API_URL=http://api.prod.com -t frontend-prod .`। Runtime-এ `-e` flag কোনো কাজে আসবে না।"
+    },
+    {
+      "id": "wd1l5-q09",
+      "difficulty": "medium",
+      "question": "Next.js Dockerfile-এ deps এবং builder — দুটো আলাদা stage রাখার প্রধান সুবিধা কী?",
+      "options": [
+        "Security বাড়ে কারণ dependencies আলাদা থাকে",
+        "Source code change হলেও npm install layer cache থেকে আসে — build দ্রুত হয়",
+        "দুটো stage থাকলে image size অনেক কমে যায়",
+        "Production-এ rollback করা সহজ হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "`package.json` change না হলে `npm ci` layer Docker cache-এ থাকে। শুধু source code change করলে deps stage cache hit করে, তাই আবার install করতে হয় না। এতে build অনেক দ্রুত হয় — বিশেষত CI/CD pipeline-এ।"
+    },
+    {
+      "id": "wd1l5-q10",
+      "difficulty": "medium",
+      "question": "এই command-এ `-f apps/frontend/Dockerfile` flag-এর কাজ কী? `docker build -f apps/frontend/Dockerfile --build-arg NEXT_PUBLIC_API_URL=http://localhost:3001 -t learning-platform-frontend .`",
+      "options": [
+        "Final image-এর নাম দেয়",
+        "Build argument-এর file path specify করে",
+        "কোন Dockerfile ব্যবহার করবে তা specify করে",
+        "Frontend folder-কে build context হিসেবে set করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`-f` flag specify করে কোন Dockerfile ব্যবহার করে build হবে। শেষের `.` হলো build context (project root)। `-t` হলো image-এর tag/name। এখানে Dockerfile আছে `apps/frontend/` folder-এ, কিন্তু build context হলো project root।"
+    },
+    {
+      "id": "wd1l5-q11",
+      "difficulty": "medium",
+      "question": "Next.js-এ `DATABASE_URL` (NEXT_PUBLIC_ prefix ছাড়া) environment variable runtime-এ `docker run -e DATABASE_URL=...` দিয়ে দিলে কি কাজ করবে?",
+      "options": [
+        "না, সব environment variable build time-এ দিতে হয়",
+        "না, শুধু .env ফাইল থেকে পড়া যায়",
+        "শুধু browser-এ কাজ করবে, server-এ নয়",
+        "হ্যাঁ, server-side code (API routes, getServerSideProps)-এ কাজ করবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`NEXT_PUBLIC_` prefix ছাড়া variables শুধু server-side-এ থাকে এবং runtime-এ `docker run -e` দিয়ে set করা যায়। এগুলো browser-এ যায় না এবং build bundle-এ bake হয় না। তাই `DATABASE_URL`, `JWT_SECRET` ইত্যাদি runtime-এ দেওয়া নিরাপদ ও সঠিক।"
+    },
+    {
+      "id": "wd1l5-q12",
+      "difficulty": "hard",
+      "question": "একটা developer Next.js app Docker দিয়ে build করেছে। Browser-এ দেখলো সব API call `http://localhost:3001`-এ যাচ্ছে, কিন্তু production server-এ `http://api.production.com` হওয়ার কথা। তিনি Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` এবং `ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL` সঠিকভাবে লিখেছেন। কিন্তু `docker build -t frontend .` দিয়েছেন `--build-arg` ছাড়া। কী হয়েছে?",
+      "options": [
+        "runner stage-এ ENV দিলে ঠিক হয়ে যেত",
+        "Dockerfile-এ syntax ভুল আছে, তাই build হয়নি",
+        "`--build-arg` না দেওয়ায় `NEXT_PUBLIC_API_URL` empty string হয়েছে, এবং fallback হিসেবে .env.local এর localhost URL ব্যবহার হয়েছে",
+        "Docker automatically Docker Hub থেকে default value নিয়েছে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`--build-arg` না দিলে `ARG NEXT_PUBLIC_API_URL`-এর value হয় empty বা default (যদি Dockerfile-এ `ARG NEXT_PUBLIC_API_URL=default` দেওয়া থাকে)। Build time-এ local `.env.local` ফাইলের `NEXT_PUBLIC_API_URL=http://localhost:3001` read হয়েছে (Next.js .env file support করে build-এ) এবং সেটা bundle-এ bake হয়েছে। Fix: `docker build --build-arg NEXT_PUBLIC_API_URL=http://api.production.com -t frontend .`"
+    },
+    {
+      "id": "wd1l5-q13",
+      "difficulty": "hard",
+      "question": "তুমি Next.js standalone Dockerfile-এ runner stage-এ `COPY --from=builder /app/.next/static ./.next/static` line ভুলে বাদ দিলে। App চালু হবে কিন্তু কী সমস্যা দেখবে?",
+      "options": [
+        "App ঠিকঠাক চলবে, static files standalone-এর মধ্যেই আছে",
+        "App চালু হবে, কিন্তু CSS/JS chunks লোড হবে না — page unstyled ও broken দেখাবে",
+        "App একদমই চালু হবে না, server.js error দেবে",
+        "শুধু images দেখা যাবে না, বাকি সব ঠিক থাকবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`.next/static/` folder-এ থাকে compiled CSS, JavaScript chunks, এবং অন্যান্য static assets। এটা না থাকলে browser এই files পাবে না — page সম্পূর্ণ unstyled দেখাবে এবং client-side JavaScript কাজ করবে না। Server চালু হবে কারণ `server.js` standalone-এ আছে, কিন্তু browser-এ user ভাঙা UI দেখবে।"
+    },
+    {
+      "id": "wd1l5-q14",
+      "difficulty": "hard",
+      "question": "দুটো environment: Development-এ API URL `http://localhost:3001`, Production-এ `https://api.myapp.com`। তুমি চাও একটাই Docker image build করে দুই জায়গায় ব্যবহার করতে এবং runtime-এ URL পরিবর্তন করতে। এটা কি `NEXT_PUBLIC_API_URL` দিয়ে সম্ভব? সঠিক সমাধান কী?",
+      "options": [
+        "না সম্ভব নয় — `NEXT_PUBLIC_` variable build-এ bake হয়। সমাধান: API URL server-side route বা proxy দিয়ে handle করতে হবে, অথবা প্রতিটো environment-এর জন্য আলাদা image build করতে হবে",
+        "সম্ভব — Dockerfile-এ `ENV` instruction runtime-এ override করা যায়",
+        "সম্ভব — `next.config.js`-এ `runtimeConfig` ব্যবহার করলে NEXT_PUBLIC_ runtime-এ কাজ করে",
+        "হ্যাঁ সম্ভব — `docker run -e NEXT_PUBLIC_API_URL=https://api.myapp.com` দিলেই হবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`NEXT_PUBLIC_` variables build time-এ bake হওয়ার কারণে একটা image দুই environment-এ runtime URL পরিবর্তন করে ব্যবহার করা যায় না। সঠিক সমাধান হলো: (১) প্রতিটো environment-এর জন্য আলাদা image build করা (`--build-arg` দিয়ে), অথবা (২) Next.js API routes বা middleware দিয়ে backend URL server-side-এ রাখা (যা runtime ENV থেকে পড়বে), অথবা (৩) Next.js `publicRuntimeConfig` ব্যবহার করা যা server render-এ inject হয়।"
+    }
+  ]
+}

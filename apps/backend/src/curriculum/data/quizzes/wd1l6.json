@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd1l6",
+  "questions": [
+    {
+      "id": "wd1l6-q01",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ MongoDB service-এর data কোথায় persist করা হয়?",
+      "options": [
+        "Named volume-এ, যেমন mongo-data:/data/db",
+        "Host machine-এর /tmp folder-এ",
+        "Container-এর writable layer-এ",
+        "MongoDB image-এর ভেতরে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Named volume (যেমন `mongo-data`) ব্যবহার করে MongoDB-র `/data/db` path-এ mount করলে container restart বা remove করলেও data থাকে। Container-এর writable layer মুছলে data যায়, কিন্তু named volume আলাদা।"
+    },
+    {
+      "id": "wd1l6-q02",
+      "difficulty": "easy",
+      "question": "Full-stack Compose-এ শুধু Next.js frontend-এর জন্য `ports:` section দেওয়া হয় কেন?",
+      "options": [
+        "Docker Compose একটাই port support করে",
+        "Frontend সবচেয়ে গুরুত্বপূর্ণ service তাই",
+        "MongoDB আর NestJS internal network-এ থাকে, browser শুধু frontend-এ access করে",
+        "Next.js বেশি memory ব্যবহার করে তাই"
+      ],
+      "answerIndex": 2,
+      "explanation": "MongoDB আর NestJS backend শুধু internal network-এ থাকে — browser বা outside world তাদের directly access করতে পারে না, এটা security best practice। শুধু Next.js frontend-কে port 3000-এ publish করা হয় যাতে browser access করতে পারে।"
+    },
+    {
+      "id": "wd1l6-q03",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ `docker compose up -d` command-এ `-d` flag কী করে?",
+      "options": [
+        "Debug mode চালু করে",
+        "Database automatically create করে",
+        "Detached mode-এ background-এ চালায়",
+        "Default configuration load করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`-d` মানে detached mode — সব service background-এ চলে, terminal free থাকে। এই flag না দিলে terminal-এ সব service-এর log দেখায় এবং Ctrl+C দিলে সব বন্ধ হয়ে যায়।"
+    },
+    {
+      "id": "wd1l6-q04",
+      "difficulty": "easy",
+      "question": "Compose file-এ NestJS backend-এর MongoDB connection URI কী হবে?",
+      "options": [
+        "mongodb://mongo-atlas.net:27017/learning_platform",
+        "mongodb://localhost:27017/learning_platform",
+        "mongodb://127.0.0.1:27017/learning_platform",
+        "mongodb://mongodb:27017/learning_platform"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker Compose internal DNS ব্যবহার করে service name-কে hostname হিসেবে resolve করে। MongoDB service-এর নাম `mongodb` তাই URI-তে hostname হবে `mongodb` — `localhost` বা `127.0.0.1` কাজ করবে না কারণ ওগুলো container-এর নিজের loopback।"
+    },
+    {
+      "id": "wd1l6-q05",
+      "difficulty": "easy",
+      "question": "সব service-এর current status দেখার জন্য কোন command ব্যবহার করবে?",
+      "options": [
+        "docker compose ps",
+        "docker compose show",
+        "docker compose status",
+        "docker compose list"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker compose ps` command সব service-এর নাম, status (Up/Down/healthy), আর port mapping দেখায়। এটা দিয়ে দ্রুত বুঝতে পারবে কোন service চলছে, কোনটা crash করেছে।"
+    },
+    {
+      "id": "wd1l6-q06",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ MongoDB healthcheck-এ কোন command ব্যবহার করা হয়?",
+      "options": [
+        "curl http://localhost:27017",
+        "mongosh --eval \"db.adminCommand('ping')\"",
+        "mongo --check",
+        "ping mongodb"
+      ],
+      "answerIndex": 1,
+      "explanation": "`mongosh --eval \"db.adminCommand('ping')\"` MongoDB-কে একটা ping পাঠায় এবং সে সত্যিই request handle করতে পারছে কিনা verify করে। এটা MongoDB-র official recommended healthcheck method।"
+    },
+    {
+      "id": "wd1l6-q07",
+      "difficulty": "medium",
+      "question": "`depends_on: mongodb: condition: service_healthy` আর শুধু `depends_on: - mongodb` — দুটোর মধ্যে পার্থক্য কী?",
+      "options": [
+        "কোনো পার্থক্য নেই, দুটো একই কাজ করে",
+        "`service_healthy` শুধু production-এ কাজ করে",
+        "শুধু `depends_on` container start হওয়া দেখে, কিন্তু `service_healthy` healthcheck pass করা নিশ্চিত করে",
+        "`service_healthy` দিলে service আর restart হয় না"
+      ],
+      "answerIndex": 2,
+      "explanation": "শুধু `depends_on: - mongodb` দিলে Docker শুধু MongoDB container-এর process start হওয়া পর্যন্ত অপেক্ষা করে। কিন্তু MongoDB সত্যিকার অর্থে connection নিতে ready হতে ৫-১৫ সেকেন্ড লাগে। `condition: service_healthy` নিশ্চিত করে যে healthcheck pass না করা পর্যন্ত backend start হবে না।"
+    },
+    {
+      "id": "wd1l6-q08",
+      "difficulty": "medium",
+      "question": "Next.js-এ `NEXT_PUBLIC_API_URL` build arg হিসেবে দেওয়া হয় কেন, runtime environment variable হিসেবে না?",
+      "options": [
+        "NEXT_PUBLIC_ prefix-এর variables build time-এ bundle-এ inject হয়, runtime-এ পাওয়া যায় না",
+        "Next.js কোনো environment variable support করে না",
+        "Build arg দিলে image smaller হয়",
+        "Docker Compose environment variable Next.js-এ কাজ করে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "Next.js-এ `NEXT_PUBLIC_` prefix-এর variables build time-এ JavaScript bundle-এ hardcode হয়ে যায়। তাই runtime-এ environment variable set করলে কাজ হয় না — build আর হয়নি। এজন্য `build: args:` section-এ দিতে হয় যাতে `docker build` সময় এই value bundle-এ ঢোকে।"
+    },
+    {
+      "id": "wd1l6-q09",
+      "difficulty": "medium",
+      "question": "Backend-এর healthcheck-এ `wget --no-verbose --tries=1 --spider http://localhost:3001/health` ব্যবহার করা হয়েছে। `--spider` flag কী করে?",
+      "options": [
+        "Secure HTTPS connection তৈরি করে",
+        "Request পাঠায় কিন্তু response body download করে না — শুধু status code দেখে",
+        "Web crawling করে সব links check করে",
+        "Spider network topology scan করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`wget --spider` একটা HEAD request পাঠায় — server respond করছে কিনা check করে, কিন্তু পুরো response body download করে না। Healthcheck-এর জন্য perfect — আমরা শুধু জানতে চাই service up আছে কিনা, response content দরকার নেই।"
+    },
+    {
+      "id": "wd1l6-q10",
+      "difficulty": "medium",
+      "question": "`docker compose down` আর `docker compose down --volumes` — data-র ক্ষেত্রে পার্থক্য কী?",
+      "options": [
+        "`docker compose down` container+network মুছে কিন্তু named volume রাখে; `--volumes` named volume-ও মুছে দেয়",
+        "`--volumes` শুধু anonymous volume মুছে, named volume রাখে",
+        "`docker compose down` কিছু মুছে না, শুধু pause করে",
+        "কোনো পার্থক্য নেই, দুটোই সব মুছে দেয়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker compose down` containers আর networks remove করে, কিন্তু named volumes অক্ষত রাখে। `--volumes` flag যোগ করলে named volumes-ও মুছে যায় — MongoDB-র সব data হারিয়ে যাবে। Development reset করতে useful, কিন্তু production-এ মারাত্মক ভুল।"
+    },
+    {
+      "id": "wd1l6-q11",
+      "difficulty": "medium",
+      "question": "Docker Compose-এ `restart: unless-stopped` দেওয়া হয়েছে। এই policy কীভাবে কাজ করে?",
+      "options": [
+        "Container কখনো restart হয় না",
+        "শুধু MongoDB crash হলে সব service restart হয়",
+        "প্রতি ১ ঘণ্টায় একবার restart হয়",
+        "Crash হলে restart হয়, কিন্তু তুমি manually `docker compose stop` করলে restart হয় না"
+      ],
+      "answerIndex": 3,
+      "explanation": "`unless-stopped` policy মানে — container crash করলে বা server reboot হলে Docker automatically restart করবে, কিন্তু তুমি intentionally `docker stop` বা `docker compose stop` করলে restart হবে না। Production-এ এটাই সবচেয়ে sensible restart policy।"
+    },
+    {
+      "id": "wd1l6-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker compose up -d` দিলে backend container বারবার restart হচ্ছে এবং log-এ দেখাচ্ছে `MongooseError: connect ECONNREFUSED mongodb:27017`। MongoDB container-এর status দেখলে `Up (health: starting)` দেখাচ্ছে। সমস্যাটা কী এবং কীভাবে fix করবে?",
+      "options": [
+        "Backend container-এর MONGODB_URI ভুল, localhost দিতে হবে",
+        "MongoDB image ভুল, mongo:7 এর বদলে mongo:latest দিতে হবে",
+        "Internal network-এর বদলে host network ব্যবহার করতে হবে",
+        "MongoDB healthcheck পাস হওয়ার আগেই backend start হচ্ছে — `depends_on: condition: service_healthy` এবং MongoDB healthcheck সঠিকভাবে configure করতে হবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`health: starting` মানে MongoDB-র healthcheck এখনো pass হয়নি। Backend `depends_on: condition: service_healthy` না থাকলে MongoDB start হওয়ার সাথে সাথেই backend শুরু হয় এবং connection refuse পায়। Fix: Compose file-এ `depends_on: mongodb: condition: service_healthy` যোগ করো এবং MongoDB-তে healthcheck (mongosh ping) configure করো।"
+    },
+    {
+      "id": "wd1l6-q13",
+      "difficulty": "hard",
+      "question": "Frontend container চালু আছে, backend-ও healthy। কিন্তু browser-এ `http://localhost:3001/api/users` এ গেলে connection refused আসছে। কিন্তু `http://localhost:3000` কাজ করছে। কারণ কী?",
+      "options": [
+        "NestJS port 3001 configure হয়নি",
+        "Backend service-এ `ports: - '3001:3001'` দেওয়া নেই — port শুধু internal network-এ expose, বাইরে published না",
+        "Backend container crash করেছে",
+        "Frontend-এর জন্য আলাদা network দরকার"
+      ],
+      "answerIndex": 1,
+      "explanation": "Compose file-এ backend-এর `ports:` section নেই — এটা intentional design। Backend port 3001 শুধু internal Docker network-এ দেখা যায়, host machine-এর browser directly access করতে পারে না। Frontend container internal network-এ `http://backend:3001` দিয়ে access করে। Browser থেকে `localhost:3001` কাজ করবে না — এটা security feature, bug না।"
+    },
+    {
+      "id": "wd1l6-q14",
+      "difficulty": "hard",
+      "question": "তুমি team-এ নতুন developer add করেছো। সে `git clone` করে `docker compose up -d` দিলে frontend build fail হচ্ছে, error: `NEXT_PUBLIC_API_URL is not defined`। বাকি সব চলছে। সমস্যা কোথায়?",
+      "options": [
+        "Compose file-এ `build: args: - NEXT_PUBLIC_API_URL=http://backend:3001` যোগ করা নেই অথবা Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` declare করা নেই",
+        "Frontend-এর জন্য আলাদা .env.local file দরকার এবং সেটা git-এ commit করতে হবে",
+        "internal network-এ NEXT_PUBLIC_ variable কাজ করে না",
+        "Next.js version পুরনো, update করতে হবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Next.js `NEXT_PUBLIC_` variables build time-এ inject হয়। Compose file-এ `build: args:` section-এ `NEXT_PUBLIC_API_URL` দিতে হবে এবং frontend Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` declare করে `ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL` set করতে হবে। এই দুটোর যেকোনো একটা missing হলে build-এ variable পাওয়া যাবে না।"
+    }
+  ]
+}

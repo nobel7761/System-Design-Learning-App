@@ -1,0 +1,213 @@
+{
+  "lessonId": "wd1l8",
+  "questions": [
+    {
+      "id": "wd1l8-q01",
+      "difficulty": "medium",
+      "question": "Multi-stage Dockerfile-এ `COPY --from=builder /app/dist ./dist` line-টার কাজ কী?",
+      "options": [
+        "builder stage-এর পুরো filesystem final image-এ copy করে",
+        "dist folder-কে builder stage-এ send করে compile করতে",
+        "builder stage-এ compile হওয়া output শুধু runner stage-এ নিয়ে আসে",
+        "দুটো stage-এর মধ্যে network connection তৈরি করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`COPY --from=builder` একটি stage থেকে নির্দিষ্ট file/folder অন্য stage-এ নিয়ে যায়। এখানে শুধু compiled `dist/` folder নেওয়া হচ্ছে — TypeScript compiler, dev dependencies, source .ts files কিছুই final image-এ যাচ্ছে না। এতে image অনেক ছোট হয়।"
+    },
+    {
+      "id": "wd1l8-q02",
+      "difficulty": "medium",
+      "question": "Production docker-compose.prod.yml-এ MongoDB service-এ `ports:` section নেই, কিন্তু NestJS backend ঠিকই connect করতে পারছে। এটা সম্ভব কেন?",
+      "options": [
+        "একই Docker network-এ থাকলে container-রা `ports:` ছাড়াই পরস্পরের সাথে communicate করতে পারে",
+        "backend service-এর `ports:` দিয়ে MongoDB-র port forward হয়",
+        "Nginx reverse proxy MongoDB-র connection route করে দেয়",
+        "MongoDB default port 27017 সবসময় automatically open থাকে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Docker-এর internal network-এ একই network-এর সব container পরস্পরকে তাদের port দিয়ে সরাসরি দেখতে পায় — `ports:` publish না করলেও। `ports:` শুধু host machine বা বাইরের world-এ port expose করার জন্য। Internal communication-এ লাগে না।"
+    },
+    {
+      "id": "wd1l8-q03",
+      "difficulty": "medium",
+      "question": "Next.js Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` এবং `ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL` — দুটো line কেন দরকার?",
+      "options": [
+        "ARG শুধু Compose file-এ কাজ করে, ENV শুধু runtime-এ — দুটো আলাদা purpose",
+        "এটা Docker-এর mandatory syntax, একটা দিলে error হবে",
+        "ARG variable encrypt করে, ENV decrypt করে",
+        "ARG build context থেকে value receive করে, ENV সেটাকে build process-এ available করে যাতে Next.js bundle-এ যায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "`ARG` build-time variable — `docker build --build-arg` বা Compose `build.args` থেকে value পায়। কিন্তু `ARG` শুধু Dockerfile instruction-এ available, RUN command-এ না। `ENV NEXT_PUBLIC_API_URL=$ARG_VALUE` দিয়ে সেই value-কে build environment-এ set করা হয় যাতে `npm run build` সময় Next.js সেটা পড়তে পারে।"
+    },
+    {
+      "id": "wd1l8-q04",
+      "difficulty": "medium",
+      "question": "Production setup-এ `image: mongo:latest` ব্যবহার না করে `image: mongo:7.0.14` লেখার মূল কারণ কী?",
+      "options": [
+        "latest tag শুধু development-এ কাজ করে, production-এ error দেয়",
+        "latest tag অনেক বড় image, pinned tag ছোট হয়",
+        "Docker Hub latest tag-কে pull করার permission দেয় না production-এ",
+        "Pinned tag নিশ্চিত করে যে কোনো unexpected version update বা breaking change আসবে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "`latest` tag প্রতিবার pull করলে নতুন version আসতে পারে, যার মধ্যে breaking change থাকতে পারে। Production-এ হঠাৎ `docker compose pull` করলে আলাদা MongoDB version আসবে — এতে data migration issue বা incompatibility হতে পারে। Pinned tag দিলে environment reproducible এবং predictable থাকে।"
+    },
+    {
+      "id": "wd1l8-q05",
+      "difficulty": "medium",
+      "question": "Dockerfile-এ `USER nestjs` instruction add করার পর container কোন permission-এ চলে?",
+      "options": [
+        "সব system resource-এ full access থাকে, শুধু username বদলায়",
+        "শুধু file read permission থাকে, write করা যায় না",
+        "Container বন্ধ হয়ে যায় কারণ nestjs user-এর start permission নেই",
+        "Container root permission হারায়, `nestjs` user-এর সীমিত permission-এ process চলে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`USER nestjs` instruction দিলে পরের সব `RUN`, `CMD`, `ENTRYPOINT` ওই user-এর permission-এ চলে। `nestjs` user একটা non-root system user — তার system-level access সীমিত। যদি attacker container-এ ঢোকে, root-এর মতো host file system বা system call access পাবে না।"
+    },
+    {
+      "id": "wd1l8-q06",
+      "difficulty": "medium",
+      "question": "Production Compose file-এ `internal: true` network কীভাবে কাজ করে?",
+      "options": [
+        "এই network-এর container-রা internet-এ outbound connection করতে পারে না, শুধু নিজেদের মধ্যে communicate করতে পারে",
+        "Network-এর traffic encrypt হয় TLS দিয়ে",
+        "Container-রা এই network-এ join করতে password লাগে",
+        "শুধু internal services এই network-এ যোগ দিতে পারে, external services পারে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "`internal: true` দিলে Docker ওই network-এ কোনো external routing add করে না। ফলে এই network-এর container-রা internet access পায় না — শুধু same network-এর অন্য container-দের সাথে কথা বলতে পারে। Database আর backend এই network-এ থাকলে তারা বাইরে কোনো request পাঠাতে পারবে না — extra security layer।"
+    },
+    {
+      "id": "wd1l8-q07",
+      "difficulty": "medium",
+      "question": "Nginx configuration-এ `location /api/ { proxy_pass http://backend; }` দেওয়ার ফলে কী হয়?",
+      "options": [
+        "Nginx নিজেই API response generate করে backend bypass করে",
+        "শুধু GET request forward হয়, POST/PUT block হয়",
+        "/api/ দিয়ে শুরু হওয়া সব request Nginx backend container-এ forward করে",
+        "backend container-এর 80 port-এ route হয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "`location /api/` block মানে যেকোনো URL যা `/api/` দিয়ে শুরু সেটা `backend` upstream-এ forward হবে। Browser যখন `http://myapp.com/api/users` request করে, Nginx সেটা `http://backend:3001/api/users`-এ পাঠায়। Browser জানে না backend কোথায় আছে — সব Nginx handle করে।"
+    },
+    {
+      "id": "wd1l8-q08",
+      "difficulty": "medium",
+      "question": "`.dockerignore`-এ `.env` এবং `.env.*` যোগ করা কেন জরুরি?",
+      "options": [
+        "Build context-এ env file থাকলে Docker build slow হয়",
+        "এগুলো binary file, Docker copy করতে পারে না",
+        ".env file-এ থাকা variables Dockerfile-এ ARG conflict করে",
+        "COPY . . instruction-এ env file image-এ চলে গেলে secrets image layer-এ permanently থাকে এবং registry-তে push হলে expose হতে পারে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker image layer immutable। একবার env file COPY হলে, পরে মুছলেও অন্য layer-এ থাকে এবং `docker history` বা layer inspection দিয়ে দেখা যায়। Docker Hub বা private registry-তে push হলে যে কেউ সেই layer extract করে secrets দেখতে পারে। `.dockerignore` এই ফাঁদ থেকে রক্ষা করে।"
+    },
+    {
+      "id": "wd1l8-q09",
+      "difficulty": "medium",
+      "question": "NestJS backend service-এ `depends_on: mongodb: condition: service_healthy` লেখা আছে। `service_healthy` মানে কী নিশ্চিত হয়?",
+      "options": [
+        "MongoDB container start হয়েছে — process চলছে",
+        "MongoDB-র memory usage স্বাভাবিক সীমার মধ্যে আছে",
+        "MongoDB-র নিজস্ব healthcheck command pass করেছে — database সত্যিই ready",
+        "MongoDB port 27017 respond করছে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`service_healthy` মানে dependent service-এর `healthcheck` define করা `test` command সফলভাবে execute হয়েছে এবং healthy state return করেছে। MongoDB-র জন্য এটা `mongosh --eval \"db.adminCommand('ping')\"` — মানে MongoDB সত্যিই query accept করার জন্য ready। শুধু `service_started` হলে process চালু হওয়া নিশ্চিত হতো, ready হওয়া না।"
+    },
+    {
+      "id": "wd1l8-q10",
+      "difficulty": "medium",
+      "question": "Production setup-এ Next.js standalone output (`output: 'standalone'` in next.config.js) ব্যবহার করার সুবিধা কী?",
+      "options": [
+        "Build output-এ শুধু production-এ লাগে এমন files থাকে এবং node_modules সহ পুরো app একটা folder-এ — image অনেক ছোট হয়",
+        "Standalone mode-এ hot reload কাজ করে",
+        "Docker ছাড়া standalone mode run করা যায় না",
+        "Standalone mode-এ Next.js আরো বেশি feature পায়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`output: 'standalone'` দিলে Next.js build করার সময় শুধু production-এ actually প্রয়োজনীয় files নিয়ে একটা self-contained output তৈরি করে। এতে `node_modules` পুরোটা copy করতে হয় না — Next.js নিজে tree-shake করে শুধু দরকারি modules রাখে। Dockerfile-এ `COPY --from=builder /app/.next/standalone ./` করলেই চলে।"
+    },
+    {
+      "id": "wd1l8-q11",
+      "difficulty": "hard",
+      "question": "Developer লিখেছে: `NEXT_PUBLIC_API_URL=https://api.myapp.com` production server-এ environment variable হিসেবে। কিন্তু Next.js app-এ API call যাচ্ছে না, console-এ দেখা যাচ্ছে request যাচ্ছে `undefined/users`-এ। সমস্যা কোথায়?",
+      "options": [
+        "Environment variable-এর নামে underscore থাকলে Next.js পড়তে পারে না",
+        "NEXT_PUBLIC_ variable runtime-এ দেওয়া কাজ করে না — build time-এ Dockerfile ARG দিয়ে inject করতে হতো",
+        "HTTPS URL দেওয়া যায় না, HTTP দিতে হবে",
+        "docker-compose.yml-এ environment section-এ দিতে হবে, সরাসরি server-এ না"
+      ],
+      "answerIndex": 1,
+      "explanation": "`NEXT_PUBLIC_` prefix-এর variables Next.js build process-এ JavaScript bundle-এ hardcode হয়। Runtime-এ environment variable set করলে সেটা server-side process-এ যায়, কিন্তু browser bundle-এ ওই value ইতোমধ্যে `undefined` হয়ে গেছে। Fix: Dockerfile-এ `ARG NEXT_PUBLIC_API_URL` এবং Compose-এ `build.args`-এ দিতে হবে — image rebuild করতে হবে।"
+    },
+    {
+      "id": "wd1l8-q12",
+      "difficulty": "hard",
+      "question": "Production-এ NestJS container বারবার crash হচ্ছে। Log-এ দেখা যাচ্ছে: `MongooseError: connect ECONNREFUSED mongodb:27017`। docker-compose.prod.yml-এ `depends_on: mongodb: condition: service_started` লেখা আছে। এই ভুলটা কী এবং fix কী?",
+      "options": [
+        "`service_started` মানে শুধু MongoDB container start হওয়া, ready হওয়া না — MongoDB ready হতে ১০-২০ সেকেন্ড লাগে। Fix: MongoDB-তে healthcheck যোগ করো এবং `condition: service_healthy` দাও",
+        "MongoDB service-এর নাম ভুল — `db` দিতে হবে `mongodb` না",
+        "depends_on শুধু `condition: service_completed_successfully` support করে",
+        "NestJS-এর MONGODB_URI-তে port ভুল — 27018 হবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`service_started` মানে MongoDB-র Docker process শুরু হয়েছে — কিন্তু MongoDB internally initialize হতে সময় লাগে। এই সময়ের মধ্যে NestJS connect করতে গিয়ে ECONNREFUSED পায় এবং crash করে। Fix: MongoDB service-এ `healthcheck: test: [\"CMD\", \"mongosh\", \"--eval\", \"db.adminCommand('ping')\"]` যোগ করো, এবং backend-এ `condition: service_healthy` দাও।"
+    },
+    {
+      "id": "wd1l8-q13",
+      "difficulty": "hard",
+      "question": "তোমার backend Docker image size ১.২ GB। CI/CD pipeline-এ deploy নিচ্ছে ৮ মিনিট। কোন পরিবর্তনগুলো image size সবচেয়ে বেশি কমাবে?",
+      "options": [
+        "`.dockerignore`-এ README.md যোগ করো এবং WORKDIR বদলাও",
+        "Multi-stage build যোগ করো (builder + runner), `npm ci --only=production`, এবং `node:20-alpine` base image",
+        "শুধু `node:20-alpine` base image use করো — বাকি সব একই রাখো",
+        "Image-এ RUN apt-get clean যোগ করো প্রতিটি RUN instruction-এর পরে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Image size কমানোর তিনটা major lever: (১) Multi-stage build — devDependencies, TypeScript compiler, source .ts files final image-এ যাবে না। (২) `npm ci --only=production` — runtime-এ অপ্রয়োজনীয় packages বাদ। (৩) Alpine base image — full Ubuntu/Debian থেকে ৫x ছোট। তিনটা একসাথে করলে ১.২ GB থেকে ১৫০-২০০ MB-তে নামে। শুধু Alpine change করলে কমে, কিন্তু অতটা না।"
+    },
+    {
+      "id": "wd1l8-q14",
+      "difficulty": "hard",
+      "question": "Security audit-এ দেখা গেলো তোমার সব Docker container root user-এ চলছে। Auditor বললেন এটা critical risk। Container escape হলে ঠিক কী বিপদ হতে পারে?",
+      "options": [
+        "Attacker vulnerability exploit করে root container থেকে host machine-এর file system, process, network-এ access পেতে পারে — পুরো server compromise হতে পারে",
+        "শুধু memory leak হতে পারে, data চুরি সম্ভব না",
+        "Root container অন্য container-গুলোকে slow করে দিতে পারে",
+        "Container-এর ভেতরের data চুরি হতে পারে কিন্তু host machine-এ কোনো প্রভাব নেই"
+      ],
+      "answerIndex": 0,
+      "explanation": "Container namespace isolation complete security boundary না। Root user-এ চলা container-এ যদি kernel vulnerability বা misconfiguration থাকে, attacker container escape করে host-এর root access পেতে পারে। Host-এর সব file system, running process, network, অন্য container-এর data — সব compromise। Non-root user দিয়ে attack scope dramatically সীমিত হয় কারণ limited permission-এ host resource access অনেক কঠিন।"
+    },
+    {
+      "id": "wd1l8-q15",
+      "difficulty": "hard",
+      "question": "Team-এর একজন developer production-এ JWT_SECRET `.env.prod` file-এ রেখেছে এবং সেটা Git-এ commit করেছে। Image build করার সময় `COPY . .` দিয়ে image-এ গেছে। `RUN rm .env.prod` layer যোগ করা হয়েছে। এতে কি secret safe?",
+      "options": [
+        "হ্যাঁ, কিন্তু শুধু যদি `--squash` flag দিয়ে build করা হয়",
+        "না, কারণ Git-এ আছে — কিন্তু image-এ rm করলে image থেকে safe",
+        "হ্যাঁ, rm করলে file মুছে যায় তাই safe",
+        "না, Docker layer immutable — COPY layer-এ .env.prod permanently আছে এবং `docker history` বা layer extraction দিয়ে দেখা যাবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker image-এর প্রতিটা layer stack-এর মতো। `COPY .env.prod` একটা layer তৈরি করে যেখানে file আছে। পরে `RUN rm .env.prod` নতুন layer যোগ করে যেখানে file নেই — কিন্তু আগের layer এখনো image-এ intact আছে। `docker save` করে tar extract করলে বা Docker layer tools দিয়ে ওই layer-এ ঢুকে .env.prod পড়া যাবে। Fix: `.dockerignore`-এ `.env*` যোগ করো এবং Git history থেকেও remove করো।"
+    },
+    {
+      "id": "wd1l8-q16",
+      "difficulty": "hard",
+      "question": "Production Compose-এ Nginx service আছে দুটো network-এ: `public` এবং `internal`। Frontend আর Backend শুধু `internal` network-এ। এই architecture-এ browser থেকে `/api/users` request কীভাবে backend-এ পৌঁছাবে — সঠিক flow কোনটি?",
+      "options": [
+        "Browser → Nginx → Frontend → Backend → Response (সব request frontend-এর মধ্য দিয়ে যায়)",
+        "Browser → Frontend container → Backend container → Response",
+        "Browser → Nginx (public network, port 80) → Nginx internal routing → Backend container (internal network) → Response",
+        "Browser → Docker DNS → Backend container সরাসরি → Response"
+      ],
+      "answerIndex": 2,
+      "explanation": "Nginx একমাত্র service যে দুটো network-এ আছে — তাই সে bridge হিসেবে কাজ করে। Browser port 80-এ Nginx-এ আসে (public network)। Nginx config-এ `/api/` location দেখে সে সেই request internal network দিয়ে backend container-এ forward করে। Backend internal network-এ থাকায় browser সরাসরি পৌঁছাতে পারে না — শুধু Nginx পারে। এটাই reverse proxy pattern-এর মূল সুবিধা।"
+    }
+  ]
+}

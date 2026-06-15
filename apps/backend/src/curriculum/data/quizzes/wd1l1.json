@@ -1,0 +1,177 @@
+{
+  "lessonId": "wd1l1",
+  "questions": [
+    {
+      "id": "wd1l1-q01",
+      "difficulty": "easy",
+      "question": "Docker multi-stage build কী?",
+      "options": [
+        "একটি Dockerfile-এ একাধিক FROM instruction ব্যবহার করে আলাদা build stage তৈরি করার পদ্ধতি",
+        "একই সময়ে একাধিক Docker container চালানোর পদ্ধতি",
+        "Docker Hub থেকে একাধিক image একসাথে download করার পদ্ধতি",
+        "একটি image-কে একাধিক server-এ deploy করার পদ্ধতি"
+      ],
+      "answerIndex": 0,
+      "explanation": "Multi-stage build মানে একটি Dockerfile-এ একাধিক FROM instruction ব্যবহার করা। প্রতিটি FROM একটি নতুন stage শুরু করে। Final image-এ শুধু শেষ stage-এর content থাকে, মাঝের build tools বাদ যায়।"
+    },
+    {
+      "id": "wd1l1-q02",
+      "difficulty": "easy",
+      "question": "Multi-stage build-এ একটি stage-কে নাম দিতে কোন keyword ব্যবহার করা হয়?",
+      "options": ["LABEL", "AS", "TAG", "NAME"],
+      "answerIndex": 1,
+      "explanation": "Stage-কে নাম দিতে AS keyword ব্যবহার করা হয়। যেমন: `FROM node:18-alpine AS builder`। এই নাম পরে `COPY --from=builder` এর মতো instruction-এ ব্যবহার করা যায়।"
+    },
+    {
+      "id": "wd1l1-q03",
+      "difficulty": "easy",
+      "question": "আগের build stage থেকে file copy করতে কোন command ব্যবহার করতে হয়?",
+      "options": [
+        "IMPORT --from=builder /app/dist ./dist",
+        "GET --from=builder /app/dist ./dist",
+        "COPY --stage=builder /app/dist ./dist",
+        "COPY --from=builder /app/dist ./dist"
+      ],
+      "answerIndex": 3,
+      "explanation": "`COPY --from=<stage-name>` syntax ব্যবহার করে আগের stage থেকে নির্দিষ্ট file বা directory copy করা হয়। এটাই multi-stage build-এর মূল magic — শুধু দরকারি জিনিসটা নিয়ে আসা।"
+    },
+    {
+      "id": "wd1l1-q04",
+      "difficulty": "easy",
+      "question": ".dockerignore file কীসের কাজ করে?",
+      "options": [
+        "Docker container-কে internet access থেকে block করে",
+        "Docker image-এর specific layer-কে delete করে",
+        "নির্দিষ্ট file ও directory-কে COPY command-এর বাইরে রাখে",
+        "Dockerfile-এর নির্দিষ্ট line-কে comment করে রাখে"
+      ],
+      "answerIndex": 2,
+      "explanation": ".dockerignore file-এ লেখা path/pattern গুলো COPY command কখনো include করে না। ঠিক যেভাবে .gitignore কাজ করে। এতে build context ছোট থাকে এবং unwanted file image-এ যায় না।"
+    },
+    {
+      "id": "wd1l1-q05",
+      "difficulty": "easy",
+      "question": "`ARG` instruction কখন কাজ করে?",
+      "options": [
+        "শুধুমাত্র container run হওয়ার সময়",
+        "Build time এবং runtime উভয় সময়ে",
+        "শুধুমাত্র build time-এ",
+        "Docker Hub-এ push করার সময়"
+      ],
+      "answerIndex": 2,
+      "explanation": "ARG শুধুমাত্র build time-এ কাজ করে। Container start হওয়ার পরে ARG variable আর পাওয়া যায় না। Runtime-এ app-এর কাছে value পাঠাতে হলে ENV ব্যবহার করতে হবে।"
+    },
+    {
+      "id": "wd1l1-q06",
+      "difficulty": "easy",
+      "question": "একটি NestJS app-এর single-stage Docker image সাধারণত কত বড় হয়?",
+      "options": ["প্রায় 50MB", "প্রায় 1.2GB", "প্রায় 5GB", "প্রায় 180MB"],
+      "answerIndex": 1,
+      "explanation": "Single-stage build-এ base node image (~950MB) + dev dependencies + TypeScript compiler + source code সব মিলিয়ে প্রায় 1.2GB হয়। Multi-stage build-এ শুধু production artifacts রেখে এটা 180MB-তে নামানো সম্ভব।"
+    },
+    {
+      "id": "wd1l1-q07",
+      "difficulty": "medium",
+      "question": "Layer caching-এর সুবিধা নেওয়ার জন্য Dockerfile-এ সঠিক order কোনটি?",
+      "options": [
+        "COPY package*.json ./ → RUN npm install → COPY . . → RUN npm run build",
+        "COPY . . → COPY package*.json ./ → RUN npm install",
+        "COPY . . → RUN npm install → RUN npm run build",
+        "RUN npm install → COPY package*.json ./ → COPY . ."
+      ],
+      "answerIndex": 0,
+      "explanation": "সঠিক order হলো: আগে package.json copy, তারপর npm install, তারপর source code copy। package.json কম বদলায় বলে npm install step cache হয়ে থাকে। Source code বদলালে শুধু শেষের দুই step নতুন করে run হয়, ধীর npm install step skip হয়।"
+    },
+    {
+      "id": "wd1l1-q08",
+      "difficulty": "medium",
+      "question": "তুমি শুধু builder stage পর্যন্ত build করতে চাও। কোন command টি সঠিক?",
+      "options": [
+        "docker build -t myapp:build-only --only builder .",
+        "docker build -t myapp:build-only --from builder .",
+        "docker build -t myapp:build-only --stage=builder .",
+        "docker build -t myapp:build-only --target builder ."
+      ],
+      "answerIndex": 3,
+      "explanation": "`docker build --target <stage-name>` flag দিয়ে একটি নির্দিষ্ট stage পর্যন্ত build করা যায়। এটা debugging-এর জন্য খুব useful — intermediate stage-এ কোনো সমস্যা হলে শুধু সেই stage আলাদা করে test করা যায়।"
+    },
+    {
+      "id": "wd1l1-q09",
+      "difficulty": "medium",
+      "question": "নিচের কোনটি .dockerignore-এ সবসময় রাখা উচিত?",
+      "options": [
+        "src/, package.json, tsconfig.json",
+        "node_modules, .git, .env",
+        "dist/, Dockerfile, docker-compose.yml",
+        "README.md, index.html, styles.css"
+      ],
+      "answerIndex": 1,
+      "explanation": "node_modules (host OS-specific binaries container-এ কাজ নাও করতে পারে), .git (অপ্রয়োজনীয় এবং বড়), এবং .env (sensitive secrets) — এই তিনটি সবসময় .dockerignore-এ রাখতে হবে। src/, package.json ইত্যাদি build-এর জন্য দরকার তাই এগুলো exclude করা যাবে না।"
+    },
+    {
+      "id": "wd1l1-q10",
+      "difficulty": "medium",
+      "question": "Multi-stage build-এ production image ছোট হওয়ার মূল কারণ কী?",
+      "options": [
+        "Docker automatically সব unused file delete করে",
+        "Final stage-এ শুধু প্রয়োজনীয় runtime artifact থাকে, build tools এবং dev dependencies থাকে না",
+        "npm install --only=production সব package compress করে",
+        "Alpine base image ব্যবহার করলে সব image ছোট হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Multi-stage build-এ final image-এ শুধু শেষ stage-এর content থাকে। Builder stage-এর TypeScript compiler, dev dependencies, source code — এগুলো final image-এ আসে না। শুধু compiled dist/ আর production node_modules থাকে বলেই image এত ছোট হয়।"
+    },
+    {
+      "id": "wd1l1-q11",
+      "difficulty": "medium",
+      "question": "ARG এবং ENV-এর মধ্যে পার্থক্য কোনটি সঠিক?",
+      "options": [
+        "ARG শুধু build time-এ, ENV build time এবং runtime উভয়ে কাজ করে",
+        "ARG এবং ENV একই জিনিস, শুধু naming convention আলাদা",
+        "ARG runtime-এ কাজ করে, ENV শুধু build time-এ",
+        "ARG এবং ENV উভয়ই শুধু build time-এ কাজ করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "ARG শুধুমাত্র build time-এ পাওয়া যায় — container start হলে আর নেই। ENV build time-এ set করা যায় এবং container runtime-এ app সেই value পায়। App-এর PORT, NODE_ENV এর মতো config-এর জন্য ENV ব্যবহার করতে হয়।"
+    },
+    {
+      "id": "wd1l1-q12",
+      "difficulty": "hard",
+      "question": "তোমার team-এ একজন developer এই Dockerfile লিখেছে: `COPY . . → RUN npm install → COPY package*.json ./`। প্রতিটি build-এ npm install নতুন করে run হচ্ছে, cache কাজ করছে না। সমস্যা কী?",
+      "options": [
+        "Multi-stage build ছাড়া Docker caching কাজ করে না",
+        "npm install-এর পরে package.json copy করা হয়েছে, তাই Docker বুঝতে পারছে না",
+        "Alpine image use করা হয়নি বলে cache কাজ করে না",
+        "COPY . . আগে করার কারণে source code বদলালেই সব layer invalidate হয়, npm install cache miss করে"
+      ],
+      "answerIndex": 3,
+      "explanation": "COPY . . প্রথমে করলে যেকোনো source file বদলালেই ওই layer invalidate হয়। Docker layer-এ এরপর আসা সব instruction-ও invalidate হয়, তাই npm install-ও cache miss করে নতুন করে run হয়। সঠিক order: package.json → npm install → source code।"
+    },
+    {
+      "id": "wd1l1-q13",
+      "difficulty": "hard",
+      "question": "তুমি ARG দিয়ে database password pass করেছো: `ARG DB_PASSWORD`. Build হয়েছে। এটা কতটা নিরাপদ এবং কেন?",
+      "options": [
+        "সম্পূর্ণ নিরাপদ, ARG build-এর পরে automatically delete হয়ে যায়",
+        "নিরাপদ, কারণ final image-এ ARG থাকে না",
+        "নিরাপদ নয়, কারণ ARG container runtime-এ সবাই দেখতে পায়",
+        "নিরাপদ নয়, কারণ ARG-এর value `docker history` command দিয়ে দেখা যায় — secrets ARG-এ রাখা উচিত নয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "ARG নিরাপদ নয় কারণ `docker history <image>` command দিয়ে build-time argument-এর value দেখা যায়। Final image-এ না থাকলেও image history-তে থেকে যায়। Sensitive secrets কখনো ARG-এ রাখা উচিত নয়; runtime secret management (Docker secrets, environment variables injection) ব্যবহার করতে হবে।"
+    },
+    {
+      "id": "wd1l1-q14",
+      "difficulty": "hard",
+      "question": "নিচের multi-stage Dockerfile দেখো। Final image-এ কতটুকু থাকবে?\n\n```\nFROM node:18-alpine AS deps\nCOPY package*.json ./\nRUN npm install\n\nFROM node:18-alpine AS builder\nCOPY --from=deps /node_modules ./node_modules\nCOPY . .\nRUN npm run build\n\nFROM node:18-alpine AS runner\nCOPY package*.json ./\nRUN npm install --only=production\nCOPY --from=builder /app/dist ./dist\nCMD [\"node\", \"dist/main.js\"]\n```",
+      "options": [
+        "builder stage-এর সব file এবং runner stage-এর file মিলিয়ে থাকবে",
+        "তিনটি stage-এর সব কিছু মিলিয়ে পুরো image থাকবে",
+        "শুধু deps stage-এর node_modules এবং builder stage-এর source code থাকবে",
+        "শুধু runner stage-এর production node_modules এবং compiled dist/ থাকবে, বাকি দুই stage-এর কিছুই থাকবে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "Multi-stage build-এ final image মানে শেষ stage (runner)-এর content। Runner stage-এ শুধু production node_modules (--only=production) এবং builder থেকে নেওয়া dist/ folder আছে। deps stage এবং builder stage-এর বাকি সব layer final image-এ আসে না। এটাই multi-stage build-এর সৌন্দর্য।"
+    }
+  ]
+}

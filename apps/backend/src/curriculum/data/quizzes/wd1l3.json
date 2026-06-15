@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd1l3",
+  "questions": [
+    {
+      "id": "wd1l3-q01",
+      "difficulty": "easy",
+      "question": "Dockerfile-এ `ARG` instruction কখন কাজ করে?",
+      "options": [
+        "Container চালানোর সময় (runtime-এ)",
+        "Container restart করার সময়",
+        "Docker Compose up করার সময় শুধু",
+        "শুধু image build করার সময় (build time-এ)"
+      ],
+      "answerIndex": 3,
+      "explanation": "`ARG` শুধু `docker build` এর সময় কাজ করে। Build শেষ হলে `ARG` এর value চলে যায় — running container-এ আর থাকে না। Runtime-এ variable দরকার হলে `ENV` ব্যবহার করতে হয়।"
+    },
+    {
+      "id": "wd1l3-q02",
+      "difficulty": "easy",
+      "question": "`.env` file-এ থাকা real credentials কোথায় রাখা উচিত নয়?",
+      "options": [
+        "Container-এর `/run/secrets/` directory-তে",
+        "Local machine-এ",
+        "GitHub repository-তে (committed)",
+        "Docker volume-এ"
+      ],
+      "answerIndex": 2,
+      "explanation": "`.env` file কখনো GitHub-এ commit করা উচিত না — এটা চাবি দরজায় ঝুলিয়ে রাখার মতো। সারা পৃথিবী তোমার secrets দেখতে পাবে। `.gitignore`-এ রাখো।"
+    },
+    {
+      "id": "wd1l3-q03",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ পুরো `.env` file load করার সঠিক syntax কোনটি?",
+      "options": [
+        "include_env: .env",
+        "load_env: [.env]",
+        "env_file:\\n      - .env",
+        "dotenv: .env"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker Compose-এ `env_file:` key-এর নিচে list আকারে `.env` file specify করতে হয়। এটা পুরো file-এর সব variables container-এ inject করে।"
+    },
+    {
+      "id": "wd1l3-q04",
+      "difficulty": "easy",
+      "question": "`.env.example` file-এর উদ্দেশ্য কী?",
+      "options": [
+        "Real values সহ template — সবাই copy করে use করে",
+        "Docker Swarm-এর জন্য বিশেষ format",
+        "Production deployment-এ use করা হয়",
+        "Real values ছাড়া safe template — GitHub-এ commit করা যায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "`.env.example` হলো real values ছাড়া একটা template — শুধু variable names আর empty values বা placeholder থাকে। এটা safely GitHub-এ commit করা যায়। নতুন developer এটা দেখে বুঝতে পারে কোন variables লাগবে।"
+    },
+    {
+      "id": "wd1l3-q05",
+      "difficulty": "easy",
+      "question": "Compose-এ `${PORT:-3000}` syntax-এর মানে কী?",
+      "options": [
+        "PORT variable-এর value সবসময় 3000 হবে",
+        "PORT variable 3000-এর চেয়ে কম হলে error দাও",
+        "PORT variable থাকলে সেটা use করো, না থাকলে 3000 use করো",
+        "PORT আর 3000 দুটো value একসাথে set করো"
+      ],
+      "answerIndex": 2,
+      "explanation": "`${VARIABLE:-default}` হলো variable substitution with default। PORT environment variable set করা থাকলে সেই value use হবে। না থাকলে default value 3000 use হবে। এটা optional variables-এর জন্য খুব useful pattern।"
+    },
+    {
+      "id": "wd1l3-q06",
+      "difficulty": "easy",
+      "question": "কোন command দিয়ে existing Docker image-এর layer history দেখা যায় — যেখানে hardcoded secrets expose হতে পারে?",
+      "options": [
+        "docker logs",
+        "docker diff",
+        "docker history",
+        "docker inspect"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker history <image>` command image-এর সব layer দেখায় — প্রতিটা layer কীভাবে তৈরি হয়েছে সহ। Dockerfile-এ `ENV SECRET=value` লিখলে সেটা এখানে দেখা যায়। এই কারণে কখনো Dockerfile-এ secrets hardcode করা উচিত না।"
+    },
+    {
+      "id": "wd1l3-q07",
+      "difficulty": "medium",
+      "question": "একজন developer Dockerfile-এ `ARG DB_PASSWORD` এবং `RUN echo $DB_PASSWORD > /app/config.txt` লিখেছে। `docker build --build-arg DB_PASSWORD=secret123 .` চালিয়ে image build করা হলো। এই approach-এর সমস্যা কী?",
+      "options": [
+        "ARG build time-এ কাজ করে না, তাই echo কাজ করবে না",
+        "ARG দিয়ে RUN command-এ variable access করা যায় না",
+        "কোনো সমস্যা নেই — ARG build শেষে মুছে যায়",
+        "config.txt file image layer-এ থেকে যাবে এবং password সেখানে readable থাকবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "বড় সমস্যা হলো `RUN echo $DB_PASSWORD > /app/config.txt` — এই command image layer-এ একটা file তৈরি করে যেখানে password plaintext-এ আছে। `docker history` বা image export করলে এই file পাওয়া যাবে। Build-time secrets-এর জন্য `--secret` flag ব্যবহার করো।"
+    },
+    {
+      "id": "wd1l3-q08",
+      "difficulty": "medium",
+      "question": "Production-এ `docker run --env-file .env myapp` চালানো হলো। এই command কীভাবে কাজ করে?",
+      "options": [
+        ".env file-এর variables container-এর environment-এ inject হয়, image-এ যায় না",
+        ".env file container-এর `/etc/environment` তে copy হয়",
+        ".env file image-এর মধ্যে copy হয়ে যায়",
+        ".env file শুধু build time-এ use হয়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`--env-file .env` flag container start করার সময় `.env` file-এর সব variables container-এর environment-এ inject করে। এগুলো image layer-এ save হয় না — শুধু running container-এ থাকে। এটাই secrets inject করার সঠিক pattern।"
+    },
+    {
+      "id": "wd1l3-q09",
+      "difficulty": "medium",
+      "question": "Docker Swarm secrets-এ created secret container-এর কোন path-এ পাওয়া যায়?",
+      "options": [
+        "/etc/docker/secrets/<secret_name>",
+        "/run/secrets/<secret_name>",
+        "/var/secrets/<secret_name>",
+        "/tmp/secrets/<secret_name>"
+      ],
+      "answerIndex": 1,
+      "explanation": "Docker Swarm secret container-এর ভেতরে `/run/secrets/<secret_name>` path-এ একটা file হিসেবে mount হয়। এটা in-memory tmpfs — disk-এ লেখা হয় না। App এই file পড়ে secret value নেয়।"
+    },
+    {
+      "id": "wd1l3-q10",
+      "difficulty": "medium",
+      "question": "`.dockerignore` file-এ `.env` রাখার কারণ কী?",
+      "options": [
+        "`COPY . .` command যেন .env image-এ copy না করে এবং build context ছোট রাখতে",
+        "Compose যেন .env file automatically detect না করে",
+        ".env file-এর variables যেন build time-এ available না হয়",
+        "Docker build fast করতে — .env file বড় হলে slow হয়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`.dockerignore`-এ `.env` রাখলে দুটো সুবিধা: ১. `COPY . .` command accidentally `.env` image-এ copy করবে না, ২. Docker daemon-এ পাঠানো build context ছোট থাকে (faster build)। এটা accidental secrets leak prevent করে।"
+    },
+    {
+      "id": "wd1l3-q11",
+      "difficulty": "medium",
+      "question": "Private npm registry থেকে package install করতে Dockerfile-এ `--mount=type=secret,id=npmrc` use করা হয়। এই approach-এর সুবিধা কী?",
+      "options": [
+        "npm install অনেক fast হয়",
+        "Secret mount শুধু production image-এ কাজ করে",
+        ".npmrc file automatically Docker Hub-এ backup হয়",
+        ".npmrc file image-এর কোনো layer-এ থাকে না — শুধু ওই RUN step-এ available"
+      ],
+      "answerIndex": 3,
+      "explanation": "`--mount=type=secret` দিয়ে mount করা file শুধু ওই নির্দিষ্ট `RUN` instruction চলার সময় available — image layer-এ কোনো trace থাকে না। `docker history` দিয়েও দেখা যাবে না। এটাই build-time secrets-এর সঠিক pattern।"
+    },
+    {
+      "id": "wd1l3-q12",
+      "difficulty": "hard",
+      "question": "একটা team এই Dockerfile use করছে:\n```\nFROM node:20\nENV DB_URL=postgresql://user:prod_pass@db:5432/app\nCOPY . .\nRUN npm install\nCMD [\"node\",\"server.js\"]\n```\nImage build করে Docker Hub-এ push করা হয়েছে। এখন কী কী সমস্যা আছে এবং কোনটা সবচেয়ে বিপজ্জনক?",
+      "options": [
+        "DB_URL image layer-এ থাকায় Docker Hub-এ যে কেউ pull করলে production DB credentials পাবে — এটাই সবচেয়ে বিপজ্জনক",
+        "CMD এ node এর বদলে pm2 use করা উচিত",
+        "npm install slow — এটাই সবচেয়ে বড় সমস্যা",
+        "COPY . . এর আগে .dockerignore নেই — কিছু অতিরিক্ত file যাচ্ছে"
+      ],
+      "answerIndex": 0,
+      "explanation": "সবচেয়ে বিপজ্জনক সমস্যা: `ENV DB_URL=postgresql://user:prod_pass@db:5432/app` — production database password image layer-এ hardcoded। Docker Hub-এ push করা মানে যে কেউ `docker pull` করে `docker history` চালালে password পাবে। এটা catastrophic security breach। Fix: Dockerfile থেকে ENV সরাও, runtime-এ `--env-file .env` দিয়ে inject করো।"
+    },
+    {
+      "id": "wd1l3-q13",
+      "difficulty": "hard",
+      "question": "একজন developer compose.yml-এ এভাবে লিখেছে:\n```yaml\nservices:\n  app:\n    build: .\n    environment:\n      - JWT_SECRET=hardcoded_secret_here\n```\nএই approach কেন সমস্যাজনক এবং সঠিক fix কী?",
+      "options": [
+        "JWT_SECRET এর value অনেক ছোট — fix: longer secret use করো",
+        "environment section শুধু build time-এ কাজ করে — fix: ARG use করো",
+        "compose.yml-এ environment section কাজ করে না — এটাই সমস্যা; fix: env_file use করো",
+        "compose.yml সাধারণত git-এ commit করা হয়, তাই hardcoded secret GitHub-এ যাবে; fix: `${JWT_SECRET}` দিয়ে .env থেকে নাও"
+      ],
+      "answerIndex": 3,
+      "explanation": "compose.yml সাধারণত git repository-তে commit করা হয় — মানে `hardcoded_secret_here` GitHub-এ চলে যাবে। সঠিক fix হলো `JWT_SECRET: ${JWT_SECRET}` লেখা — তাহলে value `.env` file থেকে আসবে (যেটা gitignored)। অথবা `env_file: [.env]` use করো।"
+    },
+    {
+      "id": "wd1l3-q14",
+      "difficulty": "hard",
+      "question": "একটা microservice app-এ development-এ `.env.dev` আর production-এ `.env.prod` আলাদা use করতে হবে। CI/CD pipeline (GitHub Actions)-এ production deploy করার সময় কোন approach সবচেয়ে secure?",
+      "options": [
+        "GitHub Actions Secrets-এ variables store করো, workflow-এ environment variables হিসেবে inject করো — কোনো .env file commit করো না",
+        "Production server-এ manually SSH করে .env.prod file তৈরি করো",
+        ".env.prod file encrypt করে repository-তে রাখো এবং deploy script-এ decrypt করো",
+        ".env.prod file-টা Git repository-তে একটা private branch-এ রাখো"
+      ],
+      "answerIndex": 0,
+      "explanation": "সবচেয়ে secure approach হলো GitHub Actions Secrets (বা অন্য CI/CD-এর secret store) ব্যবহার করা। Secrets সেখানে encrypted থাকে, log-এ দেখা যায় না, এবং workflow-এ environment variable হিসেবে inject হয়। কোনো `.env` file কখনো Git-এ যায় না। `.env.prod` encrypt করে রাখাও risky — key management সমস্যা আসে।"
+    }
+  ]
+}

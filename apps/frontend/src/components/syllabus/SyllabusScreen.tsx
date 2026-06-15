@@ -123,7 +123,7 @@ export function SyllabusScreen() {
         📚 Full Syllabus
       </h1>
       <p className="mb-4 text-sm text-slate-500">
-        ৮টা World · প্রায় ১১৮টা session · সপ্তাহে ৪ দিন, দিনে ৩০ মিনিট
+        ১০টা World · প্রায় ১৩৪টা session · সপ্তাহে ৪ দিন, দিনে ৩০ মিনিট
       </p>
       {loading || (!data && !error) ? (
         <div className="flex justify-center py-24">

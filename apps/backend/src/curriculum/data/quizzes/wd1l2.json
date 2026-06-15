@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd1l2",
+  "questions": [
+    {
+      "id": "wd1l2-q01",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ `depends_on: db` দিলে আসলে কী guarantee পাওয়া যায়?",
+      "options": [
+        "db container-এর database সম্পূর্ণ ready হলে তারপর web চালু হবে",
+        "db এবং web একই সময়ে চালু হবে",
+        "db container healthy হলে web চালু হবে",
+        "db container শুধু start হলে web চালু হবে — database ready কিনা সেটা নিশ্চিত না"
+      ],
+      "answerIndex": 3,
+      "explanation": "`depends_on: db` শুধু startup order নিয়ন্ত্রণ করে — db container start হলে web চালু হবে। কিন্তু container start হওয়া মানে MongoDB বা PostgreSQL query নেওয়ার জন্য ready হয়ে গেছে, এটা guarantee না। এজন্য `condition: service_healthy` দরকার।"
+    },
+    {
+      "id": "wd1l2-q02",
+      "difficulty": "easy",
+      "question": "Docker healthcheck-এ `retries: 5` মানে কী?",
+      "options": [
+        "Health check test ৫ সেকেন্ড পর পর চলবে",
+        "Startup-এর প্রথম ৫ সেকেন্ড health check ignore করা হবে",
+        "৫ বার পর পর health check fail হলে container 'unhealthy' mark হবে",
+        "Container ৫ বার restart হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`retries` বলে কতবার fail হলে container-কে 'unhealthy' বলা হবে। `retries: 5` মানে ৫ বার পর পর health check fail হলে তারপর container 'unhealthy' status পাবে। এর আগ পর্যন্ত status থাকবে 'starting'।"
+    },
+    {
+      "id": "wd1l2-q03",
+      "difficulty": "easy",
+      "question": "Docker healthcheck-এ `start_period` parameter-এর কাজ কী?",
+      "options": [
+        "প্রতিটি health check-এর মধ্যে কতটুকু বিরতি থাকবে",
+        "Health check timeout হওয়ার আগে কতক্ষণ অপেক্ষা করবে",
+        "Health check কত দেরিতে start হবে সেটা বলে",
+        "Container start হওয়ার পর এতটুকু সময় failure-কে retry count-এ ধরা হয় না"
+      ],
+      "answerIndex": 3,
+      "explanation": "`start_period` হলো startup grace period। বড় service যেমন MongoDB initialize হতে সময় লাগে। `start_period: 30s` দিলে প্রথম ৩০ সেকেন্ডে health check fail হলেও retry count বাড়বে না — এটা container-কে properly startup করার সুযোগ দেয়।"
+    },
+    {
+      "id": "wd1l2-q04",
+      "difficulty": "easy",
+      "question": "`docker compose --profile dev up` command কী করে?",
+      "options": [
+        "Development mode-এ সব service debug করে",
+        "Docker Compose-এর dev version ব্যবহার করে",
+        "শুধু 'dev' নামের একটি service চালায়",
+        "Profile নেই এমন service এবং 'dev' profile-এর service একসাথে চালায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "`--profile dev` flag দিলে যেসব service-এ কোনো profile নেই (সবসময় চলে) এবং যেসব service-এ `profiles: [dev]` আছে — উভয়ই চালু হয়। এভাবে Mongo Express বা MailHog-এর মতো development tool শুধু dev-এ চালানো যায়।"
+    },
+    {
+      "id": "wd1l2-q05",
+      "difficulty": "easy",
+      "question": "MongoDB-র health check-এ সাধারণত কোন command ব্যবহার করা হয়?",
+      "options": [
+        "`mysql -u root -e 'SELECT 1'`",
+        "`mongosh --eval \"db.adminCommand('ping')\"`",
+        "`redis-cli ping`",
+        "`curl http://localhost:27017/health`"
+      ],
+      "answerIndex": 1,
+      "explanation": "MongoDB-র health check-এ `mongosh --eval \"db.adminCommand('ping')\"` ব্যবহার করা হয়। এই command MongoDB-র কাছে একটা ping পাঠায় এবং MongoDB সত্যিই connection নিতে পারছে কিনা সেটা verify করে।"
+    },
+    {
+      "id": "wd1l2-q06",
+      "difficulty": "easy",
+      "question": "`restart: unless-stopped` policy কীভাবে কাজ করে?",
+      "options": [
+        "Container manually stop করলে বাদে সবসময় restart করে — server reboot-এও",
+        "Docker daemon restart হলে কখনো চালু হয় না",
+        "শুধু non-zero exit code-এ restart করে",
+        "Container crash হলে একবার মাত্র restart করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`unless-stopped` policy মানে তুমি নিজে `docker stop` না করলে container সবসময় চালু থাকবে — server reboot হলেও, crash হলেও। তুমি manually stop করলে বন্ধ থাকবে। এটা production-এর জন্য সবচেয়ে balanced choice।"
+    },
+    {
+      "id": "wd1l2-q07",
+      "difficulty": "medium",
+      "question": "তোমার NestJS app MongoDB-র সাথে connect করতে পারছে না, যদিও `docker compose ps`-এ দেখাচ্ছে MongoDB container 'Up'। সবচেয়ে সম্ভাব্য কারণ কী?",
+      "options": [
+        "NestJS-এর MongoDB URI ভুল লেখা",
+        "Docker network misconfiguration-এর কারণে service গুলো একে অপরকে দেখতে পাচ্ছে না",
+        "MongoDB-র port 27017 expose করা হয়নি",
+        "MongoDB container চালু হয়েছে কিন্তু এখনো initialize হয়নি — `depends_on`-এ `condition: service_healthy` নেই"
+      ],
+      "answerIndex": 3,
+      "explanation": "এটা classic race condition। `docker compose ps`-এ 'Up' দেখালেও MongoDB internally initialize হতে আরো সময় লাগে। `depends_on`-এ শুধু `db` লেখা থাকলে NestJS container start হওয়ার কোনো বাধা নেই। `condition: service_healthy` এবং MongoDB-তে healthcheck যোগ করলে এই সমস্যা সমাধান হবে।"
+    },
+    {
+      "id": "wd1l2-q08",
+      "difficulty": "medium",
+      "question": "`condition: service_completed_successfully` কোন scenario-তে সবচেয়ে উপযুক্ত?",
+      "options": [
+        "Redis cache-এর জন্য dependency তৈরি করতে",
+        "Nginx reverse proxy-এর জন্য dependency তৈরি করতে",
+        "MongoDB database-এর জন্য dependency তৈরি করতে",
+        "Database migration job চালানোর পর NestJS app শুরু করতে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`service_completed_successfully` তখন কাজে লাগে যখন একটি service run করে, কাজ শেষ করে, বন্ধ হয়ে যায়। Database migration script ঠিক এইরকম — চালু হয়, migration run করে, exit code 0 দিয়ে বন্ধ হয়। এরপর NestJS চালু হবে। Database বা cache-এর জন্য `service_healthy` ব্যবহার করতে হবে।"
+    },
+    {
+      "id": "wd1l2-q09",
+      "difficulty": "medium",
+      "question": "তুমি `docker-compose.override.yml` file তৈরি করেছো। Development-এ `docker compose up` চালালে কী হবে?",
+      "options": [
+        "শুধু override file-এর config apply হবে",
+        "Base এবং override file automatically merge হয়ে চলবে",
+        "শুধু base `docker-compose.yml`-এর config apply হবে",
+        "Error আসবে কারণ দুটো file একসাথে চলতে পারে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker compose up` চালালে Docker automatically `docker-compose.yml` এবং `docker-compose.override.yml` merge করে। Override file-এর values base file-এর values-কে override করে। এটা development এবং production-এ আলাদা config রাখার সহজ pattern।"
+    },
+    {
+      "id": "wd1l2-q10",
+      "difficulty": "medium",
+      "question": "তোমার Compose file-এ MongoDB-র জন্য healthcheck আছে কিন্তু `start_period` দেওয়া নেই। MongoDB initialize হতে ২০ সেকেন্ড লাগে এবং `interval: 5s`, `retries: 3`। কী সমস্যা হতে পারে?",
+      "options": [
+        "MongoDB initialize হওয়ার আগেই ৩ বার fail হয়ে 'unhealthy' mark হয়ে যাবে",
+        "Retry count বাড়বে না কারণ default start_period আছে",
+        "Health check কখনো শুরু হবে না",
+        "কোনো সমস্যা নেই — MongoDB চালু হলেই health check pass করবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`start_period` না দিলে default 0s। MongoDB initialize হতে ২০ সেকেন্ড লাগে, কিন্তু health check প্রতি ৫ সেকেন্ডে চলছে। মাত্র ১৫ সেকেন্ডে (৩ বার × ৫ সেকেন্ড) MongoDB 'unhealthy' mark হয়ে যাবে। `start_period: 30s` দিলে এই সমস্যা এড়ানো যেত।"
+    },
+    {
+      "id": "wd1l2-q11",
+      "difficulty": "medium",
+      "question": "Production server-এ deploy করার সময় Mongo Express (DB GUI) চালু না করার সবচেয়ে ভালো পদ্ধতি কোনটি?",
+      "options": [
+        "Production-এর Compose file থেকে Mongo Express service সম্পূর্ণ মুছে ফেলো",
+        "Mongo Express-এর port mapping মুছে দাও",
+        "Mongo Express service-এ `profiles: [dev]` দাও এবং production-এ `--profile dev` ছাড়া `docker compose up` চালাও",
+        "Mongo Express image-এর জায়গায় `image: scratch` দাও"
+      ],
+      "answerIndex": 2,
+      "explanation": "`profiles` feature এই কাজের জন্যই তৈরি। `profiles: [dev]` দিলে সেই service শুধু `--profile dev` flag দিয়ে চালালে উঠবে। Production-এ plain `docker compose up` চালালে Mongo Express automatically বাদ যাবে — একটি shared Compose file দিয়ে দুটো environment manage করা যায়।"
+    },
+    {
+      "id": "wd1l2-q12",
+      "difficulty": "hard",
+      "question": "তোমার production NestJS app রাত ১২টায় হঠাৎ crash করে `docker compose up -d` দিয়ে সব service চালু করা আছে এবং `restart: on-failure` আছে। Server পরদিন সকালে reboot হয়। Reboot-এর পর NestJS কি automatically চালু হবে?",
+      "options": [
+        "না, `on-failure` শুধু crash-এ restart করে; server reboot-এর পর Docker daemon নিজে start হলেও container চালু হবে না",
+        "না, কারণ NestJS crash করেছিল তাই container permanently stop হয়ে গেছে",
+        "হ্যাঁ, `on-failure` restart policy সবসময় চালু রাখে",
+        "হ্যাঁ, কারণ `docker compose up -d` detached mode-এ চালু করা হয়েছিল"
+      ],
+      "answerIndex": 0,
+      "explanation": "`on-failure` policy শুধু non-zero exit code-এ restart করে, কিন্তু server reboot-এর পর Docker daemon restart হলে এই policy container automatically চালু করে না। Production-এ `unless-stopped` বা `always` ব্যবহার করলে reboot-এর পরেও container চালু হত। এটা একটি common production mistake।"
+    },
+    {
+      "id": "wd1l2-q13",
+      "difficulty": "hard",
+      "question": "তুমি `docker inspect --format=\"{{json .State.Health}}\" my_mongo` চালালে output-এ `\"Status\":\"unhealthy\", \"FailingStreak\":5` দেখছো। তোমার healthcheck config: `test: [\"CMD\", \"mongosh\", \"--eval\", \"db.adminCommand('ping')\"]`, `retries: 3`। এই situation-এ কোন statement সঠিক?",
+      "options": [
+        "Container এখনো 'starting' phase-এ আছে",
+        "MongoDB সম্পূর্ণ ঠিকঠাক আছে, health check script-এ ভুল আছে",
+        "`retries: 3` মানে ৩ বার retry হওয়ার পর container restart হবে",
+        "`FailingStreak: 5` মানে `retries: 3` ছাড়িয়ে গেছে, container আগেই 'unhealthy' হয়েছে এবং এরপরেও fail হচ্ছে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`retries: 3` মানে ৩ বার fail হলে 'unhealthy' mark হবে। `FailingStreak: 5` মানে container ৩ বার fail করে আগেই 'unhealthy' হয়েছে এবং এরপরেও আরো ২ বার fail হয়েছে। Health check চলতেই থাকে 'unhealthy' হওয়ার পরেও — শুধু status পরিবর্তন হয় না। এখন `Log` array দেখে actual error message বের করতে হবে।"
+    },
+    {
+      "id": "wd1l2-q14",
+      "difficulty": "hard",
+      "question": "তোমার Compose file-এ `migration` service আছে যেটা DB migration করে এবং `api` service তার উপর depend করে। Migration service সফলভাবে শেষ হয় exit code 0 দিয়ে। কিন্তু তুমি লিখেছো `condition: service_healthy` migration-এর জন্য। Migration service-এ কোনো healthcheck নেই। কী হবে?",
+      "options": [
+        "api কখনো চালু হবে না কারণ healthcheck না থাকলে service কখনো 'healthy' হয় না",
+        "api চালু হবে কিন্তু migration complete হওয়ার আগেই",
+        "Docker automatically migration service-এ default healthcheck যোগ করবে",
+        "Migration সফলভাবে শেষ হওয়ার পর api চালু হবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`condition: service_healthy` কাজ করতে হলে সেই service-এ অবশ্যই `healthcheck` config থাকতে হবে। Healthcheck ছাড়া একটি service কখনো 'healthy' status পায় না — সে সবসময় 'starting' বা 'running' থাকে। তাই `api` indefinitely অপেক্ষা করতে থাকবে। Migration-এর জন্য সঠিক condition হলো `service_completed_successfully`, healthcheck নয়।"
+    }
+  ]
+}

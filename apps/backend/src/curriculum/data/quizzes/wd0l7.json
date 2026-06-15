@@ -1,0 +1,182 @@
+{
+  "lessonId": "wd0l7",
+  "questions": [
+    {
+      "id": "wd0l7-q01",
+      "difficulty": "easy",
+      "question": "Docker Compose কী কাজ করে?",
+      "options": [
+        "শুধুমাত্র একটি container চালায়",
+        "Docker image build করে",
+        "Multiple containers একসাথে define ও manage করে",
+        "Container-এর log দেখায়"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker Compose দিয়ে multiple Docker containers একটা `docker-compose.yml` file-এ define করা যায় এবং একটা command দিয়ে সব start/stop করা যায়।"
+    },
+    {
+      "id": "wd0l7-q02",
+      "difficulty": "easy",
+      "question": "`docker compose up -d` command-এ `-d` flag-এর মানে কী?",
+      "options": [
+        "Delete করো",
+        "Detached mode — background-এ চালাও",
+        "Development mode চালু করো",
+        "Debug mode-এ চালাও"
+      ],
+      "answerIndex": 1,
+      "explanation": "`-d` মানে detached mode। এটা দিলে containers background-এ চলে, terminal block হয় না এবং তুমি অন্য কাজ করতে পারো।"
+    },
+    {
+      "id": "wd0l7-q03",
+      "difficulty": "easy",
+      "question": "Docker Compose-এ সব service এবং configuration কোন file-এ লেখা হয়?",
+      "options": ["docker-compose.yml", "package.json", "Dockerfile", ".env"],
+      "answerIndex": 0,
+      "explanation": "`docker-compose.yml` হলো Docker Compose-এর মূল configuration file — এখানে সব services, volumes, networks define করা হয়।"
+    },
+    {
+      "id": "wd0l7-q04",
+      "difficulty": "easy",
+      "question": "চলমান সব Compose service-এর real-time log দেখতে কোন command ব্যবহার করবে?",
+      "options": [
+        "docker compose logs -f",
+        "docker compose status",
+        "docker compose watch",
+        "docker compose ps"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker compose logs -f` দিয়ে সব service-এর real-time log দেখা যায়। `-f` মানে follow — নতুন log আসলে সাথে সাথে দেখাবে।"
+    },
+    {
+      "id": "wd0l7-q05",
+      "difficulty": "easy",
+      "question": "`docker-compose.yml`-এ `image: mongo:6.0` আর `build: .` এর মধ্যে পার্থক্য কী?",
+      "options": [
+        "কোনো পার্থক্য নেই, দুটো একই কাজ করে",
+        "`image` Docker Hub থেকে নামায়, `build` নিজের Dockerfile দিয়ে build করে",
+        "`build` Docker Hub থেকে নামায়, `image` নিজের Dockerfile দিয়ে build করে",
+        "`image` শুধু development-এ কাজ করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`image: mongo:6.0` দিলে Docker Hub থেকে ready-made image নামানো হয়। `build: .` দিলে current directory-র Dockerfile ব্যবহার করে নিজের image build করা হয়।"
+    },
+    {
+      "id": "wd0l7-q06",
+      "difficulty": "easy",
+      "question": "Compose-এ চলমান সব container-এর status দেখতে কোন command ব্যবহার করবে?",
+      "options": [
+        "docker compose info",
+        "docker compose show",
+        "docker compose ps",
+        "docker compose list"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker compose ps` দিয়ে Compose-এর সব service-এর current status দেখা যায় — কোনটা running, কোনটা stopped।"
+    },
+    {
+      "id": "wd0l7-q07",
+      "difficulty": "medium",
+      "question": "তোমার `docker-compose.yml`-এ `web` service-এ `depends_on: db` লেখা আছে। এর মানে কী?",
+      "options": [
+        "`web` এবং `db` সবসময় একসাথে start হবে",
+        "`db` container start হওয়ার আগে `web` container start করার চেষ্টা করা হবে না",
+        "`web` container start হওয়ার আগে `db` container start হবে এবং database পুরোপুরি ready হওয়া নিশ্চিত হবে",
+        "`db` বন্ধ হলে `web`-ও automatically বন্ধ হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`depends_on` শুধু start order ঠিক করে — `db` container start হওয়ার পরে `web` start হবে। কিন্তু এটা guarantee দেয় না যে database connection accept করার জন্য ready হয়েছে কিনা।"
+    },
+    {
+      "id": "wd0l7-q08",
+      "difficulty": "medium",
+      "question": "তোমার Express app `web` service থেকে `db` service-এর MongoDB-তে connect করতে চাও। Connection URL কেমন হবে?",
+      "options": [
+        "`mongodb://127.0.0.1:27017/myapp`",
+        "`mongodb://localhost:27017/myapp`",
+        "`mongodb://mongo:27017/myapp`",
+        "`mongodb://db:27017/myapp`"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker Compose network-এ container গুলো একে অপরকে service নাম দিয়ে চেনে। `db` হলো MongoDB service-এর নাম, তাই hostname হবে `db`। `localhost` দিলে কাজ করবে না।"
+    },
+    {
+      "id": "wd0l7-q09",
+      "difficulty": "medium",
+      "question": "`docker compose down` আর `docker compose down --volumes` এর মধ্যে মূল পার্থক্য কী?",
+      "options": [
+        "কোনো পার্থক্য নেই",
+        "`--volumes` শুধু bind mounts মুছে",
+        "`down` containers stop ও remove করে; `--volumes` সেটার সাথে named volumes-ও delete করে",
+        "`down` শুধু network মুছে, `--volumes` container মুছে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker compose down` containers stop ও remove করে কিন্তু volumes রাখে। `--volumes` flag দিলে named volumes-ও delete হয় — মানে database-এর সব data চলে যাবে। তাই সাবধানে ব্যবহার করো।"
+    },
+    {
+      "id": "wd0l7-q10",
+      "difficulty": "medium",
+      "question": "তুমি `web` service-এর Dockerfile পরিবর্তন করেছ। নতুন image দিয়ে চালাতে কোন sequence follow করবে?",
+      "options": [
+        "`docker compose restart` তারপর `docker compose build`",
+        "`docker compose down` তারপর `docker compose ps`",
+        "`docker compose build` তারপর `docker compose up -d`",
+        "শুধু `docker compose up -d` দিলেই হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dockerfile পরিবর্তনের পরে আগে `docker compose build` দিয়ে নতুন image build করতে হবে, তারপর `docker compose up -d` দিয়ে নতুন image দিয়ে container চালাতে হবে।"
+    },
+    {
+      "id": "wd0l7-q11",
+      "difficulty": "medium",
+      "question": "Compose file-এ environment variable দেওয়ার দুটো উপায় কী কী?",
+      "options": [
+        "`variables` section এবং `args` section",
+        "`environment` section এবং `env_file` দিয়ে `.env` file reference করা",
+        "`config` section এবং `secrets` section",
+        "`params` section এবং `settings` section"
+      ],
+      "answerIndex": 1,
+      "explanation": "Compose-এ environment variable দেওয়ার দুটো উপায়: (১) `environment` section-এ directly লেখো, (২) `env_file: - .env` দিয়ে আলাদা `.env` file থেকে পড়ো।"
+    },
+    {
+      "id": "wd0l7-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker compose up -d` দিলে `web` container বারবার crash করছে এবং restart হচ্ছে। `docker compose logs -f web` দেখলে error: `MongoNetworkError: failed to connect to server`. কী কারণে এটা হচ্ছে এবং কীভাবে ঠিক করবে?",
+      "options": [
+        "`networks` section define করা নেই তাই connect হচ্ছে না",
+        "MongoDB image ভুল — `mongo:latest` দিতে হবে",
+        "Web service-এ `ports` define করা নেই",
+        "`depends_on: db` লেখা থাকলেও db container fully ready হওয়ার আগেই web connect করার চেষ্টা করছে — web app-এ retry logic যোগ করতে হবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`depends_on` শুধু container start হওয়া নিশ্চিত করে, MongoDB ready (accepting connections) হওয়া না। Web app MongoDB-তে connect করার আগেই try করছে। Solution: web app-এ exponential backoff retry logic রাখো অথবা `wait-for-it.sh` script ব্যবহার করো।"
+    },
+    {
+      "id": "wd0l7-q13",
+      "difficulty": "hard",
+      "question": "তোমার `docker-compose.yml`-এ দুটো service আছে: `web` এবং `db`। তুমি `web` service-এর code debug করতে চাও এবং container-এর ভেতরে ঢুকতে চাও। সঠিক command কোনটা?",
+      "options": [
+        "`docker compose enter web`",
+        "`docker compose shell web`",
+        "`docker compose exec web sh`",
+        "`docker exec -it web sh`"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker compose exec web sh` দিয়ে running `web` service-এর container-এ shell দিয়ে ঢোকা যায়। `docker exec` দিয়েও করা যায় কিন্তু তখন container-এর full name জানতে হবে, Compose service name দিয়ে হবে না।"
+    },
+    {
+      "id": "wd0l7-q14",
+      "difficulty": "hard",
+      "question": "তোমার production `docker-compose.yml`-এ `db` service-এ কোনো `volumes` define করা নেই। এতে কী সমস্যা হবে এবং কেন?",
+      "options": [
+        "শুধু `docker compose down --volumes` দিলে data যাবে, নাহলে safe",
+        "Volume ছাড়া MongoDB container start-ই হবে না",
+        "Container restart হলে বা `docker compose down` দিলে MongoDB-র সব data মুছে যাবে কারণ container filesystem ephemeral",
+        "কোনো সমস্যা নেই — MongoDB নিজেই data সংরক্ষণ করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Docker container-এর filesystem ephemeral — container বন্ধ হলে বা remove হলে সব data হারিয়ে যায়। `volumes: - mongo-data:/data/db` দিয়ে named volume ব্যবহার না করলে প্রতিবার `docker compose down` দিলে production database-এর সব data মুছে যাবে।"
+    }
+  ]
+}

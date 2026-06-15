@@ -855,6 +855,168 @@
     ]
   },
   {
+    "id": "wd0",
+    "order": 10,
+    "title": "Docker দিয়ে শুরু",
+    "titleEn": "Docker Fundamentals",
+    "description": "Container কী, Docker কেন, images থেকে Compose — সব কিছু zero থেকে হাতে-কলমে।",
+    "lessons": [
+      {
+        "id": "wd0l1",
+        "order": 1,
+        "title": "Docker কী? Container vs VM",
+        "titleEn": "What is Docker? Container vs VM",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l2",
+        "order": 2,
+        "title": "প্রথম Container চালাও!",
+        "titleEn": "Run Your First Container!",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l3",
+        "order": 3,
+        "title": "Docker Images — Layer Cake",
+        "titleEn": "Docker Images — The Layer Cake",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l4",
+        "order": 4,
+        "title": "Dockerfile লেখা — নিজের Image বানাও",
+        "titleEn": "Write a Dockerfile — Build Your Own Image",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l5",
+        "order": 5,
+        "title": "Docker Volumes — Data হারিয়ে যায় কেন?",
+        "titleEn": "Docker Volumes — Why Does Data Disappear?",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l6",
+        "order": 6,
+        "title": "Docker Networks — Container কীভাবে কথা বলে?",
+        "titleEn": "Docker Networks — How Containers Communicate",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l7",
+        "order": 7,
+        "title": "Docker Compose — Multiple Services একসাথে",
+        "titleEn": "Docker Compose — Multiple Services Together",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd0l8",
+        "order": 8,
+        "title": "BOSS: একটা Express App পুরোপুরি Dockerize করো",
+        "titleEn": "BOSS: Fully Dockerize an Express App",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": true
+      }
+    ]
+  },
+  {
+    "id": "wd1",
+    "order": 11,
+    "title": "Production-এ Docker",
+    "titleEn": "Docker in Production",
+    "description": "Multi-stage builds, secrets, NestJS + Next.js Dockerize, full-stack Compose, Nginx, security।",
+    "lessons": [
+      {
+        "id": "wd1l1",
+        "order": 1,
+        "title": "Multi-stage Builds — হালকা Image বানাও",
+        "titleEn": "Multi-stage Builds — Slim Images",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l2",
+        "order": 2,
+        "title": "Docker Compose Advanced — Health Checks ও Depends-on",
+        "titleEn": "Docker Compose Advanced — Health Checks & Depends-on",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l3",
+        "order": 3,
+        "title": "Environment Variables ও Secrets",
+        "titleEn": "Environment Variables & Secrets",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l4",
+        "order": 4,
+        "title": "NestJS Backend Dockerize করা",
+        "titleEn": "Dockerize the NestJS Backend",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l5",
+        "order": 5,
+        "title": "Next.js Frontend Dockerize করা",
+        "titleEn": "Dockerize the Next.js Frontend",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l6",
+        "order": 6,
+        "title": "Full-Stack Compose — NestJS + Next.js + MongoDB",
+        "titleEn": "Full-Stack Compose — NestJS + Next.js + MongoDB",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l7",
+        "order": 7,
+        "title": "Docker Security ও Best Practices",
+        "titleEn": "Docker Security & Best Practices",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wd1l8",
+        "order": 8,
+        "title": "BOSS: Production-Ready Deployment",
+        "titleEn": "BOSS: Production-Ready Deployment",
+        "type": "boss",
+        "estMinutes": 30,
+        "contentReady": true
+      }
+    ]
+  },
+  {
     "id": "w7",
     "order": 7,
     "title": "Hard Mode + Mock Interviews",

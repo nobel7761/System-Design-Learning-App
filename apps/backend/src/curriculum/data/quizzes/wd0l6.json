@@ -1,0 +1,177 @@
+{
+  "lessonId": "wd0l6",
+  "questions": [
+    {
+      "id": "wd0l6-q01",
+      "difficulty": "easy",
+      "question": "Docker-এ default network driver কোনটি?",
+      "options": ["host", "bridge", "none", "overlay"],
+      "answerIndex": 1,
+      "explanation": "Docker-এ `--network` না দিলে container automatically `bridge` driver-এর default network-এ যায়। এটাই সবচেয়ে common driver।"
+    },
+    {
+      "id": "wd0l6-q02",
+      "difficulty": "easy",
+      "question": "নতুন Docker network বানানোর সঠিক command কোনটি?",
+      "options": [
+        "docker create network mynet",
+        "docker network make mynet",
+        "docker network create mynet",
+        "docker network new mynet"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker network create mynet` দিয়ে `mynet` নামের একটা নতুন user-defined bridge network তৈরি হয়।"
+    },
+    {
+      "id": "wd0l6-q03",
+      "difficulty": "easy",
+      "question": "`docker network ls` command কী করে?",
+      "options": [
+        "একটা নতুন network list বানায়",
+        "Network delete করে",
+        "Container-এর network বদলায়",
+        "সব existing Docker network-এর তালিকা দেখায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "`docker network ls` দিয়ে system-এ থাকা সব Docker network দেখা যায় — নাম, driver, scope সহ।"
+    },
+    {
+      "id": "wd0l6-q04",
+      "difficulty": "easy",
+      "question": "`none` network driver দিয়ে container চালালে কী হয়?",
+      "options": [
+        "Container-এর কোনো network access থাকে না",
+        "Container host-এর network share করে",
+        "Container internet access পায় কিন্তু অন্য container-এর সাথে কথা বলতে পারে না",
+        "Container automatically bridge network-এ যায়"
+      ],
+      "answerIndex": 0,
+      "explanation": "`none` driver মানে container সম্পূর্ণ network-isolated। কোনো inbound বা outbound connection নেই — security-sensitive job-এর জন্য ব্যবহার হয়।"
+    },
+    {
+      "id": "wd0l6-q05",
+      "difficulty": "easy",
+      "question": "Port mapping-এর `-p 8080:3000` মানে কী?",
+      "options": [
+        "Container-এর ৮০৮০ port, host-এর ৩০০০ port-এ map হয়",
+        "দুটো container-এর port যুক্ত হয়",
+        "৮০৮০ আর ৩০০০ দুটো port-ই block হয়",
+        "Host-এর ৮০৮০ port, container-এর ৩০০০ port-এ map হয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "Format হলো `-p <host_port>:<container_port>`। তাই `-p 8080:3000` মানে host-এর ৮০৮০ port-এ গেলে container-এর ৩০০০ port-এ পৌঁছাবে।"
+    },
+    {
+      "id": "wd0l6-q06",
+      "difficulty": "easy",
+      "question": "`host` network driver কোন operating system-এ কাজ করে না?",
+      "options": ["CentOS", "macOS", "Debian", "Ubuntu Linux"],
+      "answerIndex": 1,
+      "explanation": "`host` driver শুধু Linux-এ কাজ করে। macOS বা Windows-এ Docker Desktop ব্যবহার করলে `host` network-এ container চললেও port কাজ করবে না।"
+    },
+    {
+      "id": "wd0l6-q07",
+      "difficulty": "medium",
+      "question": "User-defined bridge network আর default bridge network-এর সবচেয়ে বড় পার্থক্য কী?",
+      "options": [
+        "User-defined network-এ বেশি container রাখা যায়",
+        "Default bridge network বেশি secure",
+        "User-defined network-এ container name দিয়ে DNS resolution হয়, default-এ হয় না",
+        "User-defined network শুধু production-এ কাজ করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "User-defined bridge network-এ Docker একটা built-in DNS server চালায়, তাই container name দিয়েই অন্য container-কে reach করা যায়। Default bridge-এ এই DNS নেই — IP address জানতে হয়।"
+    },
+    {
+      "id": "wd0l6-q08",
+      "difficulty": "medium",
+      "question": "`mynet` network-এ `db` নামের MongoDB container চলছে। `web` container থেকে MongoDB connect করার সঠিক URL কোনটি?",
+      "options": [
+        "mongodb://127.0.0.1:27017",
+        "mongodb://localhost:27017",
+        "mongodb://host.docker.internal:27017",
+        "mongodb://db:27017"
+      ],
+      "answerIndex": 3,
+      "explanation": "একই user-defined network-এ থাকলে container name দিয়েই reach করা যায়। `mongodb://db:27017` সঠিক — `db` হলো container-এর নাম, Docker DNS এটা resolve করবে।"
+    },
+    {
+      "id": "wd0l6-q09",
+      "difficulty": "medium",
+      "question": "একটা running container `mynet` network-এ add করতে কোন command ব্যবহার হবে?",
+      "options": [
+        "docker network add mynet mycontainer",
+        "docker run --network mynet mycontainer",
+        "docker network attach mynet mycontainer",
+        "docker network connect mynet mycontainer"
+      ],
+      "answerIndex": 3,
+      "explanation": "`docker network connect mynet mycontainer` দিয়ে already running container-কে একটা network-এ যোগ করা যায়। `docker run --network` শুধু নতুন container start করার সময় কাজ করে।"
+    },
+    {
+      "id": "wd0l6-q10",
+      "difficulty": "medium",
+      "question": "Internal container-to-container communication-এ কি port mapping (-p) দরকার?",
+      "options": [
+        "শুধু database container-এর জন্য দরকার",
+        "না, একই network-এ থাকলে port mapping ছাড়াই কাজ হয়",
+        "হ্যাঁ, কিন্তু শুধু production-এ",
+        "হ্যাঁ, সবসময় দরকার"
+      ],
+      "answerIndex": 1,
+      "explanation": "Port mapping (-p) শুধু host বা বাইরের জগৎ থেকে container-এ access করার জন্য। একই Docker network-এ দুটো container একে অপরের সাথে কথা বলতে port mapping লাগে না।"
+    },
+    {
+      "id": "wd0l6-q11",
+      "difficulty": "medium",
+      "question": "`docker network inspect mynet` command দিয়ে কী দেখা যায়?",
+      "options": [
+        "শুধু network-এর নাম আর driver",
+        "শুধু network-এর traffic statistics",
+        "Network configuration, connected container-দের তালিকা ও তাদের IP address",
+        "Container-গুলোর CPU ও memory usage"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker network inspect` JSON format-এ বিস্তারিত দেখায় — subnet, gateway, এবং কোন container-গুলো এই network-এ আছে তাদের নাম ও IP সহ। Debugging-এর জন্য অপরিহার্য।"
+    },
+    {
+      "id": "wd0l6-q12",
+      "difficulty": "hard",
+      "question": "তুমি দুটো container চালালে: `docker run --name app1 myimage` এবং `docker run --name app2 myimage`। এখন app1 থেকে `http://app2:8080` দিয়ে কথা বলার চেষ্টা করলে connection refuse হচ্ছে। সবচেয়ে likely কারণ কী?",
+      "options": [
+        "দুটো container-ই default bridge network-এ আছে যেখানে container name-based DNS কাজ করে না",
+        "app2 container-এ port 8080 expose করা হয়নি",
+        "container name-এ numbers ব্যবহার করা যায় না",
+        "app1 container restart হয়েছে তাই IP বদলে গেছে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`--network` না দিলে container default bridge-এ যায়। Default bridge-এ container name দিয়ে DNS resolution হয় না। সমাধান: `docker network create mynet` করে দুটো container-কেই `--network mynet` দিয়ে চালাও।"
+    },
+    {
+      "id": "wd0l6-q13",
+      "difficulty": "hard",
+      "question": "Production-এ `web` container (port 3000) বাইরে থেকে accessible, কিন্তু `db` container (port 5432) বাইরে থেকে accessible হওয়া উচিত না। সঠিক setup কোনটি?",
+      "options": [
+        "docker run --network mynet --name db -p 5432:5432 postgres এবং docker run --network mynet --name web -p 3000:3000 myapp",
+        "docker run --network mynet --name db postgres এবং docker run --network mynet --name web -p 3000:3000 myapp",
+        "docker run --name db postgres এবং docker run --name web -p 3000:3000 myapp",
+        "docker run --network none --name db postgres এবং docker run --network mynet --name web -p 3000:3000 myapp"
+      ],
+      "answerIndex": 1,
+      "explanation": "`db`-এ `-p` না দিলে বাইরে থেকে access হয় না, কিন্তু একই `mynet` network-এ `web` container `db:5432` দিয়ে reach করতে পারে। এটাই সঠিক security practice — database publicly expose করা উচিত না।"
+    },
+    {
+      "id": "wd0l6-q14",
+      "difficulty": "hard",
+      "question": "তোমার Node.js app container-এ env variable: `DB_URL=mongodb://localhost:27017`। Docker Compose দিয়ে চালালে MongoDB connect হচ্ছে না। কিন্তু local machine-এ (Docker ছাড়া) ঠিকঠাক চলে। কারণ কী এবং fix কী?",
+      "options": [
+        "Docker Compose-এ `network_mode: host` দিতে হবে",
+        "Container-এর ভেতরে localhost মানে সেই container নিজেই, অন্য container না। DB_URL বদলে `mongodb://db:27017` করতে হবে যেখানে `db` হলো MongoDB service-এর নাম",
+        "Node.js app-কে `--network host` দিয়ে run করতে হবে",
+        "MongoDB container-এ `-p 27017:27017` দিতে হবে, তাহলে localhost কাজ করবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "এটা সবচেয়ে common Docker networking ভুল। Container-এর ভেতরে `localhost` বা `127.0.0.1` মানে সেই container নিজেই। Compose-এ MongoDB service-এর নাম `db` হলে URL হবে `mongodb://db:27017` — Compose automatically network বানিয়ে service name দিয়ে DNS resolution করে দেয়।"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "lessonId": "wd0l4",
+  "questions": [
+    {
+      "id": "wd0l4-q01",
+      "difficulty": "easy",
+      "question": "Dockerfile-কে কোন জিনিসের সাথে তুলনা করা যায়?",
+      "options": [
+        "থালায় পরিবেশিত খাবার",
+        "রেসিপি খাতা",
+        "রান্না করা খাবার",
+        "রান্নাঘর"
+      ],
+      "answerIndex": 1,
+      "explanation": "Dockerfile হলো রেসিপি খাতা — ধাপে ধাপে লেখা থাকে কীভাবে Image তৈরি করতে হবে। Image হলো রান্না করা খাবার, আর Container হলো থালায় পরিবেশিত খাবার।"
+    },
+    {
+      "id": "wd0l4-q02",
+      "difficulty": "easy",
+      "question": "Dockerfile-এ কোন instruction দিয়ে base image নির্বাচন করা হয়?",
+      "options": ["FROM", "ORIGIN", "START", "BASE"],
+      "answerIndex": 0,
+      "explanation": "প্রতিটা Dockerfile শুরু হয় `FROM` instruction দিয়ে। এটা বলে দেয় কোন base image-এর উপর নতুন image তৈরি হবে। যেমন: `FROM node:18-alpine`।"
+    },
+    {
+      "id": "wd0l4-q03",
+      "difficulty": "easy",
+      "question": "`WORKDIR /app` instruction কী করে?",
+      "options": [
+        "Host-এর /app folder-কে container-এ mount করে",
+        "Container-এর ভেতরে /app নামে একটা user তৈরি করে",
+        "পরবর্তী সব command-এর জন্য /app কে working directory হিসেবে সেট করে",
+        "App-এর port নম্বর 80 তে সেট করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`WORKDIR /app` container-এর ভেতরে /app directory-তে কাজের জায়গা নির্ধারণ করে। এরপর থেকে সব RUN, COPY, CMD instruction এই directory থেকে চলবে।"
+    },
+    {
+      "id": "wd0l4-q04",
+      "difficulty": "easy",
+      "question": "Host machine থেকে Docker Image-এর ভেতরে file কপি করতে কোন instruction ব্যবহার করা হয়?",
+      "options": ["COPY", "MOVE", "ADD", "IMPORT"],
+      "answerIndex": 0,
+      "explanation": "`COPY <source> <destination>` instruction host machine থেকে image-এর ভেতরে file কপি করে। যেমন `COPY package*.json ./` অথবা `COPY . .`।"
+    },
+    {
+      "id": "wd0l4-q05",
+      "difficulty": "easy",
+      "question": "Image build করার সময় shell command execute করতে কোন instruction ব্যবহার হয়?",
+      "options": ["CMD", "SHELL", "EXECUTE", "RUN"],
+      "answerIndex": 3,
+      "explanation": "`RUN` instruction image build-এর সময় command execute করে। যেমন `RUN npm ci` বা `RUN apt-get install`. `CMD` হলো container চালু হওয়ার পরের default command।"
+    },
+    {
+      "id": "wd0l4-q06",
+      "difficulty": "easy",
+      "question": "`.dockerignore` ফাইলে কোন জিনিসটা অবশ্যই রাখা উচিত?",
+      "options": [
+        "শুধু .env ফাইল",
+        "index.js এবং package.json",
+        "node_modules, .git, এবং .env",
+        "শুধু Dockerfile"
+      ],
+      "answerIndex": 2,
+      "explanation": "`node_modules` (platform-specific binary, size অনেক বড়), `.git` (git history image-এ দরকার নেই), এবং `.env` (secret file — কখনো image-এ ঢুকানো যাবে না) অবশ্যই `.dockerignore`-এ রাখতে হবে।"
+    },
+    {
+      "id": "wd0l4-q07",
+      "difficulty": "medium",
+      "question": "Layer caching সবচেয়ে ভালো কাজ করার জন্য Dockerfile-এ instruction-গুলো কোন order-এ লেখা উচিত?",
+      "options": [
+        "COPY . . → RUN npm install → COPY package.json",
+        "RUN npm install → COPY package.json → COPY . .",
+        "COPY package.json → RUN npm install → COPY . .",
+        "COPY . . → COPY package.json → RUN npm install"
+      ],
+      "answerIndex": 2,
+      "explanation": "Layer caching-এর জন্য কম-বদলানো জিনিস আগে আসে। `package.json` কম বদলায়, তাই আগে কপি করে `npm install` চালাও। তারপর বাকি code কপি করো। এতে code বদলালেও `npm install` layer cache থেকে নেওয়া যায়।"
+    },
+    {
+      "id": "wd0l4-q08",
+      "difficulty": "medium",
+      "question": "`EXPOSE 3000` instruction লেখার পরেও `docker run` করলে port 3000 access করা যাচ্ছে না — কেন?",
+      "options": [
+        "EXPOSE শুধু documentation — আসল port mapping করতে `docker run -p 3000:3000` লিখতে হবে",
+        "EXPOSE-এর পরিবর্তে OPEN ব্যবহার করতে হবে",
+        "Firewall বন্ধ করতে হবে",
+        "Container restart করলে ঠিক হয়ে যাবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`EXPOSE` শুধু document করে যে container এই port-এ listen করবে — কিন্তু host-এ port খোলে না। আসল port binding করতে হয় `docker run -p <host-port>:<container-port>` দিয়ে।"
+    },
+    {
+      "id": "wd0l4-q09",
+      "difficulty": "medium",
+      "question": "`CMD [\"node\", \"index.js\"]` এবং `CMD node index.js` — এই দুটোর মধ্যে কোনটা better এবং কেন?",
+      "options": [
+        "`CMD [\"node\", \"index.js\"]` — কারণ এটা exec form যা সরাসরি process চালায় এবং signal handling ঠিক রাখে",
+        "দুটো একই — কোনো পার্থক্য নেই",
+        "`CMD node index.js` — কারণ লেখা সহজ",
+        "`CMD node index.js` — কারণ এটা বেশি flexible"
+      ],
+      "answerIndex": 0,
+      "explanation": "Exec form (`[\"node\", \"index.js\"]`) সরাসরি process চালায়, কোনো shell spawn করে না। Shell form (`node index.js`) একটা shell এর মধ্যে চালায় যা SIGTERM signal ঠিকমতো forward করে না — ফলে container gracefully shutdown হয় না।"
+    },
+    {
+      "id": "wd0l4-q10",
+      "difficulty": "medium",
+      "question": "একজন developer `docker build -t myapp:v1 .` চালালো। এখানে শেষের `.` মানে কী?",
+      "options": [
+        "সব hidden file include করো",
+        "Latest version সেলেক্ট করো",
+        "Default tag ব্যবহার করো",
+        "Current directory-কে build context হিসেবে Docker Daemon-এ পাঠাও"
+      ],
+      "answerIndex": 3,
+      "explanation": "`.` হলো build context — current directory-র সব content Docker Daemon-এ upload হয় (`.dockerignore` বাদ দিয়ে)। Daemon তারপর Dockerfile execute করে image তৈরি করে। Build context ভুল হলে COPY instruction fail করবে।"
+    },
+    {
+      "id": "wd0l4-q11",
+      "difficulty": "medium",
+      "question": "`CMD` এবং `ENTRYPOINT`-এর মূল পার্থক্য কোনটা?",
+      "options": [
+        "CMD শুধু Linux-এ কাজ করে, ENTRYPOINT সব OS-এ",
+        "CMD শুধু একটা argument নেয়, ENTRYPOINT একাধিক নেয়",
+        "ENTRYPOINT শুধু build সময় চলে, CMD runtime-এ চলে",
+        "CMD default command যা override করা যায়, ENTRYPOINT fixed command যা সাধারণত override হয় না"
+      ],
+      "answerIndex": 3,
+      "explanation": "`CMD` define করে default command যা `docker run` এ argument দিলে override হয়ে যায়। `ENTRYPOINT` define করে fixed command যা সবসময় চলবে — override করতে `--entrypoint` flag লাগে। General app-এ CMD, specific tool-এ ENTRYPOINT ব্যবহার করা হয়।"
+    },
+    {
+      "id": "wd0l4-q12",
+      "difficulty": "hard",
+      "question": "একজন developer-এর Dockerfile এ `node_modules` `.dockerignore`-এ নেই। `COPY . .` চালানোর পর `RUN npm ci` চালালে কী সমস্যা হতে পারে?",
+      "options": [
+        "Image build fail হবে",
+        "কোনো সমস্যা নেই — `npm ci` আবার install করবে",
+        "Container চালু হবে না",
+        "Host-এর `node_modules` image-এ ঢুকে যাবে; এতে image বড় হবে, Linux-এর বদলে Mac-এর binary যাবে, এবং `npm ci` শুধু নতুন packages update করবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Host (Mac/Windows) এর `node_modules`-এ platform-specific binary থাকে যা Linux container-এ কাজ করে না। Image অনেক বড় হয়ে যায়। এবং `npm ci` যদি existing `node_modules` পায় তাহলে সেটাই রেখে দিতে পারে। `.dockerignore`-এ `node_modules` রাখলে এই সব সমস্যা এড়ানো যায়।"
+    },
+    {
+      "id": "wd0l4-q13",
+      "difficulty": "hard",
+      "question": "নিচের Dockerfile-টা দেখো:\n```\nFROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN npm ci\nEXPOSE 3000\nCMD [\"node\", \"index.js\"]\n```\nপ্রতিদিন code বদলালে এই Dockerfile দিয়ে build করলে সবচেয়ে বড় performance সমস্যা কোনটা?",
+      "options": [
+        "node:18-alpine-এর বদলে node:18 ব্যবহার করলে faster হবে",
+        "`COPY . .` আগে করায় প্রতিবার code বদলালে `npm ci` আবার চলে — কারণ layer cache invalidate হয়",
+        "EXPOSE instruction সরিয়ে দিলে faster হবে",
+        "WORKDIR /app সরিয়ে দিলে build দ্রুত হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`COPY . .` আগে করায় প্রতিবার যেকোনো code file বদলালে এই layer-এর cache invalidate হয়। এরপরের `RUN npm ci` layer-ও তখন নতুন করে চলে — যদিও `package.json` বদলায়নি। সমাধান: আগে `COPY package*.json ./` → `RUN npm ci` → তারপর `COPY . .`।"
+    },
+    {
+      "id": "wd0l4-q14",
+      "difficulty": "hard",
+      "question": "তুমি একটা app deploy করতে গিয়ে দেখলে production-এ `.env` ফাইলের secret Docker image-এ চলে গেছে এবং image Docker Hub-এ push হয়ে গেছে। এই situation-এ কোনটা সঠিক পদক্ষেপ?",
+      "options": [
+        "Image delete করো, সব secret rotate করো (.env key বদলাও), `.dockerignore`-এ .env যোগ করো, নতুন image build করো",
+        "শুধু `.dockerignore`-এ .env যোগ করো এবং নতুন image push করো",
+        "Docker Hub password বদলাও এবং সব ঠিক হয়ে যাবে",
+        "Image টা private করে দাও — যথেষ্ট"
+      ],
+      "answerIndex": 0,
+      "explanation": "Image push হয়ে গেলে শুধু delete করা যথেষ্ট নয় — কেউ already pull করে থাকতে পারে। সব exposed secret (API keys, passwords, tokens) অবশ্যই rotate করতে হবে — নতুন key generate করতে হবে। তারপর `.dockerignore`-এ `.env` যোগ করে clean image build করতে হবে। Security breach-এ containment + remediation দুটোই দরকার।"
+    }
+  ]
+}

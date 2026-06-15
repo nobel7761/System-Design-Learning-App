@@ -1,0 +1,187 @@
+{
+  "lessonId": "wd0l2",
+  "questions": [
+    {
+      "id": "wd0l2-q01",
+      "difficulty": "easy",
+      "question": "`docker run` command টা একসাথে কতটা কাজ করে?",
+      "options": [
+        "একটা — শুধু container চালু করে",
+        "তিনটা — pull, create, এবং start",
+        "চারটা — pull, create, start, এবং stop",
+        "দুটো — pull এবং start"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker run` = pull (image নামায়) + create (container তৈরি করে) + start (চালু করে) — তিনটা কাজ একটা command-এ।"
+    },
+    {
+      "id": "wd0l2-q02",
+      "difficulty": "easy",
+      "question": "Docker Hub-কে রিকশার গল্পে কীসের সাথে তুলনা করা হয়েছে?",
+      "options": [
+        "রিকশা স্ট্যান্ড — যেখান থেকে রিকশা (image) আনা হয়",
+        "রিকশার যাত্রী",
+        "রিকশার নম্বর প্লেট",
+        "রিকশার চালক"
+      ],
+      "answerIndex": 0,
+      "explanation": "Docker Hub হলো রিকশা স্ট্যান্ড — সেখান থেকে image pull করা হয়, ঠিক যেমন স্ট্যান্ড থেকে রিকশা ভাড়া নেওয়া হয়।"
+    },
+    {
+      "id": "wd0l2-q03",
+      "difficulty": "easy",
+      "question": "`docker run`-এ `-d` flag কী কাজ করে?",
+      "options": [
+        "Container delete করে",
+        "Container background-এ চালায়, terminal মুক্ত রাখে",
+        "Debug mode চালু করে",
+        "Container-এর ভেতরে ঢোকার terminal দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "`-d` মানে detach — container background-এ চলে, terminal আটকে থাকে না। এটা ছাড়া container foreground-এ চলে এবং terminal block হয়ে যায়।"
+    },
+    {
+      "id": "wd0l2-q04",
+      "difficulty": "easy",
+      "question": "`-p 8080:80` flag-এ 8080 এবং 80 কোনটা কীসের port?",
+      "options": [
+        "দুটোই container-এর",
+        "দুটোই host-এর",
+        "8080 container-এর, 80 host-এর",
+        "8080 host-এর, 80 container-এর"
+      ],
+      "answerIndex": 3,
+      "explanation": "Format হলো `-p host:container` — তাই 8080 হলো তোমার machine (host)-এর port, আর 80 হলো container-এর port। browser-এ localhost:8080 গেলে সেটা container-এর 80-এ যায়।"
+    },
+    {
+      "id": "wd0l2-q05",
+      "difficulty": "easy",
+      "question": "চলমান container-গুলোর তালিকা দেখার command কোনটা?",
+      "options": [
+        "docker containers",
+        "docker ps",
+        "docker list",
+        "docker show"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker ps` চালমান container দেখায়। সব container (stopped সহ) দেখতে `docker ps -a` ব্যবহার করো।"
+    },
+    {
+      "id": "wd0l2-q06",
+      "difficulty": "easy",
+      "question": "Container-এর log দেখার command কোনটা যেখানে container-এর নাম `mynginx`?",
+      "options": [
+        "docker output mynginx",
+        "docker print mynginx",
+        "docker logs mynginx",
+        "docker show mynginx"
+      ],
+      "answerIndex": 2,
+      "explanation": "`docker logs <container-name>` দিয়ে container-এর সব output এবং error দেখা যায়। এটাই প্রথম debugging tool।"
+    },
+    {
+      "id": "wd0l2-q07",
+      "difficulty": "medium",
+      "question": "তুমি `docker run -d -p 8080:80 --name mynginx nginx` চালালে। এখন `localhost:8080` browser-এ খুলছে না। সম্ভাব্য কারণ কী?",
+      "options": [
+        "nginx image টা ভুল",
+        "Docker Hub offline আছে",
+        "তোমার machine-এ port 8080 অন্য কোনো process ব্যবহার করছে, তাই conflict",
+        "Container চালু হয়নি, `-d` flag ভুল জায়গায় আছে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Port conflict সবচেয়ে সাধারণ কারণ — host-এর 8080 port অন্য কোনো process নিয়ে থাকলে Docker map করতে পারে না। `docker ps` দিয়ে container running কিনা দেখো, তারপর অন্য port try করো।"
+    },
+    {
+      "id": "wd0l2-q08",
+      "difficulty": "medium",
+      "question": "`docker stop` আর `docker kill`-এর মূল পার্থক্য কী?",
+      "options": [
+        "`stop` SIGTERM পাঠায় (graceful), `kill` SIGKILL পাঠায় (তাৎক্ষণিক)",
+        "দুটো একই কাজ করে, শুধু নাম আলাদা",
+        "`stop` image মুছে দেয়, `kill` শুধু থামায়",
+        "`kill` শুধু background container-এর জন্য কাজ করে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker stop` SIGTERM পাঠায় — app নিজে clean up করে বন্ধ হতে পারে। `docker kill` SIGKILL পাঠায় — তাৎক্ষণিক বন্ধ, clean up হয় না। Production-এ `stop` prefer করো।"
+    },
+    {
+      "id": "wd0l2-q09",
+      "difficulty": "medium",
+      "question": "Container-এর ভেতরে ঢুকে bash shell চালাতে কোন command ব্যবহার করবে?",
+      "options": [
+        "docker exec -it mynginx bash",
+        "docker shell mynginx bash",
+        "docker enter -it mynginx",
+        "docker run -it mynginx bash"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker exec -it <name> bash` — exec মানে চলমান container-এ command চালাও, `-it` মানে interactive terminal, `bash` হলো যে command চালাবে। এটা দিয়ে container-এর ভেতরের Linux-এ ঢুকতে পারবে।"
+    },
+    {
+      "id": "wd0l2-q10",
+      "difficulty": "medium",
+      "question": "Container lifecycle-এর সঠিক ক্রম কোনটা?",
+      "options": [
+        "created → running → stopped → removed",
+        "running → stopped → created → removed",
+        "created → stopped → running → removed",
+        "running → created → stopped → removed"
+      ],
+      "answerIndex": 0,
+      "explanation": "Container প্রথমে created হয়, তারপর running, তারপর stopped (থামানো কিন্তু disk-এ আছে), তারপর removed (সম্পূর্ণ মুছে যায়)।"
+    },
+    {
+      "id": "wd0l2-q11",
+      "difficulty": "medium",
+      "question": "তুমি `docker rm mynginx` চালালে error দেখছো: 'Cannot remove a running container'. কী করতে হবে?",
+      "options": [
+        "`docker rmi mynginx` চালাতে হবে",
+        "Machine restart করতে হবে",
+        "`docker delete mynginx` চালাতে হবে",
+        "আগে `docker stop mynginx` চালিয়ে তারপর `docker rm mynginx`"
+      ],
+      "answerIndex": 3,
+      "explanation": "চলমান container সরাসরি remove করা যায় না। আগে `docker stop` দিয়ে থামাও, তারপর `docker rm` দিয়ে মুছো। অথবা `docker rm -f mynginx` দিয়ে force remove করা যায়।"
+    },
+    {
+      "id": "wd0l2-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker run -d -p 3000:3000 --name myapp node-app` চালিয়েছো। `docker ps` দেখাচ্ছে container `Exited (1)` মাত্র কয়েক সেকেন্ডের মধ্যে। সমস্যা কী এবং কীভাবে debug করবে?",
+      "options": [
+        "-d flag সরিয়ে দিলেই ঠিক হয়ে যাবে",
+        "Port 3000 ব্যস্ত, তাই container বন্ধ হয়ে গেছে — অন্য port দিয়ে চালাও",
+        "Container image টা corrupt — আবার pull করো",
+        "App-এর ভেতরে error হয়েছে — `docker logs myapp` চালিয়ে error message দেখো"
+      ],
+      "answerIndex": 3,
+      "explanation": "Exit code 1 মানে app error করে বন্ধ হয়েছে। `docker logs myapp` দিয়ে app-এর error message দেখতে হবে — হয়তো environment variable নেই, database connect হচ্ছে না, বা code-এ bug আছে। Port conflict হলে container start-ই হতো না।"
+    },
+    {
+      "id": "wd0l2-q13",
+      "difficulty": "hard",
+      "question": "তুমি `-p` flag ছাড়া `docker run -d --name mynginx nginx` চালিয়েছো। Container running দেখাচ্ছে। `localhost:80` খুলছে না কেন?",
+      "options": [
+        "Port mapping ছাড়া container isolated — host থেকে container-এর port access করা যায় না",
+        "Container-কে আগে `docker start` দিতে হয়",
+        "nginx image-এ bug আছে",
+        "`docker ps`-এ না দেখালে container চলছে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "Container নিজের network-এ isolated থাকে। `-p host:container` ছাড়া host machine থেকে container-এর port-এ পৌঁছানো যায় না। Container নিজে ঠিকঠাক চলছে, কিন্তু বাইরে থেকে কোনো bridge নেই।"
+    },
+    {
+      "id": "wd0l2-q14",
+      "difficulty": "hard",
+      "question": "Production payment server-এ হঠাৎ container hang করছে, response দিচ্ছে না। তুমি কোন command দেবে এবং কেন?",
+      "options": [
+        "`docker stop payment-server` — SIGTERM পাঠাও যাতে চলমান transaction গুলো লিখে তারপর বন্ধ হতে পারে",
+        "`docker restart payment-server` — সরাসরি restart দাও, কিছু হবে না",
+        "`docker rm payment-server` — container মুছে নতুন করে চালু করো",
+        "`docker kill payment-server` — দ্রুত বন্ধ করতে হবে, সময় নষ্ট করা যাবে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "Payment server-এ `docker stop` — SIGTERM পাঠায় যাতে app চলমান transaction লিখে, database connection close করে, gracefully বন্ধ হতে পারে। `docker kill` দিলে মাঝপথের transaction হারিয়ে যাবে এবং data inconsistency তৈরি হবে।"
+    }
+  ]
+}

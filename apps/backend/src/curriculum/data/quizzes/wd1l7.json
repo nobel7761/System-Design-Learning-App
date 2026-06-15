@@ -1,0 +1,177 @@
+{
+  "lessonId": "wd1l7",
+  "questions": [
+    {
+      "id": "wd1l7-q01",
+      "difficulty": "easy",
+      "question": "Docker container default-এ কোন user হিসেবে চলে?",
+      "options": ["nobody", "root", "appuser", "docker"],
+      "answerIndex": 1,
+      "explanation": "Default-এ Docker container root user হিসেবে চলে, যা একটি security risk। এজন্য Dockerfile-এ আলাদা non-root user তৈরি করে সেই user-এ switch করা উচিত।"
+    },
+    {
+      "id": "wd1l7-q02",
+      "difficulty": "easy",
+      "question": "Dockerfile-এ non-root user তৈরি করার পর সেই user activate করতে কোন instruction ব্যবহার করা হয়?",
+      "options": [
+        "SET USER appuser",
+        "USER appuser",
+        "SWITCH appuser",
+        "RUN appuser"
+      ],
+      "answerIndex": 1,
+      "explanation": "Dockerfile-এ `USER appuser` instruction দিলে এরপর থেকে সব command এবং container runtime ওই user হিসেবে execute হয়।"
+    },
+    {
+      "id": "wd1l7-q03",
+      "difficulty": "easy",
+      "question": "`docker run --read-only` flag দিলে কী হয়?",
+      "options": [
+        "Container-এর log read করা যায়",
+        "Image শুধু pull করা যায়, run করা যায় না",
+        "Container-এর filesystem read-only হয়ে যায়",
+        "Container বন্ধ হয়ে যায়"
+      ],
+      "answerIndex": 2,
+      "explanation": "`--read-only` flag দিলে container-এর পুরো root filesystem read-only mount হয়। Malware বা attacker চাইলেও নতুন file লিখতে বা script install করতে পারবে না।"
+    },
+    {
+      "id": "wd1l7-q04",
+      "difficulty": "easy",
+      "question": "Production-এ `FROM node:latest` ব্যবহার না করার কারণ কী?",
+      "options": [
+        "latest tag শুধু development-এ কাজ করে",
+        "latest tag অনেক বড় হয়",
+        "latest tag deprecated হয়ে গেছে",
+        "latest কোন version সেটা নিশ্চিত না, rebuild-এ behavior বদলাতে পারে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`latest` tag প্রতিদিন বদলাতে পারে — আজ যে image পেলে, কাল rebuild করলে অন্য version আসতে পারে। Production-এ `node:20.11-alpine3.19`-এর মতো exact version pin করা উচিত।"
+    },
+    {
+      "id": "wd1l7-q05",
+      "difficulty": "easy",
+      "question": "Image-এর CVE (vulnerability) scan করতে কোন command ব্যবহার করা হয়?",
+      "options": [
+        "docker inspect myimage",
+        "docker scout cves myimage",
+        "docker security scan myimage",
+        "docker audit myimage"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker scout cves myimage` command দিলে Docker Scout image-এর সব layer scan করে known CVE list দেখায়। `docker scout quickview` দিলে critical/high/medium/low summary পাওয়া যায়।"
+    },
+    {
+      "id": "wd1l7-q06",
+      "difficulty": "easy",
+      "question": "`.dockerignore` file কোথায় রাখতে হয়?",
+      "options": [
+        "Project root-এ, Dockerfile-এর পাশে",
+        "/etc/docker/ directory-তে",
+        "src/ folder-এর ভেতরে",
+        "Dockerfile-এর ভেতরে"
+      ],
+      "answerIndex": 0,
+      "explanation": "`.dockerignore` file project root-এ রাখতে হয় — Dockerfile-এর পাশে। তখন `COPY . .` command চালালে এই file-এ listed paths image-এ copy হয় না।"
+    },
+    {
+      "id": "wd1l7-q07",
+      "difficulty": "medium",
+      "question": "`docker run --read-only myapp` চালালে app crash করছে কারণ সে `/tmp`-তে file লিখতে পারছে না। সঠিক সমাধান কোনটি?",
+      "options": [
+        "--read-only flag সরিয়ে দাও",
+        "docker run --read-only --volume /tmp:/tmp myapp",
+        "docker run --read-only --tmpfs /tmp myapp",
+        "Dockerfile-এ VOLUME /tmp যোগ করো"
+      ],
+      "answerIndex": 2,
+      "explanation": "`--tmpfs /tmp` দিলে শুধু `/tmp` directory-টা in-memory writable mount হিসেবে পাওয়া যায় — বাকি filesystem read-only থাকে। এটাই সঠিক balance: security বজায় রেখে app-এর legitimate write access দেওয়া।"
+    },
+    {
+      "id": "wd1l7-q08",
+      "difficulty": "medium",
+      "question": "নিচের কোন `.dockerignore` entry সবচেয়ে জরুরি security দৃষ্টিকোণ থেকে?",
+      "options": ["dist/", "*.md", "coverage/", ".env"],
+      "answerIndex": 3,
+      "explanation": "`.env` file-এ database password, API key, JWT secret থাকে। এটা image-এ গেলে `docker history` বা image inspect করে যে কেউ secrets দেখতে পারবে। Security দৃষ্টিকোণ থেকে এটাই সবচেয়ে critical entry।"
+    },
+    {
+      "id": "wd1l7-q09",
+      "difficulty": "medium",
+      "question": "একটা NestJS app-এ port 80-এ bind করতে হবে। Non-root user ব্যবহার করলেও কি এটা সম্ভব?",
+      "options": [
+        "না, 1024-এর নিচের port bind করতে root লাগে",
+        "হ্যাঁ, USER instruction দিলেই হয়",
+        "না, এর জন্য --privileged flag লাগবে",
+        "হ্যাঁ, --cap-add NET_BIND_SERVICE দিলে non-root user-ও port 80 bind করতে পারবে"
+      ],
+      "answerIndex": 3,
+      "explanation": "Linux-এ 1024-এর নিচের port bind করতে normally root লাগে। কিন্তু `--cap-add NET_BIND_SERVICE` capability যোগ করলে non-root user-ও এটা করতে পারে — বাকি সব capability `--cap-drop ALL` দিয়ে সরিয়ে রেখে।"
+    },
+    {
+      "id": "wd1l7-q10",
+      "difficulty": "medium",
+      "question": "`node:18` এবং `node:18-alpine` image-এর মধ্যে security দৃষ্টিকোণ থেকে প্রধান পার্থক্য কী?",
+      "options": [
+        "alpine image অনেক কম software include করে তাই CVE count অনেক কম",
+        "alpine image-এ Node.js version পুরনো থাকে",
+        "পার্থক্য শুধু file size-এ, security একই",
+        "alpine image শুধু Windows-এ চলে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Alpine Linux ultra-minimal — musl libc আর busybox ছাড়া প্রায় কিছুই নেই। ফলে attack surface অনেক ছোট এবং CVE count অনেক কম। `node:18`-এ ১৫০+ CVE থাকতে পারে, `node:18-alpine`-এ ১০-২০টা।"
+    },
+    {
+      "id": "wd1l7-q11",
+      "difficulty": "medium",
+      "question": "তুমি চাও container কখনো নতুন privilege gain করতে না পারুক — কোন flag ব্যবহার করবে?",
+      "options": [
+        "--cap-drop ALL",
+        "--read-only",
+        "--user 1000:1000",
+        "--no-new-privileges"
+      ],
+      "answerIndex": 3,
+      "explanation": "`--no-new-privileges` flag দিলে container process setuid/setgid binary বা Linux capabilities দিয়ে নতুন privilege gain করতে পারে না। এটা privilege escalation attack প্রতিরোধ করে। `--cap-drop ALL` capabilities সরায় কিন্তু setuid exploit বন্ধ করে না।"
+    },
+    {
+      "id": "wd1l7-q12",
+      "difficulty": "hard",
+      "question": "তোমার team-এর একজন developer Dockerfile-এ লিখেছে: `ENV JWT_SECRET=mySuperSecret123`। এটা image build করে Docker Hub-এ push করা হয়েছে। কী কী risk আছে এবং কীভাবে fix করবে?",
+      "options": [
+        "Risk আছে শুধু public repo-তে; private repo হলে safe; fix: repo private করো",
+        "Risk নেই কারণ ENV variable encrypted থাকে; কোনো fix দরকার নেই",
+        "Risk আছে শুধু যদি কেউ container-এ exec করে; fix: --no-new-privileges দাও",
+        "যে কেউ `docker history` বা `docker inspect` দিয়ে secret দেখতে পারবে; fix: secret rotate করো, Dockerfile থেকে ENV সরাও, runtime injection বা Docker secrets ব্যবহার করো"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker image-এর প্রতিটি layer inspect করা যায়। `docker history --no-trunc` বা `docker inspect` দিয়ে ENV variable plain text-এ দেখা যাবে। যেহেতু image Docker Hub-এ গেছে, secret compromise হয়ে গেছে — JWT secret অবিলম্বে rotate করতে হবে। Fix: Dockerfile থেকে hardcoded secret সরাও, `ENV JWT_SECRET=` empty রাখো, production-এ runtime-এ inject করো।"
+    },
+    {
+      "id": "wd1l7-q13",
+      "difficulty": "hard",
+      "question": "CVE-2019-5736 (runc vulnerability) সম্পর্কে কোন statement সবচেয়ে সঠিক?",
+      "options": [
+        "এই vulnerability শুধু Windows container-এ ছিল",
+        "এই vulnerability docker compose ব্যবহারে ছিল, single container-এ ছিল না",
+        "Container root user হলে attacker host machine-এর runc binary overwrite করে host-এ code execute করতে পারতো; non-root container-এ এই attack কাজ করতো না",
+        "Alpine image ব্যবহার করলেই এই vulnerability থেকে রক্ষা পাওয়া যেত"
+      ],
+      "answerIndex": 2,
+      "explanation": "CVE-2019-5736-এ root container process `/proc/self/exe` symlink exploit করে host-এর runc binary overwrite করতে পারতো। কিন্তু non-root user-এ চললে host binary-তে write permission থাকতো না — attack ব্যর্থ হতো। এটাই প্রমাণ করে non-root container কতটা জরুরি।"
+    },
+    {
+      "id": "wd1l7-q14",
+      "difficulty": "hard",
+      "question": "Production-এ তোমার NestJS app container হঠাৎ সব server memory খেয়ে ফেলছে এবং অন্য containers crash করছে। তুমি কোন command দিয়ে এটা prevent করতে পারতে এবং কেন?",
+      "options": [
+        "docker run --read-only myapp — কারণ read-only filesystem memory leak বন্ধ করে",
+        "docker run --memory=512m --cpus=0.5 --pids-limit=100 myapp — কারণ resource limits দিলে একটা container নির্দিষ্ট সীমার বেশি resource নিতে পারে না",
+        "docker run --no-new-privileges myapp — কারণ privilege escalation memory ব্যবহার বাড়িয়ে দেয়",
+        "docker run --cap-drop ALL myapp — কারণ capabilities memory control করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`--memory=512m` দিলে container সর্বোচ্চ 512MB RAM নিতে পারবে — বেশি নিতে গেলে OOM killer সেটা kill করবে কিন্তু host বাঁচবে। `--cpus=0.5` CPU throttle করে। `--pids-limit=100` fork bomb prevent করে। এই তিনটি মিলে resource isolation নিশ্চিত করে — একটা buggy container পুরো host দখল নিতে পারে না।"
+    }
+  ]
+}

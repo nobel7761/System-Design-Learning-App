@@ -23,7 +23,7 @@ export interface LessonContent {
  * (w0l1 → w0).
  */
 export function loadLesson(lessonId: string): LessonContent | null {
-  const worldId = lessonId.match(/^w\d+/)?.[0];
+  const worldId = lessonId.match(/^w[a-z]*\d+/)?.[0];
   if (!worldId || !/^[a-z0-9]+$/.test(lessonId)) {
     return null;
   }

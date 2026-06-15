@@ -1,0 +1,177 @@
+{
+  "lessonId": "wd0l5",
+  "questions": [
+    {
+      "id": "wd0l5-q01",
+      "difficulty": "easy",
+      "question": "Docker container বন্ধ বা মুছে গেলে container-এর ভেতরের data কী হয়?",
+      "options": [
+        "মুছে যায়, কারণ writable layer container-এর সাথেই নষ্ট হয়",
+        "Host machine-এ copy হয়ে যায়",
+        "Volume-এ স্বয়ংক্রিয়ভাবে save হয়ে যায়",
+        "Image-এ permanent হয়ে যায়"
+      ],
+      "answerIndex": 0,
+      "explanation": "Container-এর data থাকে writable layer-এ। Container মুছে গেলে এই layer-ও মুছে যায়। Image-এর read-only layers থাকে, কিন্তু container-এ নতুন লেখা data হারিয়ে যায় — এ কারণেই Volume দরকার।"
+    },
+    {
+      "id": "wd0l5-q02",
+      "difficulty": "easy",
+      "question": "Docker Volume তৈরি করার সঠিক command কোনটা?",
+      "options": [
+        "docker volume create mydata",
+        "docker volume new mydata",
+        "docker make volume mydata",
+        "docker create volume mydata"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker volume create mydata` হলো সঠিক command। এটা 'mydata' নামে একটা named volume তৈরি করে যা Docker নিজে manage করে।"
+    },
+    {
+      "id": "wd0l5-q03",
+      "difficulty": "easy",
+      "question": "Development-এ live code reload-এর জন্য কোন ধরনের storage সবচেয়ে উপযুক্ত?",
+      "options": ["Named Volume", "tmpfs", "Bind Mount", "Container layer"],
+      "answerIndex": 2,
+      "explanation": "Bind Mount দিয়ে host machine-এর project folder সরাসরি container-এ দেখানো যায়। তুমি file save করলে container-এ সাথে সাথে reflect হয় — nodemon-এর সাথে দারুণ কাজ করে। Named volume development-এর জন্য এতটা সুবিধাজনক না।"
+    },
+    {
+      "id": "wd0l5-q04",
+      "difficulty": "easy",
+      "question": "সব Docker volume-এর list দেখতে কোন command ব্যবহার করবে?",
+      "options": [
+        "docker volumes",
+        "docker volume list",
+        "docker list volumes",
+        "docker volume ls"
+      ],
+      "answerIndex": 3,
+      "explanation": "`docker volume ls` দিয়ে সব volume-এর list দেখা যায়। Output-এ DRIVER আর VOLUME NAME দেখাবে।"
+    },
+    {
+      "id": "wd0l5-q05",
+      "difficulty": "easy",
+      "question": "tmpfs storage কোথায় data রাখে?",
+      "options": [
+        "Docker-managed directory-তে",
+        "RAM (memory)-তে",
+        "Host machine-এর disk-এ",
+        "Container-এর writable layer-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "tmpfs storage RAM বা memory-তে data রাখে। Container বন্ধ হলে data মুছে যায়। Sensitive temporary data বা secret যা disk-এ লিখতে চাও না — সেক্ষেত্রে tmpfs উপযুক্ত।"
+    },
+    {
+      "id": "wd0l5-q06",
+      "difficulty": "easy",
+      "question": "MongoDB container-এ data persist করতে হলে কোন path-এ volume mount করতে হবে?",
+      "options": ["/mongo/data", "/data/db", "/app/data", "/var/lib/mongo"],
+      "answerIndex": 1,
+      "explanation": "MongoDB তার data `/data/db` path-এ রাখে। তাই `docker run -v mongo-data:/data/db mongo` command দিয়ে এই path-এ volume mount করলে restart-এর পরেও data থাকে।"
+    },
+    {
+      "id": "wd0l5-q07",
+      "difficulty": "medium",
+      "question": "তুমি `docker run -v $(pwd):/app -p 3000:3000 myapp` চালালে কী হবে?",
+      "options": [
+        "Container-এর /app folder host machine-এ copy হবে",
+        "myapp image-এর /app folder আলাদা volume-এ save হবে",
+        "Host machine-এর current directory container-এর /app-এ mount হবে, live sync চলবে",
+        "Container port 3000 থেকে host port-এ data export হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`$(pwd)` মানে current directory। এই command-এ bind mount ব্যবহার করে host-এর current folder container-এর `/app`-এ দেখানো হচ্ছে। File save করলে container-এ সাথে সাথে reflect হয়।"
+    },
+    {
+      "id": "wd0l5-q08",
+      "difficulty": "medium",
+      "question": "Production-এ database data store করতে Named Volume কেন Bind Mount-এর চেয়ে ভালো?",
+      "options": [
+        "Bind Mount শুধু Linux-এ কাজ করে",
+        "Named Volume দ্রুত, Bind Mount ধীর",
+        "Named Volume বেশি disk space ব্যবহার করে না",
+        "Named Volume Docker manage করে, host path-independent তাই portable ও নির্ভরযোগ্য"
+      ],
+      "answerIndex": 3,
+      "explanation": "Named Volume Docker নিজে manage করে, তাই host machine-এর specific path-এর উপর নির্ভর করে না। এটা portable — যেকোনো machine-এ একই নামে কাজ করে। Production-এ এটা বেশি নির্ভরযোগ্য ও নিরাপদ।"
+    },
+    {
+      "id": "wd0l5-q09",
+      "difficulty": "medium",
+      "question": "`docker volume prune` command কী করে?",
+      "options": [
+        "সব volume মুছে দেয়",
+        "কোনো container-এ attached নেই এমন সব volume মুছে দেয়",
+        "Volume-এর size ছোট করে",
+        "Volume-এর data backup করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`docker volume prune` শুধুমাত্র unused — অর্থাৎ কোনো running বা stopped container-এ attached নেই এমন volume মুছে দেয়। Production-এ সাবধানে ব্যবহার করতে হবে, ভুলে গেলে important data যেতে পারে।"
+    },
+    {
+      "id": "wd0l5-q10",
+      "difficulty": "medium",
+      "question": "`docker volume inspect mydata` চালালে কোন তথ্যটা দেখা যাবে?",
+      "options": [
+        "Volume-এর Mountpoint — host machine-এ ঠিক কোথায় data আছে",
+        "Volume ব্যবহার করছে এমন container-এর IP address",
+        "Volume কতটুকু RAM ব্যবহার করছে",
+        "Volume-এর ভেতরের file list"
+      ],
+      "answerIndex": 0,
+      "explanation": "`docker volume inspect` command volume-এর metadata দেখায় — Name, Driver, Mountpoint, Labels, Scope। Mountpoint field দিয়ে জানা যায় data host machine-এর কোন directory-তে আছে।"
+    },
+    {
+      "id": "wd0l5-q11",
+      "difficulty": "medium",
+      "question": "Container-এর layered filesystem-এ image layers কোন ধরনের?",
+      "options": [
+        "Read-write, সব layer-এ লেখা যায়",
+        "Compressed, run-এর সময় decompress হয়",
+        "Encrypted, শুধু container runtime পড়তে পারে",
+        "Read-only, শুধু container-এর writable layer-এ লেখা যায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "Docker image-এর layers গুলো read-only। Container চালু হলে সবার উপরে একটা writable layer যোগ হয়। নতুন file বা পরিবর্তন এই writable layer-এ যায়। Container মুছলে শুধু এই writable layer মুছে যায়, image layers অক্ষত থাকে।"
+    },
+    {
+      "id": "wd0l5-q12",
+      "difficulty": "hard",
+      "question": "তুমি `docker run -d --name db -v mongo-data:/data/db mongo` চালালে। তারপর `docker rm -f db` করে container মুছলে। এরপর আবার একই command চালালে data কী হবে?",
+      "options": [
+        "Data থাকবে, কারণ mongo-data volume আলাদা — container মুছলে volume মুছে না",
+        "Data যাবে, কারণ container মুছে গেছে",
+        "Data থাকবে শুধু যদি container gracefully stop করা হয়",
+        "Data partially থাকবে, last write হারাতে পারে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Named volume (`mongo-data`) container থেকে আলাদা। `docker rm` শুধু container মুছে — volume মুছে না। নতুন container তৈরি করে একই volume mount করলে আগের সব data পাওয়া যাবে। Volume explicitly `docker volume rm` না করলে মুছে না।"
+    },
+    {
+      "id": "wd0l5-q13",
+      "difficulty": "hard",
+      "question": "দুটো container একই named volume mount করেছে। Container A ফাইল লিখছে, Container B সেই ফাইল পড়ছে। এই setup-এ কী সমস্যা হতে পারে?",
+      "options": [
+        "কোনো সমস্যা নেই, Docker automatically lock করে",
+        "দুটো container একই সময়ে write করলে data corruption হতে পারে — application-level locking দরকার",
+        "Container B volume দেখতে পাবে না",
+        "Named volume শুধু একটা container-এ mount করা যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Named volume একাধিক container share করতে পারে, কিন্তু Docker নিজে concurrent write থেকে protect করে না। যদি দুটো container একই সময়ে একই file-এ write করে, data corrupt হতে পারে। Database-এর জন্য শুধু একটা container write করবে এমন design রাখা উচিত।"
+    },
+    {
+      "id": "wd0l5-q14",
+      "difficulty": "hard",
+      "question": "Bind mount দিয়ে `docker run -v $(pwd):/app myapp` চালালে host-এর current directory-তে যদি `node_modules` folder থাকে, container-এ কী হবে?",
+      "options": [
+        "Host-এর node_modules container-এ দেখাবে, image-এর node_modules hide হয়ে যাবে — dependency mismatch হতে পারে",
+        "Docker automatically merge করবে দুটো node_modules",
+        "Container চালু হবে না, conflict error দেবে",
+        "Container-এর নিজস্ব node_modules ব্যবহার হবে"
+      ],
+      "answerIndex": 0,
+      "explanation": "Bind mount সম্পূর্ণ directory override করে। Host-এর `$(pwd)` container-এর `/app`-এ mount হলে image-এর `/app/node_modules` আর দেখা যাবে না — host-এর node_modules দেখাবে। OS বা architecture ভিন্ন হলে (Mac host, Linux container) native modules কাজ নাও করতে পারে। এর solution হলো container-এর node_modules আলাদা named volume-এ রাখা।"
+    }
+  ]
+}
