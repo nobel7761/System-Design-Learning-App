@@ -207,25 +207,19 @@ export class ProgressService {
   }
 
   async getDashboard(userId: string) {
-    const [syllabus, streak, xpAgg, loginStats] = await Promise.all([
+    const [syllabus, streak, allLogs, loginStats] = await Promise.all([
       this.getSyllabus(),
       this.streakModel.findOne({ key: STREAK_KEY }).lean().exec(),
       this.sessionLogModel
-        .aggregate<{ _id: null; totalXp: number; totalTimeSec: number }>([
-          {
-            $group: {
-              _id: null,
-              totalXp: { $sum: '$xpEarned' },
-              totalTimeSec: { $sum: '$timeSpentSec' },
-            },
-          },
-        ])
+        .find()
+        .select('lessonId xpEarned timeSpentSec date')
+        .lean()
         .exec(),
       this.authService.getLoginStats(userId),
     ]);
 
-    const totalXp = xpAgg[0]?.totalXp ?? 0;
-    const totalTimeSec = xpAgg[0]?.totalTimeSec ?? 0;
+    const totalXp = allLogs.reduce((a, l) => a + l.xpEarned, 0);
+    const totalTimeSec = allLogs.reduce((a, l) => a + l.timeSpentSec, 0);
 
     // Current week (Mon..Sun) study map
     const today = this.localDateStr();
@@ -235,12 +229,9 @@ export class ProgressService {
     const weekDates = Array.from({ length: 7 }, (_, i) =>
       this.addDays(monday, i),
     );
-    const weekLogs = await this.sessionLogModel
-      .find({ date: { $in: weekDates } })
-      .select('date')
-      .lean()
-      .exec();
-    const studiedDates = new Set(weekLogs.map((l) => l.date));
+    const studiedDates = new Set(
+      allLogs.filter((l) => weekDates.includes(l.date)).map((l) => l.date),
+    );
     const week = weekDates.map((date) => ({
       date,
       studied: studiedDates.has(date),
@@ -250,8 +241,19 @@ export class ProgressService {
     // Per-track current lesson and progress
     const buildTrackSummary = (track: 'system-design' | 'docker') => {
       const trackWorlds = syllabus.filter((w) => w.track === track);
+      const trackLessonIds = new Set(
+        trackWorlds.flatMap((w) => w.lessons.map((l) => l.id)),
+      );
       const done = trackWorlds.reduce((a, w) => a + w.doneCount, 0);
       const total = trackWorlds.reduce((a, w) => a + w.totalCount, 0);
+
+      const trackLogs = allLogs.filter((l) => trackLessonIds.has(l.lessonId));
+      const xpEarned = trackLogs.reduce((a, l) => a + l.xpEarned, 0);
+      const trackTimeSec = trackLogs.reduce((a, l) => a + l.timeSpentSec, 0);
+      const sessionsThisWeek = trackLogs.filter((l) =>
+        weekDates.includes(l.date),
+      ).length;
+
       let currentLesson: Record<string, unknown> | null = null;
       for (const world of trackWorlds) {
         const cur = world.lessons.find((l) => l.status === 'current');
@@ -269,6 +271,9 @@ export class ProgressService {
         done,
         total,
         percent: total ? Math.round((done / total) * 100) : 0,
+        xpEarned,
+        totalTimeSec: trackTimeSec,
+        sessionsThisWeek,
         currentLesson,
       };
     };

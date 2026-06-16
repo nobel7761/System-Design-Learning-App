@@ -6,50 +6,92 @@ import type { Dashboard, TrackSummary } from "@/lib/api/types";
 
 const DAY_LABELS = ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"];
 
+function fmtTime(sec: number) {
+  const h = Math.floor(sec / 3600);
+  const m = Math.round((sec % 3600) / 60);
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m`;
+}
+
 function TrackCard({
   emoji,
   title,
   subtitle,
   summary,
   browseHref,
-  accentClass,
+  isDark,
 }: {
   emoji: string;
   title: string;
   subtitle: string;
   summary: TrackSummary;
   browseHref: string;
-  accentClass: string;
+  isDark: boolean;
 }) {
   const lesson = summary.currentLesson;
+  const borderClass = isDark ? "border-sky-200" : "border-indigo-200";
+  const btnGradient = isDark
+    ? "linear-gradient(135deg, #0ea5e9, #0369a1)"
+    : "linear-gradient(135deg, #6366f1, #4338ca)";
+  const xpColor = isDark ? "text-sky-700" : "text-indigo-700";
+  const xpBg = isDark ? "bg-sky-50" : "bg-indigo-50";
 
   return (
-    <Card className={`border-2 ${accentClass} bg-white shadow-md`}>
-      <CardContent className="flex flex-col gap-4 py-6">
+    <Card className={`border-2 ${borderClass} bg-white shadow-md`}>
+      <CardContent className="flex flex-col gap-4 py-5">
+        {/* Header */}
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-2xl">{emoji}</p>
-            <h2 className="mt-1 text-lg font-bold text-slate-800">{title}</h2>
-            <p className="text-xs text-slate-500">{subtitle}</p>
+            <p className="text-xl">{emoji}</p>
+            <h2 className="mt-0.5 text-base font-bold text-slate-800">
+              {title}
+            </h2>
+            <p className="text-xs text-slate-400">{subtitle}</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-slate-800">
+            <p className="text-3xl font-extrabold text-slate-800">
               {summary.percent}%
             </p>
             <p className="text-xs text-slate-400">
-              {summary.done}/{summary.total} done
+              {summary.done}/{summary.total} lessons
             </p>
           </div>
         </div>
 
+        {/* Progress bar */}
         <Progress value={summary.percent} className="h-2" />
 
+        {/* Per-track stats grid */}
+        <div
+          className={`grid grid-cols-3 divide-x rounded-xl ${xpBg} text-center`}
+        >
+          <div className="py-3">
+            <p className={`text-base font-bold ${xpColor}`}>
+              {summary.xpEarned}
+            </p>
+            <p className="text-[10px] text-slate-500">XP</p>
+          </div>
+          <div className="py-3">
+            <p className={`text-base font-bold ${xpColor}`}>
+              {fmtTime(summary.totalTimeSec)}
+            </p>
+            <p className="text-[10px] text-slate-500">সময়</p>
+          </div>
+          <div className="py-3">
+            <p className={`text-base font-bold ${xpColor}`}>
+              {summary.sessionsThisWeek}
+            </p>
+            <p className="text-[10px] text-slate-500">এ সপ্তাহে</p>
+          </div>
+        </div>
+
+        {/* Next lesson preview */}
         {lesson ? (
           <div className="rounded-lg bg-slate-50 px-3 py-2">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
               পরের lesson
             </p>
-            <p className="mt-0.5 text-sm font-medium text-slate-700 line-clamp-1">
+            <p className="mt-0.5 truncate text-sm font-medium text-slate-700">
               {lesson.type === "boss" ? "⚔️ " : "📖 "}
               {lesson.title}
             </p>
@@ -62,15 +104,11 @@ function TrackCard({
           </div>
         )}
 
+        {/* CTA */}
         <Link
           href={browseHref}
-          className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-bold text-white shadow transition"
-          style={{
-            background:
-              emoji === "🐳"
-                ? "linear-gradient(135deg, #0ea5e9, #0369a1)"
-                : "linear-gradient(135deg, #6366f1, #4338ca)",
-          }}
+          className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-bold text-white shadow transition hover:opacity-90"
+          style={{ background: btnGradient }}
         >
           Browse করো →
         </Link>
@@ -88,7 +126,7 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
         subtitle="Internet থেকে Distributed Systems"
         summary={dashboard.tracks["system-design"]}
         browseHref="/syllabus?track=system-design"
-        accentClass="border-indigo-200"
+        isDark={false}
       />
       <TrackCard
         emoji="🐳"
@@ -96,7 +134,7 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
         subtitle="Zero থেকে Production-ready"
         summary={dashboard.tracks["docker"]}
         browseHref="/syllabus?track=docker"
-        accentClass="border-sky-200"
+        isDark={true}
       />
     </div>
   );
@@ -116,15 +154,17 @@ export function StatsRow({ dashboard }: { dashboard: Dashboard }) {
     },
     {
       icon: "⭐",
-      label: `Level ${xp.level} — ${xp.title}`,
-      value: `${xp.total} XP`,
-      sub: xp.nextLevelXp ? `পরের level: ${xp.nextLevelXp} XP` : "Max level!",
+      label: `Level ${xp.level}`,
+      value: xp.title,
+      sub: xp.nextLevelXp
+        ? `${xp.total} XP · পরের: ${xp.nextLevelXp}`
+        : `${xp.total} XP · Max!`,
     },
     {
-      icon: "📈",
-      label: "Overall Progress",
-      value: `${totals.percent}%`,
-      sub: `${totals.doneLessons}/${totals.totalLessons} sessions`,
+      icon: "📖",
+      label: "মোট Sessions",
+      value: `${totals.doneLessons}`,
+      sub: `${totals.totalLessons}-এর মধ্যে`,
     },
     {
       icon: "⏰",

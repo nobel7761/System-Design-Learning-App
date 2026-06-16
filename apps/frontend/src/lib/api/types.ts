@@ -45,6 +45,9 @@ export interface TrackSummary {
   done: number;
   total: number;
   percent: number;
+  xpEarned: number;
+  totalTimeSec: number;
+  sessionsThisWeek: number;
   currentLesson: TrackCurrentLesson | null;
 }
 
