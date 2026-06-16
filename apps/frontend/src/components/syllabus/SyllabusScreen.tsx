@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import Loader from "@/components/shared/Loader";
 import { AppShell } from "@/components/layout/AppShell";
 import {
@@ -12,7 +13,7 @@ import {
   Progress,
 } from "@/components/shared/shadcn";
 import useAPI from "@/hooks/api";
-import type { SyllabusLesson, SyllabusWorld } from "@/lib/api/types";
+import type { SyllabusLesson, SyllabusWorld, Track } from "@/lib/api/types";
 
 function LessonRow({ lesson }: { lesson: SyllabusLesson }) {
   const icon =
@@ -82,9 +83,7 @@ function WorldSection({ world }: { world: SyllabusWorld }) {
       <AccordionTrigger className="hover:no-underline">
         <div className="flex w-full items-center justify-between pr-2">
           <div className="text-left">
-            <p className="font-semibold text-slate-800">
-              World {world.order}: {world.title}
-            </p>
+            <p className="font-semibold text-slate-800">{world.title}</p>
             <p className="text-xs font-normal text-slate-500">
               {world.description}
             </p>
@@ -108,23 +107,60 @@ function WorldSection({ world }: { world: SyllabusWorld }) {
   );
 }
 
+const TRACKS: { value: Track; label: string; emoji: string; desc: string }[] = [
+  {
+    value: "system-design",
+    label: "System Design",
+    emoji: "📚",
+    desc: "৮টা World · ~১১৮টা session",
+  },
+  {
+    value: "docker",
+    label: "Docker",
+    emoji: "🐳",
+    desc: "২টা World · ১৬টা session",
+  },
+];
+
 export function SyllabusScreen() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const activeTrack = (searchParams.get("track") as Track) ?? "system-design";
+
   const { data, loading, error } = useAPI<SyllabusWorld[]>({
     url: "/progress/syllabus",
   });
 
-  const currentWorldId = data?.find((w) =>
+  const filtered = data?.filter((w) => w.track === activeTrack) ?? [];
+  const currentWorldId = filtered.find((w) =>
     w.lessons.some((l) => l.status === "current"),
   )?.id;
 
   return (
     <AppShell>
-      <h1 className="mb-1 text-2xl font-bold text-slate-800">
-        📚 Full Syllabus
-      </h1>
-      <p className="mb-4 text-sm text-slate-500">
-        ১০টা World · প্রায় ১৩৪টা session · সপ্তাহে ৪ দিন, দিনে ৩০ মিনিট
-      </p>
+      <h1 className="mb-3 text-2xl font-bold text-slate-800">📋 Syllabus</h1>
+
+      {/* Track tabs */}
+      <div className="mb-5 flex gap-2">
+        {TRACKS.map((t) => (
+          <button
+            key={t.value}
+            onClick={() => router.push(`/syllabus?track=${t.value}`)}
+            className={`flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+              activeTrack === t.value
+                ? t.value === "docker"
+                  ? "border-sky-400 bg-sky-50 text-sky-700 shadow-sm"
+                  : "border-indigo-400 bg-indigo-50 text-indigo-700 shadow-sm"
+                : "border-slate-200 bg-white text-slate-500 hover:border-slate-300"
+            }`}
+          >
+            <span>{t.emoji}</span>
+            <span>{t.label}</span>
+            <span className="text-[10px] font-normal opacity-70">{t.desc}</span>
+          </button>
+        ))}
+      </div>
+
       {loading || (!data && !error) ? (
         <div className="flex justify-center py-24">
           <Loader size="lg" />
@@ -133,13 +169,13 @@ export function SyllabusScreen() {
         <p className="py-24 text-center text-sm text-red-600">
           Syllabus load হয়নি — backend চালু আছে কিনা দেখো।
         </p>
-      ) : data ? (
+      ) : filtered.length > 0 ? (
         <Accordion
           type="multiple"
-          defaultValue={currentWorldId ? [currentWorldId] : [data[0]?.id]}
+          defaultValue={currentWorldId ? [currentWorldId] : [filtered[0]?.id]}
           className="space-y-3"
         >
-          {data.map((world) => (
+          {filtered.map((world) => (
             <WorldSection key={world.id} world={world} />
           ))}
         </Accordion>

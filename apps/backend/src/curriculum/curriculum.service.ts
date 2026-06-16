@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { LessonDef, QuizBank, WorldDef } from './curriculum.types';
+import { LessonDef, QuizBank, Track, WorldDef } from './curriculum.types';
 
 /**
  * Loads the static curriculum definition (worlds/lessons) and quiz banks
@@ -78,8 +78,31 @@ export class CurriculumService implements OnModuleInit {
     return this.orderedLessonIds;
   }
 
+  /** Lesson ids for a specific track, in world+lesson order. */
+  getOrderedLessonIdsByTrack(track: Track): string[] {
+    const ids: string[] = [];
+    for (const world of this.worlds) {
+      if (world.track === track) {
+        for (const lesson of world.lessons) {
+          ids.push(lesson.id);
+        }
+      }
+    }
+    return ids;
+  }
+
+  getLessonTrack(lessonId: string): Track {
+    const worldId = this.worldIdByLessonId.get(lessonId);
+    const world = this.worlds.find((w) => w.id === worldId);
+    return world?.track ?? 'system-design';
+  }
+
   getTotalLessonCount(): number {
     return this.orderedLessonIds.length;
+  }
+
+  getTotalLessonCountByTrack(track: Track): number {
+    return this.getOrderedLessonIdsByTrack(track).length;
   }
 
   getQuizBank(lessonId: string): QuizBank {

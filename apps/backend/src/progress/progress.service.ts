@@ -81,11 +81,10 @@ export class ProgressService {
 
   async getLessonStatus(lessonId: string): Promise<LessonStatus> {
     const done = await this.getDoneLessonIds();
-    if (done.has(lessonId)) {
-      return 'done';
-    }
+    if (done.has(lessonId)) return 'done';
+    const track = this.curriculumService.getLessonTrack(lessonId);
     const currentId = this.curriculumService
-      .getOrderedLessonIds()
+      .getOrderedLessonIdsByTrack(track)
       .find((id) => !done.has(id));
     return lessonId === currentId ? 'current' : 'locked';
   }
@@ -170,11 +169,18 @@ export class ProgressService {
       .lean()
       .exec();
     const scoreByLesson = new Map(scores.map((s) => [s.lessonId, s.bestScore]));
-    const currentId = this.curriculumService
-      .getOrderedLessonIds()
-      .find((id) => !done.has(id));
+
+    // Per-track current lesson (each track has independent locking)
+    const trackCurrentId = new Map<string, string | undefined>();
+    for (const track of ['system-design', 'docker'] as const) {
+      const currentId = this.curriculumService
+        .getOrderedLessonIdsByTrack(track)
+        .find((id) => !done.has(id));
+      trackCurrentId.set(track, currentId);
+    }
 
     return this.curriculumService.getWorlds().map((world) => {
+      const currentId = trackCurrentId.get(world.track);
       const lessons = world.lessons.map((lesson) => ({
         ...lesson,
         status: (done.has(lesson.id)
@@ -188,6 +194,7 @@ export class ProgressService {
       return {
         id: world.id,
         order: world.order,
+        track: world.track,
         title: world.title,
         titleEn: world.titleEn,
         description: world.description,
@@ -240,26 +247,40 @@ export class ProgressService {
       isToday: date === today,
     }));
 
-    // Today's lesson = first non-done in course order
-    let todayLesson: Record<string, unknown> | null = null;
-    for (const world of syllabus) {
-      const current = world.lessons.find((l) => l.status === 'current');
-      if (current) {
-        todayLesson = {
-          ...current,
-          worldId: world.id,
-          worldTitle: world.title,
-          worldTitleEn: world.titleEn,
-        };
-        break;
+    // Per-track current lesson and progress
+    const buildTrackSummary = (track: 'system-design' | 'docker') => {
+      const trackWorlds = syllabus.filter((w) => w.track === track);
+      const done = trackWorlds.reduce((a, w) => a + w.doneCount, 0);
+      const total = trackWorlds.reduce((a, w) => a + w.totalCount, 0);
+      let currentLesson: Record<string, unknown> | null = null;
+      for (const world of trackWorlds) {
+        const cur = world.lessons.find((l) => l.status === 'current');
+        if (cur) {
+          currentLesson = {
+            ...cur,
+            worldId: world.id,
+            worldTitle: world.title,
+            worldTitleEn: world.titleEn,
+          };
+          break;
+        }
       }
-    }
+      return {
+        done,
+        total,
+        percent: total ? Math.round((done / total) * 100) : 0,
+        currentLesson,
+      };
+    };
 
     const totalLessons = this.curriculumService.getTotalLessonCount();
     const doneLessons = syllabus.reduce((acc, w) => acc + w.doneCount, 0);
 
     return {
-      todayLesson,
+      tracks: {
+        'system-design': buildTrackSummary('system-design'),
+        docker: buildTrackSummary('docker'),
+      },
       streak: {
         current: streak?.currentCount ?? 0,
         longest: streak?.longestCount ?? 0,

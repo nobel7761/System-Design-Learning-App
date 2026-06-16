@@ -2,60 +2,103 @@
 
 import Link from "next/link";
 import { Badge, Card, CardContent, Progress } from "@/components/shared/shadcn";
-import type { Dashboard } from "@/lib/api/types";
+import type { Dashboard, TrackSummary } from "@/lib/api/types";
 
 const DAY_LABELS = ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"];
 
-export function TodayCard({ dashboard }: { dashboard: Dashboard }) {
-  const lesson = dashboard.todayLesson;
-
-  if (!lesson) {
-    return (
-      <Card className="border-emerald-200 bg-emerald-50">
-        <CardContent className="py-8 text-center">
-          <div className="text-3xl">🎉</div>
-          <p className="mt-2 font-semibold text-emerald-800">
-            সব available lesson শেষ! নতুন World-এর content শীঘ্রই আসছে।
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const isBoss = lesson.type === "boss";
+function TrackCard({
+  emoji,
+  title,
+  subtitle,
+  summary,
+  browseHref,
+  accentClass,
+}: {
+  emoji: string;
+  title: string;
+  subtitle: string;
+  summary: TrackSummary;
+  browseHref: string;
+  accentClass: string;
+}) {
+  const lesson = summary.currentLesson;
 
   return (
-    <Card className="border-indigo-200 bg-white shadow-md">
-      <CardContent className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-500">
-            আজকের Session — {lesson.worldTitle}
-          </p>
-          <h2 className="mt-1 text-xl font-bold text-slate-800">
-            {isBoss ? "⚔️ " : "📖 "}
-            {lesson.title}
-          </h2>
-          <p className="mt-1 text-sm text-slate-500">
-            ⏱ ~{lesson.estMinutes} মিনিট
-            {dashboard.streak.studiedToday && (
-              <span className="ml-2 text-emerald-600">
-                ✅ আজকের পড়া হয়ে গেছে — চাইলে এগিয়ে থাকো!
-              </span>
-            )}
-          </p>
+    <Card className={`border-2 ${accentClass} bg-white shadow-md`}>
+      <CardContent className="flex flex-col gap-4 py-6">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-2xl">{emoji}</p>
+            <h2 className="mt-1 text-lg font-bold text-slate-800">{title}</h2>
+            <p className="text-xs text-slate-500">{subtitle}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-2xl font-bold text-slate-800">
+              {summary.percent}%
+            </p>
+            <p className="text-xs text-slate-400">
+              {summary.done}/{summary.total} done
+            </p>
+          </div>
         </div>
-        {lesson.contentReady ? (
-          <Link
-            href={`/lesson/${lesson.id}`}
-            className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-base font-bold text-white shadow transition hover:bg-indigo-700"
-          >
-            ▶ শুরু করো
-          </Link>
+
+        <Progress value={summary.percent} className="h-2" />
+
+        {lesson ? (
+          <div className="rounded-lg bg-slate-50 px-3 py-2">
+            <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+              পরের lesson
+            </p>
+            <p className="mt-0.5 text-sm font-medium text-slate-700 line-clamp-1">
+              {lesson.type === "boss" ? "⚔️ " : "📖 "}
+              {lesson.title}
+            </p>
+          </div>
         ) : (
-          <Badge variant="secondary">Content আসছে…</Badge>
+          <div className="rounded-lg bg-emerald-50 px-3 py-2">
+            <p className="text-sm font-medium text-emerald-700">
+              🎉 সব lessons শেষ!
+            </p>
+          </div>
         )}
+
+        <Link
+          href={browseHref}
+          className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-bold text-white shadow transition"
+          style={{
+            background:
+              emoji === "🐳"
+                ? "linear-gradient(135deg, #0ea5e9, #0369a1)"
+                : "linear-gradient(135deg, #6366f1, #4338ca)",
+          }}
+        >
+          Browse করো →
+        </Link>
       </CardContent>
     </Card>
+  );
+}
+
+export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <TrackCard
+        emoji="📚"
+        title="System Design"
+        subtitle="Internet থেকে Distributed Systems"
+        summary={dashboard.tracks["system-design"]}
+        browseHref="/syllabus?track=system-design"
+        accentClass="border-indigo-200"
+      />
+      <TrackCard
+        emoji="🐳"
+        title="Docker"
+        subtitle="Zero থেকে Production-ready"
+        summary={dashboard.tracks["docker"]}
+        browseHref="/syllabus?track=docker"
+        accentClass="border-sky-200"
+      />
+    </div>
   );
 }
 
@@ -79,7 +122,7 @@ export function StatsRow({ dashboard }: { dashboard: Dashboard }) {
     },
     {
       icon: "📈",
-      label: "Course Progress",
+      label: "Overall Progress",
       value: `${totals.percent}%`,
       sub: `${totals.doneLessons}/${totals.totalLessons} sessions`,
     },
@@ -156,7 +199,7 @@ export function WorldMap({ dashboard }: { dashboard: Dashboard }) {
             href="/syllabus"
             className="text-xs font-medium text-indigo-600 hover:underline"
           >
-            পুরো syllabus দেখো →
+            পুরো syllabus →
           </Link>
         </div>
         <div className="mt-3 space-y-3">
@@ -177,7 +220,7 @@ export function WorldMap({ dashboard }: { dashboard: Dashboard }) {
                     : world.doneCount > 0
                       ? "▶"
                       : "🔒"}{" "}
-                  W{world.order}: {world.title}
+                  {world.track === "docker" ? "🐳" : "📚"} {world.title}
                 </span>
                 <span className="text-xs text-slate-400">
                   {world.doneCount}/{world.totalCount}

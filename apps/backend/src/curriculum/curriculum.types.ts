@@ -12,9 +12,12 @@ export interface LessonDef {
   contentReady: boolean;
 }
 
+export type Track = 'system-design' | 'docker';
+
 export interface WorldDef {
   id: string;
   order: number;
+  track: Track;
   title: string;
   titleEn: string;
   description: string;

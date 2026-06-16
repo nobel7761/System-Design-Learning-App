@@ -1,6 +1,7 @@
 export type LessonType = "lesson" | "boss" | "dojo" | "mock";
 export type LessonStatus = "done" | "current" | "locked";
 export type QuizDifficulty = "easy" | "medium" | "hard";
+export type Track = "system-design" | "docker";
 
 export interface LoginResponse {
   accessToken: string;
@@ -22,6 +23,7 @@ export interface SyllabusLesson {
 export interface SyllabusWorld {
   id: string;
   order: number;
+  track: Track;
   title: string;
   titleEn: string;
   description: string;
@@ -33,14 +35,24 @@ export interface SyllabusWorld {
 
 export type DashboardWorld = Omit<SyllabusWorld, "lessons">;
 
-export interface TodayLesson extends SyllabusLesson {
+export interface TrackCurrentLesson extends SyllabusLesson {
   worldId: string;
   worldTitle: string;
   worldTitleEn: string;
 }
 
+export interface TrackSummary {
+  done: number;
+  total: number;
+  percent: number;
+  currentLesson: TrackCurrentLesson | null;
+}
+
 export interface Dashboard {
-  todayLesson: TodayLesson | null;
+  tracks: {
+    "system-design": TrackSummary;
+    docker: TrackSummary;
+  };
   streak: {
     current: number;
     longest: number;
