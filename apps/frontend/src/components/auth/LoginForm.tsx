@@ -33,7 +33,7 @@ export function LoginForm() {
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center space-y-2">
           <div className="text-4xl">🎓</div>
-          <CardTitle className="text-2xl">System Design Academy</CardTitle>
+          <CardTitle className="text-2xl">Achievement Academy</CardTitle>
           <p className="text-sm text-slate-500">
             আজকের ৩০ মিনিট — login করে শুরু করো!
           </p>

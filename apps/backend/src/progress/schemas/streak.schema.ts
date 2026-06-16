@@ -21,6 +21,10 @@ export class Streak {
   /** Last study date as YYYY-MM-DD */
   @Prop({ default: null })
   lastStudyDate: string | null;
+
+  /** Monday of the last week that qualified (≥4 study days) */
+  @Prop({ default: null })
+  lastStreakWeek: string | null;
 }
 
 export const StreakSchema = SchemaFactory.createForClass(Streak);

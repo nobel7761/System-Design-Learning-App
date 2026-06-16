@@ -41,6 +41,20 @@ export interface TrackCurrentLesson extends SyllabusLesson {
   worldTitleEn: string;
 }
 
+export interface TrackWeekDay {
+  date: string;
+  studied: boolean;
+  isToday: boolean;
+}
+
+export interface TrackWorldMini {
+  id: string;
+  title: string;
+  doneCount: number;
+  totalCount: number;
+  percent: number;
+}
+
 export interface TrackSummary {
   done: number;
   total: number;
@@ -49,6 +63,8 @@ export interface TrackSummary {
   totalTimeSec: number;
   sessionsThisWeek: number;
   currentLesson: TrackCurrentLesson | null;
+  weekDays: TrackWeekDay[];
+  worlds: TrackWorldMini[];
 }
 
 export interface Dashboard {

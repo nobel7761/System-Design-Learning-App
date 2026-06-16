@@ -25,7 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             className="flex items-center gap-2 font-bold text-slate-800"
           >
             <span className="text-xl">🎓</span>
-            <span>System Design Academy</span>
+            <span>Achievement Academy</span>
           </Link>
           <nav className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => (

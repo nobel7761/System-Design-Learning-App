@@ -3,9 +3,8 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
-  title: "System Design Academy",
-  description:
-    "আমার ব্যক্তিগত system design শেখার platform — দিনে ৩০ মিনিট, সপ্তাহে ৪ দিন",
+  title: "Achievement Academy",
+  description: "আমার ব্যক্তিগত শেখার platform — দিনে ৩০ মিনিট, সপ্তাহে ৪ দিন",
 };
 
 export default function RootLayout({

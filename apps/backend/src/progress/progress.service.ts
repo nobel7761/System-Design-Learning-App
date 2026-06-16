@@ -132,15 +132,36 @@ export class ProgressService {
       streak = new this.streakModel({ key: STREAK_KEY });
     }
 
-    if (streak.lastStudyDate === today) {
-      return; // already counted today
+    streak.lastStudyDate = today;
+
+    // Compute this week's Monday
+    const todayDate = new Date(`${today}T12:00:00Z`);
+    const dayOfWeek = (todayDate.getUTCDay() + 6) % 7; // 0 = Monday
+    const thisWeekMonday = this.addDays(today, -dayOfWeek);
+
+    // Count unique study days this week
+    const thisWeekDates = Array.from({ length: 7 }, (_, i) =>
+      this.addDays(thisWeekMonday, i),
+    );
+    const thisWeekLogs = await this.sessionLogModel
+      .find({ date: { $in: thisWeekDates } })
+      .select('date')
+      .lean()
+      .exec();
+    const uniqueStudyDays = new Set(thisWeekLogs.map((l) => l.date)).size;
+
+    // Once per week: if we hit the goal and haven't already recorded this week
+    if (
+      uniqueStudyDays >= WEEKLY_GOAL &&
+      streak.lastStreakWeek !== thisWeekMonday
+    ) {
+      const prevWeekMonday = this.addDays(thisWeekMonday, -7);
+      const isConsecutive = streak.lastStreakWeek === prevWeekMonday;
+      streak.currentCount = isConsecutive ? streak.currentCount + 1 : 1;
+      streak.longestCount = Math.max(streak.longestCount, streak.currentCount);
+      streak.lastStreakWeek = thisWeekMonday;
     }
 
-    const yesterday = this.addDays(today, -1);
-    streak.currentCount =
-      streak.lastStudyDate === yesterday ? streak.currentCount + 1 : 1;
-    streak.longestCount = Math.max(streak.longestCount, streak.currentCount);
-    streak.lastStudyDate = today;
     await streak.save();
   }
 
@@ -267,6 +288,21 @@ export class ProgressService {
           break;
         }
       }
+
+      const weekDays = weekDates.map((date) => ({
+        date,
+        studied: trackLogs.some((l) => l.date === date),
+        isToday: date === today,
+      }));
+
+      const worlds = trackWorlds.map((w) => ({
+        id: w.id,
+        title: w.title,
+        doneCount: w.doneCount,
+        totalCount: w.totalCount,
+        percent: w.percent,
+      }));
+
       return {
         done,
         total,
@@ -275,6 +311,8 @@ export class ProgressService {
         totalTimeSec: trackTimeSec,
         sessionsThisWeek,
         currentLesson,
+        weekDays,
+        worlds,
       };
     };
 
