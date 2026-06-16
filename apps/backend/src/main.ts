@@ -1,10 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { json, urlencoded } from 'express';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bodyParser: true,
+  });
+
+  // Increase body size limit for image uploads (base64 can be large)
+  app.use(json({ limit: '20mb' }));
+  app.use(urlencoded({ limit: '20mb', extended: true }));
 
   // Global prefix for all routes
   app.setGlobalPrefix('api');

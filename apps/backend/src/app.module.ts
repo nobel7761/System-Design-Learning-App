@@ -6,6 +6,7 @@ import { existsSync } from 'fs';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { ChatModule } from './chat/chat.module';
 import { CurriculumModule } from './curriculum/curriculum.module';
 import { ProgressModule } from './progress/progress.module';
 import { QuizModule } from './quiz/quiz.module';
@@ -79,6 +80,7 @@ if (!existsSync(envPath)) {
     CurriculumModule,
     ProgressModule,
     QuizModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

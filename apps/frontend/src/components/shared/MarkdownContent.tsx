@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -6,10 +9,90 @@ type MarkdownContentProps = {
   className?: string;
 };
 
+function CopyIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+/** Recursively extracts plain text from React children */
+function extractText(node: React.ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (React.isValidElement(node)) {
+    return extractText((node.props as { children?: React.ReactNode }).children);
+  }
+  return "";
+}
+
 /**
- * Shared markdown renderer for lesson content.
- * Server-compatible (no hooks) — safe to use in server components.
+ * Renders block code (from <pre><code>…</code></pre>) with a copy button.
+ * We extract raw text from children so we bypass whatever inline-code
+ * styling react-markdown may have applied to the inner <code> element.
  */
+function CodeBlock({ children }: { children: React.ReactNode }) {
+  const [copied, setCopied] = useState(false);
+  const rawText = extractText(children);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(rawText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="group relative my-4">
+      <button
+        onClick={handleCopy}
+        title="Copy code"
+        className={`absolute right-2 top-2 z-10 flex items-center gap-1.5 rounded px-2 py-1 text-xs font-medium transition ${
+          copied
+            ? "bg-emerald-600 text-white opacity-100"
+            : "bg-slate-700 text-slate-300 opacity-0 hover:bg-slate-600 group-hover:opacity-100"
+        }`}
+      >
+        {copied ? <CheckIcon /> : <CopyIcon />}
+        {copied ? "Copied!" : "Copy"}
+      </button>
+      <pre className="overflow-x-auto rounded-lg bg-slate-900 p-4 text-sm leading-relaxed text-slate-100">
+        <code className="font-mono text-slate-100">{rawText}</code>
+      </pre>
+    </div>
+  );
+}
+
 export default function MarkdownContent({
   content,
   className = "",
@@ -45,19 +128,22 @@ export default function MarkdownContent({
               {children}
             </blockquote>
           ),
-          code: ({ children, className: codeClassName }) => {
-            const isBlock = codeClassName?.includes("language-");
-            return isBlock ? (
-              <code className="block overflow-x-auto rounded-lg bg-slate-900 p-4 text-sm text-slate-100">
-                {children}
-              </code>
-            ) : (
+          // pre handles ALL block code — extract raw text and render cleanly
+          pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
+          // code: only applies inline styling when NOT wrapped by pre
+          // (pre's CodeBlock extracts raw text and never renders this element)
+          code: ({ children, className: codeClass }) => {
+            if (codeClass?.includes("language-")) {
+              // Language-tagged block — rendered via pre above, this shouldn't show
+              return <code className="font-mono">{children}</code>;
+            }
+            // Inline code
+            return (
               <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-rose-600">
                 {children}
               </code>
             );
           },
-          pre: ({ children }) => <pre className="my-4">{children}</pre>,
           table: ({ children }) => (
             <div className="my-4 overflow-x-auto">
               <table className="w-full border-collapse text-sm">

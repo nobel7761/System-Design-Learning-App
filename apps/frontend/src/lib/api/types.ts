@@ -99,6 +99,17 @@ export interface Dashboard {
   activity: { totalLogins: number; lastLoginAt: string | null };
 }
 
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+  createdAt: string;
+}
+
+export interface ChatHistory {
+  lessonId: string;
+  messages: ChatMessage[];
+}
+
 export interface ServedQuestion {
   id: string;
   difficulty: QuizDifficulty;

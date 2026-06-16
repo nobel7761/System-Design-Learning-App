@@ -1,8 +1,13 @@
 "use client";
 
-import { AuthProvider } from "@/contexts/AuthContext";
 import { ReactNode } from "react";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ChatProvider } from "@/contexts/ChatContext";
 
 export function Providers({ children }: { children: ReactNode }) {
-  return <AuthProvider>{children}</AuthProvider>;
+  return (
+    <AuthProvider>
+      <ChatProvider>{children}</ChatProvider>
+    </AuthProvider>
+  );
 }

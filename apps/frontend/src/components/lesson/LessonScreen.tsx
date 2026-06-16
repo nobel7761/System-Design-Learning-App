@@ -3,6 +3,7 @@ import MarkdownContent from "@/components/shared/MarkdownContent";
 import { Badge } from "@/components/shared/shadcn";
 import { AppShell } from "@/components/layout/AppShell";
 import { loadLesson } from "@/lib/lessons";
+import { LessonChatRegistrar } from "./LessonChatRegistrar";
 import { QuizSection } from "./QuizSection";
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
@@ -32,6 +33,9 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
 
   return (
     <AppShell>
+      {/* Registers this lesson into ChatContext so AppShell can show the chat button */}
+      <LessonChatRegistrar lessonId={lessonId} lessonTitle={meta.title} />
+
       <article className="mx-auto max-w-3xl">
         <header className="mb-2">
           <div className="flex items-center gap-2">
