@@ -1223,5 +1223,880 @@
       }
     ],
     "track": "docker"
+  },
+  {
+    "id": "wa0",
+    "order": 20,
+    "track": "ai-mastery",
+    "title": "Phase 1: LLM এর জগতে প্রবেশ",
+    "titleEn": "Phase 1: LLM Foundations",
+    "description": "LLM কী, কীভাবে কাজ করে, tokens থেকে embeddings পর্যন্ত — AI engineering এর সম্পূর্ণ ভিত্তি।",
+    "lessons": [
+      {
+        "id": "wa0l1",
+        "order": 1,
+        "title": "S01 — LLM আসলে কী? Tokens, Weights ও Inference",
+        "titleEn": "S01 — What is an LLM? Tokens, Weights & Inference",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": true
+      },
+      {
+        "id": "wa0l2",
+        "order": 2,
+        "title": "S02 — Dev Environment: Cursor, UV, Git ও API Keys",
+        "titleEn": "S02 — Dev Environment: Cursor, UV, Git & API Keys",
+        "type": "workshop",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l3",
+        "order": 3,
+        "title": "S03 — Tokenization: Text কীভাবে Number হয়?",
+        "titleEn": "S03 — Tokenization: How Text Becomes Numbers",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l4",
+        "order": 4,
+        "title": "S04 — Frontier vs Open-Source: GPT-5, Claude, Gemini, LLaMA",
+        "titleEn": "S04 — Frontier vs Open-Source Models: GPT-5, Claude, Gemini, LLaMA",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l5",
+        "order": 5,
+        "title": "S05 — Chat Completions API: HTTP থেকে SDK পর্যন্ত",
+        "titleEn": "S05 — Chat Completions API: From HTTP to SDK",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l6",
+        "order": 6,
+        "title": "S06 — Embeddings ও Vector Space: Meaning কীভাবে Math হয়",
+        "titleEn": "S06 — Embeddings & Vector Space: Meaning as Math",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l7",
+        "order": 7,
+        "title": "P01A — AI Brochure Generator: Web Scraping",
+        "titleEn": "P01A — AI Brochure Generator: Web Scraping with BeautifulSoup",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l8",
+        "order": 8,
+        "title": "P01B — AI Brochure Generator: Streaming ও Gradio UI",
+        "titleEn": "P01B — AI Brochure Generator: Streaming + Gradio UI",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa0l9",
+        "order": 9,
+        "title": "BOSS: LLM First Principles Challenge",
+        "titleEn": "BOSS: LLM First Principles Challenge",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa1",
+    "order": 21,
+    "track": "ai-mastery",
+    "title": "Phase 2: Prompt Engineering এর শিল্প",
+    "titleEn": "Phase 2: Prompt Engineering",
+    "description": "System prompts থেকে advanced techniques — LLM কে exactly যা চাই তাই বলানোর সম্পূর্ণ গাইড।",
+    "lessons": [
+      {
+        "id": "wa1l1",
+        "order": 1,
+        "title": "S09 — Prompt Engineering: System Prompts, Roles ও Context",
+        "titleEn": "S09 — Prompt Engineering: System Prompts, Roles & Context",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l2",
+        "order": 2,
+        "title": "S10 — Few-Shot, Chain-of-Thought ও Advanced Techniques",
+        "titleEn": "S10 — Few-Shot, Chain-of-Thought & Advanced Techniques",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l3",
+        "order": 3,
+        "title": "S11 — Temperature, Top-P, Max Tokens: Output Control",
+        "titleEn": "S11 — Temperature, Top-P, Max Tokens: Output Control",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l4",
+        "order": 4,
+        "title": "S12 — Structured Output ও JSON Mode: Reliable AI Responses",
+        "titleEn": "S12 — Structured Output & JSON Mode: Reliable AI Responses",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l5",
+        "order": 5,
+        "title": "S13 — Prompt Injection, Safety ও Production-Grade Prompts",
+        "titleEn": "S13 — Prompt Injection, Safety & Production-Grade Prompts",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l6",
+        "order": 6,
+        "title": "S14 — LLM Frameworks: LangChain vs LiteLLM vs Raw API",
+        "titleEn": "S14 — LLM Frameworks: LangChain vs LiteLLM vs Raw API",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l7",
+        "order": 7,
+        "title": "P02 — AI Customer Support Chatbot",
+        "titleEn": "P02 — AI Customer Support Chatbot (Multi-Turn, Tool Calls)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa1l8",
+        "order": 8,
+        "title": "BOSS: Prompt Engineering Mastery Challenge",
+        "titleEn": "BOSS: Prompt Engineering Mastery Challenge",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa2",
+    "order": 22,
+    "track": "ai-mastery",
+    "title": "Phase 3: Tool Use এবং Real-world APIs",
+    "titleEn": "Phase 3: Tool Use & APIs",
+    "description": "Function calling, streaming, multimodal — LLM কে real tools এর সাথে connect করার সম্পূর্ণ পদ্ধতি।",
+    "lessons": [
+      {
+        "id": "wa2l1",
+        "order": 1,
+        "title": "S16 — Tool Use / Function Calling: কীভাবে কাজ করে",
+        "titleEn": "S16 — Tool Use / Function Calling: How It Works",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l2",
+        "order": 2,
+        "title": "S17 — Tool Calling: Database, APIs ও Multi-Tool Workflows",
+        "titleEn": "S17 — Tool Calling: Database, APIs & Multi-Tool Workflows",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l3",
+        "order": 3,
+        "title": "S18 — Streaming Responses: SSE, ReadableStream ও Real-time UI",
+        "titleEn": "S18 — Streaming Responses: SSE, ReadableStream & Real-time UI",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l4",
+        "order": 4,
+        "title": "S19 — Multimodal AI: Vision, Audio ও Document Processing",
+        "titleEn": "S19 — Multimodal AI: Vision, Audio & Document Processing",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l5",
+        "order": 5,
+        "title": "S20 — UI বানানো: Gradio (Python) ও Next.js (TypeScript)",
+        "titleEn": "S20 — Building UIs: Gradio (Python) & Next.js (TypeScript)",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l6",
+        "order": 6,
+        "title": "P03A — Airline AI Assistant: Tool Use + GPT-4o",
+        "titleEn": "P03A — Airline AI Assistant: Tool Use + GPT-4o",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l7",
+        "order": 7,
+        "title": "P03B — Airline AI Assistant: DALL-E + TTS",
+        "titleEn": "P03B — Airline AI Assistant: DALL-E + TTS",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa2l8",
+        "order": 8,
+        "title": "BOSS: Streaming Multi-Tool Agent বানাও",
+        "titleEn": "BOSS: Build a Streaming Multi-Tool Agent",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa3",
+    "order": 23,
+    "track": "ai-mastery",
+    "title": "Phase 4: Open Source AI ও HuggingFace",
+    "titleEn": "Phase 4: Open Source AI & HuggingFace",
+    "description": "HuggingFace ecosystem, tokenizers, transformer architecture এবং local open-source LLM চালানো।",
+    "lessons": [
+      {
+        "id": "wa3l1",
+        "order": 1,
+        "title": "S23 — HuggingFace Platform: Models, Datasets, Spaces ও Colab",
+        "titleEn": "S23 — HuggingFace Platform: Models, Datasets, Spaces & Colab",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l2",
+        "order": 2,
+        "title": "S24 — HuggingFace Pipelines: Sentiment, NER, Q&A, Image, Audio",
+        "titleEn": "S24 — HuggingFace Pipelines: Sentiment, NER, Q&A, Image, Audio",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l3",
+        "order": 3,
+        "title": "S25 — Tokenizers Deep Dive: LLaMA, Phi-4, DeepSeek, QwenCoder",
+        "titleEn": "S25 — Tokenizers Deep Dive: LLaMA, Phi-4, DeepSeek, QwenCoder",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l4",
+        "order": 4,
+        "title": "S26 — Transformer এর ভেতরে: Attention, Quantization ও Architecture",
+        "titleEn": "S26 — Inside Transformers: Attention, Quantization & Architecture",
+        "type": "deep-dive",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l5",
+        "order": 5,
+        "title": "S27 — Open-Source LLMs চালানো: Phi, Gemma, Qwen ও DeepSeek",
+        "titleEn": "S27 — Running Open-Source LLMs: Phi, Gemma, Qwen & DeepSeek",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l6",
+        "order": 6,
+        "title": "P04 — Meeting Minutes Generator",
+        "titleEn": "P04 — Meeting Minutes Generator (Transcription + Summary)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa3l7",
+        "order": 7,
+        "title": "BOSS: OSS Model Evaluation Challenge",
+        "titleEn": "BOSS: OSS Model Evaluation Challenge",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa4",
+    "order": 24,
+    "track": "ai-mastery",
+    "title": "Phase 5: Model Evaluation ও Selection",
+    "titleEn": "Phase 5: Model Evaluation & Selection",
+    "description": "Chinchilla law, benchmarks, leaderboards — কোন model কখন use করবো সেটা data দিয়ে decide করা।",
+    "lessons": [
+      {
+        "id": "wa4l1",
+        "order": 1,
+        "title": "S29 — Model Selection Strategy: Chinchilla Law ও Benchmarks",
+        "titleEn": "S29 — Model Selection Strategy: Chinchilla Law, Benchmarks & Limits",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa4l2",
+        "order": 2,
+        "title": "S30 — AI Leaderboards: Artificial Analysis, HuggingFace ও LM Arena",
+        "titleEn": "S30 — AI Leaderboards: Artificial Analysis, HuggingFace & LM Arena",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa4l3",
+        "order": 3,
+        "title": "S31 — Code Generation Battle: GPT-5 vs Claude vs Gemini vs Qwen",
+        "titleEn": "S31 — Code Generation Battle: GPT-5 vs Claude vs Gemini vs Qwen",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa4l4",
+        "order": 4,
+        "title": "S32 — Model Evaluation: Technical Metrics vs Business Outcomes",
+        "titleEn": "S32 — Model Evaluation: Technical Metrics vs Business Outcomes",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa4l5",
+        "order": 5,
+        "title": "P05 — Python to C++/Rust Converter (50x Speed)",
+        "titleEn": "P05 — Python to C++/Rust Converter (50x Speed Improvement)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa4l6",
+        "order": 6,
+        "title": "BOSS: ৫টা Real Scenario-র জন্য সঠিক Model বাছাই করো",
+        "titleEn": "BOSS: Pick the Right Model for 5 Real Scenarios",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa5",
+    "order": 25,
+    "track": "ai-mastery",
+    "title": "Phase 6+7: RAG, Vector DB ও Semantic Search",
+    "titleEn": "Phase 6 & 7: RAG, Vector Databases & Semantic Search",
+    "description": "RAG fundamentals থেকে production-grade hybrid search পর্যন্ত — AI কে নিজের data দিয়ে কথা বলানো।",
+    "lessons": [
+      {
+        "id": "wa5l1",
+        "order": 1,
+        "title": "S34 — RAG Fundamentals: Retrieve, Augment, Generate",
+        "titleEn": "S34 — RAG Fundamentals: Retrieve, Augment, Generate",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l2",
+        "order": 2,
+        "title": "S35 — Vector Databases: ChromaDB, FAISS, pgvector ও Pinecone",
+        "titleEn": "S35 — Vector Databases: ChromaDB, FAISS, pgvector & Pinecone",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l3",
+        "order": 3,
+        "title": "S36 — Chunking Strategies: Document কীভাবে ভাগ করবো",
+        "titleEn": "S36 — Chunking Strategies: How to Split Documents",
+        "type": "deep-dive",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l4",
+        "order": 4,
+        "title": "S37 — LangChain দিয়ে Complete RAG Pipeline",
+        "titleEn": "S37 — Building a Complete RAG Pipeline with LangChain",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l5",
+        "order": 5,
+        "title": "S38 — RAG Evaluation: MRR, NDCG, LLM-as-Judge ও RAGAS",
+        "titleEn": "S38 — RAG Evaluation: MRR, NDCG, LLM-as-Judge & RAGAS",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l6",
+        "order": 6,
+        "title": "S39 — Advanced RAG: Hybrid Search, Re-ranking ও Query Expansion",
+        "titleEn": "S39 — Advanced RAG: Hybrid Search, Re-ranking & Query Expansion",
+        "type": "deep-dive",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l7",
+        "order": 7,
+        "title": "P06A — AI Knowledge Worker: RAG Pipeline",
+        "titleEn": "P06A — AI Knowledge Worker: RAG Pipeline (Part A)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l8",
+        "order": 8,
+        "title": "P06B — AI Knowledge Worker: Hybrid Search ও Eval",
+        "titleEn": "P06B — AI Knowledge Worker: Hybrid Search + Evaluation (Part B)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l9",
+        "order": 9,
+        "title": "S42 — Production Vector Search: pgvector, Indexing ও Similarity Tuning",
+        "titleEn": "S42 — Production Vector Search: pgvector, Indexing & Similarity Tuning",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l10",
+        "order": 10,
+        "title": "P07 — Semantic Search Engine: ৬২,০০০ Products",
+        "titleEn": "P07 — Semantic Search Engine: 62K Products",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa5l11",
+        "order": 11,
+        "title": "BOSS: RAG System বানাও — 0.73 MRR Beat করো",
+        "titleEn": "BOSS: Build a RAG System from Scratch — Beat 0.73 MRR",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa6",
+    "order": 26,
+    "track": "ai-mastery",
+    "title": "Phase 8: Traditional ML ও Frontier Fine-tuning",
+    "titleEn": "Phase 8: Traditional ML & Fine-tuning",
+    "description": "ML foundations, baseline models, neural networks এবং frontier model fine-tuning — AI engineering এর ML layer।",
+    "lessons": [
+      {
+        "id": "wa6l1",
+        "order": 1,
+        "title": "S44 — ML Foundations: Training, Datasets ও Generalization",
+        "titleEn": "S44 — ML Foundations: Training, Datasets & Generalization",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l2",
+        "order": 2,
+        "title": "S45 — Baseline Models: Linear Regression, Random Forest ও XGBoost",
+        "titleEn": "S45 — Baseline Models: Linear Regression, Random Forest & XGBoost",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l3",
+        "order": 3,
+        "title": "S46 — LLM দিয়ে Batch Processing: Groq API, ২২K Requests <$১",
+        "titleEn": "S46 — Batch Processing with LLMs: Groq API, 22K Requests for <$1",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l4",
+        "order": 4,
+        "title": "S47 — Neural Networks with PyTorch: Intuition থেকে 289M Parameters",
+        "titleEn": "S47 — Neural Networks with PyTorch: Intuition to 289M Parameters",
+        "type": "deep-dive",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l5",
+        "order": 5,
+        "title": "S48 — Frontier Model Fine-Tuning: SFT with GPT-4o-nano",
+        "titleEn": "S48 — Fine-Tuning Frontier Models: SFT with GPT-4o-nano",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l6",
+        "order": 6,
+        "title": "P08 — Price Predictor: GPT-4o vs ML vs Neural Net",
+        "titleEn": "P08 — Price Predictor: GPT-4o vs ML vs Neural Net",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa6l7",
+        "order": 7,
+        "title": "BOSS: Frontier vs ML vs Neural Net Showdown",
+        "titleEn": "BOSS: Frontier vs ML vs Neural Net Showdown",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa7",
+    "order": 27,
+    "track": "ai-mastery",
+    "title": "Phase 9: QLoRA এবং OSS Fine-tuning",
+    "titleEn": "Phase 9: QLoRA & OSS Fine-tuning",
+    "description": "LoRA, QLoRA, dataset preparation, hyperparameter tuning — নিজের open-source model fine-tune করে frontier কে হারানো।",
+    "lessons": [
+      {
+        "id": "wa7l1",
+        "order": 1,
+        "title": "S50 — LoRA ও QLoRA: Efficient Fine-Tuning কীভাবে কাজ করে",
+        "titleEn": "S50 — LoRA & QLoRA: Efficient Fine-Tuning Explained",
+        "type": "deep-dive",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa7l2",
+        "order": 2,
+        "title": "S51 — Dataset Preparation: Token Limits, Chat Templates ও HuggingFace",
+        "titleEn": "S51 — Dataset Preparation: Token Limits, Chat Templates & HuggingFace",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa7l3",
+        "order": 3,
+        "title": "S52 — Fine-Tuning Hyperparameters: LR, Optimizers, W&B ও SFT Trainer",
+        "titleEn": "S52 — Fine-Tuning Hyperparameters: LR, Optimizers, W&B & SFT Trainer",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa7l4",
+        "order": 4,
+        "title": "S53 — A100-এ Fine-Tuning চালানো: Loss, Overfitting ও Checkpoints",
+        "titleEn": "S53 — Running Fine-Tuning on A100: Loss, Overfitting & Checkpoints",
+        "type": "workshop",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa7l5",
+        "order": 5,
+        "title": "P09 — Fine-Tuned LLaMA 3.2 Beats GPT-5.1",
+        "titleEn": "P09 — Fine-Tuned LLaMA 3.2 Beats GPT-5.1",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa7l6",
+        "order": 6,
+        "title": "BOSS: LLaMA Fine-Tune করো — GPT-5.1 Beat করো",
+        "titleEn": "BOSS: Fine-Tune LLaMA to Beat GPT-5.1",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa8",
+    "order": 28,
+    "track": "ai-mastery",
+    "title": "Phase 10: AI Agents এবং Production",
+    "titleEn": "Phase 10: AI Agents & Production",
+    "description": "ReAct loop, memory systems, multi-agent orchestration এবং serverless deployment — autonomous AI system বানানো।",
+    "lessons": [
+      {
+        "id": "wa8l1",
+        "order": 1,
+        "title": "S55 — Agentic AI: Architecture, ReAct Loop ও Planning",
+        "titleEn": "S55 — Agentic AI: Architecture, ReAct Loop & Planning",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l2",
+        "order": 2,
+        "title": "S56 — Memory Systems: Short-term, Long-term ও Episodic Memory",
+        "titleEn": "S56 — Memory Systems: Short-term, Long-term & Episodic Memory",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l3",
+        "order": 3,
+        "title": "S57 — Structured Outputs + Pydantic: Reliable Agent Responses",
+        "titleEn": "S57 — Structured Outputs + Pydantic: Reliable Agent Responses",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l4",
+        "order": 4,
+        "title": "S58 — Multi-Agent Systems: Orchestrator + Worker Pattern",
+        "titleEn": "S58 — Multi-Agent Systems: Orchestrator + Worker Pattern",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l5",
+        "order": 5,
+        "title": "S59 — Serverless Deployment: Modal, Docker ও Cloud Infrastructure",
+        "titleEn": "S59 — Serverless Deployment: Modal, Docker & Cloud Infrastructure",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l6",
+        "order": 6,
+        "title": "P10 — AI Research Assistant: Autonomous Web Research",
+        "titleEn": "P10 — AI Research Assistant: Autonomous Web Research",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l7",
+        "order": 7,
+        "title": "P11 — Deal-Finder Agent: E-commerce Capstone",
+        "titleEn": "P11 — Deal-Finder Agent: E-commerce Capstone",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa8l8",
+        "order": 8,
+        "title": "BOSS: Autonomous Multi-Agent System বানাও",
+        "titleEn": "BOSS: Build an Autonomous Multi-Agent System",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa9",
+    "order": 29,
+    "track": "ai-mastery",
+    "title": "Phase 11: Production AI Engineering",
+    "titleEn": "Phase 11: Production AI Engineering",
+    "description": "Prompt caching, evals, observability, OSS in production — real-world AI product deploy করার সম্পূর্ণ skill set।",
+    "lessons": [
+      {
+        "id": "wa9l1",
+        "order": 1,
+        "title": "S62 — Prompt Caching: API Cost ৯০% কমাও",
+        "titleEn": "S62 — Prompt Caching: Cut API Costs by 90%",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l2",
+        "order": 2,
+        "title": "S63 — LLM Evaluation (Evals): Output Quality Measure করা",
+        "titleEn": "S63 — LLM Evaluation (Evals): Measuring Output Quality",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l3",
+        "order": 3,
+        "title": "S64 — LLM Observability: LangSmith, Helicone ও Cost Monitoring",
+        "titleEn": "S64 — LLM Observability: LangSmith, Helicone & Cost Monitoring",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l4",
+        "order": 4,
+        "title": "S65 — Open-Source Models: Llama 3, Mistral ও Ollama in Production",
+        "titleEn": "S65 — Open-Source Models: Llama 3, Mistral & Ollama in Production",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l5",
+        "order": 5,
+        "title": "S66 — AI Product Design: UX, Streaming UI ও User Trust",
+        "titleEn": "S66 — AI Product Design: UX, Streaming UI & User Trust",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l6",
+        "order": 6,
+        "title": "S67 — Codebase Q&A Bot: GitHub Repository Intelligence",
+        "titleEn": "S67 — Codebase Q&A Bot: GitHub Repository Intelligence",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l7",
+        "order": 7,
+        "title": "P12 — CV Analyzer: HR AI Tool",
+        "titleEn": "P12 — CV Analyzer: HR AI Tool",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l8",
+        "order": 8,
+        "title": "P13 — E-commerce Semantic Search: 62K Products",
+        "titleEn": "P13 — E-commerce Semantic Search: 62K Products",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l9",
+        "order": 9,
+        "title": "P14 — Automated Data Analyst: Matplotlib + SQL Agent",
+        "titleEn": "P14 — Automated Data Analyst: Matplotlib + SQL Agent",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa9l10",
+        "order": 10,
+        "title": "BOSS: Production AI System Design Challenge",
+        "titleEn": "BOSS: Production AI System Design Challenge",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
+  },
+  {
+    "id": "wa10",
+    "order": 30,
+    "track": "ai-mastery",
+    "title": "Phase 12: Capstone — নিজের AI Product বানাও",
+    "titleEn": "Phase 12: AI Mastery Capstone",
+    "description": "4টি final projects: AI Coding Assistant, Full-Stack SaaS AI Product, এবং নিজের original AI product — course-এর grand finale।",
+    "lessons": [
+      {
+        "id": "wa10l1",
+        "order": 1,
+        "title": "S71 — AI Coding Assistant: Mini Cursor Clone",
+        "titleEn": "S71 — AI Coding Assistant: Mini Cursor Clone",
+        "type": "lesson",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa10l2",
+        "order": 2,
+        "title": "P15 — AI Coding Assistant বানাও",
+        "titleEn": "P15 — Build Your AI Coding Assistant",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa10l3",
+        "order": 3,
+        "title": "P16 — Full-Stack SaaS AI Product",
+        "titleEn": "P16 — Full-Stack SaaS AI Product (B2B/B2C)",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa10l4",
+        "order": 4,
+        "title": "P17 — নিজের AI Product: Final Capstone",
+        "titleEn": "P17 — Your AI Product: Final Capstone",
+        "type": "project",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wa10l5",
+        "order": 5,
+        "title": "🎓 BOSS: Production AI Engineer — Graduation",
+        "titleEn": "🎓 BOSS: Production AI Engineer — Graduation",
+        "type": "boss",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ]
   }
 ]

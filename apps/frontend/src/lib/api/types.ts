@@ -1,7 +1,14 @@
-export type LessonType = "lesson" | "boss" | "dojo" | "mock";
+export type LessonType =
+  | "lesson"
+  | "boss"
+  | "dojo"
+  | "mock"
+  | "workshop"
+  | "deep-dive"
+  | "project";
 export type LessonStatus = "done" | "current" | "locked";
 export type QuizDifficulty = "easy" | "medium" | "hard";
-export type Track = "system-design" | "docker";
+export type Track = "system-design" | "docker" | "ai-mastery";
 
 export interface LoginResponse {
   accessToken: string;
@@ -71,6 +78,7 @@ export interface Dashboard {
   tracks: {
     "system-design": TrackSummary;
     docker: TrackSummary;
+    "ai-mastery": TrackSummary;
   };
   streak: {
     current: number;

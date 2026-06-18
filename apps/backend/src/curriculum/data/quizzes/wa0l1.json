@@ -1,0 +1,740 @@
+{
+  "lessonId": "wa0l1",
+  "questions": [
+    {
+      "id": "wa0l1-q01",
+      "difficulty": "easy",
+      "question": "LLM-এর পূর্ণরূপ কী?",
+      "options": [
+        "Large Logic Machine",
+        "Language Learning Module",
+        "Large Language Model",
+        "Linear Learning Method"
+      ],
+      "answerIndex": 2,
+      "explanation": "LLM = Large Language Model — বিশাল পরিমাণ text-এ train করা model যা language বোঝে ও generate করে।"
+    },
+    {
+      "id": "wa0l1-q02",
+      "difficulty": "easy",
+      "question": "LLM মূলত কোন কাজটা করে?",
+      "options": [
+        "ছবি চেনা ও classify করা",
+        "Database-এ search করা",
+        "পরের সবচেয়ে probable token predict করা",
+        "Code compile করা"
+      ],
+      "answerIndex": 2,
+      "explanation": "LLM-এর core কাজ: এই পর্যন্ত যা আছে তার পর কোন token আসার সম্ভাবনা সবচেয়ে বেশি — সেটা predict করা।"
+    },
+    {
+      "id": "wa0l1-q03",
+      "difficulty": "easy",
+      "question": "\"Token\" বলতে কী বোঝায়?",
+      "options": [
+        "একটা পুরো sentence",
+        "সবসময় একটা single character",
+        "Text-এর একটা ছোট টুকরা — পুরো word বা word-এর অংশ",
+        "একটা paragraph"
+      ],
+      "answerIndex": 2,
+      "explanation": "Token হলো LLM-এর কাজের ছোট unit। \"unhappiness\" হতে পারে \"un\", \"happi\", \"ness\" — তিনটা token।"
+    },
+    {
+      "id": "wa0l1-q04",
+      "difficulty": "easy",
+      "question": "\"Inference\" মানে কী?",
+      "options": [
+        "Model নতুন data দিয়ে আবার train করা",
+        "Training data collect করা",
+        "Trained model-কে ব্যবহার করে output generate করা",
+        "Model-এর accuracy measure করা"
+      ],
+      "answerIndex": 2,
+      "explanation": "Inference = trained model-কে use করা। তুমি prompt দিলে model output দেয় — এটাই inference।"
+    },
+    {
+      "id": "wa0l1-q05",
+      "difficulty": "easy",
+      "question": "নিচের কোনটা open-source LLM?",
+      "options": ["GPT-5", "Claude 4", "Gemini 2.5", "LLaMA 3.3"],
+      "answerIndex": 3,
+      "explanation": "Meta-র LLaMA open-source — যেকেউ download করে locally চালাতে পারে। GPT-5, Claude, Gemini closed-source।"
+    },
+    {
+      "id": "wa0l1-q06",
+      "difficulty": "easy",
+      "question": "Ollama দিয়ে কী করা যায়?",
+      "options": [
+        "OpenAI API-তে connect করা",
+        "নিজের computer-এ locally LLM চালানো",
+        "Cloud-এ model train করা",
+        "Image generate করা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Ollama দিয়ে LLaMA, Mistral, Phi-এর মতো open-source model নিজের laptop-এ run করতে পারো — API key ছাড়াই।"
+    },
+    {
+      "id": "wa0l1-q07",
+      "difficulty": "easy",
+      "question": "\"Hello world\" কে LLM-এর চোখে কতটা token?",
+      "options": ["1 token", "2 token", "5 token", "10 token"],
+      "answerIndex": 1,
+      "explanation": "\"Hello\" = 1 token, \"world\" = 1 token — মোট 2 token। সাধারণত 1 token ≈ 4 characters বা ¾ of a word।"
+    },
+    {
+      "id": "wa0l1-q08",
+      "difficulty": "easy",
+      "question": "OpenAI-এর কোম্পানি কোন LLM বানায়?",
+      "options": ["Claude", "Gemini", "GPT series (GPT-4o, GPT-5)", "LLaMA"],
+      "answerIndex": 2,
+      "explanation": "OpenAI বানায় GPT series (GPT-4, GPT-4o, GPT-5)। Claude = Anthropic, Gemini = Google, LLaMA = Meta।"
+    },
+    {
+      "id": "wa0l1-q09",
+      "difficulty": "easy",
+      "question": "Anthropic-এর LLM-এর নাম কী?",
+      "options": ["Gemini", "GPT-4o", "Claude", "LLaMA"],
+      "answerIndex": 2,
+      "explanation": "Anthropic বানায় Claude (Claude 3.5 Sonnet, Claude 4)। Anthropic-এর focus: AI safety।"
+    },
+    {
+      "id": "wa0l1-q10",
+      "difficulty": "easy",
+      "question": "LLM কোন ধরনের data-তে train করা হয়?",
+      "options": [
+        "শুধু ছবি",
+        "শুধু code",
+        "বিশাল পরিমাণ text (books, articles, websites)",
+        "শুধু audio"
+      ],
+      "answerIndex": 2,
+      "explanation": "LLM = Large LANGUAGE Model — books, articles, websites, code মিলিয়ে বিশাল text corpus-এ train হয়।"
+    },
+    {
+      "id": "wa0l1-q11",
+      "difficulty": "easy",
+      "question": "Google-এর LLM-এর নাম কী?",
+      "options": ["Claude", "Gemini", "GPT-4o", "Mistral"],
+      "answerIndex": 1,
+      "explanation": "Google/DeepMind বানায় Gemini (Gemini 1.5 Pro, Gemini 2.5 Pro)।"
+    },
+    {
+      "id": "wa0l1-q12",
+      "difficulty": "easy",
+      "question": "Meta-র open-source LLM-এর নাম কী?",
+      "options": ["Claude", "Gemini", "Mistral", "LLaMA"],
+      "answerIndex": 3,
+      "explanation": "Meta বানায় LLaMA (Large Language Model Meta AI) — যা fully open-source এবং locally run করা যায়।"
+    },
+    {
+      "id": "wa0l1-q13",
+      "difficulty": "easy",
+      "question": "LLM-এর output কোন আকারে আসে?",
+      "options": [
+        "একবারে পুরো paragraph",
+        "একটা token একটা করে",
+        "সব token একসাথে",
+        "শুধু yes/no"
+      ],
+      "answerIndex": 1,
+      "explanation": "LLM একটা একটা করে token generate করে — এই কারণেই ChatGPT-তে text streaming আসতে দেখা যায়।"
+    },
+    {
+      "id": "wa0l1-q14",
+      "difficulty": "easy",
+      "question": "\"Weight\" বা \"Parameter\" LLM-এর কোন অংশ?",
+      "options": [
+        "Input text-এর টুকরা",
+        "Training-এ শেখা numbers যা model-এর behavior নির্ধারণ করে",
+        "Output token",
+        "Training data"
+      ],
+      "answerIndex": 1,
+      "explanation": "Weights হলো training-এর ফল — billions of learned numbers যা ঠিক করে model কোন token predict করবে।"
+    },
+    {
+      "id": "wa0l1-q15",
+      "difficulty": "easy",
+      "question": "LLM-কে \"autocomplete on steroids\" বলা হয় কেন?",
+      "options": [
+        "কারণ এটা spelling check করে",
+        "কারণ দুটোই পরের probable text predict করে, কিন্তু scale বিশাল",
+        "কারণ এটা keyboard-এ run করে",
+        "কারণ এটা শুধু short text complete করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "মূল mechanism একই — next token prediction। কিন্তু trillion parameters আর petabytes of data দিয়ে LLM full reasoning করতে পারে।"
+    },
+    {
+      "id": "wa0l1-q16",
+      "difficulty": "easy",
+      "question": "Ollama TypeScript-এ use করতে প্রথমে কী করতে হবে?",
+      "options": [
+        "Python install করতে হবে",
+        "npm install ollama",
+        "GPU driver install করতে হবে",
+        "API key নিতে হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Ollama TypeScript SDK install: `npm install ollama` — তারপর locally চলা Ollama server-এর সাথে connect করে।"
+    },
+    {
+      "id": "wa0l1-q17",
+      "difficulty": "easy",
+      "question": "\"Context window\" কী?",
+      "options": [
+        "Model-এর screen size",
+        "Model একবারে কতটুকু token process করতে পারে তার limit",
+        "Training data-র size",
+        "Response time"
+      ],
+      "answerIndex": 1,
+      "explanation": "Context window = model-এর working memory। Claude 4-এ 200K+ tokens। এর বাইরে যা আছে model মনে রাখে না।"
+    },
+    {
+      "id": "wa0l1-q18",
+      "difficulty": "easy",
+      "question": "LLM training কখন হয়?",
+      "options": [
+        "প্রতিটা conversation-এ",
+        "একবার, অনেক আগে",
+        "তুমি prompt দেওয়ার সময়",
+        "প্রতিদিন automatically"
+      ],
+      "answerIndex": 1,
+      "explanation": "Training একবার হয় (offline) — তারপর model deploy হয়। তোমার conversation training-এ যায় না।"
+    },
+    {
+      "id": "wa0l1-q19",
+      "difficulty": "easy",
+      "question": "\"Frontier model\" বলতে কী বোঝায়?",
+      "options": [
+        "সবচেয়ে পুরনো model",
+        "State-of-the-art, সবচেয়ে powerful closed-source model",
+        "Open-source model",
+        "ছোট এবং সস্তা model"
+      ],
+      "answerIndex": 1,
+      "explanation": "Frontier models = GPT-5, Claude 4, Gemini 2.5 — AI capability-র cutting edge। API দিয়ে access, per token pay।"
+    },
+    {
+      "id": "wa0l1-q20",
+      "difficulty": "easy",
+      "question": "1 token প্রায় কতটা character-এর সমান?",
+      "options": ["1 character", "4 character", "10 character", "50 character"],
+      "answerIndex": 1,
+      "explanation": "Rough rule: 1 token ≈ 4 characters বা ¾ of an English word। 100 tokens ≈ 75 words।"
+    },
+    {
+      "id": "wa0l1-q21",
+      "difficulty": "medium",
+      "question": "Model-এর \"weight\" বা \"parameter\" কী জিনিস?",
+      "options": [
+        "Model-এর file size bytes-এ",
+        "Training data-র পরিমাণ GB-তে",
+        "Training-এ শেখা billions of numbers যা নির্ধারণ করে model কীভাবে input process করবে",
+        "GPU-র processing speed"
+      ],
+      "answerIndex": 2,
+      "explanation": "Weight হলো training-এর ফল। GPT-4-এ ~1.76 trillion parameter। এই সংখ্যাগুলোই ঠিক করে কোন token predict হবে।"
+    },
+    {
+      "id": "wa0l1-q22",
+      "difficulty": "medium",
+      "question": "একই prompt দুইবার দিলে LLM কেন দুটো ভিন্ন উত্তর দিতে পারে?",
+      "options": [
+        "Model প্রতিবার আলাদাভাবে train হয়",
+        "Internet connection-এর কারণে",
+        "Temperature/sampling-এর কারণে — model probability distribution থেকে randomly বেছে নেয়",
+        "Bug আছে model-এ"
+      ],
+      "answerIndex": 2,
+      "explanation": "Temperature > 0 থাকলে model probability distribution থেকে sample করে। তাই same input-এ ভিন্ন output আসতে পারে।"
+    },
+    {
+      "id": "wa0l1-q23",
+      "difficulty": "medium",
+      "question": "Frontier model আর open-source model-এর মূল পার্থক্য কী?",
+      "options": [
+        "Open-source model বাংলা বোঝে না",
+        "Frontier model সবসময় বেশি accurate",
+        "Frontier model API দিয়ে access, per-token cost; open-source locally চালানো যায় free",
+        "Open-source model শুধু code generation করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Frontier models closed-source, API দিয়ে access, পেমেন্ট লাগে। Open-source download করে নিজের machine-এ — free।"
+    },
+    {
+      "id": "wa0l1-q24",
+      "difficulty": "medium",
+      "question": "GPT-4 model-এ প্রায় কতটা parameter আছে?",
+      "options": ["1 million", "1 billion", "1 trillion", "1.76 trillion"],
+      "answerIndex": 3,
+      "explanation": "GPT-4-এ আনুমানিক 1.76 trillion parameter। বেশি parameter মানে সাধারণত বেশি capable কিন্তু বেশি compute দরকার।"
+    },
+    {
+      "id": "wa0l1-q25",
+      "difficulty": "medium",
+      "question": "Tokenization-এ \"unhappiness\" কতটা token হতে পারে?",
+      "options": [
+        "1 token",
+        "2 token",
+        "3 token (un, happi, ness)",
+        "11 token (প্রতিটা character)"
+      ],
+      "answerIndex": 2,
+      "explanation": "BPE tokenizer rare বা compound words ভেঙে দেয়। \"unhappiness\" → \"un\", \"happi\", \"ness\" = 3 tokens। Common words often 1 token।"
+    },
+    {
+      "id": "wa0l1-q26",
+      "difficulty": "medium",
+      "question": "Context window বাড়ালে কী সুবিধা হয়?",
+      "options": [
+        "Model faster হয়",
+        "Model আরো বেশি text একসাথে মনে রাখতে পারে",
+        "Training সস্তা হয়",
+        "Parameters কমে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "বড় context window মানে model একটা conversation-এ বেশি history মনে রাখতে পারে, বড় document process করতে পারে।"
+    },
+    {
+      "id": "wa0l1-q27",
+      "difficulty": "medium",
+      "question": "LLM training-এ \"loss\" কমানো মানে কী?",
+      "options": [
+        "Model-এর size কমানো",
+        "Model-এর prediction কতটা ভুল তা কমানো",
+        "Training time কমানো",
+        "Token count কমানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "Loss = model কতটা ভুল predict করছে। Training-এ gradient descent দিয়ে loss minimize করা হয়, weights update হয়।"
+    },
+    {
+      "id": "wa0l1-q28",
+      "difficulty": "medium",
+      "question": "\"Temperature = 0\" দিলে LLM কীভাবে behave করে?",
+      "options": [
+        "Model কিছু output দেয় না",
+        "Model সবসময় সবচেয়ে probable token বেছে নেয় (deterministic)",
+        "Model random output দেয়",
+        "Model আস্তে আস্তে respond করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Temperature = 0 মানে greedy decoding — প্রতিবার সবচেয়ে probable token। Same input → same output। Deterministic।"
+    },
+    {
+      "id": "wa0l1-q29",
+      "difficulty": "medium",
+      "question": "\"Forward pass\" কী?",
+      "options": [
+        "Training-এ weights update করা",
+        "Input token-গুলো model-এর layers দিয়ে process করে output predict করা",
+        "Data shuffle করা",
+        "Model save করা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Forward pass = inference। Input layers → hidden layers → output layer — সব layers পেরিয়ে probability distribution বের হয়।"
+    },
+    {
+      "id": "wa0l1-q30",
+      "difficulty": "medium",
+      "question": "API দিয়ে LLM ব্যবহার করলে কীসের উপর ভিত্তি করে টাকা লাগে?",
+      "options": [
+        "Response time-এর উপর",
+        "Input ও output token count-এর উপর",
+        "Internet speed-এর উপর",
+        "Question-এর complexity-র উপর"
+      ],
+      "answerIndex": 1,
+      "explanation": "OpenAI, Anthropic, Google — সবাই per-token charge করে। Input tokens আর output tokens আলাদাভাবে count হয়।"
+    },
+    {
+      "id": "wa0l1-q31",
+      "difficulty": "medium",
+      "question": "Ollama কোন port-এ serve করে?",
+      "options": ["3000", "8080", "11434", "5000"],
+      "answerIndex": 2,
+      "explanation": "Ollama default port 11434। TypeScript SDK-এ `new Ollama({ host: 'http://localhost:11434' })` দিয়ে connect করে।"
+    },
+    {
+      "id": "wa0l1-q32",
+      "difficulty": "medium",
+      "question": "LLM \"hallucinate\" করে কখন?",
+      "options": [
+        "Internet disconnect থাকলে",
+        "Context window পূর্ণ হলে",
+        "Confident ভাবে ভুল বা fabricated তথ্য generate করলে",
+        "Temperature = 0 দিলে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Hallucination = model এমন কিছু বলে যা সত্য না কিন্তু confident ভাবে বলে। LLM-এর সবচেয়ে বড় limitation।"
+    },
+    {
+      "id": "wa0l1-q33",
+      "difficulty": "medium",
+      "question": "Backpropagation training-এ কী করে?",
+      "options": [
+        "Data আগে থেকে পিছনে পড়ে",
+        "Loss দেখে weights কীভাবে adjust করতে হবে তা calculate করে",
+        "Model-কে reverse করে",
+        "Training data shuffle করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Backprop = chain rule দিয়ে loss থেকে প্রতিটা weight-এর gradient calculate। তারপর gradient descent দিয়ে weights update।"
+    },
+    {
+      "id": "wa0l1-q34",
+      "difficulty": "medium",
+      "question": "\"System prompt\" কী?",
+      "options": [
+        "Computer system-এর prompt",
+        "LLM-কে role বা behavior বলে দেওয়ার hidden instruction",
+        "Error message",
+        "Training instruction"
+      ],
+      "answerIndex": 1,
+      "explanation": "System prompt হলো conversation শুরু হওয়ার আগে দেওয়া instruction — model-কে বলে দেয় সে কে, কীভাবে respond করবে।"
+    },
+    {
+      "id": "wa0l1-q35",
+      "difficulty": "medium",
+      "question": "\"Embedding\" মানে কী?",
+      "options": [
+        "Model-কে hardware-এ install করা",
+        "Text বা token-কে numerical vector-এ convert করা",
+        "Model compress করা",
+        "Image থেকে text বের করা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Embedding = text/token → dense numerical vector। Similar meaning-এর words similar vectors পায়। LLM-এর প্রথম ধাপ।"
+    },
+    {
+      "id": "wa0l1-q36",
+      "difficulty": "medium",
+      "question": "TypeScript-এ Ollama দিয়ে chat করতে কোন method call করতে হয়?",
+      "options": [
+        "ollama.generate()",
+        "ollama.chat()",
+        "ollama.run()",
+        "ollama.complete()"
+      ],
+      "answerIndex": 1,
+      "explanation": "`ollama.chat({ model: 'llama3.2', messages: [{role: 'user', content: '...'}] })` — এই pattern OpenAI SDK-র মতোই।"
+    },
+    {
+      "id": "wa0l1-q37",
+      "difficulty": "medium",
+      "question": "LLM-এর \"parameters\" কি training-এর পরে বদলায়?",
+      "options": [
+        "হ্যাঁ, প্রতিটা conversation-এ",
+        "হ্যাঁ, রাতে auto-update হয়",
+        "না, deployed model-এর weights fixed থাকে",
+        "শুধু premium user-দের জন্য বদলায়"
+      ],
+      "answerIndex": 2,
+      "explanation": "Deployed model-এর weights frozen। Training হলে আলাদা model version deploy হয়। তোমার conversation weights change করে না।"
+    },
+    {
+      "id": "wa0l1-q38",
+      "difficulty": "medium",
+      "question": "\"top_p\" (nucleus sampling) কী করে?",
+      "options": [
+        "Top p% users-কে দেখায়",
+        "Probability distribution-এর top p cumulative mass-এর মধ্যে থেকে sample করে",
+        "Output-এর প্রথম p% রাখে",
+        "p সংখ্যক token generate করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "top_p = 0.9 মানে: probability-র দিক থেকে top 90% mass-এর token pool থেকে sample। Rare/weird token এড়ানোর উপায়।"
+    },
+    {
+      "id": "wa0l1-q39",
+      "difficulty": "medium",
+      "question": "Ollama locally run করলে কোন সুবিধা পাওয়া যায়?",
+      "options": [
+        "Model আরো accurate হয়",
+        "API cost নেই, data privacy আছে, offline কাজ করে",
+        "Internet faster হয়",
+        "Better GPU পাওয়া যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Locally = no API cost, no data sent to cloud (privacy), offline capable। Tradeoff: নিজের hardware-এর GPU/RAM লাগে।"
+    },
+    {
+      "id": "wa0l1-q40",
+      "difficulty": "medium",
+      "question": "\"Tokenizer\" কী করে?",
+      "options": [
+        "Model train করে",
+        "Text কে tokens-এ ভাঙে এবং tokens কে numbers-এ convert করে",
+        "Output generate করে",
+        "API authenticate করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tokenizer দুটো কাজ করে: (1) text → token strings, (2) token strings → integer IDs। LLM শুধু numbers দিয়ে কাজ করে।"
+    },
+    {
+      "id": "wa0l1-q41",
+      "difficulty": "hard",
+      "question": "Training আর Inference-এর মধ্যে মূল technical পার্থক্য কী?",
+      "options": [
+        "Training-এ GPU লাগে, inference-এ লাগে না",
+        "Training-এ weights update হয় (backpropagation); inference-এ weights fixed, শুধু forward pass হয়",
+        "Inference-এ training data use হয়",
+        "Training একবার হয়, inference শুধু একবার হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Training: backprop + gradient descent → weights update। Inference: weights freeze, শুধু forward pass। তাই inference অনেক সস্তা।"
+    },
+    {
+      "id": "wa0l1-q42",
+      "difficulty": "hard",
+      "question": "\"LLM is autocomplete on steroids\" — এই analogy কোন দিক থেকে সীমাবদ্ধ?",
+      "options": [
+        "LLM spelling check করতে পারে না",
+        "LLM শুধু English বোঝে",
+        "LLM \"বোঝে\" না — শুধু statistical patterns follow করে, তবুও reasoning-like output দেয়",
+        "LLM সবসময় একই output দেয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "LLM-এর কাছে \"বোঝা\" বা \"সচেতনতা\" নেই — statistical next-token prediction। তবুও trillion-scale training এটাকে দিয়ে reasoning-like behavior করায়।"
+    },
+    {
+      "id": "wa0l1-q43",
+      "difficulty": "hard",
+      "question": "একই model GPT-4o-mini আর GPT-4o-র মধ্যে পার্থক্য মূলত কী?",
+      "options": [
+        "Mini শুধু mobile-এ চলে",
+        "Mini faster, cheaper, fewer parameters কিন্তু কিছু complex task-এ কম capable",
+        "Mini শুধু English বোঝে",
+        "Mini-তে image দেখা যায় না"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mini = distilled/smaller version। Faster + cheaper inference, কিন্তু complex reasoning বা nuanced task-এ GPT-4o বেশি capable।"
+    },
+    {
+      "id": "wa0l1-q44",
+      "difficulty": "hard",
+      "question": "LLM কেন same language-এ পড়লে same language-এ উত্তর দেয়, যদিও explicitly বলা না থাকে?",
+      "options": [
+        "Special language detection module আছে",
+        "Training data-তে শেখা pattern: same language-এ response continue করা probable",
+        "Hard-coded rule আছে",
+        "API header দেখে language detect করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Training data-তে লক্ষ লক্ষ উদাহরণ আছে যেখানে Bengali input-এর পর Bengali output। Model এই pattern শিখেছে — explicit rule নয়।"
+    },
+    {
+      "id": "wa0l1-q45",
+      "difficulty": "hard",
+      "question": "Ollama-র `stream: true` option কী করে?",
+      "options": [
+        "Data streaming protocol change করে",
+        "Response token-by-token আসে — ChatGPT-র মতো real-time output",
+        "Multiple parallel requests পাঠায়",
+        "Model-কে fast mode-এ রাখে"
+      ],
+      "answerIndex": 1,
+      "explanation": "stream: true = response complete হওয়ার আগেই token-by-token deliver শুরু। User-এর কাছে faster feel হয়, actually same total time।"
+    },
+    {
+      "id": "wa0l1-q46",
+      "difficulty": "hard",
+      "question": "কেন বড় context window থাকলেও LLM-এর \"long-term memory\" নেই?",
+      "options": [
+        "বড় context window expensive",
+        "Context window-এর বাইরের conversation LLM ভুলে যায়, এবং conversation শেষে সব clear",
+        "LLM intentionally ভুলে যায়",
+        "Security reason-এ clear করা হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Context window-এর মধ্যে LLM সব দেখতে পায়। কিন্তু conversation শেষে state নেই — পরের conversation fresh start। চাইলে RAG/memory systems দিয়ে persist করতে হয়।"
+    },
+    {
+      "id": "wa0l1-q47",
+      "difficulty": "hard",
+      "question": "Quantization LLM-এর ক্ষেত্রে কী করে?",
+      "options": [
+        "Model-কে more questions answer করতে দেয়",
+        "Weights-এর precision কমায় (32-bit → 4-bit) — size ও memory কমে, কিছু accuracy হারায়",
+        "Token count বাড়ায়",
+        "Training speed বাড়ায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Quantization: float32 weights → int4/int8। Model size ৪-৮x কমে, RAM কম লাগে, faster inference। Tradeoff: সামান্য quality loss।"
+    },
+    {
+      "id": "wa0l1-q48",
+      "difficulty": "hard",
+      "question": "\"Emergent capability\" বলতে কী বোঝায় LLM-এর context-এ?",
+      "options": [
+        "Model নতুন language শেখে",
+        "Scale বাড়ানোর পরে হঠাৎ কোনো নতুন capability দেখা দেয় যা ছোট model-এ ছিল না",
+        "User-এর feedback থেকে model শেখে",
+        "Model emergency situations handle করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Emergent: GPT-3 → GPT-4-এর মতো scale jump-এ হঠাৎ complex reasoning, multi-step problem solving দেখা দেয়। ছোট model-এ এটা ছিল না।"
+    },
+    {
+      "id": "wa0l1-q49",
+      "difficulty": "hard",
+      "question": "কেন LLM-এ mathematical calculation সবসময় reliable নয়?",
+      "options": [
+        "LLM-এ calculator নেই",
+        "LLM numbers-কে tokens হিসেবে treat করে — arithmetic patterns থেকে predict করে, exact compute করে না",
+        "Math training data কম ছিল",
+        "LLM intentionally wrong answer দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "LLM numbers-কে tokens মনে করে, calculator মনে করে না। \"2 + 2\" → pattern থেকে \"4\" predict। Complex math-এ এই approach fail করে।"
+    },
+    {
+      "id": "wa0l1-q50",
+      "difficulty": "hard",
+      "question": "Pre-training আর Fine-tuning-এর পার্থক্য কী?",
+      "options": [
+        "এদের মধ্যে কোনো পার্থক্য নেই",
+        "Pre-training: বিশাল data-তে general language শেখা; Fine-tuning: specific task-এর জন্য smaller dataset-এ আরো train করা",
+        "Fine-tuning শুধু inference করে",
+        "Pre-training cheaper"
+      ],
+      "answerIndex": 1,
+      "explanation": "Pre-training (GPT-4 base model): trillion tokens, general language। Fine-tuning (instruction-following): thousands of examples, specific behavior শেখানো।"
+    },
+    {
+      "id": "wa0l1-q51",
+      "difficulty": "hard",
+      "question": "RLHF (Reinforcement Learning from Human Feedback) কী করে?",
+      "options": [
+        "Model-কে আরো বেশি data দিয়ে train করে",
+        "Human feedback দিয়ে model-কে helpful ও safe response দিতে শেখায়",
+        "Model-কে faster করে",
+        "Token count optimize করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "RLHF: human rater-রা model outputs rank করে। Reward model train হয়। RL দিয়ে LLM আরো aligned, helpful, safe response দিতে শেখে।"
+    },
+    {
+      "id": "wa0l1-q52",
+      "difficulty": "hard",
+      "question": "LLM-এর \"attention mechanism\" কী করে?",
+      "options": [
+        "Model-কে user attention detect করতে দেয়",
+        "প্রতিটা token generate করার সময় কোন previous tokens বেশি relevant তা ঠিক করে",
+        "Output-কে bold করে দেয়",
+        "Memory efficient করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Attention = পরের token predict করতে কোন context tokens সবচেয়ে important সেটা dynamically weight করা। Transformer-এর core mechanism।"
+    },
+    {
+      "id": "wa0l1-q53",
+      "difficulty": "hard",
+      "question": "একই prompt-এ temperature বাড়ালে output কেমন হয়?",
+      "options": [
+        "Output ছোট হয়",
+        "Output আরো deterministic হয়",
+        "Output আরো creative/varied/random হয়, কিন্তু কখনো কখনো less coherent",
+        "Output আরো accurate হয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "High temperature: probability distribution flat হয়, diverse tokens sample হয়। Creative writing-এ ভালো, factual Q&A-তে risky।"
+    },
+    {
+      "id": "wa0l1-q54",
+      "difficulty": "hard",
+      "question": "Ollama দিয়ে locally run করা model কি internet ছাড়া কাজ করে?",
+      "options": [
+        "না, সবসময় internet লাগে",
+        "হ্যাঁ, একবার model download হলে পুরোটা local — internet ছাড়াই চলে",
+        "শুধু Wi-Fi লাগে",
+        "শুধু specific models internet ছাড়া চলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Ollama fully local। একবার `ollama pull llama3.2` দিয়ে model download হলে পুরোটা offline চলে — privacy, speed, no cost।"
+    },
+    {
+      "id": "wa0l1-q55",
+      "difficulty": "hard",
+      "question": "LLM যখন code generate করে, সে কীভাবে করে?",
+      "options": [
+        "একটা compiler run করে",
+        "Training data-তে দেখা code patterns থেকে probable next token predict করে",
+        "Logic tree দিয়ে code plan করে",
+        "Stack Overflow থেকে copy করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Code generation = pattern matching। Training data-তে লক্ষ লক্ষ code snippet দেখে। `function sum(` দিলে পরে probable closing দেয়। Logic execute করে না।"
+    },
+    {
+      "id": "wa0l1-q56",
+      "difficulty": "hard",
+      "question": "\"Base model\" আর \"chat model\" (instruction-tuned) এর পার্থক্য কী?",
+      "options": [
+        "Base model বড়, chat model ছোট",
+        "Base model শুধু text complete করে; chat model RLHF/SFT দিয়ে conversation follow করতে শেখানো",
+        "Chat model শুধু English জানে",
+        "এদের মধ্যে কোনো পার্থক্য নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "Base model: raw pre-trained, text completion। Chat/instruction model: fine-tuned to follow instructions, have conversations, be helpful।"
+    },
+    {
+      "id": "wa0l1-q57",
+      "difficulty": "hard",
+      "question": "কেন বড় model (trillion parameter) ছোট model (billion parameter) থেকে সাধারণত ভালো?",
+      "options": [
+        "বড় model-এ বেশি storage আছে",
+        "বেশি parameters মানে বেশি complex patterns শেখার capacity — more nuanced reasoning possible",
+        "বড় model faster",
+        "বড় model-এ বেশি training data"
+      ],
+      "answerIndex": 1,
+      "explanation": "Parameters = model-এর capacity। বেশি parameters → finer-grained patterns, complex reasoning, better generalization। কিন্তু compute আর memory-ও বেশি লাগে।"
+    },
+    {
+      "id": "wa0l1-q58",
+      "difficulty": "hard",
+      "question": "\"BPE\" (Byte Pair Encoding) tokenization কী?",
+      "options": [
+        "Binary encoding method",
+        "Frequent character pairs iteratively merge করে vocabulary তৈরির algorithm",
+        "Encryption method",
+        "Compression algorithm শুধু"
+      ],
+      "answerIndex": 1,
+      "explanation": "BPE: frequent byte pairs → single token। শুরু: individual characters। Merge করতে করতে common words এক token হয়। LLaMA, GPT সবাই BPE বা similar use করে।"
+    },
+    {
+      "id": "wa0l1-q59",
+      "difficulty": "hard",
+      "question": "LLM interview-এ সম্পর্কে জিজ্ঞেস করলে সবচেয়ে important point কোনটা?",
+      "options": [
+        "LLM কোন GPU-তে চলে",
+        "LLM হলো probabilistic next-token predictor, training থেকে শেখা patterns দিয়ে",
+        "LLM-এর cost কত",
+        "LLM কোন company বানিয়েছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Core concept: LLM = learned probability distribution over tokens। Next token prediction through billions of parameters trained on massive text. বাকি সব এর উপর দাঁড়িয়ে।"
+    },
+    {
+      "id": "wa0l1-q60",
+      "difficulty": "hard",
+      "question": "Transformer architecture-এর কোন component LLM-কে long-range dependency track করতে সাহায্য করে?",
+      "options": [
+        "Feedforward layer",
+        "Self-attention mechanism",
+        "Embedding layer",
+        "Output softmax layer"
+      ],
+      "answerIndex": 1,
+      "explanation": "Self-attention: প্রতিটা position অন্য সব position-এর সাথে relate করতে পারে। দূরের context relevant হলে — attention weight বেশি। RNN-এর vanishing gradient সমস্যা নেই।"
+    }
+  ]
+}

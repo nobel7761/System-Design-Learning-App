@@ -25,7 +25,13 @@ function LessonRow({ lesson }: { lesson: SyllabusLesson }) {
         ? "🥋 Dojo"
         : lesson.type === "mock"
           ? "🎤 Mock"
-          : null;
+          : lesson.type === "workshop"
+            ? "🔧 Workshop"
+            : lesson.type === "deep-dive"
+              ? "🔬 Deep Dive"
+              : lesson.type === "project"
+                ? "🚀 Project"
+                : null;
 
   const row = (
     <div
@@ -120,6 +126,12 @@ const TRACKS: { value: Track; label: string; emoji: string; desc: string }[] = [
     emoji: "🐳",
     desc: "২টা World · ১৬টা session",
   },
+  {
+    value: "ai-mastery",
+    label: "AI Mastery",
+    emoji: "🤖",
+    desc: "১১টা World · ৮৫টা session",
+  },
 ];
 
 export function SyllabusScreen() {
@@ -150,7 +162,9 @@ export function SyllabusScreen() {
               activeTrack === t.value
                 ? t.value === "docker"
                   ? "border-sky-400 bg-sky-50 text-sky-700 shadow-sm"
-                  : "border-indigo-400 bg-indigo-50 text-indigo-700 shadow-sm"
+                  : t.value === "ai-mastery"
+                    ? "border-violet-400 bg-violet-50 text-violet-700 shadow-sm"
+                    : "border-indigo-400 bg-indigo-50 text-indigo-700 shadow-sm"
                 : "border-slate-200 bg-white text-slate-500 hover:border-slate-300"
             }`}
           >

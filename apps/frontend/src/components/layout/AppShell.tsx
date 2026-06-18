@@ -11,6 +11,7 @@ import { useChatContext } from "@/contexts/ChatContext";
 const NAV_ITEMS = [
   { href: "/", label: "🏠 Dashboard" },
   { href: "/syllabus", label: "📚 Syllabus" },
+  { href: "/quiz", label: "🎯 Quiz" },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -37,7 +38,8 @@ export function AppShell({ children }: { children: ReactNode }) {
                 key={item.href}
                 href={item.href}
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-                  pathname === item.href
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href))
                     ? "bg-slate-800 text-white"
                     : "text-slate-600 hover:bg-slate-100"
                 }`}

@@ -6,6 +6,19 @@ import { QuizService } from './quiz.service';
 export class QuizController {
   constructor(private readonly quizService: QuizService) {}
 
+  @Get('full/:lessonId')
+  getFullQuiz(@Param('lessonId') lessonId: string) {
+    return this.quizService.getFullQuizForLesson(lessonId);
+  }
+
+  @Post('full/:lessonId/submit')
+  submitFullQuiz(
+    @Param('lessonId') lessonId: string,
+    @Body() submitQuizDto: SubmitQuizDto,
+  ) {
+    return this.quizService.submitFullQuiz(lessonId, submitQuizDto);
+  }
+
   @Get(':lessonId')
   getQuiz(@Param('lessonId') lessonId: string) {
     return this.quizService.getQuizForLesson(lessonId);

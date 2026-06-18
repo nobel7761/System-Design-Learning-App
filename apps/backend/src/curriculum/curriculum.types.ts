@@ -1,4 +1,11 @@
-export type LessonType = 'lesson' | 'boss' | 'dojo' | 'mock';
+export type LessonType =
+  | 'lesson'
+  | 'boss'
+  | 'dojo'
+  | 'mock'
+  | 'workshop'
+  | 'deep-dive'
+  | 'project';
 
 export type QuizDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -12,7 +19,7 @@ export interface LessonDef {
   contentReady: boolean;
 }
 
-export type Track = 'system-design' | 'docker';
+export type Track = 'system-design' | 'docker' | 'ai-mastery';
 
 export interface WorldDef {
   id: string;

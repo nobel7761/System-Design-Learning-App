@@ -250,6 +250,16 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
         streak={dashboard.streak}
         xp={dashboard.xp}
       />
+      <TrackCard
+        emoji="🤖"
+        title="AI Mastery"
+        subtitle="LLM থেকে Production AI Engineer"
+        summary={dashboard.tracks["ai-mastery"]}
+        syllabusHref="/syllabus?track=ai-mastery"
+        isDark={false}
+        streak={dashboard.streak}
+        xp={dashboard.xp}
+      />
     </div>
   );
 }

@@ -193,7 +193,7 @@ export class ProgressService {
 
     // Per-track current lesson (each track has independent locking)
     const trackCurrentId = new Map<string, string | undefined>();
-    for (const track of ['system-design', 'docker'] as const) {
+    for (const track of ['system-design', 'docker', 'ai-mastery'] as const) {
       const currentId = this.curriculumService
         .getOrderedLessonIdsByTrack(track)
         .find((id) => !done.has(id));
@@ -260,7 +260,9 @@ export class ProgressService {
     }));
 
     // Per-track current lesson and progress
-    const buildTrackSummary = (track: 'system-design' | 'docker') => {
+    const buildTrackSummary = (
+      track: 'system-design' | 'docker' | 'ai-mastery',
+    ) => {
       const trackWorlds = syllabus.filter((w) => w.track === track);
       const trackLessonIds = new Set(
         trackWorlds.flatMap((w) => w.lessons.map((l) => l.id)),
@@ -323,6 +325,7 @@ export class ProgressService {
       tracks: {
         'system-design': buildTrackSummary('system-design'),
         docker: buildTrackSummary('docker'),
+        'ai-mastery': buildTrackSummary('ai-mastery'),
       },
       streak: {
         current: streak?.currentCount ?? 0,
