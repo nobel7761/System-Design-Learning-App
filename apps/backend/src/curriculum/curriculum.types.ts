@@ -19,7 +19,12 @@ export interface LessonDef {
   contentReady: boolean;
 }
 
-export type Track = 'system-design' | 'docker' | 'ai-mastery' | 'dsa';
+export type Track =
+  | 'system-design'
+  | 'docker'
+  | 'ai-mastery'
+  | 'dsa'
+  | 'devops';
 
 export interface WorldDef {
   id: string;
@@ -43,6 +48,10 @@ export interface QuizQuestion {
 export interface QuizBank {
   lessonId: string;
   questions: QuizQuestion[];
+  /** Overrides the default lesson pass percent (e.g. 95 for lab exams) */
+  passPercent?: number;
+  /** Overrides the default per-difficulty sample size for the lesson quiz */
+  sample?: Record<QuizDifficulty, number>;
 }
 
 /** A question as served to the client — no answer, no explanation */

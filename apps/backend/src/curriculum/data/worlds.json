@@ -3945,5 +3945,33 @@
       }
     ],
     "track": "dsa"
+  },
+  {
+    "id": "wv0",
+    "order": 60,
+    "title": "Linux-এর দুনিয়া — DevOps-এর ভিত",
+    "titleEn": "Linux Fundamentals",
+    "description": "Poridhi CloudCamp লেকচার থেকে — file system, navigation, users, permissions। সার্ভারের অন্ধকার বিল্ডিংটা চেনা।",
+    "lessons": [
+      {
+        "id": "wv0l1",
+        "order": 1,
+        "title": "Linux File System — শহরের ম্যাপ আর রাস্তা চেনা",
+        "titleEn": "Linux File System Basics & Navigation",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wv0l2",
+        "order": 2,
+        "title": "🔧 LAB EXAM: File System Navigation — নিজে করো",
+        "titleEn": "LAB: Mastering Linux File System Navigation",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": true
+      }
+    ],
+    "track": "devops"
   }
 ]

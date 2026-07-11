@@ -85,7 +85,7 @@ export class QuizService {
     const { lesson } = await this.assertLessonPlayable(lessonId);
     const bank = this.curriculumService.getQuizBank(lessonId);
     const isBoss = lesson.type === 'boss';
-    const sample = isBoss ? BOSS_SAMPLE : LESSON_SAMPLE;
+    const sample = isBoss ? BOSS_SAMPLE : (bank.sample ?? LESSON_SAMPLE);
 
     const byDifficulty: Record<QuizDifficulty, QuizQuestion[]> = {
       easy: [],
@@ -112,7 +112,9 @@ export class QuizService {
 
     return {
       lessonId,
-      passPercent: isBoss ? BOSS_PASS_PERCENT : LESSON_PASS_PERCENT,
+      passPercent: isBoss
+        ? BOSS_PASS_PERCENT
+        : (bank.passPercent ?? LESSON_PASS_PERCENT),
       questions: this.shuffle(picked).map((q) => ({
         id: q.id,
         difficulty: q.difficulty,
@@ -218,9 +220,11 @@ export class QuizService {
     const bank = this.curriculumService.getQuizBank(lessonId);
     const questionById = new Map(bank.questions.map((q) => [q.id, q]));
     const isBoss = lesson.type === 'boss';
-    const passPercent = isBoss ? BOSS_PASS_PERCENT : LESSON_PASS_PERCENT;
+    const passPercent = isBoss
+      ? BOSS_PASS_PERCENT
+      : (bank.passPercent ?? LESSON_PASS_PERCENT);
     const expectedCount = Object.values(
-      isBoss ? BOSS_SAMPLE : LESSON_SAMPLE,
+      isBoss ? BOSS_SAMPLE : (bank.sample ?? LESSON_SAMPLE),
     ).reduce((a, b) => a + b, 0);
 
     const uniqueIds = new Set(dto.answers.map((a) => a.questionId));

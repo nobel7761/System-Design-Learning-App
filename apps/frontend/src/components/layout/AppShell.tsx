@@ -79,7 +79,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex flex-1 overflow-hidden">
         {/* Main scrollable area */}
         <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-5xl px-4 py-6">{children}</div>
+          <div className="mx-auto w-[90%] px-4 py-6">{children}</div>
         </main>
 
         {/* Inline chat drawer — push layout */}

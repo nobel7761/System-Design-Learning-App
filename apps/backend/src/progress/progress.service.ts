@@ -198,6 +198,7 @@ export class ProgressService {
       'docker',
       'ai-mastery',
       'dsa',
+      'devops',
     ] as const) {
       const currentId = this.curriculumService
         .getOrderedLessonIdsByTrack(track)
@@ -266,7 +267,7 @@ export class ProgressService {
 
     // Per-track current lesson and progress
     const buildTrackSummary = (
-      track: 'system-design' | 'docker' | 'ai-mastery' | 'dsa',
+      track: 'system-design' | 'docker' | 'ai-mastery' | 'dsa' | 'devops',
     ) => {
       const trackWorlds = syllabus.filter((w) => w.track === track);
       const trackLessonIds = new Set(
@@ -332,6 +333,7 @@ export class ProgressService {
         docker: buildTrackSummary('docker'),
         'ai-mastery': buildTrackSummary('ai-mastery'),
         dsa: buildTrackSummary('dsa'),
+        devops: buildTrackSummary('devops'),
       },
       streak: {
         current: streak?.currentCount ?? 0,

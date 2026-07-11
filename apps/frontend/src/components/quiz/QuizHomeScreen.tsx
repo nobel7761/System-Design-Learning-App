@@ -32,6 +32,13 @@ const TRACKS = [
     color: "emerald",
     desc: "Python, Data Structures, Algorithms & 150 Problems",
   },
+  {
+    value: "devops",
+    label: "DevOps — CloudCamp",
+    emoji: "🐧",
+    color: "amber",
+    desc: "Linux, AWS, Kubernetes & CI/CD — Poridhi lectures",
+  },
 ] as const;
 
 const COLOR_MAP = {
@@ -54,6 +61,11 @@ const COLOR_MAP = {
     card: "border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50",
     emoji: "bg-emerald-100",
     title: "text-emerald-700",
+  },
+  amber: {
+    card: "border-amber-200 hover:border-amber-400 hover:bg-amber-50",
+    emoji: "bg-amber-100",
+    title: "text-amber-700",
   },
 };
 

@@ -1,0 +1,143 @@
+{
+  "lessonId": "wv0l1",
+  "commands": [
+    {
+      "command": "pwd",
+      "usage": "আমি এখন কোন directory-তে আছি — root (/) থেকে পুরো path দেখায়। নতুন জায়গায় গিয়েই প্রথম কাজ।",
+      "parts": [
+        {
+          "token": "pwd",
+          "meaning": "print working directory — বর্তমান অবস্থান ছাপো"
+        }
+      ],
+      "example": "pwd\n# /home/code"
+    },
+    {
+      "command": "ls",
+      "usage": "এই directory-র ভেতরে কী কী file আর directory আছে, তার তালিকা।",
+      "parts": [
+        { "token": "ls", "meaning": "list — ভেতরের সবকিছুর তালিকা দাও" }
+      ],
+      "example": "ls\n# lab  notes.txt  script.sh"
+    },
+    {
+      "command": "ls -la <path>",
+      "usage": "বিস্তারিত তালিকা — hidden file-সহ, permission/size/date-সহ। path দিলে সেখানে না গিয়েই দেখা যায়।",
+      "parts": [
+        {
+          "token": "-l",
+          "meaning": "long format — প্রতি লাইনে বিস্তারিত (প্রথম অক্ষর: d=directory, -=file)"
+        },
+        {
+          "token": "-a",
+          "meaning": "all — hidden file-ও দেখাও (নাম . দিয়ে শুরু যেগুলোর)"
+        },
+        {
+          "token": "<path>",
+          "meaning": "(optional) কোন directory-র ভেতরটা দেখবে — না দিলে current"
+        }
+      ],
+      "example": "ls -la ~/code\n# drwxr-xr-x 2 root root 4096 ... lab\n# -rw-r--r-- 1 root root   14 ... notes.txt"
+    },
+    {
+      "command": "cd <path>",
+      "usage": "directory বদলানো। path-এর শুরুতে / থাকলে absolute (যেকোনো জায়গা থেকে একই গন্তব্য), না থাকলে relative (এখন যেখানে আছো সেখান থেকে)।",
+      "parts": [
+        { "token": "cd", "meaning": "change directory — ঘর বদলাও" },
+        { "token": "/...", "meaning": "absolute path — root থেকে পুরো ঠিকানা" },
+        {
+          "token": "folder/...",
+          "meaning": "relative path — current directory-র ভেতর থেকে"
+        },
+        { "token": "~", "meaning": "নিজের home directory-র শর্টকাট" },
+        { "token": "..", "meaning": "এক ধাপ উপরের (parent) directory" },
+        { "token": ".", "meaning": "এই directory নিজে" }
+      ],
+      "example": "cd /home/code/lab   # absolute\ncd projects         # relative\ncd ..                # এক ধাপ উপরে\ncd ~                 # বাড়ি ফেরা"
+    },
+    {
+      "command": "mkdir -p <path>",
+      "usage": "নতুন directory বানানো। -p দিলে মাঝের ধাপগুলোও একসাথে বানায়, আর আগে থেকে থাকলেও error দেয় না।",
+      "parts": [
+        { "token": "mkdir", "meaning": "make directory — নতুন ঘর বানাও" },
+        {
+          "token": "-p",
+          "meaning": "parents — মাঝের সব directory-ও বানাও; exists হলে চুপ থাকো"
+        }
+      ],
+      "example": "mkdir -p ~/code/lab/projects/websites\n# code, lab, projects না থাকলেও সব একবারে তৈরি"
+    },
+    {
+      "command": "echo \"<text>\"",
+      "usage": "লেখাটা স্ক্রিনে (stdout-এ) ছাপে — টার্মিনালের console.log।",
+      "parts": [
+        { "token": "echo", "meaning": "যা দাও, তাই ফেরত বলে" },
+        { "token": "\"<text>\"", "meaning": "যে লেখাটা ছাপতে চাও" }
+      ],
+      "example": "echo \"Hello World\"\n# Hello World"
+    },
+    {
+      "command": "echo \"<text>\" > <file>",
+      "usage": "লেখাটা স্ক্রিনে না পাঠিয়ে ফাইলে ঢোকায়। ফাইল না থাকলে তৈরি হয়; থাকলে আগের সব মুছে যায়! যোগ করতে চাইলে >>।",
+      "parts": [
+        {
+          "token": ">",
+          "meaning": "redirect — stdout-কে ফাইলে পাঠাও (আগেরটা মুছে)"
+        },
+        { "token": ">>", "meaning": "append — আগের content-এর নিচে যোগ করো" },
+        { "token": "<file>", "meaning": "টার্গেট ফাইল (path-সহ দেওয়া যায়)" }
+      ],
+      "example": "echo \"Hello\" > ~/code/hello.txt   # ফাইল তৈরি + লেখা\necho \"World\" >> ~/code/hello.txt  # নিচে যোগ"
+    },
+    {
+      "command": "find <path> -name \"<pattern>\" -type f",
+      "usage": "ফাইল/ডিরেক্টরি খোঁজা — নামে। <path> থেকে শুরু করে ভেতরের সব জায়গায় (tree-তে DFS চালিয়ে) খোঁজে।",
+      "parts": [
+        { "token": "find", "meaning": "খোঁজার গোয়েন্দা" },
+        {
+          "token": "<path>",
+          "meaning": "কোথা থেকে খোঁজা শুরু (যেমন: . = এখান থেকে, / = পুরো সিস্টেম)"
+        },
+        {
+          "token": "-name \"<pattern>\"",
+          "meaning": "কী নামের জিনিস — quote-এ মোড়ানো জরুরি"
+        },
+        {
+          "token": "*",
+          "meaning": "wildcard — 'এখানে যা খুশি' (*.log = নাম .log দিয়ে শেষ)"
+        },
+        { "token": "-type f", "meaning": "শুধু file (d দিলে শুধু directory)" }
+      ],
+      "example": "find / -name \"*.log\" -type f\n# পুরো সার্ভারের সব .log ফাইল, path-সহ"
+    },
+    {
+      "command": "locate <name>",
+      "usage": "ফাইল খোঁজার দ্রুত রাস্তা — আগে থেকে বানানো index database দেখে। বিদ্যুৎগতির, কিন্তু নতুন ফাইল index-এ না উঠলে পায় না।",
+      "parts": [
+        { "token": "locate", "meaning": "index খাতা দেখে নাম match করো" },
+        { "token": "<name>", "meaning": "ফাইলের নাম বা নামের অংশ" }
+      ],
+      "example": "locate nginx.conf\n# index-এ থাকলে সাথে সাথে path"
+    },
+    {
+      "command": "grep -r \"<text>\" <path>",
+      "usage": "ফাইলের ভেতরের লেখা খোঁজা — কোন ফাইলে '<text>' লেখা আছে। output: path:match-করা-লাইন। VS Code-এর Ctrl+Shift+F।",
+      "parts": [
+        { "token": "grep", "meaning": "ফাইল খুলে খুলে লাইন ধরে match খোঁজো" },
+        {
+          "token": "-r",
+          "meaning": "recursive — ভেতরের সব directory-র সব ফাইলে"
+        },
+        { "token": "\"<text>\"", "meaning": "যে লেখাটা খুঁজছো" },
+        { "token": "<path>", "meaning": "কোথায় খুঁজবে" }
+      ],
+      "example": "grep -r \"error\" /var/log/\n# /var/log/nginx/error.log:2026/07/11 error: timeout"
+    },
+    {
+      "command": "cmd1 | cmd2",
+      "usage": "pipe — বাঁ পাশের কমান্ডের output, ডান পাশের কমান্ডের input হয়ে যায়। ছোট ছোট কমান্ড জুড়ে বড় কাজ।",
+      "parts": [{ "token": "|", "meaning": "বাঁয়ের stdout → ডানের stdin" }],
+      "example": "ls /var/log | grep \"nginx\"\n# তালিকা থেকে শুধু nginx-ওয়ালা লাইন"
+    }
+  ]
+}

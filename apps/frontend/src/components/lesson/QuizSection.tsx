@@ -117,88 +117,90 @@ export function QuizSection({ lessonId }: { lessonId: string }) {
         className="h-2"
       />
 
-      {quiz.questions.map((question, qIndex) => {
-        const resultItem = result?.results.find(
-          (r) => r.questionId === question.id,
-        );
-        const badge = DIFFICULTY_BADGE[question.difficulty];
-        return (
-          <Card
-            key={question.id}
-            className={
-              resultItem
-                ? resultItem.correct
-                  ? "border-emerald-300"
-                  : "border-rose-300"
-                : undefined
-            }
-          >
-            <CardContent className="py-4">
-              <div className="flex items-start justify-between gap-2">
-                <div className="w-full font-medium text-slate-800">
-                  {qIndex + 1}. <QuizText text={question.question} />
+      <div className="grid items-start gap-4 md:grid-cols-2">
+        {quiz.questions.map((question, qIndex) => {
+          const resultItem = result?.results.find(
+            (r) => r.questionId === question.id,
+          );
+          const badge = DIFFICULTY_BADGE[question.difficulty];
+          return (
+            <Card
+              key={question.id}
+              className={
+                resultItem
+                  ? resultItem.correct
+                    ? "border-emerald-300"
+                    : "border-rose-300"
+                  : undefined
+              }
+            >
+              <CardContent className="py-4">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="w-full font-medium text-slate-800">
+                    {qIndex + 1}. <QuizText text={question.question} />
+                  </div>
+                  <Badge className={badge.className}>{badge.label}</Badge>
                 </div>
-                <Badge className={badge.className}>{badge.label}</Badge>
-              </div>
-              <RadioGroup
-                className="mt-3 space-y-2"
-                value={answers[question.id]?.toString() ?? ""}
-                onValueChange={(value) =>
-                  !result &&
-                  setAnswers((prev) => ({
-                    ...prev,
-                    [question.id]: Number(value),
-                  }))
-                }
-                disabled={result != null}
-              >
-                {question.options.map((option, optionIndex) => {
-                  const isYourPick =
-                    resultItem?.yourAnswerIndex === optionIndex;
-                  const isCorrectOption =
-                    resultItem?.correctIndex === optionIndex;
-                  return (
-                    <div
-                      key={optionIndex}
-                      className={`flex items-center gap-2 rounded-lg border px-3 py-2 ${
-                        isCorrectOption
-                          ? "border-emerald-400 bg-emerald-50"
-                          : isYourPick && !resultItem?.correct
-                            ? "border-rose-400 bg-rose-50"
-                            : "border-slate-200"
-                      }`}
-                    >
-                      <RadioGroupItem
-                        value={optionIndex.toString()}
-                        id={`${question.id}-${optionIndex}`}
-                      />
-                      <Label
-                        htmlFor={`${question.id}-${optionIndex}`}
-                        className="w-full cursor-pointer font-normal"
-                      >
-                        <QuizText text={option} />
-                        {isCorrectOption && result && " ✅"}
-                      </Label>
-                    </div>
-                  );
-                })}
-              </RadioGroup>
-              {resultItem && (
-                <div
-                  className={`mt-3 rounded-lg p-3 text-sm ${
-                    resultItem.correct
-                      ? "bg-emerald-50 text-emerald-800"
-                      : "bg-rose-50 text-rose-800"
-                  }`}
+                <RadioGroup
+                  className="mt-3 space-y-2"
+                  value={answers[question.id]?.toString() ?? ""}
+                  onValueChange={(value) =>
+                    !result &&
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [question.id]: Number(value),
+                    }))
+                  }
+                  disabled={result != null}
                 >
-                  {resultItem.correct ? "✅ সঠিক! " : "❌ ভুল। "}
-                  <QuizText text={resultItem.explanation} />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        );
-      })}
+                  {question.options.map((option, optionIndex) => {
+                    const isYourPick =
+                      resultItem?.yourAnswerIndex === optionIndex;
+                    const isCorrectOption =
+                      resultItem?.correctIndex === optionIndex;
+                    return (
+                      <div
+                        key={optionIndex}
+                        className={`flex items-center gap-2 rounded-lg border px-3 py-2 ${
+                          isCorrectOption
+                            ? "border-emerald-400 bg-emerald-50"
+                            : isYourPick && !resultItem?.correct
+                              ? "border-rose-400 bg-rose-50"
+                              : "border-slate-200"
+                        }`}
+                      >
+                        <RadioGroupItem
+                          value={optionIndex.toString()}
+                          id={`${question.id}-${optionIndex}`}
+                        />
+                        <Label
+                          htmlFor={`${question.id}-${optionIndex}`}
+                          className="w-full cursor-pointer font-normal"
+                        >
+                          <QuizText text={option} />
+                          {isCorrectOption && result && " ✅"}
+                        </Label>
+                      </div>
+                    );
+                  })}
+                </RadioGroup>
+                {resultItem && (
+                  <div
+                    className={`mt-3 rounded-lg p-3 text-sm ${
+                      resultItem.correct
+                        ? "bg-emerald-50 text-emerald-800"
+                        : "bg-rose-50 text-rose-800"
+                    }`}
+                  >
+                    {resultItem.correct ? "✅ সঠিক! " : "❌ ভুল। "}
+                    <QuizText text={resultItem.explanation} />
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
 
       {!result ? (
         <div className="flex flex-col items-end gap-2">

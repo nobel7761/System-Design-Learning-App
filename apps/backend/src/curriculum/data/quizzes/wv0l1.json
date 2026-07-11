@@ -1,0 +1,125 @@
+{
+  "lessonId": "wv0l1",
+  "questions": [
+    {
+      "id": "wv0l1-q01",
+      "difficulty": "easy",
+      "question": "Linux file system-এর একদম শুরুর জায়গাটার (root) চিহ্ন কোনটা?",
+      "options": ["C:\\", "~", "/", "."],
+      "answerIndex": 2,
+      "explanation": "Linux-এ সবকিছু একটাই গাছ, আর তার শিকড় হলো / (root)। Windows-এর মতো C:\\ বা D:\\ drive-এর ধারণা Linux-এ নেই।"
+    },
+    {
+      "id": "wv0l1-q02",
+      "difficulty": "easy",
+      "question": "\"আমি এখন কোন directory-তে আছি?\" — জানতে কোন কমান্ড?",
+      "options": ["ls", "pwd", "cd", "whereami"],
+      "answerIndex": 1,
+      "explanation": "pwd = present working directory — root / থেকে তোমার বর্তমান অবস্থানের পুরো path দেখায়।"
+    },
+    {
+      "id": "wv0l1-q03",
+      "difficulty": "easy",
+      "question": "cd /home/code/lab আর cd lab — এই দুটোর মূল পার্থক্য কী?",
+      "options": [
+        "প্রথমটা directory বানায়, দ্বিতীয়টা ঢোকে",
+        "প্রথমটা absolute path (/ থেকে শুরু), দ্বিতীয়টা relative (current directory থেকে)",
+        "কোনো পার্থক্য নেই, দুটোই একই জায়গায় যায়",
+        "দ্বিতীয়টা শুধু root user চালাতে পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "শুরুতে / থাকলে absolute — যেকোনো জায়গা থেকে একই গন্তব্য। / না থাকলে relative — তুমি এখন কোথায় আছো তার উপর ফল নির্ভর করে।"
+    },
+    {
+      "id": "wv0l1-q04",
+      "difficulty": "easy",
+      "question": "mkdir-এর -p flag-টা কী কাজ করে?",
+      "options": [
+        "directory-টা password-protected করে",
+        "মাঝের parent directory গুলো না থাকলে বানিয়ে নেয়, আর আগে থেকে থাকলেও error দেয় না",
+        "directory-টা private করে দেয়",
+        "শুধু খালি directory মুছে দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "mkdir -p ~/code/lab/projects — code বা lab না থাকলে নিজেই বানিয়ে নেয় (p = parents), আর কোনোটা exists করলেও চুপচাপ এগিয়ে যায়।"
+    },
+    {
+      "id": "wv0l1-q05",
+      "difficulty": "medium",
+      "question": "echo \"Hello\" > notes.txt — এখানে > চিহ্নটা কী করছে?",
+      "options": [
+        "Hello-কে notes.txt-এর সাথে তুলনা করছে",
+        "echo-র stdout-কে স্ক্রিনের বদলে notes.txt ফাইলে পাঠাচ্ছে (আগের content মুছে)",
+        "notes.txt-এর content স্ক্রিনে দেখাচ্ছে",
+        "notes.txt-এর শেষে Hello যোগ করছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "> হলো redirect — stdout ফাইলে ঢোকে, ফাইল না থাকলে তৈরি হয়, থাকলে আগের সব মুছে নতুন করে লেখা হয়। শেষে যোগ করতে চাইলে >> লাগবে।"
+    },
+    {
+      "id": "wv0l1-q06",
+      "difficulty": "medium",
+      "question": "তুমি /home/code-এ দাঁড়িয়ে, tree হলো /home/code/lab/projects। `cd projects` চালালে কী হবে?",
+      "options": [
+        "projects-এ ঢুকে যাবে",
+        "root-এর projects-এ চলে যাবে",
+        "No such file or directory — কারণ projects সরাসরি এই ঘরের ভেতরে নেই, আছে lab-এর ভেতরে",
+        "নতুন projects directory তৈরি হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "relative path শুধু current directory-র সরাসরি ভেতরে খোঁজে। /home/code-এর ভেতরে আছে lab; projects পেতে হলে cd lab/projects।"
+    },
+    {
+      "id": "wv0l1-q07",
+      "difficulty": "medium",
+      "question": "\"কোন ফাইলগুলোর ভেতরে 'timeout' শব্দটা লেখা আছে?\" — সঠিক অস্ত্র কোনটা?",
+      "options": [
+        "find / -name \"timeout\"",
+        "ls timeout",
+        "grep -r \"timeout\" /",
+        "locate timeout"
+      ],
+      "answerIndex": 2,
+      "explanation": "ফাইলের ভেতরের content খোঁজা grep-এর কাজ (-r = সব subdirectory-তেও)। find/locate খোঁজে ফাইলের নাম — খামের উপরটা, ভেতরের চিঠি না।"
+    },
+    {
+      "id": "wv0l1-q08",
+      "difficulty": "medium",
+      "question": "find / -name \"*.log\" -type f — এই কমান্ডে -type f কী বলছে?",
+      "options": [
+        "fast mode-এ খোঁজো",
+        "শুধু file match করো, directory বাদ দাও",
+        "প্রথম match-এই থেমে যাও",
+        "hidden file-ও দেখাও"
+      ],
+      "answerIndex": 1,
+      "explanation": "-type f = শুধু file, -type d = শুধু directory। নাম .log দিয়ে শেষ এমন directory-ও থাকতে পারে — -type f সেগুলো ছেঁটে দেয়।"
+    },
+    {
+      "id": "wv0l1-q09",
+      "difficulty": "medium",
+      "question": "ls /var/log | grep \"nginx\" — এখানে pipe (|) কী করছে?",
+      "options": [
+        "দুটো কমান্ড পাশাপাশি (parallel) চালাচ্ছে",
+        "ls-এর output-কে grep-এর input বানিয়ে দিচ্ছে — তালিকা থেকে শুধু nginx লেখা লাইন ছেঁকে আনছে",
+        "ls-এর ফল nginx নামের ফাইলে সেভ করছে",
+        "grep আগে চলবে, তারপর ls"
+      ],
+      "answerIndex": 1,
+      "explanation": "pipe-এর নিয়ম: বাঁ পাশের stdout → ডান পাশের stdin। ls-এর পুরো তালিকা স্ক্রিনে না গিয়ে grep-এর কানে যায়, grep শুধু match করা লাইন দেখায়।"
+    },
+    {
+      "id": "wv0l1-q10",
+      "difficulty": "hard",
+      "question": "find আর locate দুটোই ফাইল খোঁজে — তবু production-এ এইমাত্র তৈরি হওয়া ফাইল locate-এ পাওয়া যায় না কেন?",
+      "options": [
+        "locate শুধু root user-এর ফাইল দেখে",
+        "locate আগে থেকে বানানো index database দেখে, যেটা নতুন ফাইল তৈরির পর এখনো update হয়নি; find জ্যান্ত tree ঘুরে খোঁজে",
+        "locate শুধু /home-এর ভেতরে খুঁজতে পারে",
+        "নতুন ফাইলের permission থাকে না বলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "locate দ্রুত কারণ সে পুরনো ইনডেক্স খাতা (database) পড়ে — কিন্তু খাতা periodically update হয়, তাই নতুন ফাইল missing। find প্রতিবার সত্যিকারের directory tree traverse করে (DFS) — ধীর, কিন্তু সবসময় টাটকা সত্যি।"
+    }
+  ]
+}

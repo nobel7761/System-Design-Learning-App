@@ -1,0 +1,307 @@
+{
+  "lessonId": "wv0l2",
+  "title": "LAB EXAM: Mastering Linux File System Navigation",
+  "passPercent": 95,
+  "intro": "Poridhi-র পুরো ল্যাবটা — Setup থেকে Search Challenge পর্যন্ত, প্রতিটা কমান্ড তোমার নিজের হাতে। প্রথম চেষ্টায় সঠিক হলেই পুরো নম্বর। ৯৫% = PASSED।",
+  "targets": [
+    { "path": "~/code", "type": "dir" },
+    { "path": "~/code/lab", "type": "dir" },
+    { "path": "~/code/lab/projects", "type": "dir" },
+    { "path": "~/code/lab/projects/website", "type": "dir" },
+    {
+      "path": "~/code/lab/projects/website/index.html",
+      "type": "file",
+      "content": "Hello World"
+    },
+    { "path": "~/code/lab/documents", "type": "dir" },
+    { "path": "~/code/lab/documents/reports", "type": "dir" },
+    {
+      "path": "~/code/lab/documents/reports/plan.txt",
+      "type": "file",
+      "content": "Project Plan"
+    },
+    { "path": "~/code/lab/documents/notes", "type": "dir" },
+    {
+      "path": "~/code/lab/documents/notes/meeting.txt",
+      "type": "file",
+      "content": "Meeting Notes"
+    },
+    {
+      "path": "~/code/lab/documents/notes/todo.txt",
+      "type": "file",
+      "content": "Todo List"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t01",
+      "points": 4,
+      "section": {
+        "title": "🏗️ Lab Setup",
+        "note": "প্রথমে practice environment বানাবে — directory কাঠামো আর sample ফাইল। ডানের গাছটাই টার্গেট।"
+      },
+      "prompt": "~/code/lab/projects/website — পুরো path-টা এক কমান্ডে বানাও (মাঝের কোনো directory এখনো নেই)।",
+      "check": {
+        "require": ["mkdir"],
+        "paths": [{ "path": "~/code/lab/projects/website", "type": "dir" }]
+      },
+      "hint": "মাঝের ধাপগুলো (parents) একসাথে বানানোর একটা flag আছে…"
+    },
+    {
+      "id": "t02",
+      "points": 4,
+      "prompt": "একইভাবে বানাও: ~/code/lab/documents/reports",
+      "check": {
+        "require": ["mkdir"],
+        "paths": [{ "path": "~/code/lab/documents/reports", "type": "dir" }]
+      }
+    },
+    {
+      "id": "t03",
+      "points": 4,
+      "prompt": "একইভাবে বানাও: ~/code/lab/documents/notes",
+      "check": {
+        "require": ["mkdir"],
+        "paths": [{ "path": "~/code/lab/documents/notes", "type": "dir" }]
+      }
+    },
+    {
+      "id": "t04",
+      "points": 4,
+      "prompt": "এবার sample ফাইল: website-এর ভেতরে index.html বানাও, ভেতরে লেখা: Hello World — এক কমান্ডে, editor ছাড়া।",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "~/code/lab/projects/website/index.html",
+            "type": "file",
+            "content": "Hello World"
+          }
+        ]
+      },
+      "hint": "echo-র output স্ক্রিনে না পাঠিয়ে ফাইলে ঘুরিয়ে দাও…"
+    },
+    {
+      "id": "t05",
+      "points": 4,
+      "prompt": "reports-এর ভেতরে plan.txt, ভেতরে: Project Plan",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "~/code/lab/documents/reports/plan.txt",
+            "type": "file",
+            "content": "Project Plan"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t06",
+      "points": 4,
+      "prompt": "notes-এর ভেতরে meeting.txt, ভেতরে: Meeting Notes",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "~/code/lab/documents/notes/meeting.txt",
+            "type": "file",
+            "content": "Meeting Notes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t07",
+      "points": 4,
+      "prompt": "notes-এর ভেতরে todo.txt, ভেতরে: Todo List — setup শেষ! গাছটা পুরো সবুজ হওয়ার কথা।",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "~/code/lab/documents/notes/todo.txt",
+            "type": "file",
+            "content": "Todo List"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t08",
+      "points": 4,
+      "section": {
+        "title": "📍 Exercise 1: Viewing Your Current Directory with pwd",
+        "note": "pwd (Print Working Directory) — file system-এ তোমার বর্তমান অবস্থানের full path দেখায়।"
+      },
+      "prompt": "তুমি এখন কোন directory-তে আছো — full path দেখাও।",
+      "check": { "require": ["pwd"], "ref": "pwd" }
+    },
+    {
+      "id": "t09",
+      "points": 3,
+      "section": {
+        "title": "🧭 Exercise 2: Navigating Directories with cd",
+        "note": "cd (Change Directory) দিয়ে directory-তে directory-তে ঘোরা। ~ মানে তোমার home directory। cd .. মানে এক ধাপ উপরে, আর absolute path শুরু হয় root (/) থেকে।"
+      },
+      "prompt": "lab directory-তে যাও — ~ ব্যবহার করে।",
+      "check": { "require": ["cd"], "cwd": "~/code/lab", "style": "absolute" }
+    },
+    {
+      "id": "t10",
+      "points": 3,
+      "prompt": "projects directory-তে ঢোকো — relative path-এ (/ বা ~ দিয়ে শুরু করা যাবে না)।",
+      "check": {
+        "require": ["cd"],
+        "cwd": "~/code/lab/projects",
+        "style": "relative"
+      }
+    },
+    {
+      "id": "t11",
+      "points": 2,
+      "prompt": "Verify your location — এখন কোথায় আছো দেখাও।",
+      "check": { "require": ["pwd"], "ref": "pwd" }
+    },
+    {
+      "id": "t12",
+      "points": 3,
+      "prompt": "এক ধাপ উপরে ফিরে যাও।",
+      "check": { "require": ["cd", ".."], "cwd": "~/code/lab" },
+      "hint": "parent directory-র শর্টকাট চিহ্নটা মনে আছে?"
+    },
+    {
+      "id": "t13",
+      "points": 2,
+      "prompt": "Verify — you should now be in ~/code/lab। দেখাও।",
+      "check": { "require": ["pwd"], "ref": "pwd" }
+    },
+    {
+      "id": "t14",
+      "points": 3,
+      "prompt": "এবার absolute path ব্যবহার করে notes directory-তে যাও।",
+      "check": {
+        "require": ["cd"],
+        "cwd": "~/code/lab/documents/notes",
+        "style": "absolute"
+      }
+    },
+    {
+      "id": "t15",
+      "points": 2,
+      "prompt": "Verify your location — শেষবারের মতো।",
+      "check": { "require": ["pwd"], "ref": "pwd" }
+    },
+    {
+      "id": "t16",
+      "points": 4,
+      "section": {
+        "title": "👀 Exercise 3: Listing Directory Contents with ls",
+        "note": "ls files আর directories-এর তালিকা দেখায়। -la option-এ hidden files (. দিয়ে শুরু) আর permissions, size, modification date-এর মতো বিস্তারিত তথ্যও আসে।"
+      },
+      "prompt": "Basic listing — এই directory-র ভেতরে কী কী আছে দেখাও।",
+      "check": { "require": ["ls"], "ref": "ls" }
+    },
+    {
+      "id": "t17",
+      "points": 4,
+      "prompt": "Detailed listing with hidden files — permissions, size, date সহ।",
+      "check": { "require": ["-l", "-a"], "ref": "ls -la" }
+    },
+    {
+      "id": "t18",
+      "points": 4,
+      "prompt": "List contents of another directory without navigating to it — এখান থেকে না নড়ে ~/code/lab/projects-এর ভেতরটা দেখাও।",
+      "check": {
+        "require": ["ls"],
+        "forbid": ["cd"],
+        "ref": "ls ~/code/lab/projects"
+      }
+    },
+    {
+      "id": "t19",
+      "points": 2,
+      "section": {
+        "title": "🔍 Exercise 4: Finding Files with find",
+        "note": "find files আর directories খোঁজে। -name option-এ pattern দেওয়া যায় (wildcard * সহ), আর -type f খোঁজাকে শুধু file-এ সীমাবদ্ধ করে।"
+      },
+      "prompt": "প্রথমে lab directory-তে ফিরে যাও।",
+      "check": { "require": ["cd"], "cwd": "~/code/lab" }
+    },
+    {
+      "id": "t20",
+      "points": 5,
+      "prompt": "Find all .txt files — এখান থেকে (current directory থেকে, path-টা . দিয়ে) সব .txt ফাইল খোঁজো।",
+      "check": {
+        "require": ["find", "-name"],
+        "forbid": ["~"],
+        "ref": "find . -name \"*.txt\""
+      },
+      "hint": "wildcard-টা quote-এ মুড়তে ভুলো না…"
+    },
+    {
+      "id": "t21",
+      "points": 5,
+      "prompt": "Find all files in the notes directory — ./documents/notes-এর ভেতরের সব ফাইল, নাম দিয়ে না, টাইপ দিয়ে।",
+      "check": {
+        "require": ["find", "-type"],
+        "forbid": ["-name"],
+        "ref": "find ./documents/notes -type f"
+      }
+    },
+    {
+      "id": "t22",
+      "points": 5,
+      "section": {
+        "title": "📖 Exercise 5: Searching File Contents with grep",
+        "note": "grep (Global Regular Expression Print) ফাইলের ভেতরের text pattern খোঁজে। -r option-এ directory-র ভেতরে recursive search হয়।"
+      },
+      "prompt": "Search for \"Meeting\" in all files under documents — ~/code/lab/documents-এর ভেতরে (সব subdirectory-সহ)।",
+      "check": {
+        "require": ["grep", "-r"],
+        "ref": "grep -r \"Meeting\" ~/code/lab/documents"
+      }
+    },
+    {
+      "id": "t23",
+      "points": 5,
+      "prompt": "Search for \"Plan\" in all .txt files — documents-এর এক-ধাপ-ভেতরের ফোল্ডারগুলোর .txt ফাইলে, -r ছাড়া, wildcard দিয়ে (path ~ দিয়ে লেখো)।",
+      "check": {
+        "require": ["grep", "*"],
+        "forbid": ["-r", "-R"],
+        "ref": "grep \"Plan\" ~/code/lab/documents/*/*.txt"
+      },
+      "hint": "documents/-এর পরে 'যেকোনো এক ফোল্ডার' বোঝাতে কী বসে?"
+    },
+    {
+      "id": "t24",
+      "points": 6,
+      "section": {
+        "title": "⚔️ Search Challenge",
+        "note": "ল্যাবের ফাইনাল চ্যালেঞ্জ — তিনটা খোঁজ, কোনো নির্দেশনা ছাড়া। এতক্ষণের সব অস্ত্র তোমার হাতে।"
+      },
+      "prompt": "Challenge 1: পুরো ~/code/lab জুড়ে \"List\" শব্দটা কোন ফাইলে আছে খুঁজে বের করো (path ~ দিয়ে লেখো)।",
+      "check": {
+        "require": ["grep", "-r"],
+        "ref": "grep -r \"List\" ~/code/lab"
+      }
+    },
+    {
+      "id": "t25",
+      "points": 5,
+      "prompt": "Challenge 2: ~/code/lab আর তার subdirectories-এর সব .txt ফাইল locate করো (path ~ দিয়ে লেখো)।",
+      "check": {
+        "require": ["find", "-name"],
+        "ref": "find ~/code/lab -name \"*.txt\""
+      }
+    },
+    {
+      "id": "t26",
+      "points": 5,
+      "prompt": "Challenge 3 (শেষ!): lab কাঠামোর সব directory list করো — ফাইল না।",
+      "check": {
+        "require": ["find", "-type"],
+        "ref": "find ~/code/lab -type d"
+      }
+    }
+  ]
+}

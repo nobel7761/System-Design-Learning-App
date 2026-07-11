@@ -270,6 +270,16 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
         streak={dashboard.streak}
         xp={dashboard.xp}
       />
+      <TrackCard
+        emoji="🐧"
+        title="DevOps — CloudCamp"
+        subtitle="Poridhi lecture থেকে Linux, AWS, K8s"
+        summary={dashboard.tracks["devops"]}
+        syllabusHref="/syllabus?track=devops"
+        isDark={false}
+        streak={dashboard.streak}
+        xp={dashboard.xp}
+      />
     </div>
   );
 }

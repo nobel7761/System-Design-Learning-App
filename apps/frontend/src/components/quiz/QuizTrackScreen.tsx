@@ -23,6 +23,7 @@ const TRACK_META: Record<
   docker: { label: "Docker & DevOps", emoji: "🐳", color: "sky" },
   "ai-mastery": { label: "AI Mastery", emoji: "🤖", color: "violet" },
   dsa: { label: "DSA — NeetCode 150", emoji: "🧩", color: "emerald" },
+  devops: { label: "DevOps — CloudCamp", emoji: "🐧", color: "amber" },
 };
 
 const TYPE_BADGE: Record<string, string> = {

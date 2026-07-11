@@ -1,0 +1,756 @@
+{
+  "lessonId": "wv0l2",
+  "passPercent": 95,
+  "sample": {
+    "easy": 5,
+    "medium": 7,
+    "hard": 3
+  },
+  "questions": [
+    {
+      "id": "wv0l2-q01",
+      "difficulty": "easy",
+      "question": "pwd কমান্ডের পুরো অর্থ কী?",
+      "options": [
+        "Password Directory",
+        "Print Working Directory",
+        "Present World Directory",
+        "Path Word Display"
+      ],
+      "answerIndex": 1,
+      "explanation": "pwd = Print Working Directory — file system-এ তুমি এখন ঠিক কোথায় আছো, তার full path দেখায়।"
+    },
+    {
+      "id": "wv0l2-q02",
+      "difficulty": "easy",
+      "question": "pwd-র output সবসময় কোন চিহ্ন দিয়ে শুরু হয়?",
+      "options": ["~", ".", "/", "$"],
+      "answerIndex": 2,
+      "explanation": "pwd সবসময় root (/) থেকে পুরো absolute path দেখায় — যেমন /root/code/lab।"
+    },
+    {
+      "id": "wv0l2-q03",
+      "difficulty": "easy",
+      "question": "cd কমান্ডের কাজ কী?",
+      "options": [
+        "ফাইল কপি করা",
+        "directory বদলানো (Change Directory)",
+        "ফাইল মুছে ফেলা",
+        "directory-র তালিকা দেখানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "cd = Change Directory — এক directory থেকে আরেক directory-তে যাওয়ার কমান্ড।"
+    },
+    {
+      "id": "wv0l2-q04",
+      "difficulty": "easy",
+      "question": "path-এ ~ (tilde) চিহ্নটা কী বোঝায়?",
+      "options": [
+        "root directory",
+        "আগের directory",
+        "তোমার home directory",
+        "hidden directory"
+      ],
+      "answerIndex": 2,
+      "explanation": "~ মানে তোমার নিজের home directory — Poridhi-র ল্যাবে root user-এর জন্য /root।"
+    },
+    {
+      "id": "wv0l2-q05",
+      "difficulty": "easy",
+      "question": "cd .. — এখানে .. মানে কী?",
+      "options": [
+        "home directory",
+        "এক ধাপ উপরের (parent) directory",
+        "root directory",
+        "শেষ যেখানে ছিলে"
+      ],
+      "answerIndex": 1,
+      "explanation": ".. মানে parent directory। ~/code/lab/projects থেকে cd .. দিলে ~/code/lab-এ।"
+    },
+    {
+      "id": "wv0l2-q06",
+      "difficulty": "easy",
+      "question": "path-এ . (একটা dot) কী বোঝায়?",
+      "options": [
+        "hidden ফাইল",
+        "root",
+        "current directory (এই জায়গাটাই)",
+        "parent directory"
+      ],
+      "answerIndex": 2,
+      "explanation": ". মানে current directory। এজন্যই find . -name ... মানে 'এখান থেকে খোঁজো'।"
+    },
+    {
+      "id": "wv0l2-q07",
+      "difficulty": "easy",
+      "question": "ls কমান্ডের কাজ কী?",
+      "options": [
+        "directory-র ভেতরের file আর directory-র তালিকা দেখানো",
+        "নতুন ফাইল বানানো",
+        "ফাইলের ভেতরটা দেখানো",
+        "directory বদলানো"
+      ],
+      "answerIndex": 0,
+      "explanation": "ls = list — current (বা নির্দিষ্ট) directory-র ভেতরে কী কী আছে তার তালিকা।"
+    },
+    {
+      "id": "wv0l2-q08",
+      "difficulty": "easy",
+      "question": "ls -la-র মধ্যে -a অংশটা কী করে?",
+      "options": [
+        "শুধু archive ফাইল দেখায়",
+        "hidden ফাইলসহ সব দেখায় (all)",
+        "বর্ণানুক্রমে সাজায়",
+        "author দেখায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a = all — hidden ফাইলগুলোও (নাম . দিয়ে শুরু) তালিকায় আসে, সাথে . আর .. entry-ও।"
+    },
+    {
+      "id": "wv0l2-q09",
+      "difficulty": "easy",
+      "question": "Linux-এ hidden ফাইল চেনার উপায় কী?",
+      "options": [
+        "নাম CAPITAL letter-এ",
+        "নামের শেষে .hid",
+        "নাম . (dot) দিয়ে শুরু",
+        "লাল রঙে দেখায়"
+      ],
+      "answerIndex": 2,
+      "explanation": "নাম . দিয়ে শুরু হলেই ফাইল/ফোল্ডার hidden — সাধারণ ls-এ দেখায় না, ls -a-তে দেখায়।"
+    },
+    {
+      "id": "wv0l2-q10",
+      "difficulty": "easy",
+      "question": "নতুন directory বানানোর কমান্ড কোনটা?",
+      "options": ["makedir", "mkdir", "newdir", "createdir"],
+      "answerIndex": 1,
+      "explanation": "mkdir = make directory। ল্যাবে: mkdir -p ~/code/lab/projects/website।"
+    },
+    {
+      "id": "wv0l2-q11",
+      "difficulty": "easy",
+      "question": "mkdir -p-র -p flag-টা কী করে?",
+      "options": [
+        "password চায়",
+        "মাঝের parent directory গুলোও বানিয়ে নেয়",
+        "directory private করে",
+        "খালি directory মোছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-p = parents — ~/code/lab/projects/website বানাতে গেলে code, lab, projects না থাকলে সেগুলোও একসাথে বানায়।"
+    },
+    {
+      "id": "wv0l2-q12",
+      "difficulty": "easy",
+      "question": "echo \"Hello World\" চালালে কী হবে?",
+      "options": [
+        "Hello World নামে ফাইল তৈরি হবে",
+        "স্ক্রিনে Hello World ছাপা হবে",
+        "error আসবে",
+        "কিছুই হবে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "redirect (>) ছাড়া echo-র output স্ক্রিনে (stdout-এ) যায় — JS-এর console.log-এর মতো।"
+    },
+    {
+      "id": "wv0l2-q13",
+      "difficulty": "easy",
+      "question": "echo \"hi\" > notes.txt — এখানে > চিহ্নটার কাজ কী?",
+      "options": [
+        "তুলনা করা (greater than)",
+        "output-কে স্ক্রিনের বদলে ফাইলে পাঠানো",
+        "ফাইলটা পড়া",
+        "ফাইলটা মুছে ফেলা"
+      ],
+      "answerIndex": 1,
+      "explanation": "> হলো redirect — echo-র output notes.txt ফাইলে ঢোকে। ফাইল না থাকলে তৈরি হয়ে যায়।"
+    },
+    {
+      "id": "wv0l2-q14",
+      "difficulty": "easy",
+      "question": "ফাইলের নাম দিয়ে ফাইল খোঁজার কমান্ড কোনটা?",
+      "options": ["grep", "ls", "find", "search"],
+      "answerIndex": 2,
+      "explanation": "find নাম (আর টাইপ) দিয়ে file/directory খোঁজে। ভেতরের লেখা খোঁজা grep-এর কাজ।"
+    },
+    {
+      "id": "wv0l2-q15",
+      "difficulty": "easy",
+      "question": "ফাইলের ভেতরের লেখা খোঁজার কমান্ড কোনটা?",
+      "options": ["find", "grep", "ls -la", "cat"],
+      "answerIndex": 1,
+      "explanation": "grep ফাইল খুলে খুলে লাইন ধরে text pattern খোঁজে — যেমন grep -r \"Meeting\" ~/code/lab/documents।"
+    },
+    {
+      "id": "wv0l2-q16",
+      "difficulty": "easy",
+      "question": "wildcard * চিহ্নটা কী বোঝায়?",
+      "options": [
+        "ঠিক একটা অক্ষর",
+        "এখানে যা খুশি থাকতে পারে (যেকোনো কিছু)",
+        "hidden ফাইল",
+        "গুরুত্বপূর্ণ ফাইল"
+      ],
+      "answerIndex": 1,
+      "explanation": "* মানে 'যেকোনো কিছু' — *.txt মানে নাম যা-ই হোক, শেষটা .txt।"
+    },
+    {
+      "id": "wv0l2-q17",
+      "difficulty": "easy",
+      "question": "Linux-এ 'directory' শব্দটার সহজ মানে কী?",
+      "options": [
+        "একটা প্রোগ্রাম",
+        "ফোল্ডার",
+        "hard drive",
+        "ফাইলের ভেতরের লেখা"
+      ],
+      "answerIndex": 1,
+      "explanation": "directory = ফোল্ডার — একই জিনিস, Linux-এর ভাষায় directory বলে।"
+    },
+    {
+      "id": "wv0l2-q18",
+      "difficulty": "easy",
+      "question": "শুধু cd লিখে (কোনো path ছাড়া) Enter চাপলে কোথায় যাবে?",
+      "options": [
+        "root (/)-এ",
+        "আগের directory-তে",
+        "নিজের home directory-তে",
+        "কোথাও না, error"
+      ],
+      "answerIndex": 2,
+      "explanation": "argument ছাড়া cd মানে বাড়ি ফেরা — cd ~-র মতোই home directory-তে।"
+    },
+    {
+      "id": "wv0l2-q19",
+      "difficulty": "easy",
+      "question": "ল্যাবের setup-এ echo \"Todo List\" > todo.txt চালানোর পরে todo.txt-র ভেতরে কী থাকবে?",
+      "options": ["খালি", "Todo List", "echo Todo List", "todo.txt"],
+      "answerIndex": 1,
+      "explanation": "> redirect-এ echo-র লেখাটাই ফাইলের content হয় — Todo List।"
+    },
+    {
+      "id": "wv0l2-q20",
+      "difficulty": "easy",
+      "question": "ls ~/code/lab/projects — এই কমান্ডে path দেওয়ার সুবিধা কী?",
+      "options": [
+        "দ্রুত চলে",
+        "ওই directory-তে না গিয়েই ভেতরটা দেখা যায়",
+        "hidden ফাইলও দেখায়",
+        "ভেতরের ফাইল খুলে দেখায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "ls-কে path দিলে cd করে যাওয়া লাগে না — যেখানে আছো সেখান থেকেই অন্য ঘরে উঁকি।"
+    },
+    {
+      "id": "wv0l2-q21",
+      "difficulty": "medium",
+      "question": "cd /lab আর cd lab — পার্থক্য কী?",
+      "options": [
+        "কোনো পার্থক্য নেই",
+        "/lab মানে root-এর ভেতরের lab, lab মানে current directory-র ভেতরের lab",
+        "/lab দ্রুত চলে",
+        "lab শুধু root user চালাতে পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "শুরুর / পুরো অর্থ বদলে দেয়: /lab = absolute (root থেকে), lab = relative (এখান থেকে)। ভুল জায়গার No such file-এর এক নম্বর কারণ।"
+    },
+    {
+      "id": "wv0l2-q22",
+      "difficulty": "medium",
+      "question": "কোন path-টা absolute আর কোনটা relative — চেনার নিয়ম কী?",
+      "options": [
+        "বড় হাতের অক্ষরে শুরু হলে absolute",
+        "শুরুতে / (বা ~) থাকলে absolute, নাহলে relative",
+        "শেষে / থাকলে absolute",
+        "দৈর্ঘ্য দেখে"
+      ],
+      "answerIndex": 1,
+      "explanation": "শুরুতে / = root থেকে পুরো ঠিকানা (absolute); ~-ও home-এ resolve হয়ে absolute-এর মতো কাজ করে। শুরুতে কিছু না থাকলে current directory থেকে (relative)।"
+    },
+    {
+      "id": "wv0l2-q23",
+      "difficulty": "medium",
+      "question": "mkdir -p ~/code/lab — directory-টা আগে থেকেই আছে। কী হবে?",
+      "options": [
+        "File exists error",
+        "কিছুই হবে না, চুপচাপ success",
+        "আগেরটা মুছে নতুন হবে",
+        "lab-2 তৈরি হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-p-র দ্বিতীয় গুণ: already exists হলে error না দিয়ে পার হয়ে যায় — এজন্যই setup script বারবার চালানো নিরাপদ।"
+    },
+    {
+      "id": "wv0l2-q24",
+      "difficulty": "medium",
+      "question": "mkdir a/b/c চালালে (a বলে কিছু নেই, -p-ও নেই) কী হবে?",
+      "options": [
+        "a, b, c তিনটাই তৈরি হবে",
+        "শুধু a তৈরি হবে",
+        "error: No such file or directory",
+        "শুধু c তৈরি হবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "-p ছাড়া mkdir মাঝের ধাপ বানায় না — a-ই নেই, তাই b/c বানানোর জায়গা নেই। সমাধান: mkdir -p a/b/c।"
+    },
+    {
+      "id": "wv0l2-q25",
+      "difficulty": "medium",
+      "question": "f.txt-তে আগে থেকে লেখা আছে। echo \"new\" > f.txt চালালে পুরনো লেখার কী হবে?",
+      "options": [
+        "নতুন লেখার নিচে থেকে যাবে",
+        "পুরোপুরি মুছে যাবে — শুধু new থাকবে",
+        "দুটো ফাইল হবে",
+        "error আসবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "> সবসময় মুছে নতুন করে লেখে (overwrite)। আগেরটা রাখতে চাইলে >> (append)।"
+    },
+    {
+      "id": "wv0l2-q26",
+      "difficulty": "medium",
+      "question": ">> আর > — পার্থক্য কী?",
+      "options": [
+        "একই জিনিস",
+        "> মুছে লেখে, >> আগের লেখার নিচে যোগ করে",
+        ">> দুটো ফাইলে লেখে",
+        "> শুধু নতুন ফাইলে কাজ করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "> = overwrite, >> = append। production-এ config ফাইলে ভুল করে > চালানো ক্লাসিক দুর্ঘটনা।"
+    },
+    {
+      "id": "wv0l2-q27",
+      "difficulty": "medium",
+      "question": "ls -la-র output-এ একটা লাইন drwxr-xr-x দিয়ে শুরু — প্রথম অক্ষর d কী বোঝায়?",
+      "options": ["deleted", "directory", "default", "data"],
+      "answerIndex": 1,
+      "explanation": "প্রথম অক্ষর টাইপ: d = directory, - = সাধারণ file। বাকি rwx অংশ permission — সেটা পরের লেসনে।"
+    },
+    {
+      "id": "wv0l2-q28",
+      "difficulty": "medium",
+      "question": "ls -la-র তালিকায় . আর .. নামে দুটো entry আসে কেন?",
+      "options": [
+        "দুটো hidden ফাইল ভুলে তৈরি হয়েছে",
+        ". মানে এই directory আর .. মানে parent — -a এই special entry গুলোও দেখায়",
+        "ওগুলো system error",
+        "ফাঁকা লাইন বোঝায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "প্রতিটা directory-তে . (নিজে) আর .. (parent) থাকে। নাম . দিয়ে শুরু বলে এরা hidden — -a দিলেই দেখা যায়।"
+    },
+    {
+      "id": "wv0l2-q29",
+      "difficulty": "medium",
+      "question": "তুমি ~/code/lab-এ। ls -la ছাড়া, meeting.txt file নাকি directory বুঝবে কীভাবে ls -la ব্যবহার করে?",
+      "options": [
+        "রঙ দেখে",
+        "লাইনের প্রথম অক্ষর দেখে: - হলে file, d হলে directory",
+        "সাইজ দেখে",
+        "নামের দৈর্ঘ্য দেখে"
+      ],
+      "answerIndex": 1,
+      "explanation": "ls -la-র প্রতি লাইনের প্রথম অক্ষরই টাইপ বলে দেয়: -rw-r--r-- মানে file, drwxr-xr-x মানে directory।"
+    },
+    {
+      "id": "wv0l2-q30",
+      "difficulty": "medium",
+      "question": "find . -name \"*.txt\" — এখানে . টা কী বলছে?",
+      "options": [
+        "hidden ফাইলও খোঁজো",
+        "current directory থেকে খোঁজা শুরু করো",
+        "শুধু এক ধাপ খোঁজো",
+        "সব drive-এ খোঁজো"
+      ],
+      "answerIndex": 1,
+      "explanation": "find-এর প্রথম argument হলো খোঁজার শুরুর জায়গা। . মানে এখান থেকে — ভেতরের সব subdirectory-সহ।"
+    },
+    {
+      "id": "wv0l2-q31",
+      "difficulty": "medium",
+      "question": "find কমান্ডের সঠিক গঠন কোনটা?",
+      "options": [
+        "find -name \"*.txt\" <কোথায়>",
+        "find <কোথা থেকে খুঁজবে> -name \"<কী>\"",
+        "find \"<কী>\" -in <কোথায়>",
+        "find --search *.txt"
+      ],
+      "answerIndex": 1,
+      "explanation": "গঠন: find <starting-path> <conditions> — আগে কোথা থেকে, তারপর শর্ত (-name, -type)।"
+    },
+    {
+      "id": "wv0l2-q32",
+      "difficulty": "medium",
+      "question": "find-এ -type f আর -type d-র পার্থক্য কী?",
+      "options": [
+        "f = fast, d = deep",
+        "f = শুধু file, d = শুধু directory",
+        "f = first, d = default",
+        "কোনো পার্থক্য নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "-type f ফলাফল শুধু file-এ সীমাবদ্ধ করে, -type d শুধু directory-তে। ল্যাবের Challenge 3-এ -type d দিয়েই সব directory বের করেছিলে।"
+    },
+    {
+      "id": "wv0l2-q33",
+      "difficulty": "medium",
+      "question": "find . -name \"*.txt\" চালালে ফলাফলের path গুলো ./ দিয়ে শুরু হয় কেন?",
+      "options": [
+        "সব path এভাবেই শুরু হয়",
+        "যেখান থেকে খোঁজা শুরু, find সেখান থেকেই path দেখায় — শুরুটা ছিল . ",
+        "hidden ফাইল বোঝাতে",
+        "relative path-এ error"
+      ],
+      "answerIndex": 1,
+      "explanation": "find start path-এর সাপেক্ষে ফল দেখায়: find . দিলে ./documents/notes/todo.txt, find ~/code/lab দিলে /root/code/lab/documents/notes/todo.txt।"
+    },
+    {
+      "id": "wv0l2-q34",
+      "difficulty": "medium",
+      "question": "grep -r-এর -r flag-টা কী করে?",
+      "options": [
+        "reverse করে",
+        "regular expression চালু করে",
+        "recursive — directory-র ভেতরের সব ফাইলে (subdirectory-সহ) খোঁজে",
+        "শুধু root-এ খোঁজে"
+      ],
+      "answerIndex": 2,
+      "explanation": "-r = recursive। এটা ছাড়া grep-কে directory দিলে সে ভেতরে ঢোকে না।"
+    },
+    {
+      "id": "wv0l2-q35",
+      "difficulty": "medium",
+      "question": "grep -r \"Meeting\" ~/code/lab/documents-এর output: /root/code/lab/documents/notes/meeting.txt:Meeting Notes — এই format-টা কী?",
+      "options": [
+        "শুধু ফাইলের নাম",
+        "ফাইলের path : match করা লাইন",
+        "path : ফাইলের সাইজ",
+        "directory : ফাইল সংখ্যা"
+      ],
+      "answerIndex": 1,
+      "explanation": "grep-এর output = path:matched-line — এক নজরে কোন ফাইলে, কী লেখায় match।"
+    },
+    {
+      "id": "wv0l2-q36",
+      "difficulty": "medium",
+      "question": "grep \"Meeting\" ~/code/lab/documents (-r ছাড়া, target একটা directory) — কী হবে?",
+      "options": [
+        "সব subdirectory-তে খুঁজবে",
+        "grep: ... Is a directory — error",
+        "শুধু প্রথম ফাইলে খুঁজবে",
+        "কিছুই দেখাবে না, silent"
+      ],
+      "answerIndex": 1,
+      "explanation": "directory-র 'ভেতরের লেখা' বলে কিছু নেই — grep জানে না কী করতে হবে। directory-তে খুঁজতে হলে -r লাগবেই।"
+    },
+    {
+      "id": "wv0l2-q37",
+      "difficulty": "medium",
+      "question": "grep \"Plan\" ~/code/lab/documents/*/*.txt — এখানে */ অংশটা কী বোঝাচ্ছে?",
+      "options": [
+        "সব hidden ফোল্ডার",
+        "documents-এর ঠিক এক ধাপ ভেতরের যেকোনো ফোল্ডার",
+        "root-এর সব ফোল্ডার",
+        "শুধু projects ফোল্ডার"
+      ],
+      "answerIndex": 1,
+      "explanation": "*/ মানে 'এক ধাপ ভেতরের যেকোনো directory' — তাই notes আর reports দুটোরই .txt ফাইল ধরা পড়ে।"
+    },
+    {
+      "id": "wv0l2-q38",
+      "difficulty": "medium",
+      "question": "লম্বা path টাইপ করার সময় Tab চাপার সুবিধা কী?",
+      "options": [
+        "কমান্ড দ্রুত চলে",
+        "shell নিজেই নাম complete করে দেয় — typo হয় না",
+        "history দেখায়",
+        "নতুন টার্মিনাল খোলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tab completion ল্যাবের troubleshooting টিপ: No such file or directory-র বেশিরভাগ কারণই typo, আর Tab typo করে না।"
+    },
+    {
+      "id": "wv0l2-q39",
+      "difficulty": "medium",
+      "question": "cd ~/code/documnets চালিয়ে 'No such file or directory' পেলে — সবচেয়ে সম্ভাব্য কারণ?",
+      "options": [
+        "permission নেই",
+        "path-এ বানান ভুল (documnets ← খেয়াল করো!)",
+        "disk ভরে গেছে",
+        "cd ভাঙা"
+      ],
+      "answerIndex": 1,
+      "explanation": "documents-এর বানান ভুল। এই error দেখলেই আগে বানান sandeh করো — আর Tab completion ব্যবহার করো।"
+    },
+    {
+      "id": "wv0l2-q40",
+      "difficulty": "medium",
+      "question": "'Permission Denied' error পেলে ল্যাবের troubleshooting অনুযায়ী প্রথমে কী করবে?",
+      "options": [
+        "computer restart",
+        "ls -la দিয়ে permission গুলো দেখা",
+        "ফাইলটা মুছে ফেলা",
+        "নতুন user বানানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "ls -la-তে কার কী অধিকার আছে দেখা যায়; দরকারে chmod দিয়ে বদলানো যায় (chmod-এর বিস্তারিত পরের লেসনে)।"
+    },
+    {
+      "id": "wv0l2-q41",
+      "difficulty": "medium",
+      "question": "'Command not found' error-টার মানে কী?",
+      "options": [
+        "ফাইলটা নেই",
+        "কমান্ডের বানান ভুল, বা টুলটাই install করা নেই",
+        "permission নেই",
+        "path ভুল"
+      ],
+      "answerIndex": 1,
+      "explanation": "টাইপ করা শব্দটাকে shell কোনো কমান্ড হিসেবে চেনে না — বানান চেক করো (যেমন gerp ← grep)।"
+    },
+    {
+      "id": "wv0l2-q42",
+      "difficulty": "medium",
+      "question": "cd .. দুইবার পরপর চালানো আর cd ../.. একবার — ফলাফলে পার্থক্য?",
+      "options": [
+        "../.. error দেয়",
+        "একই — দুই ধাপ উপরে",
+        "../.. তিন ধাপ ওঠে",
+        ".. .. root-এ নেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "..-ও path-এর অংশ, চেইন করা যায়: ../.. মানে parent-এর parent — এক লাফে দুই ধাপ।"
+    },
+    {
+      "id": "wv0l2-q43",
+      "difficulty": "medium",
+      "question": "echo \"A\" > f.txt তারপর echo \"B\" > f.txt — এখন cat f.txt কী দেখাবে?",
+      "options": ["A এবং B দুটোই", "শুধু B", "শুধু A", "খালি ফাইল"],
+      "answerIndex": 1,
+      "explanation": "দ্বিতীয় > আগের content মুছে B লিখেছে। A-ও রাখতে চাইলে দ্বিতীয়বার >> ব্যবহার করতে হতো।"
+    },
+    {
+      "id": "wv0l2-q44",
+      "difficulty": "medium",
+      "question": "ls ~/code/lab/projects কমান্ডটা যেকোনো directory থেকে চালালেই একই ফল দেয় কেন?",
+      "options": [
+        "ls সবসময় সব দেখায়",
+        "path-টা ~ দিয়ে শুরু — home থেকে resolve হয়, তোমার অবস্থানের উপর নির্ভর করে না",
+        "projects special ফোল্ডার",
+        "cache থেকে আসে"
+      ],
+      "answerIndex": 1,
+      "explanation": "~ দিয়ে শুরু path কার্যত absolute — যেখান থেকেই চালাও, একই জায়গা দেখাবে। relative path হলে ফল বদলে যেত।"
+    },
+    {
+      "id": "wv0l2-q45",
+      "difficulty": "medium",
+      "question": "find ./documents/notes -type f — এই খোঁজার 'এলাকা'-টা কতটুকু?",
+      "options": [
+        "পুরো file system",
+        "শুধু ./documents/notes আর তার ভেতরের সবকিছু",
+        "শুধু current directory-র প্রথম স্তর",
+        "documents-এর সব ফোল্ডার"
+      ],
+      "answerIndex": 1,
+      "explanation": "find-এর start path-ই এলাকার সীমানা — notes আর তার ভেতরটুকুই। তাই plan.txt (reports-এ) আসেনি।"
+    },
+    {
+      "id": "wv0l2-q46",
+      "difficulty": "hard",
+      "question": "find / -name *.log (quote ছাড়া) কখন-কীভাবে বিগড়ে যায়?",
+      "options": [
+        "কখনোই না, quote শুধু style",
+        "current directory-তে .log ফাইল থাকলে shell আগেই *.log expand করে ফেলে — find-এর কাছে * পৌঁছায় না",
+        "সবসময় error দেয়",
+        "root-এ চালালে শুধু কাজ করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "unquoted wildcard shell নিজে expand করে। current ফোল্ডারে a.log থাকলে find / -name a.log হয়ে যায় — সম্পূর্ণ ভিন্ন খোঁজা! quote-এ মুড়লে * অক্ষত অবস্থায় find পায়।"
+    },
+    {
+      "id": "wv0l2-q47",
+      "difficulty": "hard",
+      "question": "ল্যাবের গাছে lab-এর ভেতরে directory ৫টা (documents, reports, notes, projects, website)। তবু find ~/code/lab -type d ৬টা লাইন দেখায় — ষষ্ঠটা কে?",
+      "options": [
+        "একটা hidden directory",
+        "~/code/lab নিজেই — find খোঁজার শুরুর জায়গাটাও গোনে",
+        "root directory",
+        "duplicate entry"
+      ],
+      "answerIndex": 1,
+      "explanation": "find তার starting point-টাও পরীক্ষা করে — lab নিজে একটা directory, তাই সে-ও ফলাফলে। ৫ + নিজে = ৬।"
+    },
+    {
+      "id": "wv0l2-q48",
+      "difficulty": "hard",
+      "question": "grep \"Plan\" ~/code/lab/documents/*/*.txt — এখানে wildcard expansion-এর কাজটা আসলে কে করে?",
+      "options": [
+        "grep নিজে",
+        "find",
+        "shell (টার্মিনাল) — আগেই প্যাটার্নটা ফাইল-লিস্টে বদলে grep-কে দেয়",
+        "operating system-এর kernel"
+      ],
+      "answerIndex": 2,
+      "explanation": "unquoted glob shell-ই expand করে: grep আসলে পায় তিনটা আলাদা ফাইলের path। এজন্যই -r লাগেনি — recursion-এর কাজটা expansion-ই করে দিয়েছে।"
+    },
+    {
+      "id": "wv0l2-q49",
+      "difficulty": "hard",
+      "question": "তুমি root (/)-এ দাঁড়িয়ে cd projects চালালে — ল্যাবের কাঠামোতে কী হবে আর কেন?",
+      "options": [
+        "~/code/lab/projects-এ চলে যাবে",
+        "error — কারণ relative path current directory থেকে খোঁজে, আর /-এর সরাসরি ভেতরে projects নেই",
+        "নতুন projects তৈরি হবে",
+        "home-এ ফিরে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "relative path মানেই 'এখান থেকে'। projects আছে ~/code/lab-এর ভেতরে, /-এর ভেতরে না — তাই No such file or directory।"
+    },
+    {
+      "id": "wv0l2-q50",
+      "difficulty": "hard",
+      "question": "তুমি ~/code/lab/documents/notes-এ। এক কমান্ডে ~/code/lab/projects/website-এ যাওয়ার relative path কোনটা?",
+      "options": [
+        "cd projects/website",
+        "cd ../projects/website",
+        "cd ../../projects/website",
+        "cd .../projects/website"
+      ],
+      "answerIndex": 2,
+      "explanation": "notes → (..) documents → (..) lab, তারপর নিচে projects/website। দুই ধাপ ওঠা = ../.. — চেইন করা relative path।"
+    },
+    {
+      "id": "wv0l2-q51",
+      "difficulty": "hard",
+      "question": "ls -la-তে meeting.txt-র সাইজ 14 bytes দেখায়, অথচ 'Meeting Notes' লেখাটা ১৩ অক্ষরের। বাড়তি ১ byte কোথা থেকে এলো?",
+      "options": [
+        "ফাইলের নাম গোনা হয়েছে",
+        "echo লাইনের শেষে একটা newline (\\n) যোগ করে",
+        "space গোনা হয়নি",
+        "hidden metadata"
+      ],
+      "answerIndex": 1,
+      "explanation": "echo লেখার শেষে নিজে থেকে newline বসায় — ১৩ অক্ষর + \\n = ১৪ bytes। ছোট কিন্তু আসল Linux-জ্ঞান!"
+    },
+    {
+      "id": "wv0l2-q52",
+      "difficulty": "hard",
+      "question": "grep -r \"Meeting\" ~/code/lab/documents-এর output-এ path /root/code/lab/... দিয়ে শুরু — আমরা তো ~ লিখেছিলাম। কেন?",
+      "options": [
+        "grep সব path বদলে দেয়",
+        "shell আগে ~-কে /root-এ expand করে, grep আসল absolute path-টাই পায় ও দেখায়",
+        "এটা bug",
+        "-r flag path বদলায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "~ expansion shell-এর কাজ, grep চালু হওয়ার আগেই ঘটে। grep-এর চোখে target ছিল /root/code/lab/documents — তাই output-ও তা-ই।"
+    },
+    {
+      "id": "wv0l2-q53",
+      "difficulty": "hard",
+      "question": "find ./documents/notes -type f ফলাফলে meeting.txt আর todo.txt আসে, কিন্তু plan.txt আসে না। plan.txt-ও তো .txt ফাইল! কারণ?",
+      "options": [
+        "plan.txt hidden",
+        "-type f শুধু নতুন ফাইল দেখে",
+        "plan.txt আছে reports-এ — খোঁজার এলাকা ছিল শুধু notes",
+        "plan.txt-র permission নেই"
+      ],
+      "answerIndex": 2,
+      "explanation": "find-এর প্রথম argument-ই সীমানা: ./documents/notes-এর বাইরে সে তাকায়ই না। plan.txt আছে ./documents/reports-এ।"
+    },
+    {
+      "id": "wv0l2-q54",
+      "difficulty": "hard",
+      "question": "তুমি ~/code-এ দাঁড়িয়ে: echo \"Hi\" > ./lab/projects/hello.txt — hello.txt কোথায় তৈরি হবে?",
+      "options": [
+        "home directory-তে",
+        "~/code/lab/projects-এর ভেতরে",
+        "root-এ",
+        "যেখানে টার্মিনাল খোলা সেখানে"
+      ],
+      "answerIndex": 1,
+      "explanation": "./ মানে current directory (~/code) থেকে শুরু — তাই ফাইল যাবে ~/code/lab/projects/hello.txt-এ। redirect-এও path resolution একই নিয়মে চলে।"
+    },
+    {
+      "id": "wv0l2-q55",
+      "difficulty": "hard",
+      "question": "grep -r \"List\" ~/code/lab শুধু todo.txt দেখায় — অথচ 'Todo List' আর 'Project Plan' দুটোই ল্যাবের ফাইল। কেন plan.txt আসে না?",
+      "options": [
+        "plan.txt পড়া যায় না",
+        "grep নাম না, ভেতরের লেখা মেলায় — 'List' লেখাটা আছে শুধু todo.txt-র content-এ",
+        "-r এক ফাইলেই থামে",
+        "txt ফাইল grep পড়ে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "grep content match করে: 'Todo List'-এ List আছে ✓, 'Project Plan'-এ নেই ✗। ফাইলের নামের সাথে এর কোনো সম্পর্কই নেই।"
+    },
+    {
+      "id": "wv0l2-q56",
+      "difficulty": "hard",
+      "question": "mkdir ~/code/lab (-p ছাড়া) চালালে, যেখানে lab আগে থেকেই আছে — কী হবে?",
+      "options": [
+        "চুপচাপ পার হয়ে যাবে",
+        "mkdir: cannot create directory: File exists — error",
+        "lab-এর ভেতরটা মুছে যাবে",
+        "lab(1) নামে নতুন হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-p ছাড়া mkdir exists হলে error দেয়। -p থাকলে চুপচাপ পার হতো — দুটোর তফাত এখানেই।"
+    },
+    {
+      "id": "wv0l2-q57",
+      "difficulty": "hard",
+      "question": "Scenario: একটা config ফাইল খুঁজছো — নামে '.conf' আছে জানো, আর ভেতরে '8080' লেখা আছে জানো। ল্যাবের স্কিলে সবচেয়ে কার্যকর প্ল্যান কোনটা?",
+      "options": [
+        "ls -la দিয়ে সব ফোল্ডার একে একে দেখা",
+        "আগে find দিয়ে *.conf গুলো বের করা, তারপর grep -r দিয়ে 8080 খোঁজা — দুই দিক থেকে সংকুচিত করা",
+        "শুধু cd দিয়ে ঘুরে ঘুরে খোঁজা",
+        "cat দিয়ে সব ফাইল খুলে দেখা"
+      ],
+      "answerIndex": 1,
+      "explanation": "নাম-সূত্র = find -name \"*.conf\", content-সূত্র = grep -r \"8080\"। দুটো মিলিয়ে দ্রুত এক জায়গায় পৌঁছানো যায় — এটাই বাস্তবের workflow।"
+    },
+    {
+      "id": "wv0l2-q58",
+      "difficulty": "hard",
+      "question": "find ~/code/lab -name \"*.txt\" -type f — দুটো condition একসাথে দিলে find কীভাবে আচরণ করে?",
+      "options": [
+        "যেকোনো একটা মিললেই দেখায়",
+        "দুটোই মিলতে হবে — নাম .txt দিয়ে শেষ এবং সেটা file",
+        "-type উপেক্ষা করে",
+        "error দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "find-এর condition গুলো default-এ AND — সব শর্ত পূরণ করা জিনিসই শুধু ফলাফলে আসে।"
+    },
+    {
+      "id": "wv0l2-q59",
+      "difficulty": "hard",
+      "question": "echo \"x\" > ~/code/lab/documents/notes/new.txt সফল হলো, কিন্তু echo \"x\" > ~/code/lab/backup/new.txt দিলো 'No such file or directory'। কেন?",
+      "options": [
+        "দ্বিতীয়টায় নামে সমস্যা",
+        "> ফাইল বানাতে পারে, কিন্তু মাঝের directory (backup) বানাতে পারে না — সেটা নেই",
+        "একসাথে দুটো ফাইল হয় না",
+        "backup reserved শব্দ"
+      ],
+      "answerIndex": 1,
+      "explanation": "redirect ফাইল তৈরি করে, directory না। parent directory থাকতেই হবে — না থাকলে আগে mkdir -p ~/code/lab/backup।"
+    },
+    {
+      "id": "wv0l2-q60",
+      "difficulty": "hard",
+      "question": "তুমি ~/code/lab-এ, চালালে find . -name \"*.txt\" আর তোমার বন্ধু / (root)-এ দাঁড়িয়ে চালালো একই কমান্ড। ফলাফল আলাদা হবে কেন?",
+      "options": [
+        "find এলোমেলো আচরণ করে",
+        ". মানে যার যার current directory — তোমারটা lab থেকে খুঁজবে, বন্ধুরটা পুরো / জুড়ে",
+        "root-এ find চলে না",
+        "ফলাফল একই হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": ". একটা relative starting point — কমান্ড এক হলেও এলাকা ভিন্ন। এজন্যই script-এ absolute path নিরাপদ।"
+    }
+  ]
+}
