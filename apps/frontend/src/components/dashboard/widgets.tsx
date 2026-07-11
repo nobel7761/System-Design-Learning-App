@@ -260,6 +260,16 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
         streak={dashboard.streak}
         xp={dashboard.xp}
       />
+      <TrackCard
+        emoji="🧩"
+        title="DSA — NeetCode 150"
+        subtitle="Python-এ Zero থেকে ১৫০ problems"
+        summary={dashboard.tracks["dsa"]}
+        syllabusHref="/syllabus?track=dsa"
+        isDark={true}
+        streak={dashboard.streak}
+        xp={dashboard.xp}
+      />
     </div>
   );
 }

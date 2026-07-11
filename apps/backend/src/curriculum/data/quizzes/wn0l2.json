@@ -1,0 +1,172 @@
+{
+  "lessonId": "wn0l2",
+  "questions": [
+    {
+      "id": "wn0l2-q01",
+      "difficulty": "easy",
+      "question": "JavaScript-এর `else if`-এর Python equivalent কোনটা?",
+      "options": ["elif", "else if", "elseif", "elsif"],
+      "answerIndex": 0,
+      "explanation": "Python-এ `else if` এক শব্দে ছোট হয়ে `elif` হয়েছে। `else if` লিখলে SyntaxError হবে।"
+    },
+    {
+      "id": "wn0l2-q02",
+      "difficulty": "easy",
+      "question": "Python-এ `if` statement-এর line-এর শেষে কী দিতেই হবে?",
+      "options": [
+        "Semicolon (;)",
+        "Curly brace ({)",
+        "Colon (:)",
+        "কিছুই লাগে না"
+      ],
+      "answerIndex": 2,
+      "explanation": "Colon (:) Python-কে বলে এরপর একটা indented block আসছে। Colon ভুলে গেলে `SyntaxError: expected ':'` — JS developer-দের প্রথম সপ্তাহের সবচেয়ে common error।"
+    },
+    {
+      "id": "wn0l2-q03",
+      "difficulty": "easy",
+      "question": "JavaScript-এর `&&`, `||`, `!` — Python-এ এগুলোর জায়গায় কী লেখা হয়?",
+      "options": [
+        "একই symbol — `&&`, `||`, `!`",
+        "`AND`, `OR`, `NOT` (সব capital letter-এ)",
+        "`&`, `|`, `~`",
+        "`and`, `or`, `not`"
+      ],
+      "answerIndex": 3,
+      "explanation": "Python-এ symbol-এর বদলে শব্দ ব্যবহার হয়: `and`, `or`, `not` (lowercase)। Short-circuit behaviour JS-এর মতোই।"
+    },
+    {
+      "id": "wn0l2-q04",
+      "difficulty": "easy",
+      "question": "Python-এ `'5' == 5` -এর ফলাফল কী?",
+      "options": [
+        "True — JS-এর মতো type coercion হয়",
+        "False — Python-এর `==` type coercion করে না",
+        "TypeError — ভিন্ন type তুলনা করা যায় না",
+        "None"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এর `==` কোনো type coercion করে না — string আর int কখনোই সমান না, তাই `False`। JS-এ `'5' == 5` ছিল `true`, এজন্যই JS-এ `===` দরকার হতো; Python-এ `===`-এর দরকারই নেই।"
+    },
+    {
+      "id": "wn0l2-q05",
+      "difficulty": "easy",
+      "question": "Python-এ খালি list `[]` truthy নাকি falsy?",
+      "options": [
+        "Truthy — JS-এর মতোই",
+        "Truthy, তবে শুধু `if` statement-এর ভেতরে",
+        "Falsy — খালি collection মানেই falsy",
+        "নির্ভর করে list-টা কীভাবে বানানো হয়েছে তার উপর"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এর নিয়ম: শূন্য জিনিস মানে মিথ্যা। খালি list, dict, string, set, tuple — সব falsy। JS-এ `[]` truthy ছিল — এটাই JS developer-দের জন্য সবচেয়ে বড় ফাঁদ।"
+    },
+    {
+      "id": "wn0l2-q06",
+      "difficulty": "easy",
+      "question": "Python-এ কোনো variable `None` কি না check করার সঠিক ও নিরাপদ উপায় কোনটা?",
+      "options": ["`x === None`", "`x is None`", "`x.isNull()`", "`x == null`"],
+      "answerIndex": 1,
+      "explanation": "None check-এর জন্য identity operator `is` ব্যবহার করা হয়: `x is None` / `x is not None`। `== None` বেশিরভাগ সময় কাজ করলেও `==` override হতে পারে, তাই `is None`-ই নিয়ম (PEP 8-ও তাই বলে)। Python-এ `===` বা `null` নেই।"
+    },
+    {
+      "id": "wn0l2-q07",
+      "difficulty": "medium",
+      "question": "Python-এ `1 < x < 10` (যেখানে `x = 50`) — এটা ভেতরে ভেতরে কীভাবে evaluate হয়?",
+      "options": [
+        "`(1 < 50) and (50 < 10)` → `True and False` → `False`",
+        "`(1 < 50) < 10` → `True < 10` → `True`",
+        "SyntaxError — এভাবে chain করা যায় না",
+        "`1 < (50 < 10)` → `1 < False` → `False`"
+      ],
+      "answerIndex": 0,
+      "explanation": "Python chained comparison-কে `and` দিয়ে ভেঙে ফেলে: `(1 < x) and (x < 10)`। JS-এ এই একই syntax বাম-থেকে-ডানে evaluate হয়ে (`true < 10` → `1 < 10` → `true`) silent bug তৈরি করত — Python-এ এটা feature।"
+    },
+    {
+      "id": "wn0l2-q08",
+      "difficulty": "medium",
+      "question": "DSA problem-এ খালি list check করার Pythonic idiom কোনটা?",
+      "options": [
+        "`if arr == []:`",
+        "`if arr.length === 0:`",
+        "`if arr.isEmpty():`",
+        "`if not arr:`"
+      ],
+      "answerIndex": 3,
+      "explanation": "`if not arr:` — খালি list falsy, তাই `not arr` হয় `True`। `len(arr) == 0` ভুল না কিন্তু অকারণে লম্বা; `arr.length` আর `===` হলো JS syntax, Python-এ নেই। এই idiom-টা NeetCode 150-এর প্রায় প্রতিটা solution-এ ব্যবহার হয়।"
+    },
+    {
+      "id": "wn0l2-q09",
+      "difficulty": "medium",
+      "question": "Python-এ `status = \"pass\" if score >= 60 else \"fail\"` — এখানে ternary-র order JS থেকে কীভাবে আলাদা?",
+      "options": [
+        "কোনো পার্থক্য নেই, JS-এও একই order",
+        "Python-এ value আগে, condition মাঝখানে; JS-এ condition আগে (`cond ? x : y`)",
+        "Python-এ condition আগে, JS-এ value আগে",
+        "Python-এ ternary নেই, এটা আসলে match-case"
+      ],
+      "answerIndex": 1,
+      "explanation": "JS-এ order: `cond ? x : y` (আগে প্রশ্ন, পরে উত্তর)। Python-এ: `x if cond else y` (আগে উত্তর, মাঝে প্রশ্ন)। ইংরেজি বাক্যের মতো পড়া যায়: 'pass, if score is 60+, else fail'।"
+    },
+    {
+      "id": "wn0l2-q10",
+      "difficulty": "medium",
+      "question": "নিচের কোন value-টা Python-এ truthy?",
+      "options": ["`{}`", "`0`", "`[0]`", "`\"\"`"],
+      "answerIndex": 2,
+      "explanation": "`[0]` হলো একটা element-ওয়ালা list — ভেতরের value `0` falsy হলেও list-টা নিজে খালি না, তাই truthy। Python বাক্সের ভেতরে ঢুকে বিচার করে না, শুধু দেখে বাক্সে কিছু আছে কি না। `{}`, `0`, `\"\"` — তিনটাই falsy।"
+    },
+    {
+      "id": "wn0l2-q11",
+      "difficulty": "medium",
+      "question": "Python-এর `match-case` সম্পর্কে কোন কথাটা সঠিক?",
+      "options": [
+        "প্রতিটা case-এর শেষে `break` দিতে হয়, নইলে fall-through হয়",
+        "এটা Python-এর শুরু থেকেই ছিল",
+        "JS-এর `default`-এর equivalent হলো `case _:` এবং কোনো `break` লাগে না",
+        "DSA-তে `if/elif/else`-এর চেয়ে match-case-ই বেশি ব্যবহার হয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "match-case Python 3.10-এ এসেছে (শুরু থেকে না)। JS switch-এর `default`-এর জায়গায় `case _:`, আর fall-through নেই বলে `break`-ও লাগে না। DSA-তে ৯৯% সময় `if/elif/else`-ই যথেষ্ট।"
+    },
+    {
+      "id": "wn0l2-q12",
+      "difficulty": "hard",
+      "question": "এই code-টার output কী হবে?\n```python\narr = []\ntarget = 0\nif not arr:\n    result = \"empty\"\nelif 0 <= target < 5:\n    result = \"in range\"\nelse:\n    result = \"not found\"\nprint(result)\n```",
+      "options": [
+        "in range",
+        "not found",
+        "empty",
+        "empty এবং in range — দুটোই ছাপবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "`arr = []` falsy, তাই `not arr` হলো `True` — প্রথম branch-এই ঢোকে এবং `result = \"empty\"`। প্রথম True condition পাওয়ামাত্র Python বাকি elif/else evaluate-ই করে না — `0 <= target < 5` True হলেও সেই line পর্যন্ত পৌঁছায় না।"
+    },
+    {
+      "id": "wn0l2-q13",
+      "difficulty": "hard",
+      "question": "`count = 0` — 'count-এর কোনো value set হয়নি (None)' check করতে `if not count:` লিখলে কী সমস্যা?",
+      "options": [
+        "SyntaxError হবে — `not` শুধু boolean-এ চলে",
+        "`count = 0` হলেও condition True হয়ে যাবে, অথচ 0 হয়তো valid data — সঠিক check হলো `if count is None:`",
+        "কোনো সমস্যা নেই — `not count` আর `count is None` সবসময় একই ফলাফল দেয়",
+        "`not count` শুধু string-এর ক্ষেত্রে কাজ করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "`not count` জিজ্ঞেস করে 'count কি falsy?' — `0`, `None` দুটোতেই True। কিন্তু `0` যদি valid data হয় (যেমন score বা index), truthiness check bug তৈরি করবে। শুধু 'value নেই' বোঝাতে `is None` ব্যবহার করতে হবে — দুটো আলাদা প্রশ্ন, আলাদা tool।"
+    },
+    {
+      "id": "wn0l2-q14",
+      "difficulty": "hard",
+      "question": "এই function-টা `first_element([0])` দিয়ে call করলে কী ফেরত দেবে?\n```python\ndef first_element(arr):\n    return None if not arr else arr[0]\n```",
+      "options": [
+        "None — কারণ 0 falsy",
+        "IndexError",
+        "True",
+        "0 — কারণ `[0]` truthy, তাই `arr[0]` ফেরত আসে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`[0]` খালি list না — ভেতরে একটা element আছে — তাই truthy এবং `not arr` হলো `False`। Ternary-র else অংশ `arr[0]` মানে `0` ফেরত আসে। ভেতরের value falsy হলেও list-এর truthiness তাতে বদলায় না।"
+    }
+  ]
+}

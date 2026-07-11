@@ -25,6 +25,13 @@ const TRACKS = [
     color: "violet",
     desc: "LLMs, Prompting, RAG, Agents & Fine-tuning",
   },
+  {
+    value: "dsa",
+    label: "DSA — NeetCode 150",
+    emoji: "🧩",
+    color: "emerald",
+    desc: "Python, Data Structures, Algorithms & 150 Problems",
+  },
 ] as const;
 
 const COLOR_MAP = {
@@ -43,6 +50,11 @@ const COLOR_MAP = {
     emoji: "bg-violet-100",
     title: "text-violet-700",
   },
+  emerald: {
+    card: "border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50",
+    emoji: "bg-emerald-100",
+    title: "text-emerald-700",
+  },
 };
 
 export function QuizHomeScreen() {
@@ -53,7 +65,7 @@ export function QuizHomeScreen() {
         Completed lessons-এ full 60-question quiz দিয়ে নিজেকে test করো।
       </p>
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {TRACKS.map((t) => {
           const c = COLOR_MAP[t.color];
           return (

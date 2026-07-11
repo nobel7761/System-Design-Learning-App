@@ -132,6 +132,12 @@ const TRACKS: { value: Track; label: string; emoji: string; desc: string }[] = [
     emoji: "🤖",
     desc: "১১টা World · ৮৫টা session",
   },
+  {
+    value: "dsa",
+    label: "DSA — NeetCode 150",
+    emoji: "🧩",
+    desc: "২০টা World · ১৮৩টা session",
+  },
 ];
 
 export function SyllabusScreen() {
@@ -164,7 +170,9 @@ export function SyllabusScreen() {
                   ? "border-sky-400 bg-sky-50 text-sky-700 shadow-sm"
                   : t.value === "ai-mastery"
                     ? "border-violet-400 bg-violet-50 text-violet-700 shadow-sm"
-                    : "border-indigo-400 bg-indigo-50 text-indigo-700 shadow-sm"
+                    : t.value === "dsa"
+                      ? "border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm"
+                      : "border-indigo-400 bg-indigo-50 text-indigo-700 shadow-sm"
                 : "border-slate-200 bg-white text-slate-500 hover:border-slate-300"
             }`}
           >

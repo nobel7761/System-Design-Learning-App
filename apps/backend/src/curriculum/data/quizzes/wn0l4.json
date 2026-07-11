@@ -1,0 +1,167 @@
+{
+  "lessonId": "wn0l4",
+  "questions": [
+    {
+      "id": "wn0l4-q01",
+      "difficulty": "easy",
+      "question": "Python-এ function define করতে কোন keyword ব্যবহার হয়?",
+      "options": ["function", "def", "fn", "func"],
+      "answerIndex": 1,
+      "explanation": "Python-এ `def` keyword দিয়ে function define করা হয় — JS-এর `function` keyword বা arrow function-এর জায়গায়। যেমন: `def greet(name):`।"
+    },
+    {
+      "id": "wn0l4-q02",
+      "difficulty": "easy",
+      "question": "Python function-এর body কীভাবে চিহ্নিত হয়?",
+      "options": [
+        "Curly braces {} দিয়ে",
+        "begin/end keyword দিয়ে",
+        "Colon (:) এবং indentation দিয়ে",
+        "Parentheses () দিয়ে"
+      ],
+      "answerIndex": 2,
+      "explanation": "JS-এর braces-এর জায়গায় Python-এ parameter list-এর পরে একটা colon (:) বসে, তারপর indented body — indentation-ই বলে দেয় function-এর body কোথায় শুরু আর শেষ।"
+    },
+    {
+      "id": "wn0l4-q03",
+      "difficulty": "easy",
+      "question": "Python-এ একটা function কোনো `return` statement ছাড়া শেষ হলে সে কী return করে?",
+      "options": ["undefined", "0", "খালি string", "None"],
+      "answerIndex": 3,
+      "explanation": "JS-এ return না লিখলে function `undefined` দেয়; Python-এ দেয় `None`। `None` হলো Python-এ 'কিছু নেই' বোঝানোর একমাত্র value — null আর undefined আলাদা করে নেই।"
+    },
+    {
+      "id": "wn0l4-q04",
+      "difficulty": "easy",
+      "question": "`def paginate(items, page_size=10):` — এখানে `page_size=10` কে কী বলে?",
+      "options": [
+        "Default argument",
+        "Keyword-only argument",
+        "Global variable",
+        "Docstring"
+      ],
+      "answerIndex": 0,
+      "explanation": "এটা default argument — call করার সময় `page_size` না দিলে default হিসেবে 10 বসবে। JS-এর `function paginate(items, pageSize = 10)`-এর মতোই ধারণা।"
+    },
+    {
+      "id": "wn0l4-q05",
+      "difficulty": "easy",
+      "question": "Python-এ `lambda x: x * 2`-এর JavaScript equivalent কোনটা?",
+      "options": [
+        "function x { return 2 }",
+        "x => x * 2",
+        "let x = x * 2",
+        "map(x, 2)"
+      ],
+      "answerIndex": 1,
+      "explanation": "lambda হলো Python-এর ছোট anonymous function — JS-এর arrow function `x => x * 2`-এর মতো। তবে lambda-য় শুধু একটা expression লেখা যায়, JS arrow-এর মতো পুরো block না।"
+    },
+    {
+      "id": "wn0l4-q06",
+      "difficulty": "easy",
+      "question": "`announce(shout, \"hello\")` — এখানে `shout`-এর পরে parentheses নেই কেন?",
+      "options": [
+        "Python-এ parentheses optional",
+        "এটা একটা syntax error, parentheses লাগবেই",
+        "shout একটা string তাই",
+        "Parentheses ছাড়া `shout` মানে function-টা নিজে — এখানে call না করে function-টাই argument হিসেবে পাঠানো হচ্ছে"
+      ],
+      "answerIndex": 3,
+      "explanation": "`shout` মানে function object-টা নিজে, আর `shout()` মানে এখনই call করা। Function-কে argument হিসেবে পাঠাতে parentheses ছাড়া নামটাই দিতে হয় — Python-এ function first-class citizen, ঠিক JS-এর callback-এর মতো।"
+    },
+    {
+      "id": "wn0l4-q07",
+      "difficulty": "medium",
+      "question": "def mystery(a, b=10): return a + b — হলে `mystery(b=1, a=2)` কী return করবে?",
+      "options": ["SyntaxError হবে", "11", "3", "12"],
+      "answerIndex": 2,
+      "explanation": "Keyword argument দিয়ে call করলে order উল্টেও দেওয়া যায় — Python নাম দেখে মেলায়, position গোনে না। তাই `a=2, b=1` → `2 + 1 = 3`।"
+    },
+    {
+      "id": "wn0l4-q08",
+      "difficulty": "medium",
+      "question": "`return count, total` লিখলে Python ভেতরে আসলে কী করে?",
+      "options": [
+        "দুটো আলাদা return statement চালায়",
+        "Value দুটোকে একটা tuple-এ মুড়ে return করে, যেটা পরে unpack করা যায়",
+        "একটা dict বানিয়ে return করে",
+        "শুধু শেষের value-টা (total) return করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Multiple return আসলে tuple packing — Python `(count, total)` tuple বানিয়ে পাঠায়, আর caller `c, t = f()` লিখে tuple unpacking করে নেয়। JS-এ array-তে মুড়িয়ে destructure করার মতো, কিন্তু Python-এ এটা first-class feature।"
+    },
+    {
+      "id": "wn0l4-q09",
+      "difficulty": "medium",
+      "question": "Python-এ temp variable ছাড়া দুটো variable-এর মান swap করার idiomatic উপায় কোনটা?",
+      "options": [
+        "a, b = b, a",
+        "swap(a, b)",
+        "a = b; b = a",
+        "temp ছাড়া swap করা যায় না"
+      ],
+      "answerIndex": 0,
+      "explanation": "`a, b = b, a` — ডান পাশে `(b, a)` tuple তৈরি হয়, তারপর বাঁ পাশে unpack হয়। JS-এ লিখতে হয় `[a, b] = [b, a]`। Two-pointer, sorting-এ এই swap সারাক্ষণ লাগে।"
+    },
+    {
+      "id": "wn0l4-q10",
+      "difficulty": "medium",
+      "question": "JS-এ keyword argument নেই — Python-এর `create_user(role=\"admin\", name=\"Nobel\")`-এর মতো ব্যবহার JS-এ সাধারণত কীভাবে emulate করা হয়?",
+      "options": [
+        "JS-এ argument-এর order উল্টালেই automatically নাম ধরে মিলে যায়",
+        "eval() ব্যবহার করে",
+        "একটা object পাঠিয়ে function parameter-এ destructuring করে",
+        "arguments keyword দিয়ে"
+      ],
+      "answerIndex": 2,
+      "explanation": "JS-এ call-site-এ নাম ধরে argument দেওয়ার language feature নেই — তাই `createUser({ role: 'admin', name: 'Nobel' })` লিখে function-এ `({ name, role })` destructure করতে হয়। Python-এ যেকোনো সাধারণ function এমনিতেই keyword argument নেয়।"
+    },
+    {
+      "id": "wn0l4-q11",
+      "difficulty": "medium",
+      "question": "Python-এর `*args`-এর সবচেয়ে কাছের JavaScript feature কোনটা?",
+      "options": [
+        "arguments.callee",
+        "Rest parameter: function f(...nums)",
+        "Object destructuring",
+        "Default parameter"
+      ],
+      "answerIndex": 1,
+      "explanation": "`def total(*args):` JS-এর `function total(...nums)`-এর মতো — যতগুলো positional argument আসে সব একটা tuple-এ জমা হয়। আর `**kwargs` নাম-না-জানা keyword argument-গুলো dict হিসেবে নেয়, যার সরাসরি JS জোড়া নেই।"
+    },
+    {
+      "id": "wn0l4-q12",
+      "difficulty": "hard",
+      "question": "def add_task(task, tasks=[]): tasks.append(task); return tasks — পরপর `add_task(\"email\")` তারপর `add_task(\"deploy\")` call করলে দ্বিতীয় call কী return করবে?",
+      "options": ["['deploy']", "TypeError হবে", "['email', 'deploy']", "None"],
+      "answerIndex": 2,
+      "explanation": "এটাই mutable default argument trap। Python default value মাত্র একবার evaluate করে — function define হওয়ার সময়। তাই দুটো call একই list object share করে; প্রথম call-এর 'email' রয়ে যায় আর দ্বিতীয় call-এ ['email', 'deploy'] আসে। JS প্রতি call-এ নতুন `[]` বানাত।"
+    },
+    {
+      "id": "wn0l4-q13",
+      "difficulty": "hard",
+      "question": "Mutable default argument trap এড়ানোর সঠিক Python idiom কোনটা?",
+      "options": [
+        "def f(tasks=None): ভেতরে if tasks is None: tasks = []",
+        "def f(tasks=[].copy()):",
+        "def f(tasks=[]): ভেতরে tasks.clear() দিয়ে শুরু করা",
+        "প্রতিবার call-এর আগে f.tasks = [] set করা"
+      ],
+      "answerIndex": 0,
+      "explanation": "সঠিক idiom: default হিসেবে `None` রাখো, তারপর function-এর ভেতরে `if tasks is None: tasks = []` — এতে প্রতি call-এ সত্যিই নতুন list তৈরি হয়। `[].copy()`-ও define-এর সময় একবারই চলত, আর `clear()` করলে caller-এর পাঠানো list-ও মুছে যেত।"
+    },
+    {
+      "id": "wn0l4-q14",
+      "difficulty": "hard",
+      "question": "def f(): return 1, 2, 3 — হলে `x, y = f()` চালালে কী হবে?",
+      "options": [
+        "x=1, y=2 হবে, 3 বাদ পড়বে (JS destructuring-এর মতো)",
+        "x=1, y=(2, 3) হবে",
+        "SyntaxError হবে",
+        "ValueError: too many values to unpack"
+      ],
+      "answerIndex": 3,
+      "explanation": "Python unpacking-এ বাঁ দিকের variable সংখ্যা আর ডান দিকের value সংখ্যা হুবহু মিলতে হবে। তিনটা value দুটো variable-এ ধরানোর চেষ্টা করলে `ValueError: too many values to unpack`। JS destructuring উদারভাবে বাড়তিটা ফেলে দিত — Python তা করে না।"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import CustomButton from "@/components/shared/CustomButton";
 import Loader from "@/components/shared/Loader";
+import QuizText from "@/components/shared/QuizText";
 import {
   Badge,
   Card,
@@ -149,9 +150,9 @@ export function FullQuizSection({
           >
             <CardContent className="py-4">
               <div className="flex items-start justify-between gap-2">
-                <p className="font-medium text-slate-800">
-                  {qIndex + 1}. {question.question}
-                </p>
+                <div className="w-full font-medium text-slate-800">
+                  {qIndex + 1}. <QuizText text={question.question} />
+                </div>
                 <Badge className={badge.className}>{badge.label}</Badge>
               </div>
               <RadioGroup
@@ -190,7 +191,7 @@ export function FullQuizSection({
                         htmlFor={`${question.id}-${optionIndex}`}
                         className="w-full cursor-pointer font-normal"
                       >
-                        {option}
+                        <QuizText text={option} />
                         {isCorrectOption && result && " ✅"}
                       </Label>
                     </div>
@@ -198,7 +199,7 @@ export function FullQuizSection({
                 })}
               </RadioGroup>
               {resultItem && (
-                <p
+                <div
                   className={`mt-3 rounded-lg p-3 text-sm ${
                     resultItem.correct
                       ? "bg-emerald-50 text-emerald-800"
@@ -206,8 +207,8 @@ export function FullQuizSection({
                   }`}
                 >
                   {resultItem.correct ? "✅ সঠিক! " : "❌ ভুল। "}
-                  {resultItem.explanation}
-                </p>
+                  <QuizText text={resultItem.explanation} />
+                </div>
               )}
             </CardContent>
           </Card>

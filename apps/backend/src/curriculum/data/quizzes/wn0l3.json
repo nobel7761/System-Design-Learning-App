@@ -1,0 +1,162 @@
+{
+  "lessonId": "wn0l3",
+  "questions": [
+    {
+      "id": "wn0l3-q01",
+      "difficulty": "easy",
+      "question": "JavaScript-এ ৪ রকম loop (for;;, for...of, for...in, forEach) আছে। Python-এ সংখ্যাটা কত?",
+      "options": [
+        "৪টা — JS-এর মতোই",
+        "৩টা — for, forEach, while",
+        "১টাই — for x in iterable",
+        "২টা — for...of এবং for...in"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এ for loop একটাই: `for x in iterable`। List, string, dict, range — সব কিছু একই syntax-এ iterate হয়। JS-এর 'কোন loop কখন' বেছে নেওয়ার যন্ত্রণা Python-এ নেই।"
+    },
+    {
+      "id": "wn0l3-q02",
+      "difficulty": "easy",
+      "question": "`for i in range(5): print(i)` — output কী হবে?",
+      "options": ["0 1 2 3 4", "1 2 3 4 5", "0 1 2 3 4 5", "1 2 3 4"],
+      "answerIndex": 0,
+      "explanation": "range(5)-এ start default 0 এবং stop (5) exclusive — তাই 0 থেকে 4। এটা JS-এর `for (let i = 0; i < 5; i++)`-এর অনুবাদ; condition `<`, `<=` না।"
+    },
+    {
+      "id": "wn0l3-q03",
+      "difficulty": "easy",
+      "question": "Python-এ variable এক বাড়াতে চাইলে কী লিখবে?",
+      "options": ["i++", "++i (এটাই increment করে)", "i.increment()", "i += 1"],
+      "answerIndex": 3,
+      "explanation": "Python-এ `++` operator নেই — `i++` লিখলে SyntaxError। সঠিক উপায় `i += 1`। Python-এর দর্শন: এক কাজের একটাই সুস্পষ্ট উপায়।"
+    },
+    {
+      "id": "wn0l3-q04",
+      "difficulty": "easy",
+      "question": "Loop-এ index এবং value দুটোই দরকার হলে Pythonic উপায় কোনটা?",
+      "options": [
+        "for x in arr.entries()",
+        "for i, x in enumerate(arr)",
+        "arr.forEach((x, i) => ...)",
+        "for i in arr.index()"
+      ],
+      "answerIndex": 1,
+      "explanation": "enumerate(arr) প্রতিটা element-কে (index, value) জোড়া বানায়, যেটা `for i, x in` দিয়ে unpack করা যায় — JS-এর `arr.entries()` বা forEach-এর দ্বিতীয় argument-এর equivalent।"
+    },
+    {
+      "id": "wn0l3-q05",
+      "difficulty": "easy",
+      "question": "Python-এ break এবং continue নিয়ে কোন কথাটা সঠিক?",
+      "options": [
+        "দুটোই JS-এর মতোই কাজ করে — break loop থামায়, continue পরের iteration-এ যায়",
+        "Python-এ continue নেই, শুধু break আছে",
+        "break শুধু while loop-এ চলে, for loop-এ না",
+        "Python-এ break-এর নাম stop"
+      ],
+      "answerIndex": 0,
+      "explanation": "break আর continue হুবহু JS-এর মতো। বাড়তি সুবিধা: Python-এর for loop-এ সবসময় break চলে — JS-এর forEach-এর মতো 'break করা যায় না' সমস্যা নেই।"
+    },
+    {
+      "id": "wn0l3-q06",
+      "difficulty": "easy",
+      "question": "Python-এ একটা string-এর প্রতিটা character-এর উপর loop চালাতে কী করতে হয়?",
+      "options": [
+        "আগে s.split('') দিয়ে list বানাতে হয়",
+        "s.chars() method ব্যবহার করতে হয়",
+        "সরাসরি `for ch in s` লিখলেই হয়",
+        "string-এ loop চালানো যায় না, list লাগে"
+      ],
+      "answerIndex": 2,
+      "explanation": "String নিজেই iterable — `for ch in \"dhaka\"` সরাসরি প্রতিটা character দেয়। JS-এর মতো split('') করার দরকার নেই।"
+    },
+    {
+      "id": "wn0l3-q07",
+      "difficulty": "medium",
+      "question": "`for i in range(2, 8, 2): print(i)` — output কী?",
+      "options": ["2 4 6 8", "2 4 6", "2 3 4 5 6 7", "4 6 8"],
+      "answerIndex": 1,
+      "explanation": "Start 2, step 2 করে: 2, 4, 6। পরের সংখ্যা 8 — কিন্তু stop (8) exclusive, তাই আসে না। বাসের টিকিটের মতো: stop station-এ নামো, পার হও না।"
+    },
+    {
+      "id": "wn0l3-q08",
+      "difficulty": "medium",
+      "question": "zip(a, b)-তে a-তে ৫টা element আর b-তে ৩টা element থাকলে কী হবে?",
+      "options": [
+        "Error হবে — দুটো list সমান হতে হয়",
+        "৫ বার loop চলবে, b-এর ঘাটতি None দিয়ে ভরাট হবে",
+        "b নিজে নিজে repeat হবে",
+        "৩ বার loop চলবে — ছোট list শেষ হলেই zip থামে"
+      ],
+      "answerIndex": 3,
+      "explanation": "zip ছোট iterable শেষ হওয়া মাত্র থেমে যায় — জামার চেইনের মতো, এক পাশের দাঁত শেষ হলে চেইন আর এগোয় না। তাই এখানে ৩টা জোড়া পাওয়া যাবে।"
+    },
+    {
+      "id": "wn0l3-q09",
+      "difficulty": "medium",
+      "question": "Array-র শেষ index থেকে 0 পর্যন্ত (0 সহ) উল্টো loop চালানোর সঠিক range কোনটা?",
+      "options": [
+        "range(n - 1, -1, -1)",
+        "range(n, 0, -1)",
+        "range(n - 1, 0, -1)",
+        "range(-1, n, -1)"
+      ],
+      "answerIndex": 0,
+      "explanation": "Start = n-1 (শেষ index), step = -1 (পেছনে)। Stop = -1 কারণ stop exclusive — 0 পর্যন্ত (inclusive) যেতে হলে সীমানা তার এক ঘর পরে। range(n, 0, -1) দিলে index 0 বাদ পড়ত আর arr[n]-এ IndexError হতো।"
+    },
+    {
+      "id": "wn0l3-q10",
+      "difficulty": "medium",
+      "question": "১ থেকে ৫ পর্যন্ত (৫ সহ) সংখ্যা print করতে চাইলে কোন range লিখবে?",
+      "options": ["range(1, 5)", "range(0, 5)", "range(1, 6)", "range(5)"],
+      "answerIndex": 2,
+      "explanation": "Stop exclusive, তাই 5 পেতে হলে stop = 6 দিতে হবে। JS-এ যেখানে লিখতে `i <= 5`, Python-এ সেই `<=`-টা stop-কে এক বাড়িয়ে লেখা হয়।"
+    },
+    {
+      "id": "wn0l3-q11",
+      "difficulty": "medium",
+      "question": "Nested loop-এর ভেতরের loop-এ break করলে কী হয়?",
+      "options": [
+        "দুটো loop-ই একসাথে থেমে যায়",
+        "শুধু ভেতরের loop ভাঙে — বাইরের loop চলতেই থাকে",
+        "SyntaxError — nested loop-এ break চলে না",
+        "বাইরের loop ভাঙে, ভেতরেরটা চলতে থাকে"
+      ],
+      "answerIndex": 1,
+      "explanation": "break শুধু নিজের নিকটতম (ভেতরের) loop থেকে বের করে। বাইরের loop পরের iteration-এ চলে যায় — এবং ভেতরের loop আবার নতুন করে শুরু হয়। Interview-র প্রিয় trap।"
+    },
+    {
+      "id": "wn0l3-q12",
+      "difficulty": "hard",
+      "question": "while loop-এ `continue` ব্যবহারের সময় কোন ভুলটা infinite loop তৈরি করে?",
+      "options": [
+        "continue-এর সাথে condition না দেওয়া",
+        "while-এর condition-এ `<`-এর বদলে `<=` দেওয়া",
+        "continue-এর পরে print রাখা",
+        "counter update (i += 1) continue-এর পরে রাখা — skip হলে counter আর বাড়ে না"
+      ],
+      "answerIndex": 3,
+      "explanation": "continue বাকি body skip করে condition-এ ফিরে যায়। i += 1 যদি continue-এর পরে থাকে, তাহলে যে iteration-এ continue চলে সেখানে i বাড়ে না — একই মানে আটকে infinite loop। তাই update-টা continue-এর আগে রাখতে হয়। for + range-এ এই বিপদ নেই।"
+    },
+    {
+      "id": "wn0l3-q13",
+      "difficulty": "hard",
+      "question": "এই nested loop-এ মোট কয়টা `*` print হবে?\n\nfor i in range(1, 4):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()",
+      "options": ["9টা", "12টা", "6টা", "3টা"],
+      "answerIndex": 2,
+      "explanation": "Trace করো: i=1-এ range(1) → ১টা star; i=2-এ range(2) → ২টা; i=3-এ range(3) → ৩টা। মোট 1+2+3 = 6। Output হয় ত্রিভুজ pattern: *, **, ***। ভেতরের loop পুরো শেষ হলে তবেই বাইরেরটা এগোয়।"
+    },
+    {
+      "id": "wn0l3-q14",
+      "difficulty": "hard",
+      "question": "Python-এ `i = 5` এর পরে `++i` লিখে চালালে কী হবে?",
+      "options": [
+        "কোনো error হবে না, কিন্তু i বাড়বেও না — Python এটাকে দুটো unary plus sign হিসেবে পড়ে",
+        "SyntaxError হবে — ++ সবসময়ই error",
+        "i বেড়ে 6 হবে — JS-এর মতোই",
+        "i বেড়ে 7 হবে — দুবার plus মানে দুবার বাড়া"
+      ],
+      "answerIndex": 0,
+      "explanation": "`i++` লিখলে SyntaxError, কিন্তু `++i` চুপচাপ চলে যায় — Python এটাকে +(+i), অর্থাৎ দুবার positive sign হিসেবে evaluate করে। i-এর মান বদলায় না। তাই increment-এর একমাত্র সঠিক উপায় `i += 1`।"
+    }
+  ]
+}

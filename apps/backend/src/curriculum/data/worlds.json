@@ -2098,5 +2098,1852 @@
         "contentReady": false
       }
     ]
+  },
+  {
+    "id": "wn0",
+    "order": 40,
+    "title": "Python — JS Developer-এর চোখে",
+    "titleEn": "Python for JS Developers",
+    "description": "নতুন ভাষা নয়, অনুবাদ — ৫ বছরের JS অভিজ্ঞতাকে Python-এ বদলে নেওয়া। list, dict, comprehension, collections, heapq।",
+    "lessons": [
+      {
+        "id": "wn0l1",
+        "order": 1,
+        "title": "Python-এ প্রথম দিন — print, variable, f-string",
+        "titleEn": "Day One in Python",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wn0l2",
+        "order": 2,
+        "title": "সিদ্ধান্ত — if/elif/else ও truthiness-এর ফাঁদ",
+        "titleEn": "Conditionals & Truthiness Traps",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wn0l3",
+        "order": 3,
+        "title": "Loop — তিনটার জায়গায় একটা for",
+        "titleEn": "Loops: One for to Rule Them All",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wn0l4",
+        "order": 4,
+        "title": "Function — def, default args, multiple return",
+        "titleEn": "Functions in Python",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wn0l5",
+        "order": 5,
+        "title": "List — চেনা array, নতুন জাদু (slicing)",
+        "titleEn": "Lists & Slicing Magic",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wn0l6",
+        "order": 6,
+        "title": "dict, set, tuple — হাতিয়ারের বাক্স",
+        "titleEn": "dict, set, tuple",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn0l7",
+        "order": 7,
+        "title": "List Comprehension — map+filter এক লাইনে",
+        "titleEn": "List Comprehensions",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn0l8",
+        "order": 8,
+        "title": "sorted, lambda ও string methods",
+        "titleEn": "Sorting, Lambdas & Strings",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn0l9",
+        "order": 9,
+        "title": "collections ও heapq — গোপন অস্ত্রাগার",
+        "titleEn": "collections & heapq",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn0l10",
+        "order": 10,
+        "title": "Mini Project — সব একসাথে",
+        "titleEn": "Mini Project: Putting It Together",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn1",
+    "order": 41,
+    "title": "Foundation — চিন্তার হাতিয়ার",
+    "titleEn": "Foundations: Big-O, Memory, Recursion",
+    "description": "Big-O দিয়ে খরচ মাপা, memory model বোঝা, আর recursion — পুরো DSA যাত্রার ভিত এই world-এ।",
+    "lessons": [
+      {
+        "id": "wn1l1",
+        "order": 1,
+        "title": "Big-O — লাইব্রেরিতে বই খোঁজার ৩ উপায়",
+        "titleEn": "Big-O Notation",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn1l2",
+        "order": 2,
+        "title": "Memory Model — দুই লেবেল, এক বাক্স",
+        "titleEn": "Memory: References vs Copies",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn1l3",
+        "order": 3,
+        "title": "Recursion পর্ব ১ — আয়নার ভেতরে আয়না",
+        "titleEn": "Recursion I: Base & Recursive Case",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn1l4",
+        "order": 4,
+        "title": "Recursion পর্ব ২ — Recursion Tree",
+        "titleEn": "Recursion II: The Recursion Tree",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn1l5",
+        "order": 5,
+        "title": "Recursion Dojo — হাতে-কলমে trace",
+        "titleEn": "Recursion Dojo",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn2",
+    "order": 42,
+    "title": "Arrays & Hashing — হোটেলের রেজিস্টার",
+    "titleEn": "Arrays & Hashing",
+    "description": "সব রুমে টোকা না দিয়ে রেজিস্টার খাতা দেখা — hash map দিয়ে O(n²)-কে O(n) বানানোর জাদু। ৯টা problem।",
+    "lessons": [
+      {
+        "id": "wn2l1",
+        "order": 1,
+        "title": "Hash Map — হোটেলের রেজিস্টার খাতা",
+        "titleEn": "Concept: Hash Maps",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l2",
+        "order": 2,
+        "title": "Contains Duplicate (LC 217)",
+        "titleEn": "Contains Duplicate (LC 217)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l3",
+        "order": 3,
+        "title": "Valid Anagram (LC 242)",
+        "titleEn": "Valid Anagram (LC 242)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l4",
+        "order": 4,
+        "title": "Two Sum (LC 1)",
+        "titleEn": "Two Sum (LC 1)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l5",
+        "order": 5,
+        "title": "Group Anagrams (LC 49)",
+        "titleEn": "Group Anagrams (LC 49)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l6",
+        "order": 6,
+        "title": "Top K Frequent Elements (LC 347)",
+        "titleEn": "Top K Frequent Elements (LC 347)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l7",
+        "order": 7,
+        "title": "Encode and Decode Strings (LC 271)",
+        "titleEn": "Encode and Decode Strings (LC 271)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l8",
+        "order": 8,
+        "title": "Product of Array Except Self (LC 238)",
+        "titleEn": "Product of Array Except Self (LC 238)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l9",
+        "order": 9,
+        "title": "Valid Sudoku (LC 36)",
+        "titleEn": "Valid Sudoku (LC 36)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn2l10",
+        "order": 10,
+        "title": "Longest Consecutive Sequence (LC 128)",
+        "titleEn": "Longest Consecutive Sequence (LC 128)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn3",
+    "order": 43,
+    "title": "Two Pointers — সুড়ঙ্গের দুই মুখ",
+    "titleEn": "Two Pointers",
+    "description": "দুই প্রান্ত থেকে দুই বন্ধুর হাঁটা — মাঝে দেখা হবেই। sorted data-য় চাপ দিয়ে উত্তর বের করা। ৫টা problem।",
+    "lessons": [
+      {
+        "id": "wn3l1",
+        "order": 1,
+        "title": "Two Pointers — দুই আঙুলের কৌশল",
+        "titleEn": "Concept: Two Pointers",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn3l2",
+        "order": 2,
+        "title": "Valid Palindrome (LC 125)",
+        "titleEn": "Valid Palindrome (LC 125)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn3l3",
+        "order": 3,
+        "title": "Two Sum II (LC 167)",
+        "titleEn": "Two Sum II (LC 167)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn3l4",
+        "order": 4,
+        "title": "3Sum (LC 15)",
+        "titleEn": "3Sum (LC 15)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn3l5",
+        "order": 5,
+        "title": "Container With Most Water (LC 11)",
+        "titleEn": "Container With Most Water (LC 11)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn3l6",
+        "order": 6,
+        "title": "Trapping Rain Water (LC 42)",
+        "titleEn": "Trapping Rain Water (LC 42)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn4",
+    "order": 44,
+    "title": "Sliding Window — ট্রেনের জানালা",
+    "titleEn": "Sliding Window",
+    "description": "চলন্ত জানালা দিয়ে subarray/substring দেখা — window বড়-ছোট হয়, ভেতরের হিসাব বদলায়। ৬টা problem।",
+    "lessons": [
+      {
+        "id": "wn4l1",
+        "order": 1,
+        "title": "Sliding Window — চলমান জানালার হিসাব",
+        "titleEn": "Concept: Sliding Window",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l2",
+        "order": 2,
+        "title": "Best Time to Buy and Sell Stock (LC 121)",
+        "titleEn": "Best Time to Buy and Sell Stock (LC 121)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l3",
+        "order": 3,
+        "title": "Longest Substring Without Repeating Characters (LC 3)",
+        "titleEn": "Longest Substring Without Repeating Characters (LC 3)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l4",
+        "order": 4,
+        "title": "Longest Repeating Character Replacement (LC 424)",
+        "titleEn": "Longest Repeating Character Replacement (LC 424)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l5",
+        "order": 5,
+        "title": "Permutation in String (LC 567)",
+        "titleEn": "Permutation in String (LC 567)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l6",
+        "order": 6,
+        "title": "Minimum Window Substring (LC 76)",
+        "titleEn": "Minimum Window Substring (LC 76)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn4l7",
+        "order": 7,
+        "title": "Sliding Window Maximum (LC 239)",
+        "titleEn": "Sliding Window Maximum (LC 239)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn5",
+    "order": 45,
+    "title": "Stack — প্লেটের স্তূপ",
+    "titleEn": "Stack",
+    "description": "শেষে রাখা প্লেট আগে ওঠে (LIFO)। Monotonic stack-এ কে কাকে ফেলে দেয় — সেই নাটক। ৭টা problem।",
+    "lessons": [
+      {
+        "id": "wn5l1",
+        "order": 1,
+        "title": "Stack — LIFO ও Monotonic Stack",
+        "titleEn": "Concept: Stacks",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l2",
+        "order": 2,
+        "title": "Valid Parentheses (LC 20)",
+        "titleEn": "Valid Parentheses (LC 20)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l3",
+        "order": 3,
+        "title": "Min Stack (LC 155)",
+        "titleEn": "Min Stack (LC 155)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l4",
+        "order": 4,
+        "title": "Evaluate Reverse Polish Notation (LC 150)",
+        "titleEn": "Evaluate Reverse Polish Notation (LC 150)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l5",
+        "order": 5,
+        "title": "Generate Parentheses (LC 22)",
+        "titleEn": "Generate Parentheses (LC 22)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l6",
+        "order": 6,
+        "title": "Daily Temperatures (LC 739)",
+        "titleEn": "Daily Temperatures (LC 739)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l7",
+        "order": 7,
+        "title": "Car Fleet (LC 853)",
+        "titleEn": "Car Fleet (LC 853)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn5l8",
+        "order": 8,
+        "title": "Largest Rectangle in Histogram (LC 84)",
+        "titleEn": "Largest Rectangle in Histogram (LC 84)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn6",
+    "order": 46,
+    "title": "Binary Search — অর্ধেক বাদ দেওয়ার খেলা",
+    "titleEn": "Binary Search",
+    "description": "ডিকশনারি কেউ প্রথম পাতা থেকে খোঁজে না — প্রতি ধাপে অর্ধেক বাদ, O(log n)। ৭টা problem।",
+    "lessons": [
+      {
+        "id": "wn6l1",
+        "order": 1,
+        "title": "Binary Search — lo, mid, hi-এর নাচ",
+        "titleEn": "Concept: Binary Search",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l2",
+        "order": 2,
+        "title": "Binary Search (LC 704)",
+        "titleEn": "Binary Search (LC 704)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l3",
+        "order": 3,
+        "title": "Search a 2D Matrix (LC 74)",
+        "titleEn": "Search a 2D Matrix (LC 74)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l4",
+        "order": 4,
+        "title": "Koko Eating Bananas (LC 875)",
+        "titleEn": "Koko Eating Bananas (LC 875)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l5",
+        "order": 5,
+        "title": "Find Minimum in Rotated Sorted Array (LC 153)",
+        "titleEn": "Find Minimum in Rotated Sorted Array (LC 153)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l6",
+        "order": 6,
+        "title": "Search in Rotated Sorted Array (LC 33)",
+        "titleEn": "Search in Rotated Sorted Array (LC 33)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l7",
+        "order": 7,
+        "title": "Time Based Key-Value Store (LC 981)",
+        "titleEn": "Time Based Key-Value Store (LC 981)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn6l8",
+        "order": 8,
+        "title": "Median of Two Sorted Arrays (LC 4)",
+        "titleEn": "Median of Two Sorted Arrays (LC 4)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn7",
+    "order": 47,
+    "title": "Linked List — ট্রেনের বগি",
+    "titleEn": "Linked List",
+    "description": "প্রতিটা বগি জানে শুধু পরের বগিটা কোথায়। কাপলিং বদলেই reverse, merge, reorder। ১১টা problem।",
+    "lessons": [
+      {
+        "id": "wn7l1",
+        "order": 1,
+        "title": "Linked List — বগি আর কাপলিং",
+        "titleEn": "Concept: Linked Lists",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l2",
+        "order": 2,
+        "title": "Reverse Linked List (LC 206)",
+        "titleEn": "Reverse Linked List (LC 206)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l3",
+        "order": 3,
+        "title": "Merge Two Sorted Lists (LC 21)",
+        "titleEn": "Merge Two Sorted Lists (LC 21)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l4",
+        "order": 4,
+        "title": "Linked List Cycle (LC 141)",
+        "titleEn": "Linked List Cycle (LC 141)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l5",
+        "order": 5,
+        "title": "Reorder List (LC 143)",
+        "titleEn": "Reorder List (LC 143)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l6",
+        "order": 6,
+        "title": "Remove Nth Node From End of List (LC 19)",
+        "titleEn": "Remove Nth Node From End of List (LC 19)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l7",
+        "order": 7,
+        "title": "Copy List with Random Pointer (LC 138)",
+        "titleEn": "Copy List with Random Pointer (LC 138)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l8",
+        "order": 8,
+        "title": "Add Two Numbers (LC 2)",
+        "titleEn": "Add Two Numbers (LC 2)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l9",
+        "order": 9,
+        "title": "Find the Duplicate Number (LC 287)",
+        "titleEn": "Find the Duplicate Number (LC 287)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l10",
+        "order": 10,
+        "title": "LRU Cache (LC 146)",
+        "titleEn": "LRU Cache (LC 146)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l11",
+        "order": 11,
+        "title": "Merge K Sorted Lists (LC 23)",
+        "titleEn": "Merge K Sorted Lists (LC 23)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn7l12",
+        "order": 12,
+        "title": "Reverse Nodes in K-Group (LC 25)",
+        "titleEn": "Reverse Nodes in K-Group (LC 25)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn8",
+    "order": 48,
+    "title": "Trees — বংশলতিকা",
+    "titleEn": "Trees",
+    "description": "পরিবারতন্ত্র থেকে React component tree — DFS, BFS, BST। recursion-এর আসল খেলার মাঠ। ১৫টা problem।",
+    "lessons": [
+      {
+        "id": "wn8l1",
+        "order": 1,
+        "title": "Binary Tree — DFS, BFS ও BST",
+        "titleEn": "Concept: Trees & Traversal",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l2",
+        "order": 2,
+        "title": "Invert Binary Tree (LC 226)",
+        "titleEn": "Invert Binary Tree (LC 226)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l3",
+        "order": 3,
+        "title": "Maximum Depth of Binary Tree (LC 104)",
+        "titleEn": "Maximum Depth of Binary Tree (LC 104)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l4",
+        "order": 4,
+        "title": "Diameter of Binary Tree (LC 543)",
+        "titleEn": "Diameter of Binary Tree (LC 543)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l5",
+        "order": 5,
+        "title": "Balanced Binary Tree (LC 110)",
+        "titleEn": "Balanced Binary Tree (LC 110)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l6",
+        "order": 6,
+        "title": "Same Tree (LC 100)",
+        "titleEn": "Same Tree (LC 100)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l7",
+        "order": 7,
+        "title": "Subtree of Another Tree (LC 572)",
+        "titleEn": "Subtree of Another Tree (LC 572)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l8",
+        "order": 8,
+        "title": "Lowest Common Ancestor of a BST (LC 235)",
+        "titleEn": "Lowest Common Ancestor of a BST (LC 235)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l9",
+        "order": 9,
+        "title": "Binary Tree Level Order Traversal (LC 102)",
+        "titleEn": "Binary Tree Level Order Traversal (LC 102)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l10",
+        "order": 10,
+        "title": "Binary Tree Right Side View (LC 199)",
+        "titleEn": "Binary Tree Right Side View (LC 199)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l11",
+        "order": 11,
+        "title": "Count Good Nodes in Binary Tree (LC 1448)",
+        "titleEn": "Count Good Nodes in Binary Tree (LC 1448)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l12",
+        "order": 12,
+        "title": "Validate Binary Search Tree (LC 98)",
+        "titleEn": "Validate Binary Search Tree (LC 98)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l13",
+        "order": 13,
+        "title": "Kth Smallest Element in a BST (LC 230)",
+        "titleEn": "Kth Smallest Element in a BST (LC 230)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l14",
+        "order": 14,
+        "title": "Construct Binary Tree from Preorder and Inorder (LC 105)",
+        "titleEn": "Construct Binary Tree from Preorder and Inorder (LC 105)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l15",
+        "order": 15,
+        "title": "Binary Tree Maximum Path Sum (LC 124)",
+        "titleEn": "Binary Tree Maximum Path Sum (LC 124)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn8l16",
+        "order": 16,
+        "title": "Serialize and Deserialize Binary Tree (LC 297)",
+        "titleEn": "Serialize and Deserialize Binary Tree (LC 297)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn9",
+    "order": 49,
+    "title": "Tries — Autocomplete-এর রহস্য",
+    "titleEn": "Tries",
+    "description": "\"ba\" লিখলেই banana, ball ভেসে ওঠে কীভাবে? অক্ষরে অক্ষরে শাখা — prefix tree। ৩টা problem।",
+    "lessons": [
+      {
+        "id": "wn9l1",
+        "order": 1,
+        "title": "Trie — অক্ষরের গাছ",
+        "titleEn": "Concept: Tries",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn9l2",
+        "order": 2,
+        "title": "Implement Trie (Prefix Tree) (LC 208)",
+        "titleEn": "Implement Trie (Prefix Tree) (LC 208)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn9l3",
+        "order": 3,
+        "title": "Design Add and Search Words Data Structure (LC 211)",
+        "titleEn": "Design Add and Search Words Data Structure (LC 211)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn9l4",
+        "order": 4,
+        "title": "Word Search II (LC 212)",
+        "titleEn": "Word Search II (LC 212)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn10",
+    "order": 50,
+    "title": "Heap — Emergency Triage",
+    "titleEn": "Heap / Priority Queue",
+    "description": "লাইনে আগে এলেই আগে নয় — সবচেয়ে জরুরি রোগী আগে। heapq দিয়ে top-K আর median। ৭টা problem।",
+    "lessons": [
+      {
+        "id": "wn10l1",
+        "order": 1,
+        "title": "Heap — bubble up, sift down",
+        "titleEn": "Concept: Heaps",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l2",
+        "order": 2,
+        "title": "Kth Largest Element in a Stream (LC 703)",
+        "titleEn": "Kth Largest Element in a Stream (LC 703)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l3",
+        "order": 3,
+        "title": "Last Stone Weight (LC 1046)",
+        "titleEn": "Last Stone Weight (LC 1046)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l4",
+        "order": 4,
+        "title": "K Closest Points to Origin (LC 973)",
+        "titleEn": "K Closest Points to Origin (LC 973)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l5",
+        "order": 5,
+        "title": "Kth Largest Element in an Array (LC 215)",
+        "titleEn": "Kth Largest Element in an Array (LC 215)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l6",
+        "order": 6,
+        "title": "Task Scheduler (LC 621)",
+        "titleEn": "Task Scheduler (LC 621)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l7",
+        "order": 7,
+        "title": "Design Twitter (LC 355)",
+        "titleEn": "Design Twitter (LC 355)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn10l8",
+        "order": 8,
+        "title": "Find Median from Data Stream (LC 295)",
+        "titleEn": "Find Median from Data Stream (LC 295)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn11",
+    "order": 51,
+    "title": "Backtracking — গোলকধাঁধা",
+    "titleEn": "Backtracking",
+    "description": "চেষ্টা করো → ব্যর্থ হও → মুছে ফেলো → আবার চেষ্টা করো। append আর pop-এর হৃদস্পন্দন। ৯টা problem।",
+    "lessons": [
+      {
+        "id": "wn11l1",
+        "order": 1,
+        "title": "Backtracking — Decision Tree-তে হাঁটা",
+        "titleEn": "Concept: Backtracking",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l2",
+        "order": 2,
+        "title": "Subsets (LC 78)",
+        "titleEn": "Subsets (LC 78)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l3",
+        "order": 3,
+        "title": "Combination Sum (LC 39)",
+        "titleEn": "Combination Sum (LC 39)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l4",
+        "order": 4,
+        "title": "Permutations (LC 46)",
+        "titleEn": "Permutations (LC 46)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l5",
+        "order": 5,
+        "title": "Subsets II (LC 90)",
+        "titleEn": "Subsets II (LC 90)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l6",
+        "order": 6,
+        "title": "Combination Sum II (LC 40)",
+        "titleEn": "Combination Sum II (LC 40)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l7",
+        "order": 7,
+        "title": "Word Search (LC 79)",
+        "titleEn": "Word Search (LC 79)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l8",
+        "order": 8,
+        "title": "Palindrome Partitioning (LC 131)",
+        "titleEn": "Palindrome Partitioning (LC 131)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l9",
+        "order": 9,
+        "title": "Letter Combinations of a Phone Number (LC 17)",
+        "titleEn": "Letter Combinations of a Phone Number (LC 17)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn11l10",
+        "order": 10,
+        "title": "N-Queens (LC 51)",
+        "titleEn": "N-Queens (LC 51)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn12",
+    "order": 52,
+    "title": "Graphs — বন্ধুত্বের জাল",
+    "titleEn": "Graphs",
+    "description": "BFS = গুজব ছড়ানো, DFS = গোয়েন্দার তদন্ত। islands, courses, union-find। ১৩টা problem।",
+    "lessons": [
+      {
+        "id": "wn12l1",
+        "order": 1,
+        "title": "Graph — BFS, DFS ও Adjacency List",
+        "titleEn": "Concept: Graphs",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l2",
+        "order": 2,
+        "title": "Number of Islands (LC 200)",
+        "titleEn": "Number of Islands (LC 200)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l3",
+        "order": 3,
+        "title": "Clone Graph (LC 133)",
+        "titleEn": "Clone Graph (LC 133)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l4",
+        "order": 4,
+        "title": "Max Area of Island (LC 695)",
+        "titleEn": "Max Area of Island (LC 695)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l5",
+        "order": 5,
+        "title": "Pacific Atlantic Water Flow (LC 417)",
+        "titleEn": "Pacific Atlantic Water Flow (LC 417)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l6",
+        "order": 6,
+        "title": "Surrounded Regions (LC 130)",
+        "titleEn": "Surrounded Regions (LC 130)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l7",
+        "order": 7,
+        "title": "Rotting Oranges (LC 994)",
+        "titleEn": "Rotting Oranges (LC 994)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l8",
+        "order": 8,
+        "title": "Walls and Gates (LC 286)",
+        "titleEn": "Walls and Gates (LC 286)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l9",
+        "order": 9,
+        "title": "Course Schedule (LC 207)",
+        "titleEn": "Course Schedule (LC 207)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l10",
+        "order": 10,
+        "title": "Course Schedule II (LC 210)",
+        "titleEn": "Course Schedule II (LC 210)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l11",
+        "order": 11,
+        "title": "Redundant Connection (LC 684)",
+        "titleEn": "Redundant Connection (LC 684)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l12",
+        "order": 12,
+        "title": "Number of Connected Components in an Undirected Graph (LC 323)",
+        "titleEn": "Number of Connected Components in an Undirected Graph (LC 323)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l13",
+        "order": 13,
+        "title": "Graph Valid Tree (LC 261)",
+        "titleEn": "Graph Valid Tree (LC 261)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn12l14",
+        "order": 14,
+        "title": "Word Ladder (LC 127)",
+        "titleEn": "Word Ladder (LC 127)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn13",
+    "order": 53,
+    "title": "Advanced Graphs — Google Maps-এর ভেতরে",
+    "titleEn": "Advanced Graphs",
+    "description": "লাখো রাস্তার মধ্যে shortest route (Dijkstra), সবচেয়ে কম তারে সব গ্রামে বিদ্যুৎ (MST)। ৬টা problem।",
+    "lessons": [
+      {
+        "id": "wn13l1",
+        "order": 1,
+        "title": "Dijkstra, MST ও Topological Sort",
+        "titleEn": "Concept: Advanced Graph Algorithms",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l2",
+        "order": 2,
+        "title": "Network Delay Time (LC 743)",
+        "titleEn": "Network Delay Time (LC 743)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l3",
+        "order": 3,
+        "title": "Reconstruct Itinerary (LC 332)",
+        "titleEn": "Reconstruct Itinerary (LC 332)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l4",
+        "order": 4,
+        "title": "Min Cost to Connect All Points (LC 1584)",
+        "titleEn": "Min Cost to Connect All Points (LC 1584)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l5",
+        "order": 5,
+        "title": "Cheapest Flights Within K Stops (LC 787)",
+        "titleEn": "Cheapest Flights Within K Stops (LC 787)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l6",
+        "order": 6,
+        "title": "Swim in Rising Water (LC 778)",
+        "titleEn": "Swim in Rising Water (LC 778)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn13l7",
+        "order": 7,
+        "title": "Alien Dictionary (LC 269)",
+        "titleEn": "Alien Dictionary (LC 269)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn14",
+    "order": 54,
+    "title": "1-D DP — খাতার কোণায় টুকে রাখা",
+    "titleEn": "1-D Dynamic Programming",
+    "description": "একই অঙ্ক বারবার না কষে উত্তর টুকে রাখা (memoization)। fibonacci-র অপচয়ের সমাধান। ১২টা problem।",
+    "lessons": [
+      {
+        "id": "wn14l1",
+        "order": 1,
+        "title": "DP — Memoization ও Bottom-Up Table",
+        "titleEn": "Concept: 1-D DP",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l2",
+        "order": 2,
+        "title": "Climbing Stairs (LC 70)",
+        "titleEn": "Climbing Stairs (LC 70)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l3",
+        "order": 3,
+        "title": "Min Cost Climbing Stairs (LC 746)",
+        "titleEn": "Min Cost Climbing Stairs (LC 746)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l4",
+        "order": 4,
+        "title": "House Robber (LC 198)",
+        "titleEn": "House Robber (LC 198)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l5",
+        "order": 5,
+        "title": "House Robber II (LC 213)",
+        "titleEn": "House Robber II (LC 213)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l6",
+        "order": 6,
+        "title": "Longest Palindromic Substring (LC 5)",
+        "titleEn": "Longest Palindromic Substring (LC 5)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l7",
+        "order": 7,
+        "title": "Palindromic Substrings (LC 647)",
+        "titleEn": "Palindromic Substrings (LC 647)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l8",
+        "order": 8,
+        "title": "Decode Ways (LC 91)",
+        "titleEn": "Decode Ways (LC 91)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l9",
+        "order": 9,
+        "title": "Coin Change (LC 322)",
+        "titleEn": "Coin Change (LC 322)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l10",
+        "order": 10,
+        "title": "Maximum Product Subarray (LC 152)",
+        "titleEn": "Maximum Product Subarray (LC 152)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l11",
+        "order": 11,
+        "title": "Word Break (LC 139)",
+        "titleEn": "Word Break (LC 139)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l12",
+        "order": 12,
+        "title": "Longest Increasing Subsequence (LC 300)",
+        "titleEn": "Longest Increasing Subsequence (LC 300)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn14l13",
+        "order": 13,
+        "title": "Partition Equal Subset Sum (LC 416)",
+        "titleEn": "Partition Equal Subset Sum (LC 416)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn15",
+    "order": 55,
+    "title": "2-D DP — দাবার বোর্ডে ইঁদুর",
+    "titleEn": "2-D Dynamic Programming",
+    "description": "Excel-এর মতো table পূরণ — প্রতিটা ঘরের উত্তর আগের ঘরগুলো থেকে। ১১টা problem।",
+    "lessons": [
+      {
+        "id": "wn15l1",
+        "order": 1,
+        "title": "2-D DP — Grid আর দুই Sequence",
+        "titleEn": "Concept: 2-D DP",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l2",
+        "order": 2,
+        "title": "Unique Paths (LC 62)",
+        "titleEn": "Unique Paths (LC 62)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l3",
+        "order": 3,
+        "title": "Longest Common Subsequence (LC 1143)",
+        "titleEn": "Longest Common Subsequence (LC 1143)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l4",
+        "order": 4,
+        "title": "Best Time to Buy and Sell Stock with Cooldown (LC 309)",
+        "titleEn": "Best Time to Buy and Sell Stock with Cooldown (LC 309)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l5",
+        "order": 5,
+        "title": "Coin Change II (LC 518)",
+        "titleEn": "Coin Change II (LC 518)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l6",
+        "order": 6,
+        "title": "Target Sum (LC 494)",
+        "titleEn": "Target Sum (LC 494)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l7",
+        "order": 7,
+        "title": "Interleaving String (LC 97)",
+        "titleEn": "Interleaving String (LC 97)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l8",
+        "order": 8,
+        "title": "Edit Distance (LC 72)",
+        "titleEn": "Edit Distance (LC 72)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l9",
+        "order": 9,
+        "title": "Longest Increasing Path in a Matrix (LC 329)",
+        "titleEn": "Longest Increasing Path in a Matrix (LC 329)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l10",
+        "order": 10,
+        "title": "Distinct Subsequences (LC 115)",
+        "titleEn": "Distinct Subsequences (LC 115)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l11",
+        "order": 11,
+        "title": "Burst Balloons (LC 312)",
+        "titleEn": "Burst Balloons (LC 312)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      },
+      {
+        "id": "wn15l12",
+        "order": 12,
+        "title": "Regular Expression Matching (LC 10)",
+        "titleEn": "Regular Expression Matching (LC 10)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn16",
+    "order": 56,
+    "title": "Greedy — লোভী পর্যটক",
+    "titleEn": "Greedy",
+    "description": "প্রতি মোড়ে \"এই মুহূর্তের সেরা\"টা নেওয়া — কখন লোভ কাজ করে, কখন ডোবায়। ৮টা problem।",
+    "lessons": [
+      {
+        "id": "wn16l1",
+        "order": 1,
+        "title": "Greedy — কখন লোভ করা যায়",
+        "titleEn": "Concept: Greedy Algorithms",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l2",
+        "order": 2,
+        "title": "Maximum Subarray (LC 53)",
+        "titleEn": "Maximum Subarray (LC 53)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l3",
+        "order": 3,
+        "title": "Jump Game (LC 55)",
+        "titleEn": "Jump Game (LC 55)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l4",
+        "order": 4,
+        "title": "Jump Game II (LC 45)",
+        "titleEn": "Jump Game II (LC 45)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l5",
+        "order": 5,
+        "title": "Gas Station (LC 134)",
+        "titleEn": "Gas Station (LC 134)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l6",
+        "order": 6,
+        "title": "Hand of Straights (LC 846)",
+        "titleEn": "Hand of Straights (LC 846)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l7",
+        "order": 7,
+        "title": "Merge Triplets to Form Target Triplet (LC 1899)",
+        "titleEn": "Merge Triplets to Form Target Triplet (LC 1899)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l8",
+        "order": 8,
+        "title": "Partition Labels (LC 763)",
+        "titleEn": "Partition Labels (LC 763)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn16l9",
+        "order": 9,
+        "title": "Valid Parenthesis String (LC 678)",
+        "titleEn": "Valid Parenthesis String (LC 678)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn17",
+    "order": 57,
+    "title": "Intervals — মিটিং রুম Booking",
+    "titleEn": "Intervals",
+    "description": "কোন মিটিংগুলো ঠোকাঠুকি লাগে? কয়টা রুম লাগবে? timeline-এ overlap-এর খেলা। ৬টা problem।",
+    "lessons": [
+      {
+        "id": "wn17l1",
+        "order": 1,
+        "title": "Intervals — Overlap ও Merge",
+        "titleEn": "Concept: Intervals",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l2",
+        "order": 2,
+        "title": "Insert Interval (LC 57)",
+        "titleEn": "Insert Interval (LC 57)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l3",
+        "order": 3,
+        "title": "Merge Intervals (LC 56)",
+        "titleEn": "Merge Intervals (LC 56)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l4",
+        "order": 4,
+        "title": "Non-overlapping Intervals (LC 435)",
+        "titleEn": "Non-overlapping Intervals (LC 435)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l5",
+        "order": 5,
+        "title": "Meeting Rooms (LC 252)",
+        "titleEn": "Meeting Rooms (LC 252)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l6",
+        "order": 6,
+        "title": "Meeting Rooms II (LC 253)",
+        "titleEn": "Meeting Rooms II (LC 253)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn17l7",
+        "order": 7,
+        "title": "Minimum Interval to Include Each Query (LC 1851)",
+        "titleEn": "Minimum Interval to Include Each Query (LC 1851)",
+        "type": "boss",
+        "estMinutes": 90,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn18",
+    "order": 58,
+    "title": "Math & Geometry — রুবিক্স কিউব",
+    "titleEn": "Math & Geometry",
+    "description": "Matrix ঘোরানো, শামুকের মতো spiral-এ পড়া, আর ছোটখাটো math trick। ৮টা problem।",
+    "lessons": [
+      {
+        "id": "wn18l1",
+        "order": 1,
+        "title": "Matrix ঘোরানো ও Math Tricks",
+        "titleEn": "Concept: Math & Geometry",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l2",
+        "order": 2,
+        "title": "Rotate Image (LC 48)",
+        "titleEn": "Rotate Image (LC 48)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l3",
+        "order": 3,
+        "title": "Spiral Matrix (LC 54)",
+        "titleEn": "Spiral Matrix (LC 54)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l4",
+        "order": 4,
+        "title": "Set Matrix Zeroes (LC 73)",
+        "titleEn": "Set Matrix Zeroes (LC 73)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l5",
+        "order": 5,
+        "title": "Happy Number (LC 202)",
+        "titleEn": "Happy Number (LC 202)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l6",
+        "order": 6,
+        "title": "Plus One (LC 66)",
+        "titleEn": "Plus One (LC 66)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l7",
+        "order": 7,
+        "title": "Pow(x, n) (LC 50)",
+        "titleEn": "Pow(x, n) (LC 50)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l8",
+        "order": 8,
+        "title": "Multiply Strings (LC 43)",
+        "titleEn": "Multiply Strings (LC 43)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn18l9",
+        "order": 9,
+        "title": "Detect Squares (LC 2013)",
+        "titleEn": "Detect Squares (LC 2013)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
+  },
+  {
+    "id": "wn19",
+    "order": 59,
+    "title": "Bit Manipulation — লাইট সুইচের সারি",
+    "titleEn": "Bit Manipulation",
+    "description": "প্রতিটা সংখ্যা আসলে on/off সুইচের প্যাটার্ন — XOR, shift, masking। শেষ ৭টা problem। 🏆",
+    "lessons": [
+      {
+        "id": "wn19l1",
+        "order": 1,
+        "title": "Bits — XOR, Shift ও Masking",
+        "titleEn": "Concept: Bit Manipulation",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l2",
+        "order": 2,
+        "title": "Single Number (LC 136)",
+        "titleEn": "Single Number (LC 136)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l3",
+        "order": 3,
+        "title": "Number of 1 Bits (LC 191)",
+        "titleEn": "Number of 1 Bits (LC 191)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l4",
+        "order": 4,
+        "title": "Counting Bits (LC 338)",
+        "titleEn": "Counting Bits (LC 338)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l5",
+        "order": 5,
+        "title": "Reverse Bits (LC 190)",
+        "titleEn": "Reverse Bits (LC 190)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l6",
+        "order": 6,
+        "title": "Missing Number (LC 268)",
+        "titleEn": "Missing Number (LC 268)",
+        "type": "dojo",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l7",
+        "order": 7,
+        "title": "Sum of Two Integers (LC 371)",
+        "titleEn": "Sum of Two Integers (LC 371)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      },
+      {
+        "id": "wn19l8",
+        "order": 8,
+        "title": "Reverse Integer (LC 7)",
+        "titleEn": "Reverse Integer (LC 7)",
+        "type": "dojo",
+        "estMinutes": 60,
+        "contentReady": false
+      }
+    ],
+    "track": "dsa"
   }
 ]

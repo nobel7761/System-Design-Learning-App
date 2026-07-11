@@ -19,7 +19,7 @@ export interface LessonDef {
   contentReady: boolean;
 }
 
-export type Track = 'system-design' | 'docker' | 'ai-mastery';
+export type Track = 'system-design' | 'docker' | 'ai-mastery' | 'dsa';
 
 export interface WorldDef {
   id: string;

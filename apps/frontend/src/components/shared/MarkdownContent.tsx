@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { LessonAnimation, RevealBlock } from "@/components/shared/animation";
 
 type MarkdownContentProps = {
   content: string;
@@ -44,6 +45,25 @@ function CheckIcon() {
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
+}
+
+/**
+ * Finds the language-xxx class on the <code> child that react-markdown
+ * nests inside <pre> for fenced blocks.
+ */
+function extractLanguage(node: React.ReactNode): string | null {
+  if (React.isValidElement(node)) {
+    const props = node.props as { className?: string };
+    const match = props.className?.match(/language-([\w-]+)/);
+    if (match) return match[1];
+  }
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const lang = extractLanguage(child);
+      if (lang) return lang;
+    }
+  }
+  return null;
 }
 
 /** Recursively extracts plain text from React children */
@@ -128,8 +148,18 @@ export default function MarkdownContent({
               {children}
             </blockquote>
           ),
-          // pre handles ALL block code — extract raw text and render cleanly
-          pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
+          // pre handles ALL block code — interactive blocks (```animation /
+          // ```reveal) get their own components, the rest render as code
+          pre: ({ children }) => {
+            const lang = extractLanguage(children);
+            if (lang === "animation") {
+              return <LessonAnimation raw={extractText(children)} />;
+            }
+            if (lang === "reveal") {
+              return <RevealBlock raw={extractText(children)} />;
+            }
+            return <CodeBlock>{children}</CodeBlock>;
+          },
           // code: only applies inline styling when NOT wrapped by pre
           // (pre's CodeBlock extracts raw text and never renders this element)
           code: ({ children, className: codeClass }) => {

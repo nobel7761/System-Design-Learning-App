@@ -8,7 +8,7 @@ export type LessonType =
   | "project";
 export type LessonStatus = "done" | "current" | "locked";
 export type QuizDifficulty = "easy" | "medium" | "hard";
-export type Track = "system-design" | "docker" | "ai-mastery";
+export type Track = "system-design" | "docker" | "ai-mastery" | "dsa";
 
 export interface LoginResponse {
   accessToken: string;
@@ -79,6 +79,7 @@ export interface Dashboard {
     "system-design": TrackSummary;
     docker: TrackSummary;
     "ai-mastery": TrackSummary;
+    dsa: TrackSummary;
   };
   streak: {
     current: number;

@@ -1,0 +1,177 @@
+{
+  "lessonId": "wn0l5",
+  "questions": [
+    {
+      "id": "wn0l5-q01",
+      "difficulty": "easy",
+      "question": "JS-এর arr.push(x)-এর Python equivalent কোনটা?",
+      "options": [
+        "arr.add(x)",
+        "arr.insert(x)",
+        "arr.append(x)",
+        "arr.push(x)"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এ list-এর শেষে element যোগ করতে append() ব্যবহার হয় — JS-এর push()-এর হুবহু অনুবাদ। দুটোই O(1)।"
+    },
+    {
+      "id": "wn0l5-q02",
+      "difficulty": "easy",
+      "question": "Python-এ একটা list-এর length বের করার সঠিক উপায় কোনটা?",
+      "options": ["len(arr)", "arr.length", "arr.len()", "arr.size"],
+      "answerIndex": 0,
+      "explanation": "Python-এ len() একটা function, JS-এর মতো property না। arr.length লিখলে AttributeError হবে — JS developer-দের সবচেয়ে common প্রথম সপ্তাহের ভুল।"
+    },
+    {
+      "id": "wn0l5-q03",
+      "difficulty": "easy",
+      "question": "nums = [10, 20, 30, 40, 50] হলে nums[-1] কী দেবে?",
+      "options": ["IndexError", "10", "40", "50"],
+      "answerIndex": 3,
+      "explanation": "Negative index পেছন থেকে গোনে — nums[-1] মানে শেষ element, অর্থাৎ 50। JS-এ এর জন্য arr.at(-1) লাগে, কিন্তু Python-এ negative index সব জায়গায় চলে।"
+    },
+    {
+      "id": "wn0l5-q04",
+      "difficulty": "easy",
+      "question": "JS-এর arr.includes(x)-এর Python equivalent কোনটা?",
+      "options": [
+        "arr.includes(x)",
+        "x in arr",
+        "arr.has(x)",
+        "arr.contains(x)"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এ membership check করার জন্য in operator ব্যবহার হয় — এটা method না, operator। যেমন: if 5 in nums:"
+    },
+    {
+      "id": "wn0l5-q05",
+      "difficulty": "easy",
+      "question": "nums = [10, 20, 30, 40, 50] হলে nums[1:4] কী দেবে?",
+      "options": [
+        "[20, 30, 40, 50]",
+        "[10, 20, 30]",
+        "[20, 30, 40]",
+        "[20, 30]"
+      ],
+      "answerIndex": 2,
+      "explanation": "Slicing-এ stop exclusive — index 1 থেকে শুরু করে index 4-এর আগে থামে। তাই index 1, 2, 3-এর element: [20, 30, 40]। JS-এর slice(1, 4)-ও একই নিয়ম মানে।"
+    },
+    {
+      "id": "wn0l5-q06",
+      "difficulty": "easy",
+      "question": "Python-এ s[::-1] কী করে?",
+      "options": [
+        "String (বা list) reverse করে নতুন copy দেয়",
+        "শেষ element মুছে দেয়",
+        "প্রথম element দেয়",
+        "Error দেয়, কারণ step negative হতে পারে না"
+      ],
+      "answerIndex": 0,
+      "explanation": "step -1 মানে উল্টো দিকে হাঁটা — পুরো sequence reversed হয়ে নতুন copy আসে। JS-এর split-reverse-join ৩ ধাপের কাজ Python-এ ৫ অক্ষরে।"
+    },
+    {
+      "id": "wn0l5-q07",
+      "difficulty": "medium",
+      "question": "arr.pop(0)-এর time complexity কত, এবং কেন?",
+      "options": [
+        "O(1) — শুধু প্রথম element তুলে নেয়",
+        "O(n) — বাকি সব element-কে এক ঘর বামে shift করতে হয়",
+        "O(log n) — binary search দিয়ে খোঁজে",
+        "O(n²) — প্রতিটা element-এর জন্য পুরো list ঘোরে"
+      ],
+      "answerIndex": 1,
+      "explanation": "সামনে থেকে element তুললে বাকি সবাইকে এক ঘর এগিয়ে আসতে হয় — তাই O(n)। এটা JS-এর shift() trap-এর যমজ ভাই। Queue-র জন্য deque-এর popleft() ব্যবহার করতে হয়, যেটা O(1)।"
+    },
+    {
+      "id": "wn0l5-q08",
+      "difficulty": "medium",
+      "question": "a = [1, 2, 3] এর পর b = a এবং b.append(4) চালালে print(a) কী দেখাবে?",
+      "options": [
+        "[1, 2, 3] — b আলাদা copy",
+        "Error — a পরিবর্তন করা যাবে না",
+        "[4, 1, 2, 3]",
+        "[1, 2, 3, 4] — a আর b একই list"
+      ],
+      "answerIndex": 3,
+      "explanation": "b = a কোনো copy করে না — দুটো নাম একই list-কে দেখায় (দুই লেবেল, এক বাক্স)। JS-এ const b = a array-র ক্ষেত্রে ঠিক এভাবেই কাজ করে। Copy চাইলে b = a[:] বা list(a)।"
+    },
+    {
+      "id": "wn0l5-q09",
+      "difficulty": "medium",
+      "question": "nums = [5, 10, 15, 20, 25, 30] হলে nums[4:100] কী দেবে?",
+      "options": [
+        "[25, 30] — slice range-এর বাইরে গেলে চুপচাপ clamp করে",
+        "IndexError — index 100 নেই",
+        "[] — invalid range মানে খালি list",
+        "None"
+      ],
+      "answerIndex": 0,
+      "explanation": "Slicing ভদ্রলোক — range-এর বাইরে গেলে error না দিয়ে যা আছে তাই দেয়। কিন্তু সরাসরি index (nums[100]) দিলে IndexError। Index কড়া, slice নরম।"
+    },
+    {
+      "id": "wn0l5-q10",
+      "difficulty": "medium",
+      "question": "arr.index(x) আর JS-এর arr.indexOf(x)-এর মধ্যে গুরুত্বপূর্ণ পার্থক্য কী?",
+      "options": [
+        "Python-এরটা শেষ থেকে খোঁজে",
+        "Python-এরটা index-এর বদলে value ফেরত দেয়",
+        "Element না পেলে JS দেয় -1, কিন্তু Python ValueError ছোড়ে",
+        "কোনো পার্থক্য নেই"
+      ],
+      "answerIndex": 2,
+      "explanation": "arr.index(x) element না পেলে ValueError ছুড়ে program থামিয়ে দেয় — JS-এর মতো -1 দেয় না। তাই আগে if x in arr: দিয়ে check করে তারপর index() ডাকা নিরাপদ।"
+    },
+    {
+      "id": "wn0l5-q11",
+      "difficulty": "medium",
+      "question": "s = \"hello\" এর পর s[0] = \"H\" চালালে কী হবে?",
+      "options": [
+        "s হয়ে যাবে \"Hello\"",
+        "TypeError — Python-এ string immutable",
+        "নতুন string return হবে, s অপরিবর্তিত",
+        "চুপচাপ কিছুই হবে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এ string immutable — index দিয়ে অক্ষর বদলানো যায় না, TypeError আসে। পরিবর্তন করতে হলে idiom হলো: list(s) দিয়ে list বানাও, বদলাও, তারপর \"\".join() দিয়ে জোড়া লাগাও।"
+    },
+    {
+      "id": "wn0l5-q12",
+      "difficulty": "hard",
+      "question": "grid = [[0]*3]*3 এর পর grid[0][0] = 1 চালালে grid কী হবে?",
+      "options": [
+        "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]",
+        "TypeError — nested list এভাবে বদলানো যায় না",
+        "[[1, 1, 1], [0, 0, 0], [0, 0, 0]]",
+        "[[1, 0, 0], [1, 0, 0], [1, 0, 0]] — তিন row-ই বদলে যায়"
+      ],
+      "answerIndex": 3,
+      "explanation": "বাইরের *3 ভেতরের list copy করে না — একই list-এর ৩টা reference বানায়। তিন row আসলে একটাই row, তাই একটায় লিখলে তিনটাতেই দেখা যায়। DSA grid problem-এর classic bug। সঠিক উপায়: [[0]*3 for _ in range(3)]।"
+    },
+    {
+      "id": "wn0l5-q13",
+      "difficulty": "hard",
+      "question": "a = [[1, 2], [3, 4]] এর পর b = a[:] এবং b[0].append(99) চালালে a[0] কী হবে?",
+      "options": [
+        "[1, 2, 99] — a[:] shallow copy, ভেতরের list এখনো shared",
+        "[1, 2] — a[:] সম্পূর্ণ আলাদা copy বানায়",
+        "[99, 1, 2]",
+        "ValueError"
+      ],
+      "answerIndex": 0,
+      "explanation": "a[:] শুধু বাইরের list-টা নতুন বানায় (shallow copy) — ভেতরের nested list-গুলোর reference একই থাকে। তাই b[0] আর a[0] একই list, দুই জায়গা থেকেই পরিবর্তন দেখা যায়। JS-এর [...arr]-ও একই আচরণ করে। সম্পূর্ণ আলাদা চাইলে deep copy লাগে।"
+    },
+    {
+      "id": "wn0l5-q14",
+      "difficulty": "hard",
+      "question": "যেকোনো list arr আর যেকোনো valid index k-এর জন্য arr[:k] + arr[k:] কী দেয়, এবং এটা কোন design decision-এর ফল?",
+      "options": [
+        "arr-এর reversed copy — step-এর default আচরণের কারণে",
+        "k index-এর element দুবার আসে — stop inclusive বলে",
+        "হুবহু পুরো arr-এর copy — stop exclusive হওয়ায় কিছু বাদও পড়ে না, double-ও হয় না",
+        "k index-এর element বাদ পড়ে — দুই slice-এর মাঝে gap থাকে"
+      ],
+      "answerIndex": 2,
+      "explanation": "arr[:k] দেয় index 0 থেকে k-1, আর arr[k:] দেয় index k থেকে শেষ — stop exclusive বলে দুটো জোড়া দিলে প্রতিটা element ঠিক একবার করে আসে। এই design-এর আরেক সুবিধা: stop - start = slice-এর length।"
+    }
+  ]
+}

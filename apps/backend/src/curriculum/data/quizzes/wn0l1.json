@@ -1,0 +1,157 @@
+{
+  "lessonId": "wn0l1",
+  "questions": [
+    {
+      "id": "wn0l1-q01",
+      "difficulty": "easy",
+      "question": "JS-এর console.log()-এর Python equivalent কোনটা?",
+      "options": ["log()", "echo()", "print()", "console.print()"],
+      "answerIndex": 2,
+      "explanation": "Python-এ output দিতে print() ব্যবহার হয় — কোনো console. prefix লাগে না।"
+    },
+    {
+      "id": "wn0l1-q02",
+      "difficulty": "easy",
+      "question": "Python-এ variable declare করতে কোন keyword লাগে?",
+      "options": [
+        "let",
+        "var",
+        "def",
+        "কোনো keyword লাগে না — শুধু assign করলেই হয়"
+      ],
+      "answerIndex": 3,
+      "explanation": "Python-এ প্রথম assignment-ই variable তৈরি করে: x = 5। let/const/var-এর মতো কোনো keyword নেই।"
+    },
+    {
+      "id": "wn0l1-q03",
+      "difficulty": "easy",
+      "question": "Python-এ single-line comment লেখা হয় কোন চিহ্ন দিয়ে?",
+      "options": ["//", "#", "/* */", "--"],
+      "answerIndex": 1,
+      "explanation": "JS-এর //-এর জায়গায় Python-এ comment হয় # দিয়ে।"
+    },
+    {
+      "id": "wn0l1-q04",
+      "difficulty": "easy",
+      "question": "Python-এ boolean value দুটো কীভাবে লেখা হয়?",
+      "options": ["true / false", "TRUE / FALSE", "True / False", "yes / no"],
+      "answerIndex": 2,
+      "explanation": "Python-এ True আর False — দুটোরই প্রথম অক্ষর capital। ছোট হাতের true লিখলে NameError হয়।"
+    },
+    {
+      "id": "wn0l1-q05",
+      "difficulty": "easy",
+      "question": "Python-এ কোন naming convention follow করা হয় (PEP 8 অনুযায়ী)?",
+      "options": [
+        "snake_case (যেমন user_name)",
+        "camelCase (যেমন userName)",
+        "PascalCase (যেমন UserName)",
+        "kebab-case (যেমন user-name)"
+      ],
+      "answerIndex": 0,
+      "explanation": "Python-এ variable-এর নাম snake_case-এ লেখা হয় — JS-এর camelCase-এর জায়গায় user_name।"
+    },
+    {
+      "id": "wn0l1-q06",
+      "difficulty": "easy",
+      "question": "কোনো variable-এর type দেখতে Python-এ কী লিখবে?",
+      "options": ["typeof x", "x.type", "type(x)", "gettype(x)"],
+      "answerIndex": 2,
+      "explanation": "JS-এ typeof x, কিন্তু Python-এ type() একটা function — type(x) লিখতে হয়।"
+    },
+    {
+      "id": "wn0l1-q07",
+      "difficulty": "medium",
+      "question": "JS-এর template literal `Hello ${name}`-এর সঠিক Python equivalent কোনটা?",
+      "options": [
+        "\"Hello ${name}\"",
+        "f\"Hello {name}\"",
+        "`Hello {name}`",
+        "format(\"Hello\", name)"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এর f-string: quote-এর আগে f, ভেতরে শুধু {name} — dollar sign নেই, backtick নেই।"
+    },
+    {
+      "id": "wn0l1-q08",
+      "difficulty": "medium",
+      "question": "Python-এ code block বোঝানো হয় কীভাবে?",
+      "options": [
+        "curly braces {} দিয়ে",
+        "begin/end keyword দিয়ে",
+        "colon (:) দিয়ে block শুরু + indentation দিয়ে",
+        "semicolon দিয়ে আলাদা করে"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এ {} নেই — block শুরু হয় লাইনের শেষের : দিয়ে, আর ভেতরের লাইনগুলো indentation (convention: 4 space) দিয়ে চেনা যায়। Indentation-ই syntax।"
+    },
+    {
+      "id": "wn0l1-q09",
+      "difficulty": "medium",
+      "question": "JS-এ null আর undefined দুটো আলাদা জিনিস। Python-এ 'কিছু নেই' বোঝাতে কী আছে?",
+      "options": [
+        "null আর undefined — দুটোই আছে",
+        "শুধু null",
+        "শুধু None — একটাই",
+        "nil আর void"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এ absence বোঝাতে একটাই value — None (capital N)। Assign না-করা variable ব্যবহার করলে undefined না, সরাসরি NameError হয়।"
+    },
+    {
+      "id": "wn0l1-q10",
+      "difficulty": "medium",
+      "question": "name = \"Rafi\" এর পরে print(\"Hello {name}\") চালালে output কী হবে?",
+      "options": ["Hello Rafi", "Hello {name}", "SyntaxError", "Hello None"],
+      "answerIndex": 1,
+      "explanation": "String-এর আগে f নেই, তাই এটা সাধারণ string — Python literally Hello {name} ছাপাবে। f-string-এর f ভুলে যাওয়া common ফাঁদ, কারণ কোনো error-ই আসে না।"
+    },
+    {
+      "id": "wn0l1-q11",
+      "difficulty": "medium",
+      "question": "Python-এ constant বোঝানোর উপায় কী?",
+      "options": [
+        "const keyword দিয়ে declare করা",
+        "ALL_CAPS নামে লেখা (যেমন MAX_SIZE) — শুধু convention",
+        "freeze() function ব্যবহার করা",
+        "variable-এর আগে final লেখা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এ const নেই। MAX_SIZE = 100-এর মতো ALL_CAPS নাম দেওয়াটাই convention — ভাষা re-assign আটকায় না, developer-রা সম্মান করে।"
+    },
+    {
+      "id": "wn0l1-q12",
+      "difficulty": "hard",
+      "question": "print(type(8 / 2)) এর output কী হবে?",
+      "options": [
+        "<class 'int'>",
+        "<class 'float'>",
+        "<class 'number'>",
+        "4.0"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python-এ / (division) সবসময় float ফেরত দেয় — 8 / 2 হয় 4.0, তাই type হয় float। JS-এ সব number এক type বলে এই পার্থক্যটা নতুন। (আর option 4.0 হলো value, type() এর output না।)"
+    },
+    {
+      "id": "wn0l1-q13",
+      "difficulty": "hard",
+      "question": "এই code চালালে কী হবে?\n\nis_admin = true\nprint(is_admin)",
+      "options": [
+        "true ছাপবে",
+        "True ছাপবে",
+        "NameError হবে — কারণ ছোট হাতের true কোনো defined নাম না",
+        "SyntaxError হবে — semicolon নেই"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python-এর boolean হলো True (capital T)। ছোট হাতের true-কে Python একটা variable-এর নাম ভাবে, যেটা কখনো define হয়নি — তাই NameError: name 'true' is not defined। Semicolon না থাকা Python-এ স্বাভাবিক, ওটা error না।"
+    },
+    {
+      "id": "wn0l1-q14",
+      "difficulty": "hard",
+      "question": "এই code-এর output কী?\n\ncount = 1\nmsg = f\"count is {count}\"\ncount = 99\nprint(msg)",
+      "options": ["count is 99", "count is 1", "count is {count}", "NameError"],
+      "answerIndex": 1,
+      "explanation": "f-string তৈরি হওয়ার মুহূর্তেই variable-এর তখনকার value বসে যায় — এটা কোনো live binding না। msg বানানোর সময় count ছিল 1, পরে count বদলালেও msg বদলায় না। JS-এর template literal-ও ঠিক এভাবেই কাজ করতো।"
+    }
+  ]
+}
