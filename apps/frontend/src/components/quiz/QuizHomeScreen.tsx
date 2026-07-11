@@ -34,10 +34,10 @@ const TRACKS = [
   },
   {
     value: "devops",
-    label: "DevOps — CloudCamp",
+    label: "Mastering AWS & DevOps by Poridhi",
     emoji: "🐧",
     color: "amber",
-    desc: "Linux, AWS, Kubernetes & CI/CD — Poridhi lectures",
+    desc: "Season 4 — Linux, AWS, Kubernetes & CI/CD",
   },
 ] as const;
 

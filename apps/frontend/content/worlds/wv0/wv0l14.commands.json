@@ -1,0 +1,97 @@
+{
+  "lessonId": "wv0l14",
+  "commands": [
+    {
+      "command": "ls -l <path>",
+      "usage": "permission পড়ার জানালা — প্রতি লাইনে: টাইপ + ৩ জোড়া rwx + owner + group।",
+      "parts": [
+        {
+          "token": "-rw-r--r--",
+          "meaning": "টাইপ(-/d) + owner-জোড়া + group-জোড়া + others-জোড়া"
+        },
+        {
+          "token": "root root",
+          "meaning": "প্রথমটা owner, দ্বিতীয়টা owning group"
+        }
+      ],
+      "example": "ls -l meeting.txt\n# -rw-r--r-- 1 root root 14 Jan 26 20:42 meeting.txt"
+    },
+    {
+      "command": "chmod <octal> <path>",
+      "usage": "পুরো তালা এক সংখ্যায় বসানো। নামতা: r=4, w=2, x=1 — জোড়া-প্রতি যোগফল।",
+      "parts": [
+        { "token": "644", "meaning": "rw-r--r-- — সাধারণ ফাইল/config" },
+        { "token": "755", "meaning": "rwxr-xr-x — script ও directory" },
+        { "token": "600", "meaning": "rw------- — গোপন (SSH key)" },
+        { "token": "775", "meaning": "rwxrwxr-x — team-shared directory" },
+        { "token": "-R", "meaning": "recursive — ভেতরের সবকিছুতেও" }
+      ],
+      "example": "chmod 600 secret.conf\nchmod -R 775 /var/www/mysite"
+    },
+    {
+      "command": "chmod <who><op><perm> <path>",
+      "usage": "symbolic ভঙ্গি — পুরো তালা না বদলে একটা চাবি যোগ/বিয়োগ।",
+      "parts": [
+        {
+          "token": "u / g / o / a",
+          "meaning": "user(owner) / group / others / all"
+        },
+        { "token": "+ / - / =", "meaning": "দাও / কেড়ে নাও / ঠিক এটাই বসাও" },
+        { "token": "r / w / x", "meaning": "read / write / execute" }
+      ],
+      "example": "chmod u+x deploy.sh   # owner-কে execute\nchmod g-w plan.txt    # group-এর write বন্ধ\nchmod a+x runme.sh    # সবাইকে execute"
+    },
+    {
+      "command": "chown <user>:<group> <path>",
+      "usage": "মালিকানা বদলানো — owner এবং/বা owning group। user/group আগে থেকে থাকতে হবে!",
+      "parts": [
+        { "token": "chown shajal f", "meaning": "শুধু owner বদলাও" },
+        {
+          "token": "chown root:webteam d",
+          "meaning": "owner ও group একসাথে (কোলন)"
+        },
+        {
+          "token": "-R",
+          "meaning": "ভেতরের পুরনো ফাইলগুলোতেও — এটা ভুললেই বিভ্রান্তি"
+        }
+      ],
+      "example": "chown -R root:webteam /var/www/mysite"
+    },
+    {
+      "command": "chgrp <group> <path>",
+      "usage": "শুধু owning group বদলানো — chown :group-এর ছোট ভাই।",
+      "parts": [{ "token": "chgrp", "meaning": "change group" }],
+      "example": "chgrp devops plan.txt"
+    },
+    {
+      "command": "umask",
+      "usage": "নতুন ফাইল/directory-র default permission নিয়ন্ত্রণ করে। default 022 → ফাইল 644, directory 755।",
+      "parts": [
+        {
+          "token": "022",
+          "meaning": "সর্বোচ্চ থেকে বাদ: file 666-022=644, dir 777-022=755"
+        }
+      ],
+      "example": "umask\n# 0022"
+    },
+    {
+      "command": "SUID / SGID / sticky",
+      "usage": "বিশেষ তিন চিহ্ন — চিনে রাখো: s (owner/group-এর ক্ষমতায় চলে), t (শুধু নিজেরটা মোছা যায়)।",
+      "parts": [
+        {
+          "token": "-rwsr-xr-x",
+          "meaning": "SUID — /usr/bin/passwd এভাবেই চলে"
+        },
+        {
+          "token": "drwxrwsr-x",
+          "meaning": "SGID dir — নতুন ফাইল দলের নামে জন্মায়"
+        },
+        {
+          "token": "drwxrwxrwt",
+          "meaning": "sticky — /tmp: সবাই লেখে, মোছে শুধু নিজেরটা"
+        }
+      ],
+      "example": "ls -l /usr/bin/passwd\n# -rwsr-xr-x 1 root root ..."
+    }
+  ]
+}

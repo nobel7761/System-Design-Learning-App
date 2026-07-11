@@ -83,9 +83,14 @@ export class ProgressService {
     const done = await this.getDoneLessonIds();
     if (done.has(lessonId)) return 'done';
     const track = this.curriculumService.getLessonTrack(lessonId);
+    // Content-less placeholders must not block progression — the "current"
+    // lesson is the first unfinished one that actually has content.
     const currentId = this.curriculumService
       .getOrderedLessonIdsByTrack(track)
-      .find((id) => !done.has(id));
+      .find(
+        (id) =>
+          !done.has(id) && this.curriculumService.getLesson(id).contentReady,
+      );
     return lessonId === currentId ? 'current' : 'locked';
   }
 
@@ -202,7 +207,10 @@ export class ProgressService {
     ] as const) {
       const currentId = this.curriculumService
         .getOrderedLessonIdsByTrack(track)
-        .find((id) => !done.has(id));
+        .find(
+          (id) =>
+            !done.has(id) && this.curriculumService.getLesson(id).contentReady,
+        );
       trackCurrentId.set(track, currentId);
     }
 
@@ -225,9 +233,13 @@ export class ProgressService {
         title: world.title,
         titleEn: world.titleEn,
         description: world.description,
+        milestone: world.milestone ?? null,
+        moduleNo: world.moduleNo ?? null,
         doneCount,
         totalCount: lessons.length,
-        percent: Math.round((doneCount / lessons.length) * 100),
+        percent: lessons.length
+          ? Math.round((doneCount / lessons.length) * 100)
+          : 0,
         lessons,
       };
     });
@@ -306,9 +318,18 @@ export class ProgressService {
       const worlds = trackWorlds.map((w) => ({
         id: w.id,
         title: w.title,
+        milestone: w.milestone ?? null,
+        moduleNo: w.moduleNo ?? null,
         doneCount: w.doneCount,
         totalCount: w.totalCount,
         percent: w.percent,
+        lessons: w.lessons.map((l) => ({
+          id: l.id,
+          title: l.title,
+          type: l.type,
+          status: l.status,
+          contentReady: l.contentReady,
+        })),
       }));
 
       return {

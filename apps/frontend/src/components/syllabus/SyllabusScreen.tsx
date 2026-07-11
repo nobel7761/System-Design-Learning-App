@@ -13,7 +13,12 @@ import {
   Progress,
 } from "@/components/shared/shadcn";
 import useAPI from "@/hooks/api";
-import type { SyllabusLesson, SyllabusWorld, Track } from "@/lib/api/types";
+import type {
+  Milestone,
+  SyllabusLesson,
+  SyllabusWorld,
+  Track,
+} from "@/lib/api/types";
 
 function LessonRow({ lesson }: { lesson: SyllabusLesson }) {
   const icon =
@@ -83,12 +88,38 @@ function LessonRow({ lesson }: { lesson: SyllabusLesson }) {
   return row;
 }
 
+function MilestoneHeader({
+  milestone,
+  moduleCount,
+}: {
+  milestone: Milestone;
+  moduleCount: number;
+}) {
+  return (
+    <div className="mt-6 mb-3 flex items-center gap-3 first:mt-0">
+      <span className="rounded-lg border border-violet-300 bg-violet-50 px-2.5 py-1 text-xs font-bold text-violet-700">
+        🏁 Milestone {milestone.order}
+      </span>
+      <span className="text-sm font-bold text-slate-800">
+        {milestone.title}
+      </span>
+      <span className="text-xs text-slate-400">{moduleCount} Modules</span>
+      <div className="h-px flex-1 bg-slate-200" />
+    </div>
+  );
+}
+
 function WorldSection({ world }: { world: SyllabusWorld }) {
   return (
     <AccordionItem value={world.id} className="rounded-xl border bg-white px-4">
       <AccordionTrigger className="hover:no-underline">
         <div className="flex w-full items-center justify-between pr-2">
           <div className="text-left">
+            {world.moduleNo != null && (
+              <span className="mb-1 inline-block rounded border border-violet-200 bg-violet-50 px-1.5 py-0.5 text-[10px] font-bold text-violet-600">
+                Module {world.moduleNo}
+              </span>
+            )}
             <p className="font-semibold text-slate-800">{world.title}</p>
             <p className="text-xs font-normal text-slate-500">
               {world.description}
@@ -140,9 +171,9 @@ const TRACKS: { value: Track; label: string; emoji: string; desc: string }[] = [
   },
   {
     value: "devops",
-    label: "DevOps — CloudCamp",
+    label: "Mastering AWS & DevOps by Poridhi",
     emoji: "🐧",
-    desc: "Poridhi lecture থেকে",
+    desc: "Season 4 · Milestone-ভিত্তিক",
   },
 ];
 
@@ -205,9 +236,26 @@ export function SyllabusScreen() {
           defaultValue={currentWorldId ? [currentWorldId] : [filtered[0]?.id]}
           className="space-y-3"
         >
-          {filtered.map((world) => (
-            <WorldSection key={world.id} world={world} />
-          ))}
+          {filtered.map((world, i) => {
+            const showMilestone =
+              world.milestone &&
+              world.milestone.id !== filtered[i - 1]?.milestone?.id;
+            return (
+              <div key={world.id}>
+                {showMilestone && world.milestone && (
+                  <MilestoneHeader
+                    milestone={world.milestone}
+                    moduleCount={
+                      filtered.filter(
+                        (w) => w.milestone?.id === world.milestone?.id,
+                      ).length
+                    }
+                  />
+                )}
+                <WorldSection world={world} />
+              </div>
+            );
+          })}
         </Accordion>
       ) : null}
     </AppShell>

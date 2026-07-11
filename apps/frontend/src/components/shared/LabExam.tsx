@@ -7,6 +7,7 @@ import {
   displayCwd,
   evaluateCheck,
   execute,
+  nodeMode,
   resolvePath,
   HOME,
   type ShellState,
@@ -20,6 +21,9 @@ interface TreeNode {
   abs: string;
   type: "dir" | "file";
   content?: string;
+  mode?: string;
+  owner?: string;
+  group?: string;
   children: TreeNode[];
 }
 
@@ -28,7 +32,7 @@ function buildTree(targets: LabExamTarget[]): TreeNode | null {
   const ensure = (
     abs: string,
     type: "dir" | "file",
-    content?: string,
+    target?: LabExamTarget,
   ): TreeNode => {
     let node = nodes.get(abs);
     if (!node) {
@@ -36,18 +40,20 @@ function buildTree(targets: LabExamTarget[]): TreeNode | null {
         name: abs.slice(abs.lastIndexOf("/") + 1),
         abs,
         type,
-        content,
         children: [],
       };
       nodes.set(abs, node);
     }
-    if (content !== undefined) node.content = content;
+    if (target?.content !== undefined) node.content = target.content;
+    if (target?.mode !== undefined) node.mode = target.mode;
+    if (target?.owner !== undefined) node.owner = target.owner;
+    if (target?.group !== undefined) node.group = target.group;
     return node;
   };
   let root: TreeNode | null = null;
   for (const t of targets) {
     const abs = resolvePath(HOME, t.path);
-    ensure(abs, t.type, t.content);
+    ensure(abs, t.type, t);
     // link ancestors up to (excluding) HOME
     let cur = abs;
     while (cur !== HOME && cur !== "/") {
@@ -73,7 +79,17 @@ function TreeNodeView({ node, shell }: { node: TreeNode; shell: ShellState }) {
   const created = !!fsNode && fsNode.type === node.type;
   const contentOk =
     node.content === undefined || (fsNode?.content ?? "") === node.content;
-  const done = created && contentOk;
+  const wantsPerms =
+    node.mode !== undefined ||
+    node.owner !== undefined ||
+    node.group !== undefined;
+  const permsOk =
+    !wantsPerms ||
+    (!!fsNode &&
+      (node.mode === undefined || nodeMode(fsNode) === node.mode) &&
+      (node.owner === undefined || (fsNode.owner ?? "root") === node.owner) &&
+      (node.group === undefined || (fsNode.group ?? "root") === node.group));
+  const done = created && contentOk && permsOk;
   const isCwd = shell.cwd === node.abs;
 
   return (
@@ -98,6 +114,18 @@ function TreeNodeView({ node, shell }: { node: TreeNode; shell: ShellState }) {
             “{node.content}”
           </span>
         )}
+        {wantsPerms && (
+          <span
+            className={`font-mono text-[9px] font-bold ${
+              created && permsOk ? "text-emerald-600" : "text-slate-400"
+            }`}
+            title="টার্গেট permission/ownership"
+          >
+            🔐 {node.mode ?? ""}
+            {(node.owner || node.group) &&
+              ` ${node.owner ?? "?"}:${node.group ?? "?"}`}
+          </span>
+        )}
       </div>
       {isCwd && (
         <span className="mt-0.5 text-[9px] font-bold text-indigo-500">
@@ -114,6 +142,86 @@ function TreeNodeView({ node, shell }: { node: TreeNode; shell: ShellState }) {
           </div>
         </>
       )}
+    </div>
+  );
+}
+
+/* ── Users & Groups panel (user-management labs) ──────────────────────── */
+
+function GroupsPanel({
+  groupTargets,
+  shell,
+}: {
+  groupTargets: NonNullable<LabExamSpec["groupTargets"]>;
+  shell: ShellState;
+}) {
+  return (
+    <div className="flex flex-wrap items-start gap-3">
+      {groupTargets.map((gt) => {
+        const groupExists = shell.groups[gt.group] !== undefined;
+        return (
+          <div
+            key={gt.group}
+            className={`min-w-36 rounded-xl border-2 p-2.5 transition-all duration-500 ${
+              groupExists
+                ? "border-violet-400 bg-violet-50"
+                : "border-dashed border-slate-300 bg-slate-50"
+            }`}
+          >
+            <p
+              className={`mb-2 text-xs font-bold ${
+                groupExists ? "text-violet-700" : "text-slate-400"
+              }`}
+            >
+              👥 {gt.group}
+              {groupExists && (
+                <span className="ml-1 font-normal text-violet-400">
+                  gid {shell.groups[gt.group]}
+                </span>
+              )}
+            </p>
+            <div className="flex flex-col gap-1">
+              {gt.users.map((name) => {
+                const user = shell.users[name];
+                const isMember =
+                  !!user &&
+                  (user.primary === gt.group ||
+                    user.supplementary.includes(gt.group));
+                const isPrimary = !!user && user.primary === gt.group;
+                return (
+                  <div
+                    key={name}
+                    className={`flex items-center gap-1.5 rounded-full border-2 px-2.5 py-0.5 text-[11px] font-semibold transition-all duration-500 ${
+                      isMember
+                        ? "border-emerald-400 bg-emerald-100 text-emerald-700"
+                        : user
+                          ? "border-amber-300 bg-amber-50 text-amber-600"
+                          : "border-dashed border-slate-300 bg-white text-slate-400"
+                    }`}
+                    title={
+                      !user
+                        ? "user এখনো তৈরি হয়নি"
+                        : isMember
+                          ? isPrimary
+                            ? "primary member"
+                            : "supplementary member"
+                          : "user আছে, কিন্তু এই group-এ এখনো ঢোকেনি"
+                    }
+                  >
+                    <span>👤 {name}</span>
+                    {user?.locked && <span title="locked">🔒</span>}
+                    {isPrimary && (
+                      <span className="rounded bg-emerald-200 px-1 text-[8px] font-bold text-emerald-800">
+                        1°
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -367,22 +475,34 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
           </div>
         </div>
 
-        {/* Right: target tree */}
-        <div className="rounded-xl border border-slate-200 bg-white p-4">
-          <p className="mb-3 text-xs font-bold text-slate-500">
-            🎯 টার্গেট কাঠামো — সঠিক কমান্ডে নোডগুলো সবুজ হবে
-          </p>
-          <div className="overflow-x-auto pb-2">
-            {tree ? (
-              <TreeNodeView node={tree} shell={shell} />
-            ) : (
-              <p className="text-xs text-slate-400">কোনো টার্গেট কাঠামো নেই</p>
-            )}
-          </div>
-          <p className="mt-3 text-[10px] text-slate-400">
-            📁 dashed = এখনো হয়নি · সবুজ = তৈরি ✓ · নীল রিং = তুমি এখন যেখানে
-            (cd করলে নড়বে)
-          </p>
+        {/* Right: target visualizations */}
+        <div className="flex flex-col gap-4">
+          {spec.groupTargets && spec.groupTargets.length > 0 && (
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <p className="mb-3 text-xs font-bold text-slate-500">
+                👥 টার্গেট Groups & Users — সদস্য হলেই চিপ সবুজ হবে
+              </p>
+              <GroupsPanel groupTargets={spec.groupTargets} shell={shell} />
+              <p className="mt-3 text-[10px] text-slate-400">
+                dashed = user নেই · হলুদ = user আছে, group-এ ঢোকেনি · সবুজ =
+                সদস্য ✓ · 1° = primary · 🔒 = locked
+              </p>
+            </div>
+          )}
+          {tree && (
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <p className="mb-3 text-xs font-bold text-slate-500">
+                🎯 টার্গেট কাঠামো — সঠিক কমান্ডে নোডগুলো সবুজ হবে
+              </p>
+              <div className="overflow-x-auto pb-2">
+                <TreeNodeView node={tree} shell={shell} />
+              </div>
+              <p className="mt-3 text-[10px] text-slate-400">
+                📁 dashed = এখনো হয়নি · সবুজ = তৈরি ✓ · নীল রিং = তুমি এখন
+                যেখানে (cd করলে নড়বে)
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

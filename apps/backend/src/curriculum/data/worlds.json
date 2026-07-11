@@ -3949,13 +3949,29 @@
   {
     "id": "wv0",
     "order": 60,
-    "title": "Linux-এর দুনিয়া — DevOps-এর ভিত",
+    "track": "devops",
+    "title": "Linux Fundamentals",
     "titleEn": "Linux Fundamentals",
-    "description": "Poridhi CloudCamp লেকচার থেকে — file system, navigation, users, permissions। সার্ভারের অন্ধকার বিল্ডিংটা চেনা।",
+    "description": "File system, users, permissions, logging — লিনাক্সের ভিত। ৩ Live · ৯ Lab · ১ Interview + ২টা Extra (Permissions)।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 1,
     "lessons": [
       {
-        "id": "wv0l1",
+        "id": "wv0l3",
         "order": 1,
+        "title": "Orientation Class",
+        "titleEn": "Orientation Class",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l1",
+        "order": 2,
         "title": "Linux File System — শহরের ম্যাপ আর রাস্তা চেনা",
         "titleEn": "Linux File System Basics & Navigation",
         "type": "lesson",
@@ -3963,15 +3979,372 @@
         "contentReady": true
       },
       {
+        "id": "wv0l4",
+        "order": 3,
+        "title": "Linux User Management — চাবি কার হাতে কয়টা",
+        "titleEn": "Linux User Management",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
         "id": "wv0l2",
-        "order": 2,
+        "order": 4,
         "title": "🔧 LAB EXAM: File System Navigation — নিজে করো",
         "titleEn": "LAB: Mastering Linux File System Navigation",
         "type": "workshop",
         "estMinutes": 30,
         "contentReady": true
+      },
+      {
+        "id": "wv0l5",
+        "order": 5,
+        "title": "🔧 LAB EXAM: Linux User and Group Management",
+        "titleEn": "LAB: Linux User and Group Management",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wv0l14",
+        "order": 6,
+        "title": "[Extra Lesson] File Permissions — তালা, চাবি আর ৭৫৫-র রহস্য",
+        "titleEn": "[Extra Lesson] Linux File Permissions",
+        "type": "lesson",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wv0l15",
+        "order": 7,
+        "title": "[Extra Lab] File Permissions — webteam-এর ঘর সাজাও",
+        "titleEn": "[Extra Lab] Linux File Permissions",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": true
+      },
+      {
+        "id": "wv0l6",
+        "order": 8,
+        "title": "User Account Management in Linux",
+        "titleEn": "LAB: User Account Management in Linux",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l7",
+        "order": 9,
+        "title": "Managing Sudo Access for System Administration",
+        "titleEn": "LAB: Managing Sudo Access",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l8",
+        "order": 10,
+        "title": "Understanding /etc/skel/ in Linux",
+        "titleEn": "LAB: Understanding /etc/skel/",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l9",
+        "order": 11,
+        "title": "Linux User Modification",
+        "titleEn": "LAB: Linux User Modification",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l10",
+        "order": 12,
+        "title": "Mastering Linux File Permissions",
+        "titleEn": "LAB: Mastering Linux File Permissions",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l11",
+        "order": 13,
+        "title": "Linux Performance Analysis",
+        "titleEn": "LAB: Linux Performance Analysis",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l12",
+        "order": 14,
+        "title": "System Logging and Monitoring",
+        "titleEn": "LAB: System Logging and Monitoring",
+        "type": "workshop",
+        "estMinutes": 30,
+        "contentReady": false
+      },
+      {
+        "id": "wv0l13",
+        "order": 15,
+        "title": "🎤 Interview Test: Linux User & Access Management",
+        "titleEn": "Interview Test: Linux User & Access Management",
+        "type": "mock",
+        "estMinutes": 30,
+        "contentReady": false
       }
-    ],
-    "track": "devops"
+    ]
+  },
+  {
+    "id": "wv1",
+    "order": 61,
+    "track": "devops",
+    "title": "Text Processing & Regular Expressions",
+    "titleEn": "Text Processing & Regular Expressions",
+    "description": "৫ Lab · ৪ Live · ১ Interview — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 2,
+    "lessons": []
+  },
+  {
+    "id": "wv2",
+    "order": 62,
+    "track": "devops",
+    "title": "Mininet",
+    "titleEn": "Mininet",
+    "description": "৮ Lab · ৮ Class — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 3,
+    "lessons": []
+  },
+  {
+    "id": "wv3",
+    "order": 63,
+    "track": "devops",
+    "title": "Linux Networking & Security",
+    "titleEn": "Linux Networking & Security",
+    "description": "৫ Lab · ৩ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 4,
+    "lessons": []
+  },
+  {
+    "id": "wv4",
+    "order": 64,
+    "track": "devops",
+    "title": "Bash Scripting & Automation",
+    "titleEn": "Bash Scripting & Automation",
+    "description": "৯ Lab · ২ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 5,
+    "lessons": []
+  },
+  {
+    "id": "wv5",
+    "order": 65,
+    "track": "devops",
+    "title": "Linux & Container Network Namespace Fundamentals",
+    "titleEn": "Linux & Container Network Namespace Fundamentals",
+    "description": "৮ Class · ২ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 6,
+    "lessons": []
+  },
+  {
+    "id": "wv6",
+    "order": 66,
+    "track": "devops",
+    "title": "Overlay Networking & Network Simulation",
+    "titleEn": "Overlay Networking & Network Simulation",
+    "description": "১ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 7,
+    "lessons": []
+  },
+  {
+    "id": "wv7",
+    "order": 67,
+    "track": "devops",
+    "title": "Docker Fundamentals & Container Lifecycle",
+    "titleEn": "Docker Fundamentals & Container Lifecycle",
+    "description": "৫ Lab · ১ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 8,
+    "lessons": []
+  },
+  {
+    "id": "wv8",
+    "order": 68,
+    "track": "devops",
+    "title": "Docker Networking & Storage",
+    "titleEn": "Docker Networking & Storage",
+    "description": "১ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 9,
+    "lessons": []
+  },
+  {
+    "id": "wv9",
+    "order": 69,
+    "track": "devops",
+    "title": "Docker Image Management & Optimization",
+    "titleEn": "Docker Image Management & Optimization",
+    "description": "content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 10,
+    "lessons": []
+  },
+  {
+    "id": "wv10",
+    "order": 70,
+    "track": "devops",
+    "title": "Web Applications & Multi-Container Deployments",
+    "titleEn": "Web Applications & Multi-Container Deployments",
+    "description": "content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 11,
+    "lessons": []
+  },
+  {
+    "id": "wv11",
+    "order": 71,
+    "track": "devops",
+    "title": "Makefile for Automation",
+    "titleEn": "Makefile for Automation",
+    "description": "content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 12,
+    "lessons": []
+  },
+  {
+    "id": "wv12",
+    "order": 72,
+    "track": "devops",
+    "title": "Micro-service With Docker",
+    "titleEn": "Micro-service With Docker",
+    "description": "১ Live — content এলে খুলবে।",
+    "milestone": {
+      "id": "m1",
+      "order": 1,
+      "title": "Linux, Scripting & Containerization"
+    },
+    "moduleNo": 13,
+    "lessons": []
+  },
+  {
+    "id": "wv13",
+    "order": 73,
+    "track": "devops",
+    "title": "৮টা module আসছে",
+    "titleEn": "Modules coming soon",
+    "description": "content এলে module গুলো খুলবে।",
+    "milestone": {
+      "id": "m2",
+      "order": 2,
+      "title": "Cloud Fundamentals with AWS"
+    },
+    "lessons": []
+  },
+  {
+    "id": "wv14",
+    "order": 74,
+    "track": "devops",
+    "title": "৭টা module আসছে",
+    "titleEn": "Modules coming soon",
+    "description": "content এলে module গুলো খুলবে।",
+    "milestone": {
+      "id": "m3",
+      "order": 3,
+      "title": "Infrastructure as Code (IaC) & Server Management"
+    },
+    "lessons": []
+  },
+  {
+    "id": "wv15",
+    "order": 75,
+    "track": "devops",
+    "title": "১৪টা module আসছে",
+    "titleEn": "Modules coming soon",
+    "description": "content এলে module গুলো খুলবে।",
+    "milestone": {
+      "id": "m4",
+      "order": 4,
+      "title": "Kubernetes Mastery"
+    },
+    "lessons": []
+  },
+  {
+    "id": "wv16",
+    "order": 76,
+    "track": "devops",
+    "title": "৯টা module আসছে",
+    "titleEn": "Modules coming soon",
+    "description": "content এলে module গুলো খুলবে।",
+    "milestone": {
+      "id": "m5",
+      "order": 5,
+      "title": "Observability Stack (Monitoring, Logging, Tracing)"
+    },
+    "lessons": []
+  },
+  {
+    "id": "wv17",
+    "order": 77,
+    "track": "devops",
+    "title": "১১টা module আসছে",
+    "titleEn": "Modules coming soon",
+    "description": "content এলে module গুলো খুলবে।",
+    "milestone": {
+      "id": "m6",
+      "order": 6,
+      "title": "Production-Grade CI/CD & GitOps"
+    },
+    "lessons": []
   }
 ]

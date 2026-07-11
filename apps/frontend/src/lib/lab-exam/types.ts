@@ -11,6 +11,12 @@ export interface LabExamTarget {
   type: "dir" | "file";
   /** Required file content (exact match) for file targets */
   content?: string;
+  /** Expected octal permission, e.g. "775" — shows a badge that turns green */
+  mode?: string;
+  /** Expected owner user */
+  owner?: string;
+  /** Expected owning group */
+  group?: string;
 }
 
 export interface LabExamCheck {
@@ -26,6 +32,25 @@ export interface LabExamCheck {
   forbid?: string[];
   /** For cd tasks: the path argument must be written in this style */
   style?: "relative" | "absolute";
+  /** These groups must exist after the command */
+  groupsExist?: string[];
+  /** Expected permission/ownership of paths after the command */
+  pathModes?: { path: string; mode?: string; owner?: string; group?: string }[];
+  /** Expected state of users after the command */
+  usersState?: {
+    name: string;
+    /** set false to require the user to be deleted */
+    exists?: boolean;
+    /** required primary group */
+    primary?: string;
+    /** must be a member (primary or supplementary) of each */
+    inGroups?: string[];
+    /** must NOT be a member of any of these */
+    notInGroups?: string[];
+    locked?: boolean;
+    /** /home/<name> must exist (true) or not (false) */
+    hasHome?: boolean;
+  }[];
 }
 
 export interface LabExamTask {
@@ -40,6 +65,13 @@ export interface LabExamTask {
   section?: { title: string; note?: string };
 }
 
+/** One group box in the users/groups visualization panel */
+export interface LabExamGroupTarget {
+  group: string;
+  /** users expected to become members of this group */
+  users: string[];
+}
+
 export interface LabExamSpec {
   lessonId: string;
   title: string;
@@ -48,5 +80,7 @@ export interface LabExamSpec {
   intro: string;
   /** Every node of the target structure, used for the tree visualization */
   targets: LabExamTarget[];
+  /** Groups/users panel targets (user-management labs) */
+  groupTargets?: LabExamGroupTarget[];
   tasks: LabExamTask[];
 }

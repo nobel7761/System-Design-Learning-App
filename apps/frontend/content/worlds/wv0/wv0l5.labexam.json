@@ -1,0 +1,213 @@
+{
+  "lessonId": "wv0l5",
+  "title": "LAB EXAM: Linux User and Group Management",
+  "passPercent": 95,
+  "intro": "Instructor-এর ক্লাসের পুরো ফ্লো — দল বানাও, মানুষ বানাও, bind করো, পরিদর্শন করো, তালা দাও। প্রতিটা কমান্ড তোমার হাতে। প্রথম চেষ্টায় সঠিক হলেই পুরো নম্বর।",
+  "targets": [{ "path": "/home/yasin", "type": "dir" }],
+  "groupTargets": [
+    { "group": "minions", "users": ["shajal", "minhaz"] },
+    { "group": "devops", "users": ["shajal", "minhaz"] },
+    { "group": "sudo", "users": ["yasin"] }
+  ],
+  "tasks": [
+    {
+      "id": "t01",
+      "points": 5,
+      "section": {
+        "title": "🏗️ পর্ব ১: দল আর মানুষ বানাও",
+        "note": "useradd কাজ করে user-space-এ, groupadd কাজ করে group-space-এ — বানালেই কিন্তু bind হয় না, সেটা পরের পর্বে।"
+      },
+      "prompt": "minions নামে একটা group বানাও।",
+      "check": { "require": ["groupadd"], "groupsExist": ["minions"] }
+    },
+    {
+      "id": "t02",
+      "points": 5,
+      "prompt": "shajal নামে একটা user বানাও — basic, home directory ছাড়া।",
+      "check": {
+        "require": ["useradd"],
+        "usersState": [{ "name": "shajal", "hasHome": false }]
+      }
+    },
+    {
+      "id": "t03",
+      "points": 5,
+      "prompt": "minhaz নামেও একজনকে বানাও (home ছাড়া)।",
+      "check": {
+        "require": ["useradd"],
+        "usersState": [{ "name": "minhaz", "hasHome": false }]
+      }
+    },
+    {
+      "id": "t04",
+      "points": 5,
+      "prompt": "yasin-কে বানাও — এবার home directory-সহ! (ডানের ছোট গাছটায় /home/yasin সবুজ হবে)",
+      "check": {
+        "require": ["useradd", "-m"],
+        "usersState": [{ "name": "yasin", "hasHome": true }]
+      },
+      "hint": "home বানানোর flag-টা মনে আছে? make home…"
+    },
+    {
+      "id": "t05",
+      "points": 5,
+      "prompt": "shajal-এর পুরো পরিচয় দেখো — UID, primary group, সব group।",
+      "check": { "require": ["id"], "ref": "id shajal" }
+    },
+    {
+      "id": "t06",
+      "points": 6,
+      "section": {
+        "title": "🔗 পর্ব ২: Bind — primary group",
+        "note": "ছোট হাতের -g = primary group সেট/বদল। খেয়াল করো: গত ধাপের id-তে shajal-এর primary ছিল তার নিজের নামের private group।"
+      },
+      "prompt": "shajal-এর PRIMARY group করে দাও minions।",
+      "check": {
+        "require": ["usermod", "-g"],
+        "usersState": [{ "name": "shajal", "primary": "minions" }]
+      },
+      "hint": "user modify করার কমান্ড + ছোট হাতের g"
+    },
+    {
+      "id": "t07",
+      "points": 5,
+      "prompt": "minhaz-এর primary group-ও minions করো।",
+      "check": {
+        "require": ["usermod", "-g"],
+        "usersState": [{ "name": "minhaz", "primary": "minions" }]
+      }
+    },
+    {
+      "id": "t08",
+      "points": 4,
+      "prompt": "shajal কোন কোন group-এ আছে — এক লাইনে দেখাও (id না, ছোট কমান্ডটা)।",
+      "check": {
+        "require": ["groups"],
+        "forbid": ["id"],
+        "ref": "groups shajal"
+      }
+    },
+    {
+      "id": "t09",
+      "points": 5,
+      "section": {
+        "title": "➕ পর্ব ৩: Supplementary group",
+        "note": "primary-র বাইরের সদস্যপদ = supplementary। এখানেই -aG-র খেলা — আর -a ভুলে যাওয়ার বিখ্যাত ফাঁদ।"
+      },
+      "prompt": "devops নামে আরেকটা group বানাও।",
+      "check": { "require": ["groupadd"], "groupsExist": ["devops"] }
+    },
+    {
+      "id": "t10",
+      "points": 6,
+      "prompt": "shajal-কে devops-এ যোগ করো — supplementary হিসেবে, তার primary (minions) অক্ষত রেখে।",
+      "check": {
+        "require": ["usermod", "-a", "-G"],
+        "usersState": [
+          { "name": "shajal", "primary": "minions", "inGroups": ["devops"] }
+        ]
+      },
+      "hint": "append + Groups — দুটো অক্ষর একসাথে…"
+    },
+    {
+      "id": "t11",
+      "points": 4,
+      "prompt": "আবার shajal-এর পরিচয় দেখো — gid এখনো minions, আর groups-এ দুটোই আছে তো?",
+      "check": { "require": ["id"], "ref": "id shajal" }
+    },
+    {
+      "id": "t12",
+      "points": 6,
+      "prompt": "minhaz-কেও devops-এ ঢোকাও — একই শর্তে: primary অক্ষত।",
+      "check": {
+        "require": ["usermod", "-a"],
+        "usersState": [
+          { "name": "minhaz", "primary": "minions", "inGroups": ["devops"] }
+        ]
+      }
+    },
+    {
+      "id": "t13",
+      "points": 4,
+      "section": {
+        "title": "📖 পর্ব ৪: খাতা পরিদর্শন",
+        "note": "সব তথ্য শেষমেশ ফাইলে — /etc/passwd (user-দের খাতা, primary GID-সহ) আর /etc/group (দলের খাতা, supplementary সদস্যরা)।"
+      },
+      "prompt": "সব user-এর খাতাটা খুলে দেখো।",
+      "check": { "require": ["cat"], "ref": "cat /etc/passwd" }
+    },
+    {
+      "id": "t14",
+      "points": 4,
+      "prompt": "এবার দলের খাতাটা — কোন group-এ কারা supplementary সদস্য, দেখো।",
+      "check": { "require": ["cat"], "ref": "cat /etc/group" }
+    },
+    {
+      "id": "t15",
+      "points": 5,
+      "prompt": "পুরো খাতা না পড়ে শুধু shajal-এর লাইনটা বের করো user-খাতা থেকে (আগের lab-এর অস্ত্র মনে করো!)।",
+      "check": { "require": ["grep"], "ref": "grep shajal /etc/passwd" },
+      "hint": "ফাইলের ভেতরে খোঁজার কমান্ডটা… target ফাইলটা /etc/passwd"
+    },
+    {
+      "id": "t16",
+      "points": 5,
+      "section": {
+        "title": "🔒 পর্ব ৫: ছুটির দিনের ব্যবস্থা",
+        "note": "instructor-এর scenario: shajal ছুটিতে যাচ্ছে। account মুছবে না — data হারাবে! তালা দেবে।"
+      },
+      "prompt": "shajal-এর account-এ তালা দাও (ডানে তার চিপে 🔒 আসবে)।",
+      "check": {
+        "require": ["usermod", "-L"],
+        "usersState": [{ "name": "shajal", "locked": true }]
+      }
+    },
+    {
+      "id": "t17",
+      "points": 4,
+      "prompt": "shajal ছুটি থেকে ফিরেছে — তালা খুলে দাও।",
+      "check": {
+        "require": ["usermod", "-U"],
+        "usersState": [{ "name": "shajal", "locked": false }]
+      }
+    },
+    {
+      "id": "t18",
+      "points": 6,
+      "section": {
+        "title": "🦸 পর্ব ৬: Superpower",
+        "note": "sudo group-এ ঢোকা = root-এর মতো ক্ষমতা। সাবধানে — আর -a ভুলো না, নাহলে devops-রা supplementary হারাবে!"
+      },
+      "prompt": "yasin-কে sudo group-এ যোগ করো (supplementary হিসেবে)।",
+      "check": {
+        "require": ["usermod", "-a"],
+        "usersState": [{ "name": "yasin", "inGroups": ["sudo"] }]
+      }
+    },
+    {
+      "id": "t19",
+      "points": 4,
+      "prompt": "yasin-এর পরিচয় দেখে নিশ্চিত হও — groups-এ sudo এসেছে?",
+      "check": { "require": ["id"], "ref": "id yasin" }
+    },
+    {
+      "id": "t20",
+      "points": 4,
+      "section": {
+        "title": "🧹 পর্ব ৭: Offboarding",
+        "note": "শেষ পর্ব — instructor-এর joker! বানাও, তারপর স্থায়ী বিদায়।"
+      },
+      "prompt": "joker নামে একটা user বানাও (home ছাড়া)।",
+      "check": { "require": ["useradd"], "usersState": [{ "name": "joker" }] }
+    },
+    {
+      "id": "t21",
+      "points": 3,
+      "prompt": "joker কোম্পানি ছেড়ে দিয়েছে — user-টা মুছে ফেলো।",
+      "check": {
+        "require": ["userdel"],
+        "usersState": [{ "name": "joker", "exists": false }]
+      }
+    }
+  ]
+}

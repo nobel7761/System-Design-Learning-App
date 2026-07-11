@@ -1,0 +1,143 @@
+{
+  "lessonId": "wv0l4",
+  "commands": [
+    {
+      "command": "groupadd <name>",
+      "usage": "নতুন group (দল) তৈরি করে — group-space-এ কাজ করে। বানালেই কেউ সদস্য হয় না, bind আলাদা ধাপ।",
+      "parts": [
+        { "token": "groupadd", "meaning": "group add — নতুন দল" },
+        { "token": "-f", "meaning": "(optional) আগে থেকে থাকলেও error দিও না" },
+        { "token": "-g <GID>", "meaning": "(optional) নির্দিষ্ট Group ID দাও" }
+      ],
+      "example": "sudo groupadd minions"
+    },
+    {
+      "command": "useradd -m <name>",
+      "usage": "নতুন user তৈরি করে — user-space-এ। -m না দিলে home directory তৈরি হয় না!",
+      "parts": [
+        { "token": "useradd", "meaning": "user add — নতুন user" },
+        {
+          "token": "-m",
+          "meaning": "make home — /home/<name> তৈরি করো (+/etc/skel কপি হয়)"
+        },
+        {
+          "token": "-s <shell>",
+          "meaning": "(optional) shell দাও, যেমন /bin/bash"
+        },
+        {
+          "token": "-c \"<comment>\"",
+          "meaning": "(optional) পুরো নাম/বর্ণনা"
+        },
+        {
+          "token": "-G <group>",
+          "meaning": "(optional) জন্মের সময়ই supplementary group-এ ঢোকাও"
+        }
+      ],
+      "example": "sudo useradd -m shajal\nsudo useradd -G superadmin -m serviceop"
+    },
+    {
+      "command": "usermod -g <group> <user>",
+      "usage": "user-এর PRIMARY group সেট/বদল করে। সাবধান — supplementary যোগ করতে গিয়ে এটা চালালে primary-টাই সরে যাবে!",
+      "parts": [
+        { "token": "usermod", "meaning": "user modify" },
+        { "token": "-g", "meaning": "ছোট g = primary group (একটাই থাকে)" }
+      ],
+      "example": "sudo usermod -g minions shajal"
+    },
+    {
+      "command": "usermod -aG <group> <user>",
+      "usage": "user-কে supplementary group-এ যোগ করে — আগের group গুলো রেখে। -a ছাড়া দিলে আগের সব supplementary মুছে replace হয়!",
+      "parts": [
+        { "token": "-a", "meaning": "append — আগেরগুলো রাখো (এটাই প্রাণ!)" },
+        {
+          "token": "-G",
+          "meaning": "বড় G = supplementary groups (কমা দিয়ে একাধিক)"
+        }
+      ],
+      "example": "sudo usermod -aG devops shajal\nsudo usermod -aG sudo,devops joy"
+    },
+    {
+      "command": "usermod -L / -U <user>",
+      "usage": "account-এ তালা দেওয়া/খোলা — ছুটিতে যাওয়া employee-র জন্য। কোনো data হারায় না।",
+      "parts": [
+        { "token": "-L", "meaning": "Lock — login বন্ধ" },
+        { "token": "-U", "meaning": "Unlock — তালা খোলো" }
+      ],
+      "example": "sudo usermod -L shajal\nsudo usermod -U shajal"
+    },
+    {
+      "command": "userdel [-r] <user>",
+      "usage": "user মুছে ফেলা — স্থায়ী বিদায়ের জন্য। সাময়িক হলে lock-ই যথেষ্ট।",
+      "parts": [
+        { "token": "userdel", "meaning": "user delete" },
+        { "token": "-r", "meaning": "remove — home directory-সহ মুছো" }
+      ],
+      "example": "sudo userdel -r joker"
+    },
+    {
+      "command": "id <user>",
+      "usage": "user-এর পুরো পরিচয়: UID, primary group (gid), আর সব group।",
+      "parts": [
+        { "token": "uid=", "meaning": "user-এর নম্বর (root = 0)" },
+        { "token": "gid=", "meaning": "PRIMARY group" },
+        { "token": "groups=", "meaning": "primary + সব supplementary" }
+      ],
+      "example": "id shajal\n# uid=1001(shajal) gid=1002(minions) groups=1002(minions),1003(devops)"
+    },
+    {
+      "command": "groups <user>",
+      "usage": "user কোন কোন group-এ আছে — এক লাইনে (আগে primary, পরে supplementary)।",
+      "parts": [{ "token": "groups", "meaning": "সদস্যপদের তালিকা" }],
+      "example": "groups shajal\n# shajal : minions devops"
+    },
+    {
+      "command": "cat /etc/passwd",
+      "usage": "সব user-এর খাতা (এটা file, directory না!)। লাইন: নাম:x:UID:GID:comment:home:shell — x মানে আসল password /etc/shadow-তে।",
+      "parts": [
+        { "token": "/etc/passwd", "meaning": "user-দের রেজিস্টার" },
+        { "token": "/etc/shadow", "meaning": "encrypted password-এর আসল ঘর" },
+        {
+          "token": "/etc/group",
+          "meaning": "group + supplementary membership-এর খাতা"
+        }
+      ],
+      "example": "cat /etc/passwd | grep shajal\n# shajal:x:1001:1002::/home/shajal:/bin/bash"
+    },
+    {
+      "command": "usermod -aG sudo <user>",
+      "usage": "user-কে sudo group-এ ঢোকানো = root-এর মতো ক্ষমতা দেওয়া। sudo group-ই সবচেয়ে খতরনাক দল।",
+      "parts": [
+        {
+          "token": "sudo (group)",
+          "meaning": "super user-দের দল — root এর সদস্য"
+        },
+        {
+          "token": "/etc/sudoers",
+          "meaning": "superpower-এর খাতা — শুধু visudo দিয়ে edit"
+        },
+        {
+          "token": "/etc/sudoers.d/",
+          "meaning": "নিজের নিয়ম আলাদা ফাইলে — best practice"
+        }
+      ],
+      "example": "sudo usermod -aG sudo shajal"
+    },
+    {
+      "command": "ls -la /etc/skel",
+      "usage": "নতুন user-এর টেমপ্লেট (blueprint) — useradd -m চালালে এখানকার সব ফাইল নতুন home-এ কপি হয়। OOP-র class → object।",
+      "parts": [
+        {
+          "token": "/etc/skel",
+          "meaning": "skeleton — user-এর ছাঁচ (.bashrc, .profile...)"
+        }
+      ],
+      "example": "ls -la /etc/skel\n# .bashrc  .profile  .bash_logout"
+    },
+    {
+      "command": "<command> --help",
+      "usage": "যেকোনো কমান্ডের সব option শেখার সবচেয়ে দ্রুত রাস্তা — instructor-এর মন্ত্র: always remember --help।",
+      "parts": [{ "token": "--help", "meaning": "কমান্ডের নিজের ম্যানুয়াল" }],
+      "example": "usermod --help\nuseradd --help"
+    }
+  ]
+}

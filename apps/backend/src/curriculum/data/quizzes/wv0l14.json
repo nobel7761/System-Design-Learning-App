@@ -1,0 +1,531 @@
+{
+  "lessonId": "wv0l14",
+  "passPercent": 95,
+  "sample": {
+    "easy": 5,
+    "medium": 7,
+    "hard": 3
+  },
+  "questions": [
+    {
+      "id": "wv0l14-q01",
+      "difficulty": "easy",
+      "question": "ls -l-এর -rw-r--r-- অংশে মোট কয়টা permission-জোড়া আছে, কাদের জন্য?",
+      "options": [
+        "২টা — user আর admin",
+        "৩টা — owner, group, others",
+        "৪টা",
+        "১টা"
+      ],
+      "answerIndex": 1,
+      "explanation": "প্রথম অক্ষর টাইপ, তারপর তিন জোড়া: owner (rw-), group (r--), others (r--)।"
+    },
+    {
+      "id": "wv0l14-q02",
+      "difficulty": "easy",
+      "question": "r, w, x — তিনটার পুরো নাম কী?",
+      "options": [
+        "run, walk, exit",
+        "read, write, execute",
+        "root, web, extra",
+        "read, wide, extend"
+      ],
+      "answerIndex": 1,
+      "explanation": "read (পড়া), write (লেখা/বদলানো), execute (চালানো / directory-তে ঢোকা)।"
+    },
+    {
+      "id": "wv0l14-q03",
+      "difficulty": "easy",
+      "question": "সংখ্যার নামতায় r, w, x-এর দাম কত?",
+      "options": [
+        "r=1, w=2, x=4",
+        "r=4, w=2, x=1",
+        "r=3, w=2, x=1",
+        "r=4, w=1, x=2"
+      ],
+      "answerIndex": 1,
+      "explanation": "r=4, w=2, x=1 — জোড়ার দাম = যোগফল। যেমন rw- = 6।"
+    },
+    {
+      "id": "wv0l14-q04",
+      "difficulty": "easy",
+      "question": "rw-r--r-- সংখ্যায় কত?",
+      "options": ["755", "644", "600", "664"],
+      "answerIndex": 1,
+      "explanation": "rw-=6, r--=4, r--=4 → 644 — সাধারণ ফাইলের default।"
+    },
+    {
+      "id": "wv0l14-q05",
+      "difficulty": "easy",
+      "question": "rwxr-xr-x সংখ্যায় কত?",
+      "options": ["644", "777", "755", "711"],
+      "answerIndex": 2,
+      "explanation": "rwx=7, r-x=5, r-x=5 → 755 — script আর directory-র standard।"
+    },
+    {
+      "id": "wv0l14-q06",
+      "difficulty": "easy",
+      "question": "SSH private key-র permission কত রাখা নিয়ম?",
+      "options": ["777", "644", "600", "755"],
+      "answerIndex": 2,
+      "explanation": "600 = rw------- — শুধুই মালিক। নাহলে ssh নিজেই কাজ করতে অস্বীকার করে।"
+    },
+    {
+      "id": "wv0l14-q07",
+      "difficulty": "easy",
+      "question": "পুরো তালা এক কমান্ডে বসানোর (octal) উদাহরণ কোনটা?",
+      "options": [
+        "chmod +all file",
+        "chmod 755 deploy.sh",
+        "chown 755 deploy.sh",
+        "chgrp 755 deploy.sh"
+      ],
+      "answerIndex": 1,
+      "explanation": "chmod <৩ অঙ্ক> <path> — octal ভঙ্গি।"
+    },
+    {
+      "id": "wv0l14-q08",
+      "difficulty": "easy",
+      "question": "chmod u+x deploy.sh কী করে?",
+      "options": [
+        "সবাইকে execute দেয়",
+        "শুধু owner-কে execute দেয়, বাকি সব অক্ষত",
+        "group-এর execute কাড়ে",
+        "ফাইলটা চালিয়ে দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "u=owner, +=দাও, x=execute — symbolic ভঙ্গির সবচেয়ে কমন ব্যবহার।"
+    },
+    {
+      "id": "wv0l14-q09",
+      "difficulty": "easy",
+      "question": "ফাইলের owner আর group বদলানোর কমান্ড কোনটা?",
+      "options": ["chmod", "chown", "usermod", "mv"],
+      "answerIndex": 1,
+      "explanation": "chown user:group path — মালিকানা বদল; chmod বদলায় তালা।"
+    },
+    {
+      "id": "wv0l14-q10",
+      "difficulty": "easy",
+      "question": "chown root:webteam mysite — কোলনের পরের অংশটা কী?",
+      "options": ["password", "owning group", "backup owner", "permission"],
+      "answerIndex": 1,
+      "explanation": "user:group format — owner হলো root, owning group হলো webteam।"
+    },
+    {
+      "id": "wv0l14-q11",
+      "difficulty": "easy",
+      "question": "directory-তে ঢুকতে (cd) কোন permission লাগে?",
+      "options": ["r", "w", "x", "কোনোটাই না"],
+      "answerIndex": 2,
+      "explanation": "directory-র x = পা রাখার অনুমতি — r থাকলেও x ছাড়া cd হয় না!"
+    },
+    {
+      "id": "wv0l14-q12",
+      "difficulty": "easy",
+      "question": "chmod-এ -R flag-টা কী করে?",
+      "options": [
+        "reverse করে",
+        "directory-র ভেতরের সবকিছুতেও apply করে (recursive)",
+        "read-only করে",
+        "root-কে দেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "lab 1-এর grep -r-এর মতোই — R মানে ভেতরে ভেতরে সবখানে।"
+    },
+    {
+      "id": "wv0l14-q13",
+      "difficulty": "easy",
+      "question": "নতুন ফাইল জন্মালে তার default permission সাধারণত কত?",
+      "options": ["777", "644", "600", "755"],
+      "answerIndex": 1,
+      "explanation": "umask 022-এর ফলে ফাইল 644, directory 755 হয়ে জন্মায়।"
+    },
+    {
+      "id": "wv0l14-q14",
+      "difficulty": "easy",
+      "question": "'Permission denied' error-টা প্রথম কোথায় দেখেছিলে (Lab 1-এর টেবিল)?",
+      "options": [
+        "command ভুল লিখলে",
+        "যে ফাইল/ফোল্ডারে তোমার অধিকার নেই সেখানে হাত দিলে",
+        "internet না থাকলে",
+        "disk ভরলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "তখন বলা ছিল 'ls -la দিয়ে permission দেখো' — আজ সেই permission-ই পুরো শিখলে।"
+    },
+    {
+      "id": "wv0l14-q15",
+      "difficulty": "easy",
+      "question": "chgrp devops plan.txt কী করে?",
+      "options": [
+        "plan.txt মুছে দেয়",
+        "plan.txt-এর owning group devops করে দেয়",
+        "devops-কে execute দেয়",
+        "plan.txt-কে devops ফোল্ডারে নেয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "chgrp = change group — chown :devops-এর সমতুল্য।"
+    },
+    {
+      "id": "wv0l14-q16",
+      "difficulty": "medium",
+      "question": "chmod 640 report.txt-এর পরে ls -l কী দেখাবে?",
+      "options": ["-rw-r--r--", "-rw-r-----", "-rwxr-----", "-rw--w----"],
+      "answerIndex": 1,
+      "explanation": "6=rw-, 4=r--, 0=--- → owner পড়ে-লেখে, group শুধু পড়ে, others সম্পূর্ণ বাইরে।"
+    },
+    {
+      "id": "wv0l14-q17",
+      "difficulty": "medium",
+      "question": "-rwxrwxr-x সংখ্যায় কত, আর কোথায় মানানসই?",
+      "options": [
+        "775 — team-shared directory",
+        "755 — গোপন ফাইল",
+        "777 — SSH key",
+        "664 — script"
+      ],
+      "answerIndex": 0,
+      "explanation": "rwx=7, rwx=7, r-x=5 → 775: দল মিলে লেখে, বাইরের লোক দেখে/ঢোকে।"
+    },
+    {
+      "id": "wv0l14-q18",
+      "difficulty": "medium",
+      "question": "shajal একটা ফাইল পড়তে চাইলো। Linux কোন ক্রমে সিদ্ধান্ত নেয়?",
+      "options": [
+        "সব জোড়া মিলিয়ে গড় করে",
+        "owner? → group member? → others — প্রথম যেটা মেলে শুধু সেটাই",
+        "others আগে",
+        "যেটায় বেশি permission সেটা"
+      ],
+      "answerIndex": 1,
+      "explanation": "ঠিক একটা জোড়া প্রযোজ্য হয় — ক্রম: owner, তারপর group membership (primary বা supplementary), শেষে others।"
+    },
+    {
+      "id": "wv0l14-q19",
+      "difficulty": "medium",
+      "question": "ফাইলের permission -r--rw---- (owner=r--, group=rw-)। ফাইলের owner নিজেই group-এরও সদস্য। সে কি লিখতে পারবে?",
+      "options": [
+        "হ্যাঁ — group জোড়ায় w আছে",
+        "না — সে owner, তাই owner-জোড়াই (r--) প্রযোজ্য, group জোড়া পর্যন্ত পৌঁছায়ই না",
+        "হ্যাঁ — যেকোনো জোড়া মিললেই হয়",
+        "root-কে জিজ্ঞেস করবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "প্রথম ম্যাচেই থামে: owner হলে owner-জোড়া — এটা কম permission হলেও। ক্লাসিক ধাঁধা!"
+    },
+    {
+      "id": "wv0l14-q20",
+      "difficulty": "medium",
+      "question": "chmod g-w plan.txt (আগে 664 ছিল) — এখন octal কত?",
+      "options": ["644", "624", "464", "660"],
+      "answerIndex": 0,
+      "explanation": "664 = rw-rw-r-- → group থেকে w গেলে rw-r--r-- = 644।"
+    },
+    {
+      "id": "wv0l14-q21",
+      "difficulty": "medium",
+      "question": "chmod a+x runme.sh (আগে 644) — এখন কত?",
+      "options": ["744", "755", "754", "645"],
+      "answerIndex": 1,
+      "explanation": "a=সব জোড়ায় +x: 6+1=7, 4+1=5, 4+1=5 → 755।"
+    },
+    {
+      "id": "wv0l14-q22",
+      "difficulty": "medium",
+      "question": "chown root:webteam /var/www/mysite চালানোর পরেও ভেতরের পুরনো index.html root:root — কেন?",
+      "options": [
+        "কমান্ড ব্যর্থ",
+        "chown শুধু ওই path-টার গায়ে লাগে — ভেতরের জন্য -R লাগতো",
+        "index.html special",
+        "webteam নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "recursive না দিলে শুধু directory-টা বদলায়। পুরনো contents-সহ বদলাতে chown -R।"
+    },
+    {
+      "id": "wv0l14-q23",
+      "difficulty": "medium",
+      "question": "webteam setup-এ (chown :webteam + chmod 775) সব ঠিক, তবু shajal লিখতে পারছে না। প্রথম কোন কমান্ডে কারণ খুঁজবে?",
+      "options": [
+        "ls -la /",
+        "id shajal — সে কি আদৌ webteam-এর সদস্য?",
+        "cat /etc/passwd",
+        "chmod 777"
+      ],
+      "answerIndex": 1,
+      "explanation": "permission চেইনের তৃতীয় কড়ি: user→group সদস্যপদ। usermod -aG webteam shajal বাদ পড়েছে কিনা id-তেই ধরা পড়বে।"
+    },
+    {
+      "id": "wv0l14-q24",
+      "difficulty": "medium",
+      "question": "directory-র r আর x-এর ভাগাভাগিটা কী?",
+      "options": [
+        "r=ঢোকা, x=লিস্ট",
+        "r=ভেতরের নামের লিস্ট দেখা, x=ভেতরে ঢোকা",
+        "দুটো একই",
+        "r=লেখা"
+      ],
+      "answerIndex": 1,
+      "explanation": "r-only dir: ls-এ নাম দেখা যায় কিন্তু cd/খোলা যায় না; x-only: ঢোকা যায় কিন্তু ls চলে না।"
+    },
+    {
+      "id": "wv0l14-q25",
+      "difficulty": "medium",
+      "question": "directory-র w permission আসলে কী দেয়?",
+      "options": [
+        "ভেতরের ফাইল edit করার ক্ষমতা",
+        "directory-র ভেতরে ফাইল তৈরি/মুছে ফেলার ক্ষমতা",
+        "directory rename",
+        "কিছুই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "ফাইল edit নির্ভর করে ফাইলের নিজের w-তে; directory-র w = তার তালিকায় entry যোগ/বাদ (create/delete/rename)।"
+    },
+    {
+      "id": "wv0l14-q26",
+      "difficulty": "medium",
+      "question": "chmod 777 কেন বিপজ্জনক?",
+      "options": [
+        "ফাইল মুছে যায়",
+        "যেকোনো user — হ্যাক-হওয়া process-সহ — পড়তে, লিখতে, চালাতে পারে",
+        "সার্ভার ধীর হয়",
+        "কেউ পড়তে পারে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "others-জোড়ায় rwx মানে দুনিয়ার সবাইকে সব — least privilege-এর সম্পূর্ণ উল্টো।"
+    },
+    {
+      "id": "wv0l14-q27",
+      "difficulty": "medium",
+      "question": "chown minhaz:ghostteam file.txt (ghostteam বলে group নেই) — কী হবে?",
+      "options": [
+        "group তৈরি হয়ে যাবে",
+        "chown: invalid group — error",
+        "শুধু owner বদলাবে",
+        "চুপচাপ পাশ"
+      ],
+      "answerIndex": 1,
+      "explanation": "chown-এর user/group আগে existence লাগবে — Lab 2-এর groupadd আগে।"
+    },
+    {
+      "id": "wv0l14-q28",
+      "difficulty": "medium",
+      "question": "-rw------- এর octal কত, আর কী ধরনের ফাইলে দেখা উচিত?",
+      "options": [
+        "700 — script",
+        "600 — SSH key/secret",
+        "640 — log",
+        "644 — config"
+      ],
+      "answerIndex": 1,
+      "explanation": "rw-=6, ---=0, ---=0 → 600। গোপন জিনিসের একমাত্র সঠিক পোশাক।"
+    },
+    {
+      "id": "wv0l14-q29",
+      "difficulty": "medium",
+      "question": "chmod 755 file.txt (একটা data ফাইলে) — টেকনিক্যালি চলে, কিন্তু বদভ্যাস কেন?",
+      "options": [
+        "ফাইল ভেঙে যায়",
+        "data ফাইলকে অকারণ executable করা attack surface বাড়ায় — চালানোর জিনিস না হলে x দিও না",
+        "755 মানেই ভুল",
+        "পড়া যাবে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "x শুধু script/binary/directory-তে — এটাই hygiene।"
+    },
+    {
+      "id": "wv0l14-q30",
+      "difficulty": "medium",
+      "question": "symbolic o-r secret.conf (আগে 644) — এখন octal?",
+      "options": ["640", "644", "604", "444"],
+      "answerIndex": 0,
+      "explanation": "others-জোড়া থেকে r গেল: rw-r----- = 640।"
+    },
+    {
+      "id": "wv0l14-q31",
+      "difficulty": "medium",
+      "question": "ls -l output: -rw-rw-r-- 1 shajal webteam ... notes.txt — minhaz (webteam সদস্য, owner না) কী কী পারবে?",
+      "options": [
+        "কিছুই না",
+        "পড়া + লেখা (group জোড়া rw-)",
+        "শুধু পড়া",
+        "পড়া+লেখা+চালানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "সে owner না → group সদস্য? হ্যাঁ → group-জোড়া rw- প্রযোজ্য।"
+    },
+    {
+      "id": "wv0l14-q32",
+      "difficulty": "medium",
+      "question": "upupোরের ফাইলে একদম অচেনা user (কোনো সম্পর্ক নেই) কী পারবে?",
+      "options": ["কিছুই না", "শুধু পড়া (others r--)", "লেখা", "চালানো"],
+      "answerIndex": 1,
+      "explanation": "others-জোড়া r-- → শুধু পড়া।"
+    },
+    {
+      "id": "wv0l14-q33",
+      "difficulty": "medium",
+      "question": "umask 022 থাকলে নতুন directory কত permission নিয়ে জন্মায়?",
+      "options": ["644", "755", "777", "775"],
+      "answerIndex": 1,
+      "explanation": "dir-এর সর্বোচ্চ 777 - 022 = 755; ফাইলের 666-022=644।"
+    },
+    {
+      "id": "wv0l14-q34",
+      "difficulty": "medium",
+      "question": "chmod-এর octal আর symbolic — কখন কোনটা?",
+      "options": [
+        "সবসময় octal",
+        "octal = পুরো তালা জানা আছে/বসাতে চাই; symbolic = বিদ্যমান তালায় ছোট রদবদল (u+x)",
+        "symbolic দ্রুত",
+        "octal শুধু root পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "দুটোই এক গন্তব্যে যায় — octal declarative, symbolic incremental।"
+    },
+    {
+      "id": "wv0l14-q35",
+      "difficulty": "medium",
+      "question": "/usr/bin/passwd-এর permission -rwsr-xr-x — s-টা কী বোঝায়?",
+      "options": [
+        "broken ফাইল",
+        "SUID — যে-ই চালাক, owner (root)-এর ক্ষমতায় চলে",
+        "super fast",
+        "symbolic"
+      ],
+      "answerIndex": 1,
+      "explanation": "এজন্যই সাধারণ user-ও নিজের password বদলাতে পারে — passwd প্রোগ্রাম root হয়ে /etc/shadow-তে লেখে।"
+    },
+    {
+      "id": "wv0l14-q36",
+      "difficulty": "hard",
+      "question": "ধাঁধা: docs dir-এর permission 644। owner ls docs আর cd docs চালালো — কোনটা কী হবে?",
+      "options": [
+        "দুটোই চলবে",
+        "ls চলবে (r আছে), cd ব্যর্থ (x নেই)",
+        "cd চলবে, ls না",
+        "দুটোই ব্যর্থ"
+      ],
+      "answerIndex": 1,
+      "explanation": "dir-এ r=লিস্ট, x=ঢোকা। 6=rw- মানে x নেই — নিজের directory-তেও ঢুকতে পারবে না!"
+    },
+    {
+      "id": "wv0l14-q37",
+      "difficulty": "hard",
+      "question": "secret dir: permission 711 (rwx--x--x)। অচেনা user-এর জন্য কোনটা সত্যি?",
+      "options": [
+        "ভেতরের লিস্ট দেখতে পারবে",
+        "লিস্ট দেখতে পারবে না (r নেই) কিন্তু exact নাম জানলে ভেতরের ফাইলে পৌঁছাতে পারবে (x আছে)",
+        "কিছুই পারবে না",
+        "সব পারবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "x-only dir = অন্ধ করিডোর: হাঁটা যায়, দেখা যায় না। shared hosting-এ কমন কৌশল।"
+    },
+    {
+      "id": "wv0l14-q38",
+      "difficulty": "hard",
+      "question": "ফাইল: -r--r--r-- root root, কিন্তু directory-টার permission 777। অচেনা user কি ফাইলটা মুছতে পারবে?",
+      "options": [
+        "না — ফাইলে w নেই",
+        "হ্যাঁ — মোছা directory-র w-এর ব্যাপার, ফাইলের না!",
+        "শুধু root পারবে",
+        "শুধু rename পারবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "delete = directory-র তালিকা থেকে entry সরানো → dir-এর w লাগবে, ফাইলেরটা না। এজন্যই /tmp-এ sticky bit লাগে।"
+    },
+    {
+      "id": "wv0l14-q39",
+      "difficulty": "hard",
+      "question": "/tmp-এর drwxrwxrwt-এর t (sticky bit) ঠিক কোন সমস্যা ঠেকায়?",
+      "options": [
+        "disk ভরা",
+        "777-এর মতো সবাই লিখতে পারে, কিন্তু t-এর কারণে অন্যের ফাইল মুছতে/rename করতে পারে না — শুধু নিজেরটা",
+        "execute আটকায়",
+        "পড়া আটকায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "আগের প্রশ্নের সমস্যাটাই: shared writable dir-এ delete-অধিকার সীমাবদ্ধ করা।"
+    },
+    {
+      "id": "wv0l14-q40",
+      "difficulty": "hard",
+      "question": "চাই: webteam-এর সবাই /project-এ লিখবে, বাইরের কেউ পড়তেও পারবে না। সঠিক combo কোনটা?",
+      "options": [
+        "chmod 775 + chown :webteam",
+        "chmod 770 + chown root:webteam (+ সদস্যদের usermod -aG webteam)",
+        "chmod 700",
+        "chmod 777"
+      ],
+      "answerIndex": 1,
+      "explanation": "770 = others-জোড়া ফাঁকা — list/ঢোকা/পড়া কিছুই না। 775 হলে বাইরের লোক পড়তে পারতো।"
+    },
+    {
+      "id": "wv0l14-q41",
+      "difficulty": "hard",
+      "question": "deploy.sh: -rw-r--r-- root root। shajal (others) ./deploy.sh চালাতে গেলো, তারপর bash deploy.sh — কী ঘটবে?",
+      "options": [
+        "দুটোই চলবে",
+        "./deploy.sh ব্যর্থ (x নেই), কিন্তু bash deploy.sh চলবে (r আছে — bash নিজে ফাইলটা পড়ে চালায়)!",
+        "দুটোই ব্যর্থ",
+        "প্রথমটা চলবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "সূক্ষ্ম কিন্তু আসল: execute-bit সরাসরি চালানোয় লাগে; interpreter-কে ফাইল পড়িয়ে দিলে r-ই যথেষ্ট। security-তে এটা মাথায় রাখতে হয়।"
+    },
+    {
+      "id": "wv0l14-q42",
+      "difficulty": "hard",
+      "question": "SGID directory (chmod g+s, drwxrwsr-x root:webteam) — ভেতরে shajal নতুন ফাইল বানালে ফাইলের group কী হবে?",
+      "options": [
+        "shajal-এর primary group",
+        "webteam — directory-র group উত্তরাধিকারে",
+        "root",
+        "কিছুই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "সাধারণত নতুন ফাইল স্রষ্টার primary group পায়; SGID dir-এ পায় directory-র group — team folder সুশৃঙ্খল রাখার অস্ত্র।"
+    },
+    {
+      "id": "wv0l14-q43",
+      "difficulty": "hard",
+      "question": "chmod -R 777 / — এই কমান্ডের বাস্তব পরিণতি কী?",
+      "options": [
+        "সব দ্রুত চলে",
+        "সিস্টেম কার্যত ধ্বংস: sudo/ssh-সহ বহু টুল ভুল permission দেখে কাজ বন্ধ করে, security শূন্য — প্রায়ই full rebuild লাগে",
+        "শুধু warning",
+        "কিছুই না, root-প্রুফ"
+      ],
+      "answerIndex": 1,
+      "explanation": "অনেক প্রোগ্রাম নিজের ফাইলের কড়া permission দাবি করে (sudoers 440, ssh key 600)। এই এক লাইন = সার্ভারের মৃত্যু-সনদ।"
+    },
+    {
+      "id": "wv0l14-q44",
+      "difficulty": "hard",
+      "question": "Docker-এ RUN chown -R appuser:appgroup /app + USER appuser — এই জুটি কোন নীতির বাস্তবায়ন?",
+      "options": [
+        "performance tuning",
+        "least privilege — container process root না হয়ে শুধু /app-এ সীমাবদ্ধ user হিসেবে চলে; escape করলেও ক্ষতির সীমানা ছোট",
+        "disk বাঁচানো",
+        "networking"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর সেই দর্শন: user-কে নিজের node-এ আটকাও — permission-ই সেই খাঁচা।"
+    },
+    {
+      "id": "wv0l14-q45",
+      "difficulty": "hard",
+      "question": "অডিটে পাওয়া গেলো: /var/www/html-এর সব ফাইল 777, owner www-data। ঝুঁকি কমাতে প্রথম সঠিক পদক্ষেপ কোনটা?",
+      "options": [
+        "সব 600 করে দেওয়া",
+        "chmod -R 644 ফাইলগুলো + 755 directory গুলো (বা 664/775 যদি দল লেখে), আর owner/group পরিকল্পনা — কে লেখে সেটা আগে বের করা",
+        "userdel www-data",
+        "পুরো মুছে ফেলা"
+      ],
+      "answerIndex": 1,
+      "explanation": "সব 600 করলে webserver-ই পড়তে পারবে না। আগে চাহিদা (কে পড়ে, কে লেখে), তারপর সর্বনিম্ন permission — এটাই hardening-এর পদ্ধতি।"
+    }
+  ]
+}

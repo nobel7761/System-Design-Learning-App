@@ -1,8 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { Badge, Card, CardContent, Progress } from "@/components/shared/shadcn";
-import type { Dashboard, TrackSummary } from "@/lib/api/types";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Badge,
+  Card,
+  CardContent,
+  Progress,
+} from "@/components/shared/shadcn";
+import type {
+  Dashboard,
+  Milestone,
+  TrackSummary,
+  TrackWorldMini,
+} from "@/lib/api/types";
 
 const DAY_LABELS = ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"];
 
@@ -11,6 +25,143 @@ function fmtTime(sec: number) {
   const m = Math.round((sec % 3600) / 60);
   if (h > 0) return `${h}h ${m}m`;
   return `${m}m`;
+}
+
+const LESSON_TYPE_ICON: Record<string, string> = {
+  lesson: "📖",
+  workshop: "🔧",
+  mock: "🎤",
+  boss: "⚔️",
+  dojo: "🥋",
+};
+
+/** Milestone → Module → Lessons accordion for milestone-based tracks (devops) */
+function MilestoneWorldsTree({ worlds }: { worlds: TrackWorldMini[] }) {
+  const groups: { milestone: Milestone; worlds: TrackWorldMini[] }[] = [];
+  for (const w of worlds) {
+    if (!w.milestone) continue;
+    const g = groups.find((x) => x.milestone.id === w.milestone!.id);
+    if (g) g.worlds.push(w);
+    else groups.push({ milestone: w.milestone, worlds: [w] });
+  }
+
+  return (
+    <Accordion type="multiple" className="space-y-1.5">
+      {groups.map((g) => {
+        const done = g.worlds.reduce((a, w) => a + w.doneCount, 0);
+        const total = g.worlds.reduce((a, w) => a + w.totalCount, 0);
+        const milestoneDone = total > 0 && done === total;
+        return (
+          <AccordionItem
+            key={g.milestone.id}
+            value={g.milestone.id}
+            className="rounded-lg border border-violet-200 bg-violet-50/60 px-2.5"
+          >
+            <AccordionTrigger className="py-2 hover:no-underline">
+              <div className="flex w-full items-center gap-2 pr-2 text-xs">
+                <span className="shrink-0 rounded border border-violet-300 bg-white px-1.5 py-0.5 text-[10px] font-bold text-violet-700">
+                  🏁 Milestone {g.milestone.order}
+                </span>
+                <span className="truncate text-left font-semibold text-slate-700">
+                  {g.milestone.title}
+                </span>
+                {milestoneDone && <span className="shrink-0">✅</span>}
+                <span className="ml-auto shrink-0 text-slate-400">
+                  {done}/{total}
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pb-2">
+              <Accordion type="multiple" className="space-y-1">
+                {g.worlds.map((w) => {
+                  const moduleDone = w.totalCount > 0 && w.percent === 100;
+                  const moduleEmpty = (w.lessons ?? []).length === 0;
+                  return (
+                    <AccordionItem
+                      key={w.id}
+                      value={w.id}
+                      className={`rounded-lg border border-slate-200 px-2.5 ${
+                        moduleEmpty ? "bg-slate-50" : "bg-white"
+                      }`}
+                    >
+                      <AccordionTrigger className="py-1.5 hover:no-underline">
+                        <div className="flex w-full items-center gap-2 pr-2 text-xs">
+                          {w.moduleNo != null && (
+                            <span className="shrink-0 rounded border border-violet-200 bg-violet-50 px-1.5 py-0.5 text-[10px] font-bold text-violet-600">
+                              Module {w.moduleNo}
+                            </span>
+                          )}
+                          <span
+                            className={`truncate text-left font-medium ${
+                              moduleDone
+                                ? "text-emerald-700"
+                                : moduleEmpty
+                                  ? "text-slate-400"
+                                  : "text-slate-700"
+                            }`}
+                          >
+                            {w.title}
+                          </span>
+                          {moduleDone && <span className="shrink-0">✅</span>}
+                          <span className="ml-auto shrink-0 text-slate-400">
+                            {w.totalCount > 0
+                              ? `${w.doneCount}/${w.totalCount}`
+                              : ""}
+                          </span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-1.5">
+                        <div className="flex flex-col gap-0.5">
+                          {moduleEmpty && (
+                            <p className="px-2 py-1 text-xs text-slate-400">
+                              🔒 Content আসছে — পেলেই খুলে যাবে
+                            </p>
+                          )}
+                          {(w.lessons ?? []).map((l) => {
+                            const icon = LESSON_TYPE_ICON[l.type] ?? "📖";
+                            const clickable =
+                              l.contentReady && l.status !== "locked";
+                            const inner = (
+                              <>
+                                <span className="flex min-w-0 items-center gap-1.5">
+                                  <span className="shrink-0">{icon}</span>
+                                  <span className="truncate">{l.title}</span>
+                                </span>
+                                {l.status === "done" && (
+                                  <span className="shrink-0">✅</span>
+                                )}
+                              </>
+                            );
+                            return clickable ? (
+                              <Link
+                                key={l.id}
+                                href={`/lesson/${l.id}`}
+                                className="flex items-center justify-between gap-2 rounded px-2 py-1 text-xs text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-700"
+                              >
+                                {inner}
+                              </Link>
+                            ) : (
+                              <div
+                                key={l.id}
+                                className="flex items-center justify-between gap-2 rounded px-2 py-1 text-xs text-slate-300"
+                                title="Content এখনো আসেনি"
+                              >
+                                {inner}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+            </AccordionContent>
+          </AccordionItem>
+        );
+      })}
+    </Accordion>
+  );
 }
 
 function TrackCard({
@@ -184,34 +335,38 @@ function TrackCard({
               Full Syllabus →
             </Link>
           </div>
-          <div className="space-y-2">
-            {summary.worlds.map((world) => (
-              <div key={world.id}>
-                <div className="flex items-center justify-between text-xs">
-                  <span
-                    className={
-                      world.percent === 100
-                        ? "font-medium text-emerald-700"
+          {summary.worlds.some((w) => w.milestone) ? (
+            <MilestoneWorldsTree worlds={summary.worlds} />
+          ) : (
+            <div className="space-y-2">
+              {summary.worlds.map((world) => (
+                <div key={world.id}>
+                  <div className="flex items-center justify-between text-xs">
+                    <span
+                      className={
+                        world.percent === 100
+                          ? "font-medium text-emerald-700"
+                          : world.doneCount > 0
+                            ? "font-medium text-slate-700"
+                            : "text-slate-400"
+                      }
+                    >
+                      {world.percent === 100
+                        ? "✅"
                         : world.doneCount > 0
-                          ? "font-medium text-slate-700"
-                          : "text-slate-400"
-                    }
-                  >
-                    {world.percent === 100
-                      ? "✅"
-                      : world.doneCount > 0
-                        ? "▶"
-                        : "🔒"}{" "}
-                    {world.title}
-                  </span>
-                  <span className="text-slate-400">
-                    {world.doneCount}/{world.totalCount}
-                  </span>
+                          ? "▶"
+                          : "🔒"}{" "}
+                      {world.title}
+                    </span>
+                    <span className="text-slate-400">
+                      {world.doneCount}/{world.totalCount}
+                    </span>
+                  </div>
+                  <Progress value={world.percent} className="mt-1 h-1.5" />
                 </div>
-                <Progress value={world.percent} className="mt-1 h-1.5" />
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* ── CTA ── */}
@@ -272,8 +427,8 @@ export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
       />
       <TrackCard
         emoji="🐧"
-        title="DevOps — CloudCamp"
-        subtitle="Poridhi lecture থেকে Linux, AWS, K8s"
+        title="Mastering AWS & DevOps by Poridhi"
+        subtitle="Season 4 — Milestone ধরে Linux থেকে Production K8s"
         summary={dashboard.tracks["devops"]}
         syllabusHref="/syllabus?track=devops"
         isDark={false}

@@ -1,0 +1,546 @@
+{
+  "lessonId": "wv0l15",
+  "passPercent": 95,
+  "sample": {
+    "easy": 5,
+    "medium": 7,
+    "hard": 3
+  },
+  "questions": [
+    {
+      "id": "wv0l15-q01",
+      "difficulty": "easy",
+      "question": "ল্যাবে webteam group-টা সবার আগে বানাতে হলো কেন?",
+      "options": [
+        "নিয়ম তাই",
+        "chown root:webteam দেওয়ার সময় group-টা existence না থাকলে invalid group error",
+        "user-রা group ছাড়া জন্মায় না",
+        "alphabetical order"
+      ],
+      "answerIndex": 1,
+      "explanation": "chown/chgrp-এ দেওয়া নাম আগে থাকতে হয় — দল আগে, মালিকানা পরে।"
+    },
+    {
+      "id": "wv0l15-q02",
+      "difficulty": "easy",
+      "question": "mkdir -p /var/www/mysite-এর পরে mysite-এর জন্মগত permission কত ছিল?",
+      "options": ["777", "755", "644", "700"],
+      "answerIndex": 1,
+      "explanation": "নতুন directory-র default 755 (umask 022) — ls -l-এ drwxr-xr-x দেখেছিলে।"
+    },
+    {
+      "id": "wv0l15-q03",
+      "difficulty": "easy",
+      "question": "echo \"Hello Team\" > index.html দিয়ে বানানো ফাইলের জন্মগত permission?",
+      "options": ["755", "644", "600", "664"],
+      "answerIndex": 1,
+      "explanation": "নতুন ফাইলের default 644 — rw-r--r--।"
+    },
+    {
+      "id": "wv0l15-q04",
+      "difficulty": "easy",
+      "question": "chown root:webteam-এর কোলনের আগের আর পরের অংশ কী?",
+      "options": ["group:user", "owner:group", "user:password", "dir:file"],
+      "answerIndex": 1,
+      "explanation": "আগে owner (root), পরে owning group (webteam)।"
+    },
+    {
+      "id": "wv0l15-q05",
+      "difficulty": "easy",
+      "question": "775 ভাঙলে (নামতায়) কী দাঁড়ায়?",
+      "options": ["rwx rwx r-x", "rw- rw- r--", "rwx r-x r-x", "rw- r-- r--"],
+      "answerIndex": 0,
+      "explanation": "7=rwx, 7=rwx, 5=r-x — owner ও group সব, others পড়া+ঢোকা।"
+    },
+    {
+      "id": "wv0l15-q06",
+      "difficulty": "easy",
+      "question": "secret.conf-কে 600 দেওয়ার মানে কী?",
+      "options": [
+        "সবাই পড়তে পারবে",
+        "শুধু owner পড়বে-লিখবে, group ও others সম্পূর্ণ বাইরে",
+        "শুধু group পড়বে",
+        "executable হয়ে গেল"
+      ],
+      "answerIndex": 1,
+      "explanation": "6=rw-, 0=---, 0=--- — গোপন ফাইলের একমাত্র পোশাক।"
+    },
+    {
+      "id": "wv0l15-q07",
+      "difficulty": "easy",
+      "question": "chmod u+x deploy.sh — এখানে u মানে কে?",
+      "options": ["সব user", "ফাইলের owner", "group", "root"],
+      "answerIndex": 1,
+      "explanation": "symbolic-এ u=owner(user), g=group, o=others, a=all।"
+    },
+    {
+      "id": "wv0l15-q08",
+      "difficulty": "easy",
+      "question": "ল্যাবের ডানের গাছে নোডের নিচের 🔐 ব্যাজটা কখন সবুজ হয়?",
+      "options": [
+        "ফাইল বানালেই",
+        "permission আর ownership দুটোই টার্গেটের সাথে মিললে",
+        "ls চালালে",
+        "কুইজ দিলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "ব্যাজে লেখা টার্গেট (যেমন 775 root:webteam) — বাস্তব state মিললেই সবুজ।"
+    },
+    {
+      "id": "wv0l15-q09",
+      "difficulty": "easy",
+      "question": "ls -l output-এ -rw-rw-r-- 1 root webteam — এখানে webteam কী?",
+      "options": ["owner", "owning group", "user-এর নাম", "password"],
+      "answerIndex": 1,
+      "explanation": "তৃতীয় কলাম owner, চতুর্থ কলাম group।"
+    },
+    {
+      "id": "wv0l15-q10",
+      "difficulty": "easy",
+      "question": "chmod 664 index.html-এ others কী পায়?",
+      "options": ["কিছুই না", "শুধু পড়া", "পড়া+লেখা", "সব"],
+      "answerIndex": 1,
+      "explanation": "664-এর শেষ অঙ্ক 4 = r-- — শুধু পড়া।"
+    },
+    {
+      "id": "wv0l15-q11",
+      "difficulty": "easy",
+      "question": "deploy.sh-কে executable করার octal বিকল্পটা কী হতো (owner-only execute)?",
+      "options": ["chmod 644", "chmod 744", "chmod 600", "chmod 664"],
+      "answerIndex": 1,
+      "explanation": "644-এ owner-জোড়ায় +1 = 744 (rwxr--r--)। ল্যাবে symbolic চাওয়া হয়েছিল শেখানোর জন্য।"
+    },
+    {
+      "id": "wv0l15-q12",
+      "difficulty": "easy",
+      "question": "chown -R-এর R ছাড়া চালালে কী হয়?",
+      "options": [
+        "error",
+        "শুধু ওই path-টাই বদলায়, ভেতরের কিছু না",
+        "সব বদলায়",
+        "ফাইল মুছে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "t09-t11-এ হাতে-কলমে দেখেছো: dir বদলালো, index.html রইলো root:root।"
+    },
+    {
+      "id": "wv0l15-q13",
+      "difficulty": "easy",
+      "question": "usermod -aG webteam shajal — এতে shajal-এর primary group কি বদলায়?",
+      "options": [
+        "হ্যাঁ",
+        "না — -aG শুধু supplementary-তে যোগ করে",
+        "webteam-ই primary হয়",
+        "shajal মুছে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "primary-তে হাত দেয় শুধু ছোট -g।"
+    },
+    {
+      "id": "wv0l15-q14",
+      "difficulty": "easy",
+      "question": "ল্যাবের শেষ ls -l-এ চারটা জিনিসের চার রকম তালা ছিল — deploy.sh-এরটা কী?",
+      "options": ["-rw-------", "-rwxr-xr-x", "-rw-rw-r--", "drwxrwxr-x"],
+      "answerIndex": 1,
+      "explanation": "a+x-এর পরে 755 = rwxr-xr-x — script-এর standard।"
+    },
+    {
+      "id": "wv0l15-q15",
+      "difficulty": "easy",
+      "question": "এই ল্যাবে Lab 1-এর কোন কমান্ডগুলো ফিরে এসেছিল?",
+      "options": [
+        "useradd, groupadd",
+        "mkdir -p, echo >, ls -l",
+        "chmod, chown",
+        "docker"
+      ],
+      "answerIndex": 1,
+      "explanation": "পুরনো স্কিল নতুন গল্পে — mkdir -p দিয়ে ঘর, echo > দিয়ে ফাইল, ls -l দিয়ে পরিদর্শন।"
+    },
+    {
+      "id": "wv0l15-q16",
+      "difficulty": "medium",
+      "question": "t11-এর আবিষ্কারটা কী ছিল?",
+      "options": [
+        "chmod কাজ করে না",
+        "chown শুধু directory-র গায়ে লাগে — আগে থেকে থাকা ভেতরের ফাইলে -R ছাড়া পৌঁছায় না",
+        "index.html মুছে গিয়েছিল",
+        "group ভুল ছিল"
+      ],
+      "answerIndex": 1,
+      "explanation": "production-এ এই ভুলটাই সবচেয়ে কমন — dir-এর group ঠিক, ভেতরের ফাইল পুরনো মালিকে।"
+    },
+    {
+      "id": "wv0l15-q17",
+      "difficulty": "medium",
+      "question": "mysite 775 root:webteam হওয়ার পরে shajal (webteam সদস্য) ভেতরে নতুন ফাইল বানাতে পারবে কেন?",
+      "options": [
+        "সে owner",
+        "directory-র group-জোড়া rwx — w মানে ভেতরে তৈরি/মোছার অধিকার, আর সে group সদস্য",
+        "others-জোড়ার কারণে",
+        "775 মানেই সবাই পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "চেইন: সদস্যপদ (usermod -aG) → group-জোড়া প্রযোজ্য → dir-এর w = create/delete।"
+    },
+    {
+      "id": "wv0l15-q18",
+      "difficulty": "medium",
+      "question": "একই অবস্থায় সম্পূর্ণ অচেনা একজন user কী কী পারবে mysite-এ?",
+      "options": [
+        "কিছুই না",
+        "ঢুকতে (x) আর লিস্ট দেখতে (r) পারবে, কিছু তৈরি/মুছতে (w) পারবে না",
+        "সব পারবে",
+        "শুধু ঢুকতে"
+      ],
+      "answerIndex": 1,
+      "explanation": "others = 5 = r-x — দেখা ও ঢোকা ফ্রি, হাত দেওয়া নিষেধ।"
+    },
+    {
+      "id": "wv0l15-q19",
+      "difficulty": "medium",
+      "question": "index.html 664 root:webteam — minhaz কি সেটা edit করতে পারবে? কোন চেইনে?",
+      "options": [
+        "না",
+        "হ্যাঁ: owner না → webteam সদস্য → group-জোড়া rw- → write ✓",
+        "হ্যাঁ, কারণ others-এ w আছে",
+        "শুধু root পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "তিন-ধাপ চেইনটাই উত্তর: owner? না → group member? হ্যাঁ → সেই জোড়া প্রযোজ্য।"
+    },
+    {
+      "id": "wv0l15-q20",
+      "difficulty": "medium",
+      "question": "secret.conf 600 root:root — minhaz cat secret.conf চালালে?",
+      "options": [
+        "db_pass দেখবে",
+        "Permission denied — সে owner না, group root-এও না, আর others-জোড়া ---",
+        "খালি output",
+        "ফাইল মুছে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "600-এর মূল উদ্দেশ্যই এটা — team-shared ফোল্ডারের ভেতরেও secret আলাদা তালায়।"
+    },
+    {
+      "id": "wv0l15-q21",
+      "difficulty": "medium",
+      "question": "t18-এ octal (744) নিষেধ করে symbolic চাওয়া হয়েছিল কেন?",
+      "options": [
+        "744 ভুল বলে",
+        "দুটো ভঙ্গিই হাতে গাঁথানোর জন্য — বাস্তবে existing তালায় এক চাবি যোগ করতে symbolic-ই স্বাভাবিক",
+        "octal ধীর",
+        "symbolic নিরাপদ"
+      ],
+      "answerIndex": 1,
+      "explanation": "চূড়ান্ত ফল একই (744) — কিন্তু 'শুধু x যোগ করো' চিন্তাটা symbolic-এর।"
+    },
+    {
+      "id": "wv0l15-q22",
+      "difficulty": "medium",
+      "question": "deploy.sh 644 → chmod u+x → তারপর chmod a+x — ধাপে ধাপে octal কী কী?",
+      "options": ["644→744→755", "644→754→777", "644→745→755", "644→744→777"],
+      "answerIndex": 0,
+      "explanation": "u+x: owner-জোড়ায় +1 → 744; a+x: বাকি দুই জোড়ায়ও +1 → 755 (owner-এ x আগেই ছিল)।"
+    },
+    {
+      "id": "wv0l15-q23",
+      "difficulty": "medium",
+      "question": "chmod -R 775 /var/www/mysite চালালে secret.conf-এর কী হতো?",
+      "options": [
+        "কিছু না",
+        "সেও 775 হয়ে যেত — গোপন ফাইল group-writable ও executable! এজন্যই ঢালাও -R chmod বিপজ্জনক",
+        "শুধু dir বদলাতো",
+        "error"
+      ],
+      "answerIndex": 1,
+      "explanation": "-R সবাইকে এক পোশাক পরায় — অথচ secret-এর দরকার 600। ফাইলভেদে আলাদা তালা।"
+    },
+    {
+      "id": "wv0l15-q24",
+      "difficulty": "medium",
+      "question": "ls -l /var/www/mysite/index.html আর ls -l /var/www/mysite — output-এর পার্থক্য?",
+      "options": [
+        "একই",
+        "প্রথমটা শুধু ওই ফাইলের এক লাইন; দ্বিতীয়টা ফোল্ডারের ভেতরের সবার তালিকা",
+        "প্রথমটা error",
+        "দ্বিতীয়টা content দেখায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "ফাইল-path দিলে তার নিজের লাইন — নির্দিষ্ট জিনিস verify করার দ্রুত রাস্তা।"
+    },
+    {
+      "id": "wv0l15-q25",
+      "difficulty": "medium",
+      "question": "যদি t04-t05 (usermod -aG) বাদ দিয়ে বাকি সব ঠিক করতে — শেষে কী হতো?",
+      "options": [
+        "সব একই",
+        "ঘর-তালা সব ঠিক, কিন্তু shajal/minhaz-এর কাছে group-চাবিই নেই — লিখতে গেলে Permission denied",
+        "chown ব্যর্থ হতো",
+        "chmod ব্যর্থ হতো"
+      ],
+      "answerIndex": 1,
+      "explanation": "তিন কড়ির চেইন: file→group ✓, তালা ✓, কিন্তু user→group ✗ = অচল। প্যানেলের চিপ হলুদই থাকতো।"
+    },
+    {
+      "id": "wv0l15-q26",
+      "difficulty": "medium",
+      "question": "775-এর বদলে 770 দিলে বাস্তব পার্থক্য কী হতো?",
+      "options": [
+        "কিছুই না",
+        "অচেনা user-রা আর লিস্টও দেখতে পারতো না, ঢুকতেও না — ঘরটা বাইরের দুনিয়া থেকে অদৃশ্য",
+        "group লিখতে পারতো না",
+        "owner ক্ষমতা হারাতো"
+      ],
+      "answerIndex": 1,
+      "explanation": "শেষ অঙ্ক 5(r-x)→0(---) — public read বন্ধ। internal প্রজেক্টে এটাই সঠিক পছন্দ।"
+    },
+    {
+      "id": "wv0l15-q27",
+      "difficulty": "medium",
+      "question": "নতুন ফাইল 644 root:root হয়ে জন্মায় — অথচ mysite-এর group webteam। t15-এর secret.conf-এর group কী ছিল?",
+      "options": [
+        "webteam",
+        "root — সাধারণ dir-এ নতুন ফাইল স্রষ্টার (root-এর) পরিচয়ে জন্মায়, dir-এর group সে পায় না",
+        "webteam, কারণ dir-এর",
+        "কিছুই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "এজন্যই দুটো সমাধান আছে: প্রতিবার chown, বা dir-এ SGID (g+s) বসানো।"
+    },
+    {
+      "id": "wv0l15-q28",
+      "difficulty": "medium",
+      "question": "chmod g-w index.html (664 থেকে) — এখন minhaz-এর কী অবস্থা?",
+      "options": [
+        "সব আগের মতো",
+        "শুধু পড়তে পারবে — group-জোড়া rw-→r--, octal 644",
+        "কিছুই পারবে না",
+        "owner হয়ে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "symbolic-এ এক চাবি কাড়লেই দলের লেখার অধিকার শেষ।"
+    },
+    {
+      "id": "wv0l15-q29",
+      "difficulty": "medium",
+      "question": "chown shajal:webteam mysite দিলে (root-এর বদলে shajal owner) কী বদলাতো?",
+      "options": [
+        "কিছুই না",
+        "shajal তখন owner-জোড়া (rwx) পেতো — group-চেইন লাগতো না; আর ফাইলের 'দায়িত্বও' তার",
+        "সে সব হারাতো",
+        "775 ভেঙে যেতো"
+      ],
+      "answerIndex": 1,
+      "explanation": "owner-check আগে হয় — সে owner হলে group-জোড়া পর্যন্ত যাওয়াই লাগে না।"
+    },
+    {
+      "id": "wv0l15-q30",
+      "difficulty": "medium",
+      "question": "exam-এ chmod 77 mysite (দুই অঙ্ক) লিখলে কী হবে?",
+      "options": [
+        "770 ধরে নেবে",
+        "chmod: invalid mode — ৩ অঙ্কের octal বা সঠিক symbolic লাগবে",
+        "কাজ করবে",
+        "crash"
+      ],
+      "answerIndex": 1,
+      "explanation": "অসম্পূর্ণ mode প্রত্যাখ্যাত — বাস্তব chmod-ও তাই।"
+    },
+    {
+      "id": "wv0l15-q31",
+      "difficulty": "medium",
+      "question": "ls -l-এ total 16 লাইনটার নিচে -rw-rw-r-- root webteam index.html — এই লাইন থেকে কী কী পড়া যায়?",
+      "options": [
+        "শুধু নাম",
+        "টাইপ(ফাইল), owner rw-, group rw-, others r--, মালিক root, দল webteam — পুরো security ছবি",
+        "শুধু সাইজ",
+        "শুধু তারিখ"
+      ],
+      "answerIndex": 1,
+      "explanation": "এক লাইনেই তিন প্রশ্নের উত্তর: কী, কার, কে কী পারে।"
+    },
+    {
+      "id": "wv0l15-q32",
+      "difficulty": "medium",
+      "question": "secret.conf-এর ব্যাজে শুধু 🔐 600 ছিল (owner:group ছিল না) — মানে কী?",
+      "options": [
+        "ভুল",
+        "টার্গেট শুধু permission-এ — ownership যা-ই হোক, 600 হলেই সবুজ",
+        "600 মানে ownership",
+        "ব্যাজ ভাঙা"
+      ],
+      "answerIndex": 1,
+      "explanation": "টার্গেট যেটুকু specify করে সেটুকুই মেলায় — লক্ষ্যভেদে নমনীয়।"
+    },
+    {
+      "id": "wv0l15-q33",
+      "difficulty": "medium",
+      "question": "এই পুরো setup-টা production-এ কোথায় হুবহু দেখা যায়?",
+      "options": [
+        "কোথাও না",
+        "webserver-এর document root: /var/www/html root:www-data 775 — nginx/apache-র user সেই group-এ থাকে",
+        "শুধু exam-এ",
+        "Windows-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "[Extra Lesson]-এর www-data উদাহরণ — একই প্যাটার্ন, শুধু দলের নাম আলাদা।"
+    },
+    {
+      "id": "wv0l15-q34",
+      "difficulty": "medium",
+      "question": "chgrp webteam secret.conf চালালে কী হতো (600 অক্ষত)?",
+      "options": [
+        "সবাই পড়তে পারতো",
+        "group বদলাতো ঠিকই, কিন্তু 600-এর group-জোড়া --- বলে webteam-ও কিছু পারতো না — cosmetic বদল",
+        "secret ফাঁস",
+        "error"
+      ],
+      "answerIndex": 1,
+      "explanation": "ownership আর তালা আলাদা স্তর: group-কে চাবি না দিলে (6_0_0) নামমাত্র মালিকানা অর্থহীন।"
+    },
+    {
+      "id": "wv0l15-q35",
+      "difficulty": "medium",
+      "question": "exam-এ ভুল করে chmod 775 secret.conf দিয়ে ফেললে (t16-এ) কী ঘটে?",
+      "options": [
+        "পাস হয়ে যায়",
+        "check fail (600 চাই) — কমান্ড রোল-ব্যাক, আবার চেষ্টা; কিন্তু first-try নম্বর গেছে",
+        "exam বন্ধ",
+        "secret মুছে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "টেকনিক্যালি বৈধ কমান্ড, কিন্তু ভুল তালা — exam এটাই ধরে।"
+    },
+    {
+      "id": "wv0l15-q36",
+      "difficulty": "hard",
+      "question": "পূর্ণ চেইনটা সাজাও: shajal index.html-এ লিখতে পারে — কোন কোন সত্য একসাথে লাগছে?",
+      "options": [
+        "শুধু 664",
+        "(১) usermod -aG webteam shajal, (২) chown :webteam index.html, (৩) chmod 664 — তিনটার যেকোনো একটা ভাঙলেই Permission denied",
+        "শুধু chown",
+        "root বলেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "user→group→file→mode — চার কড়ির শিকল; দুর্বলতম কড়িই ফলাফল।"
+    },
+    {
+      "id": "wv0l15-q37",
+      "difficulty": "hard",
+      "question": "mysite-র তালা 775 কিন্তু /var/www-এর তালা যদি 700 root:root হতো — shajal কি mysite-এ পৌঁছাতে পারতো?",
+      "options": [
+        "হ্যাঁ, mysite-এর permission-ই যথেষ্ট",
+        "না — path-এর প্রতিটা ধাপে x লাগে; /var/www-এ ঢুকতে না পারলে ভেতরের 775 অর্থহীন",
+        "শুধু ls পারতো",
+        "root জিজ্ঞেস করতো"
+      ],
+      "answerIndex": 1,
+      "explanation": "traverse-এর নিয়ম: গন্তব্যের আগের প্রতিটা directory-তে x চাই — এক তালাবন্ধ করিডোর পুরো পথ আটকায়।"
+    },
+    {
+      "id": "wv0l15-q38",
+      "difficulty": "hard",
+      "question": "deploy.sh 755 root:webteam — minhaz sh deploy.sh চালালো, তারপর ভেতরের লেখা বদলাতে গেলো। কোনটা কী?",
+      "options": [
+        "দুটোই পারবে",
+        "চালাতে পারবে (group r-x → execute ✓ পড়া ✓) কিন্তু edit ব্যর্থ (w নেই)",
+        "কিছুই পারবে না",
+        "edit পারবে, চালাতে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "5=r-x: পড়া-চালানো হ্যাঁ, লেখা না — script-এর আদর্শ বিন্যাস।"
+    },
+    {
+      "id": "wv0l15-q39",
+      "difficulty": "hard",
+      "question": "secret.conf-কে সত্যিই দুর্ভেদ্য করতে 600-ই কি যথেষ্ট, যদি mysite-এর তালা 777 হয়ে থাকে?",
+      "options": [
+        "হ্যাঁ, 600 অলঙ্ঘনীয়",
+        "না — dir-এ w থাকলে অচেনা user ফাইলটা মুছে নিজের নতুন secret.conf বসাতে পারে! মোছা dir-এর অধিকার",
+        "777 হলে 600 বদলে যায়",
+        "root ছাড়া কেউ মুছতে পারে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "lesson-এর সেই কঠিন সত্য: delete = dir-এর w। তাই dir-এর তালাও গোপনীয়তার অংশ (এজন্যই 775, 777 না)।"
+    },
+    {
+      "id": "wv0l15-q40",
+      "difficulty": "hard",
+      "question": "t18-এর check-এ forbid: ['744'] ছিল। কেউ chmod 700+044 জাতীয় চালাকি বাদ দিয়ে chmod u=rwx,g=r,o=r লিখলে?",
+      "options": [
+        "fail — অচেনা রূপ",
+        "pass — এটাও বৈধ symbolic, ফল 744, আর কমান্ডে '744' লেখা নেই",
+        "engine crash",
+        "hint আসবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "= অপারেটর জোড়াকে ঠিক ওই বিটে বসায় — u=rwx,g=r,o=r ≡ 744। check মেলায় ফলাফল, পথ না।"
+    },
+    {
+      "id": "wv0l15-q41",
+      "difficulty": "hard",
+      "question": "একটা CI bot-এর জন্য চাই: deploy.sh চালাবে কিন্তু পড়া ছাড়া আর কিছু না, আর mysite-এ নতুন কিছু বানাতে পারবে না। কোন নকশা?",
+      "options": [
+        "bot-কে webteam-এ ঢোকাও",
+        "bot-কে webteam-এ ঢোকাবে না — others হিসেবে সে পাবে dir 775-এর r-x (ঢোকা) আর deploy.sh 755-এর r-x (চালানো) — যা চাই ঠিক তাই!",
+        "bot-কে owner করো",
+        "chmod 777"
+      ],
+      "answerIndex": 1,
+      "explanation": "সবসময় group-এ ঢোকানোই সমাধান না — others-জোড়াটাও একটা design tool। least privilege মানে ন্যূনতম দল।"
+    },
+    {
+      "id": "wv0l15-q42",
+      "difficulty": "hard",
+      "question": "chown -R root:webteam mysite আর chgrp -R webteam mysite + আলাদা owner কাজ — কোন পরিস্থিতিতে chgrp-ই সঠিক?",
+      "options": [
+        "কখনোই না",
+        "owner ঠিকই আছে, শুধু দলটা বদলাতে হবে — chown দিলে ভুল করে owner-ও বদলে ফেলার ঝুঁকি",
+        "chgrp দ্রুত",
+        "chgrp recursive পারে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "সার্জিক্যাল টুল বনাম সাঁড়াশি — যেটুকু বদলাতে চাও ঠিক সেটুকুই ছোঁয়া ভালো অভ্যাস।"
+    },
+    {
+      "id": "wv0l15-q43",
+      "difficulty": "hard",
+      "question": "নতুন সদস্য fazlul-কে দলে নিলে (usermod -aG webteam fazlul) mysite-এর কোন ফাইলের তালা/মালিকানায় হাত দিতে হবে?",
+      "options": [
+        "সবগুলোতে chown আবার",
+        "কিছুতেই না — এটাই group-design-এর জাদু: ফাইল group-কে চেনে, দলে কে ঢুকলো-বেরোলো ফাইলের জানার দরকারই নেই",
+        "chmod আবার সব",
+        "index.html-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর সেই কথা: user বদলায়, mapping বদলায় না — membership-ই একমাত্র নব।"
+    },
+    {
+      "id": "wv0l15-q44",
+      "difficulty": "hard",
+      "question": "অডিট প্রশ্ন: mysite-এ ৪টা জিনিসের তালা ৪ রকম (775/664/600/755) — এক নীতিতে ব্যাখ্যা করো।",
+      "options": [
+        "এলোমেলো",
+        "প্রতিটার তালা তার কাজের সর্বনিম্ন প্রয়োজন: dir=দল ঢুকবে-লিখবে, page=দল edit করবে সবাই পড়বে, secret=শুধু মালিক, script=সবাই চালাবে মালিক লিখবে — least privilege",
+        "সংখ্যা যত বড় তত ভালো",
+        "সব 775 করাই উচিত ছিল"
+      ],
+      "answerIndex": 1,
+      "explanation": "একটাই প্রশ্ন প্রতিটা ফাইলকে: 'তোমার কাজে ন্যূনতম কী লাগে?' — উত্তরই permission।"
+    },
+    {
+      "id": "wv0l15-q45",
+      "difficulty": "hard",
+      "question": "এই ল্যাব শেষে ls -l /var/www/mysite-এর output-এ index.html-এর পুরো লাইনটা কী?",
+      "options": [
+        "-rw-rw-r-- 1 root webteam   11 Jan 26 20:42 index.html",
+        "-rw-r--r-- 1 root root 11 ... index.html",
+        "-rwxrwxr-x 1 root webteam ... index.html",
+        "drw-rw-r-- ..."
+      ],
+      "answerIndex": 0,
+      "explanation": "664 → rw-rw-r--, chown -R-এর পরে root webteam, আর 'Hello Team'=10+newline=11 bytes — তিন লেসনের সব চিহ্ন এক লাইনে।"
+    }
+  ]
+}

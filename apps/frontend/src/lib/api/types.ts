@@ -32,6 +32,12 @@ export interface SyllabusLesson {
   bestScore: number | null;
 }
 
+export interface Milestone {
+  id: string;
+  order: number;
+  title: string;
+}
+
 export interface SyllabusWorld {
   id: string;
   order: number;
@@ -39,6 +45,8 @@ export interface SyllabusWorld {
   title: string;
   titleEn: string;
   description: string;
+  milestone?: Milestone | null;
+  moduleNo?: number | null;
   doneCount: number;
   totalCount: number;
   percent: number;
@@ -59,12 +67,23 @@ export interface TrackWeekDay {
   isToday: boolean;
 }
 
+export interface TrackLessonMini {
+  id: string;
+  title: string;
+  type: string;
+  status: LessonStatus;
+  contentReady: boolean;
+}
+
 export interface TrackWorldMini {
   id: string;
   title: string;
+  milestone?: Milestone | null;
+  moduleNo?: number | null;
   doneCount: number;
   totalCount: number;
   percent: number;
+  lessons?: TrackLessonMini[];
 }
 
 export interface TrackSummary {

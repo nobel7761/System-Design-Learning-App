@@ -1,0 +1,551 @@
+{
+  "lessonId": "wv0l5",
+  "passPercent": 95,
+  "sample": {
+    "easy": 5,
+    "medium": 7,
+    "hard": 3
+  },
+  "questions": [
+    {
+      "id": "wv0l5-q01",
+      "difficulty": "easy",
+      "question": "sudo groupadd minions — এই কমান্ডে ঠিক কী তৈরি হলো?",
+      "options": [
+        "minions নামের একজন user",
+        "minions নামের একটা group (এখনো সদস্যহীন)",
+        "minions নামের একটা ফোল্ডার",
+        "কিছুই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "group-space-এ একটা খালি দল তৈরি হলো — সদস্য ঢোকানো পরের ধাপ (usermod)।"
+    },
+    {
+      "id": "wv0l5-q02",
+      "difficulty": "easy",
+      "question": "sudo useradd shajal চালানোর পর /home/shajal কি তৈরি হয়েছে?",
+      "options": [
+        "হ্যাঁ, সবসময় হয়",
+        "না — home পেতে -m flag লাগতো",
+        "হ্যাঁ, যদি root চালায়",
+        "শুধু password দিলে হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "plain useradd home বানায় না — ল্যাবের t04-এ yasin-এর জন্য -m দিয়েছিলে বলেই /home/yasin সবুজ হয়েছিল।"
+    },
+    {
+      "id": "wv0l5-q03",
+      "difficulty": "easy",
+      "question": "user বানানোর পরপরই id <user> চালালে gid-তে কী দেখায়?",
+      "options": ["root", "sudo", "তার নিজের নামের private group", "কিছুই না"],
+      "answerIndex": 2,
+      "explanation": "useradd নিজের নামে একটা user-private group বানিয়ে সেটাই primary করে দেয় — bind করার আগ পর্যন্ত।"
+    },
+    {
+      "id": "wv0l5-q04",
+      "difficulty": "easy",
+      "question": "user-কে দলে ঢোকানোর (bind) কমান্ড কোন পরিবারের?",
+      "options": ["groupadd", "useradd", "usermod", "userbind"],
+      "answerIndex": 2,
+      "explanation": "bind মানে user-কে modify করা — usermod -g (primary) বা usermod -aG (supplementary)।"
+    },
+    {
+      "id": "wv0l5-q05",
+      "difficulty": "easy",
+      "question": "usermod -g minions shajal — কোনটা হলো?",
+      "options": [
+        "shajal supplementary পেলো",
+        "shajal-এর primary group এখন minions",
+        "minions মুছে গেল",
+        "shajal lock হলো"
+      ],
+      "answerIndex": 1,
+      "explanation": "ছোট g = primary সেট/বদল।"
+    },
+    {
+      "id": "wv0l5-q06",
+      "difficulty": "easy",
+      "question": "usermod -aG devops shajal-এ -a টা কী কাজ করে?",
+      "options": [
+        "admin বানায়",
+        "append — আগের group-গুলো রেখে যোগ করে",
+        "account activate করে",
+        "alias বানায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a = append। এটাই না দিলে replace-দুর্ঘটনা।"
+    },
+    {
+      "id": "wv0l5-q07",
+      "difficulty": "easy",
+      "question": "groups shajal-এর output: shajal : minions devops — প্রথম নামটা (minions) কী?",
+      "options": [
+        "সবচেয়ে পুরনো group",
+        "primary group",
+        "সবচেয়ে বড় group",
+        "random"
+      ],
+      "answerIndex": 1,
+      "explanation": "groups আগে primary দেখায়, তারপর supplementary-রা।"
+    },
+    {
+      "id": "wv0l5-q08",
+      "difficulty": "easy",
+      "question": "account-এ তালা দেওয়ার flag কোনটা?",
+      "options": ["-lock", "-L", "-X", "-off"],
+      "answerIndex": 1,
+      "explanation": "usermod -L (Lock), খুলতে usermod -U (Unlock)।"
+    },
+    {
+      "id": "wv0l5-q09",
+      "difficulty": "easy",
+      "question": "lock করা user-এর ডানের প্যানেলে (ল্যাব exam-এ) কী দেখা যায়?",
+      "options": ["চিপ মুছে যায়", "🔒 চিহ্ন", "লাল রঙ", "কিছুই না"],
+      "answerIndex": 1,
+      "explanation": "চিপে 🔒 আসে — মানে আছে, শুধু ঢুকতে পারছে না। data অক্ষত।"
+    },
+    {
+      "id": "wv0l5-q10",
+      "difficulty": "easy",
+      "question": "joker-কে স্থায়ীভাবে বিদায় করার কমান্ড?",
+      "options": [
+        "usermod -L joker",
+        "userdel joker",
+        "groupdel joker",
+        "lock joker"
+      ],
+      "answerIndex": 1,
+      "explanation": "userdel = user মুছে ফেলা। home-ও মুছতে চাইলে -r।"
+    },
+    {
+      "id": "wv0l5-q11",
+      "difficulty": "easy",
+      "question": "সব user-এর তালিকা এক নজরে দেখতে কোন কমান্ড চালিয়েছিলে?",
+      "options": ["ls /users", "cat /etc/passwd", "id --all", "who"],
+      "answerIndex": 1,
+      "explanation": "cat /etc/passwd — user-দের খাতা।"
+    },
+    {
+      "id": "wv0l5-q12",
+      "difficulty": "easy",
+      "question": "supplementary সদস্যদের নাম কোন ফাইলের লাইনের শেষে দেখা যায়?",
+      "options": ["/etc/passwd", "/etc/group", "/etc/shadow", "/etc/sudoers"],
+      "answerIndex": 1,
+      "explanation": "cat /etc/group-এ প্রতিটা group-এর লাইনের শেষে তার supplementary সদস্যরা কমা দিয়ে।"
+    },
+    {
+      "id": "wv0l5-q13",
+      "difficulty": "easy",
+      "question": "sudo useradd... আর useradd... — এই ল্যাবে দুটোতে ফল আলাদা হয়েছিল কি?",
+      "options": [
+        "হ্যাঁ, sudo ছাড়া চলেনি",
+        "না — আমরা root হিসেবে ছিলাম, sudo optional",
+        "sudo দিলে দ্রুত হয়",
+        "sudo দিলে home-ও হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "root-এর নিজেরই সব ক্ষমতা — sudo প্রিফিক্স তখন নিরীহ। সাধারণ user হলে অবশ্য লাগতো।"
+    },
+    {
+      "id": "wv0l5-q14",
+      "difficulty": "easy",
+      "question": "yasin-কে superpower দিতে কোন group-এ ঢোকালে?",
+      "options": ["admin", "root", "sudo", "superadmin"],
+      "answerIndex": 2,
+      "explanation": "usermod -aG sudo yasin — sudo group-ই default ক্ষমতার দল।"
+    },
+    {
+      "id": "wv0l5-q15",
+      "difficulty": "easy",
+      "question": "user আছে কিন্তু কোনো টার্গেট দলে ঢোকেনি — exam-এর প্যানেলে চিপটা কেমন দেখায়?",
+      "options": ["সবুজ", "হলুদ (amber)", "লাল", "অদৃশ্য"],
+      "answerIndex": 1,
+      "explanation": "হলুদ মানে জন্মেছে কিন্তু bind হয়নি — usermod বাকি।"
+    },
+    {
+      "id": "wv0l5-q16",
+      "difficulty": "medium",
+      "question": "t06-এ usermod -g minions shajal দেওয়ার পর id shajal-এ groups= অংশে কী থাকবে?",
+      "options": [
+        "শুধু shajal",
+        "1002(minions) — এখন primary-ই minions",
+        "minions আর shajal দুটোই",
+        "sudo"
+      ],
+      "answerIndex": 1,
+      "explanation": "primary বদলে গেছে — private group টা আর তালিকায় আসে না (সে আর সদস্যই না)।"
+    },
+    {
+      "id": "wv0l5-q17",
+      "difficulty": "medium",
+      "question": "shajal: primary=minions, supp=[devops]। usermod -G sudo shajal (-a নেই) চালালে ল্যাবের প্যানেলে কী ঘটবে?",
+      "options": [
+        "সব সবুজই থাকবে",
+        "devops বাক্সে shajal-এর চিপ সবুজ থেকে হলুদে নেমে যাবে — সদস্যপদ গেছে!",
+        "minions-এর চিপ হলুদ হবে",
+        "কিছুই বদলাবে না"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a ছাড়া -G replace করে: supp এখন শুধু [sudo], devops হারিয়েছে — প্যানেল সাথে সাথে দেখাবে।"
+    },
+    {
+      "id": "wv0l5-q18",
+      "difficulty": "medium",
+      "question": "exam-এ t10-এর check ছিল: primary=minions AND devops-এর সদস্য। শুধু usermod -G devops shajal দিলে fail হতো কেন?",
+      "options": [
+        "syntax ভুল বলে",
+        "কমান্ড চলে, কিন্তু -a না থাকায় future-এর জন্য বিপজ্জনক অভ্যাস — আর require তালিকায় -a ছিল",
+        "devops নেই বলে",
+        "shajal নেই বলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "টেকনিক্যালি ওই মুহূর্তে supp খালি ছিল বলে ফলাফল একই — কিন্তু exam সঠিক অভ্যাস (-aG) চাইছে, require-এ -a।"
+    },
+    {
+      "id": "wv0l5-q19",
+      "difficulty": "medium",
+      "question": "cat /etc/passwd-র shajal-লাইনে চতুর্থ ঘরে (GID) কোন group-এর নম্বর থাকবে — minions না devops?",
+      "options": ["devops", "minions (primary)", "দুটোই", "কোনোটাই না"],
+      "answerIndex": 1,
+      "explanation": "passwd-র GID ঘরে শুধু primary। devops (supplementary) থাকে /etc/group-এর member list-এ।"
+    },
+    {
+      "id": "wv0l5-q20",
+      "difficulty": "medium",
+      "question": "grep shajal /etc/passwd আর cat /etc/passwd | grep shajal — ফলাফলে পার্থক্য?",
+      "options": [
+        "প্রথমটা ভুল",
+        "কার্যত একই — এক লাইনই আসবে",
+        "দ্বিতীয়টা সব লাইন দেখায়",
+        "প্রথমটায় password-ও আসে"
+      ],
+      "answerIndex": 1,
+      "explanation": "grep সরাসরি ফাইল নিতে পারে; pipe দিয়ে cat-এর output-ও নিতে পারে — ফল একই, প্রথমটা ছোট।"
+    },
+    {
+      "id": "wv0l5-q21",
+      "difficulty": "medium",
+      "question": "usermod -L shajal-এর পরে shajal-এর ফাইলগুলোর কী হয়?",
+      "options": [
+        "archive হয়",
+        "কিছুই না — সব অক্ষত, শুধু login বন্ধ",
+        "read-only হয়",
+        "root-এর হয়ে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "lock শুধু authentication আটকায় — data, group membership সব আগের মতো।"
+    },
+    {
+      "id": "wv0l5-q22",
+      "difficulty": "medium",
+      "question": "userdel joker আর userdel -r joker-এর মধ্যে এই ল্যাবে ফলের পার্থক্য ছিল না কেন?",
+      "options": [
+        "-r কাজ করে না",
+        "joker-এর home directory-ই ছিল না (plain useradd) — মোছার কিছু নেই",
+        "joker root ছিল",
+        "পার্থক্য ছিল"
+      ],
+      "answerIndex": 1,
+      "explanation": "-r শুধু home-সহ মোছে; home-less user-এর ক্ষেত্রে দুটো সমান।"
+    },
+    {
+      "id": "wv0l5-q23",
+      "difficulty": "medium",
+      "question": "ল্যাবে minions বানানোর পরে আবার sudo groupadd minions চালালে কী হবে?",
+      "options": [
+        "আরেকটা minions হবে",
+        "groupadd: group 'minions' already exists — error",
+        "আগেরটা reset হবে",
+        "চুপচাপ পাশ"
+      ],
+      "answerIndex": 1,
+      "explanation": "একই নামের দুই দল হয় না। script-এ চুপচাপ পার হতে চাইলে groupadd -f।"
+    },
+    {
+      "id": "wv0l5-q24",
+      "difficulty": "medium",
+      "question": "id yasin-এ uid=1003(yasin) gid=1003(yasin) groups=1003(yasin),27(sudo) — yasin কি sudo-র primary সদস্য?",
+      "options": [
+        "হ্যাঁ",
+        "না — supplementary; primary এখনো তার private group",
+        "sudo-তে নেই-ই",
+        "বলা যায় না"
+      ],
+      "answerIndex": 1,
+      "explanation": "gid-ই primary বলে দেয়: yasin। sudo আছে groups তালিকায় = supplementary।"
+    },
+    {
+      "id": "wv0l5-q25",
+      "difficulty": "medium",
+      "question": "exam-এর t08-এ id নিষেধ ছিল, groups চাইছিল — দুটোর output-এর মূল পার্থক্য কী?",
+      "options": [
+        "একই জিনিস",
+        "groups শুধু দলের নাম এক লাইনে; id-তে UID/GID নম্বরসহ পুরো পরিচয়",
+        "groups নম্বর দেখায়",
+        "id শুধু primary দেখায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "দ্রুত membership দেখতে groups; নম্বরসহ বিস্তারিত id।"
+    },
+    {
+      "id": "wv0l5-q26",
+      "difficulty": "medium",
+      "question": "নতুন user তৈরির স্বাভাবিক ক্রম এই ল্যাবে কোনটা ছিল?",
+      "options": [
+        "usermod → useradd → groupadd",
+        "groupadd (দল আগে) → useradd → usermod -g/-aG (bind)",
+        "useradd → groupadd → id",
+        "যেকোনো ক্রমে হয় না"
+      ],
+      "answerIndex": 1,
+      "explanation": "দল না থাকলে bind করার সময় 'group does not exist' — তাই দল আগে।"
+    },
+    {
+      "id": "wv0l5-q27",
+      "difficulty": "medium",
+      "question": "usermod -aG devops nonexistent_user চালালে কী হবে?",
+      "options": [
+        "user তৈরি হয়ে যাবে",
+        "usermod: user '...' does not exist — error",
+        "devops মুছে যাবে",
+        "চুপচাপ পাশ"
+      ],
+      "answerIndex": 1,
+      "explanation": "usermod বানায় না, বদলায় — user আগে থেকে থাকতেই হবে।"
+    },
+    {
+      "id": "wv0l5-q28",
+      "difficulty": "medium",
+      "question": "usermod -aG ghostgroup shajal (group-টা নেই) — ফল?",
+      "options": [
+        "group তৈরি হয়ে যোগ হবে",
+        "usermod: group 'ghostgroup' does not exist",
+        "shajal মুছে যাবে",
+        "primary বদলে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "সদস্যপদ দিতে হলে দলটা আগে থাকতে হবে — groupadd আগে।"
+    },
+    {
+      "id": "wv0l5-q29",
+      "difficulty": "medium",
+      "question": "ল্যাব শেষে minions বাক্সে shajal-এর চিপে 1° ব্যাজ কিন্তু devops বাক্সে নেই — কেন?",
+      "options": [
+        "bug",
+        "minions তার primary (1°), devops-এ সে supplementary সদস্য",
+        "devops-এ নেই সে",
+        "1° মানে প্রথম সদস্য"
+      ],
+      "answerIndex": 1,
+      "explanation": "একই user দুই বাক্সে সবুজ হতে পারে — কিন্তু 1° (primary) কেবল এক জায়গায়।"
+    },
+    {
+      "id": "wv0l5-q30",
+      "difficulty": "medium",
+      "question": "/etc/group-এ 'devops:x:1003:shajal,minhaz' লাইনটার শেষ অংশ কী বোঝায়?",
+      "options": [
+        "devops-এর মালিকরা",
+        "devops-এর supplementary সদস্যরা",
+        "primary সদস্যরা",
+        "admin-রা"
+      ],
+      "answerIndex": 1,
+      "explanation": "group ফাইলের চতুর্থ ঘর = supplementary member list।"
+    },
+    {
+      "id": "wv0l5-q31",
+      "difficulty": "medium",
+      "question": "এক কমান্ডে minhaz-কে devops আর sudo দুটোতেই যোগ করতে?",
+      "options": [
+        "usermod -aG devops sudo minhaz",
+        "usermod -aG devops,sudo minhaz",
+        "usermod -g devops,sudo minhaz",
+        "দুইবার চালাতেই হবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-G কমা-সেপারেটেড list নেয় — -aG devops,sudo।"
+    },
+    {
+      "id": "wv0l5-q32",
+      "difficulty": "medium",
+      "question": "ছুটিতে থাকা shajal-এর (locked) supplementary membership-এর কী হয়?",
+      "options": [
+        "মুছে যায়",
+        "থাকে — ফিরে unlock করলেই সব আগের মতো",
+        "suspend হয়",
+        "root-এ চলে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "lock শুধু login আটকায় — membership, data, primary সব অপরিবর্তিত।"
+    },
+    {
+      "id": "wv0l5-q33",
+      "difficulty": "medium",
+      "question": "useradd -m yasin-এ /home/yasin-এর ভেতরে শুরুতেই কিছু ফাইল থাকে কোথা থেকে?",
+      "options": [
+        "ফাঁকা থাকে সবসময়",
+        "/etc/skel টেমপ্লেট থেকে কপি হয়ে",
+        "root-এর home থেকে",
+        "internet থেকে"
+      ],
+      "answerIndex": 1,
+      "explanation": "skel = নতুন user-এর blueprint — .bashrc, .profile ইত্যাদি জন্মেই পায়।"
+    },
+    {
+      "id": "wv0l5-q34",
+      "difficulty": "medium",
+      "question": "exam-এ ভুল কমান্ড চালালে (যেমন usermod-এ user-এর নাম ভুল) কী ঘটে?",
+      "options": [
+        "exam বন্ধ হয়ে যায়",
+        "আসল bash-এর মতো error দেখায়, state বদলায় না, retry করা যায় — কিন্তু first-try নম্বরটা যায়",
+        "স্কোর ০ হয়ে যায়",
+        "পরের প্রশ্নে চলে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "error → রোল-ব্যাক → আবার চেষ্টা। নম্বর শুধু প্রথম চেষ্টায় সঠিক হলে।"
+    },
+    {
+      "id": "wv0l5-q35",
+      "difficulty": "medium",
+      "question": "whoami এই ল্যাব-টার্মিনালে কী ফেরত দেয়, আর তার তাৎপর্য কী?",
+      "options": [
+        "guest — সীমিত ক্ষমতা",
+        "root — সেজন্যই sudo ছাড়াই সব user/group কমান্ড চলে",
+        "admin",
+        "yasin"
+      ],
+      "answerIndex": 1,
+      "explanation": "Poridhi ল্যাবের মতোই container-এ root — সব administrative কমান্ড সরাসরি চলে।"
+    },
+    {
+      "id": "wv0l5-q36",
+      "difficulty": "hard",
+      "question": "ক্রম: useradd shajal → usermod -g minions shajal → usermod -aG devops shajal → usermod -G sudo shajal। শেষে id shajal-এর groups= অংশে কী?",
+      "options": [
+        "minions,devops,sudo",
+        "minions,sudo — devops replace-এ হারিয়ে গেছে",
+        "শুধু sudo",
+        "shajal,minions,devops,sudo"
+      ],
+      "answerIndex": 1,
+      "explanation": "শেষ কমান্ডে -a নেই: supplementary [devops] → [sudo]। primary minions (gid) অক্ষত — groups= এ minions,sudo।"
+    },
+    {
+      "id": "wv0l5-q37",
+      "difficulty": "hard",
+      "question": "groupdel minions চালালে এই ল্যাবের শেষ অবস্থায় কী হবে?",
+      "options": [
+        "মুছে যাবে",
+        "আটকে যাবে — shajal আর minhaz-এর PRIMARY group minions",
+        "শুধু warning",
+        "সদস্যসহ মুছে যাবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "কারো primary group মোছা যায় না — আগে usermod -g দিয়ে তাদের সরাতে হবে।"
+    },
+    {
+      "id": "wv0l5-q38",
+      "difficulty": "hard",
+      "question": "userdel -r yasin চালালে ডানের ভিজ্যুয়ালে কী কী বদলাবে?",
+      "options": [
+        "শুধু sudo বাক্সের চিপ",
+        "sudo বাক্সে yasin-এর চিপ dashed হয়ে যাবে এবং গাছে /home/yasin-ও মুছে ধূসর হবে",
+        "কিছুই না",
+        "শুধু গাছ"
+      ],
+      "answerIndex": 1,
+      "explanation": "-r home-সহ মোছে — user-প্যানেল আর file-tree দুটোতেই প্রতিফলন।"
+    },
+    {
+      "id": "wv0l5-q39",
+      "difficulty": "hard",
+      "question": "passwd-খাতায় yasin-এর লাইন: yasin:x:1003:1003::/home/yasin:/bin/sh — কিন্তু id yasin-এ groups-এ 27(sudo)-ও আছে। sudo-র তথ্যটা এই লাইনে নেই কেন?",
+      "options": [
+        "bug",
+        "supplementary membership passwd-তে থাকে না — থাকে /etc/group-এর sudo লাইনের member list-এ",
+        "x-এর ভেতরে encrypted আছে",
+        "1003-ই sudo"
+      ],
+      "answerIndex": 1,
+      "explanation": "দুই খাতার ভাগ: passwd = পরিচয় + primary GID; group = দলের সদস্য তালিকা।"
+    },
+    {
+      "id": "wv0l5-q40",
+      "difficulty": "hard",
+      "question": "অফিসের নিয়ম: নতুন engineer জন্মেই engineering দলে (primary) আর docker দলে (supplementary) থাকবে, home-সহ। এক কমান্ডে?",
+      "options": [
+        "useradd -m -g engineering -G docker rafi",
+        "useradd -m -aG engineering,docker rafi",
+        "usermod -m -g engineering -G docker rafi",
+        "useradd rafi && mkdir /home/rafi"
+      ],
+      "answerIndex": 0,
+      "explanation": "useradd-এ -g primary, -G supplementary, -m home — জন্মের সময়ই সব সেট (useradd-এ -a লাগে না, নতুন user-এর তো আগের list-ই নেই)।"
+    },
+    {
+      "id": "wv0l5-q41",
+      "difficulty": "hard",
+      "question": "ল্যাবের t12-এ require ছিল শুধু ['usermod','-a'] কিন্তু t10-এ ['usermod','-a','-G'] — তবুও দুটোতেই -aG-ই সঠিক উত্তর। -a একা (G ছাড়া) দিলে কী হতো?",
+      "options": [
+        "চলতো",
+        "usermod: -a flag শুধু -G-র সাথেই অর্থবহ — বাস্তব Linux-এ error দেয়",
+        "primary বদলাতো",
+        "lock হতো"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a-র সংজ্ঞাই 'G-list-এ append' — সঙ্গী ছাড়া সে অচল। এজন্যই জোড় বেঁধে মনে রাখো: -aG।"
+    },
+    {
+      "id": "wv0l5-q42",
+      "difficulty": "hard",
+      "question": "সব দল ঠিকঠাক করার পর অডিটে ধরা পড়লো minhaz-এর কাছে sudo — যেটা প্ল্যানে ছিল না। মুছতে কোন পথ সঠিক?",
+      "options": [
+        "userdel minhaz",
+        "usermod -G devops minhaz — supplementary list-টা নতুন করে লিখে দেওয়া (sudo বাদ)",
+        "usermod -aG nosudo minhaz",
+        "groupdel sudo"
+      ],
+      "answerIndex": 1,
+      "explanation": "replace-আচরণটাই এখানে অস্ত্র: -a ছাড়া -G দিয়ে ইচ্ছাকৃতভাবে চূড়ান্ত list বসাও। (বিকল্প: gpasswd -d, তবে এই ল্যাবের টুলে -G)"
+    },
+    {
+      "id": "wv0l5-q43",
+      "difficulty": "hard",
+      "question": "exam-টা মাঝপথে 'আবার দাও' চাপলে user/group state-এর কী হয়?",
+      "options": [
+        "থেকে যায়",
+        "সব মুছে fresh shell — root ছাড়া কেউ নেই, minions-ও নেই",
+        "শুধু স্কোর reset হয়",
+        "শুধু টার্মিনাল মুছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "reset মানে createShell থেকে নতুন জগত — সব task আবার প্রথম থেকে।"
+    },
+    {
+      "id": "wv0l5-q44",
+      "difficulty": "hard",
+      "question": "কেন t02-এর check-এ hasHome: false ছিল — শুধু user exists যথেষ্ট ছিল না?",
+      "options": [
+        "ভুল করে",
+        "useradd -m shajal চালালেও pass হয়ে যেত — অথচ ল্যাব শেখাচ্ছিল plain useradd-এ home হয় না, সেই পার্থক্যটাই পরীক্ষা",
+        "home থাকা নিষেধ বলে",
+        "-m কাজ করে না বলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "assessment-ডিজাইন: -m-ওয়ালা আর -m-ছাড়া দুটো টাস্ক পাশাপাশি রেখে পার্থক্যটা হাতে-কলমে গাঁথানো।"
+    },
+    {
+      "id": "wv0l5-q45",
+      "difficulty": "hard",
+      "question": "Production-এ ৫০টা সার্ভারে একই user/group সেটআপ করতে হবে। আজকের ল্যাবের জ্ঞান + আগের ক্লাসের কোন ধারণাটা মিলবে?",
+      "options": [
+        "প্রতিটায় হাতে টাইপ",
+        "কমান্ডগুলোকে bash script-এ (absolute path-এ!) বেঁধে ৫০ জায়গায় চালানো — instructor-এর onboarding-script দর্শন",
+        "একটা সার্ভারে করলেই সব হয়",
+        "GUI ব্যবহার"
+      ],
+      "answerIndex": 1,
+      "explanation": "groupadd -f → useradd -m -G → chage -d 0 → sudoers.d — script-ই এই ক্লাসের আসল গন্তব্য (Bash Scripting module সামনে)।"
+    }
+  ]
+}

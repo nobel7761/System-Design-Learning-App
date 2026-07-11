@@ -26,6 +26,13 @@ export type Track =
   | 'dsa'
   | 'devops';
 
+/** Poridhi-style grouping above worlds: Milestone → Module (world) → lessons */
+export interface MilestoneRef {
+  id: string;
+  order: number;
+  title: string;
+}
+
 export interface WorldDef {
   id: string;
   order: number;
@@ -33,6 +40,10 @@ export interface WorldDef {
   title: string;
   titleEn: string;
   description: string;
+  /** Milestone this world/module belongs to (devops track) */
+  milestone?: MilestoneRef;
+  /** Module number within the milestone (devops track) */
+  moduleNo?: number;
   lessons: LessonDef[];
 }
 

@@ -1,0 +1,259 @@
+{
+  "lessonId": "wv0l15",
+  "title": "[Extra Lab] EXAM: File Permissions — webteam-এর ঘর",
+  "passPercent": 95,
+  "intro": "তিন লেসনের স্কিল এক মিশনে: webteam গড়ো → প্রজেক্ট-ঘর বানাও → মালিকানা দাও → তালা লাগাও। গাছের 🔐 ব্যাজগুলো সবুজ করাই লক্ষ্য। প্রথম চেষ্টায় সঠিক হলেই পুরো নম্বর।",
+  "targets": [
+    {
+      "path": "/var/www/mysite",
+      "type": "dir",
+      "mode": "775",
+      "owner": "root",
+      "group": "webteam"
+    },
+    {
+      "path": "/var/www/mysite/index.html",
+      "type": "file",
+      "content": "Hello Team",
+      "mode": "664",
+      "group": "webteam"
+    },
+    { "path": "/var/www/mysite/secret.conf", "type": "file", "mode": "600" },
+    { "path": "/var/www/mysite/deploy.sh", "type": "file", "mode": "755" }
+  ],
+  "groupTargets": [{ "group": "webteam", "users": ["shajal", "minhaz"] }],
+  "tasks": [
+    {
+      "id": "t01",
+      "points": 6,
+      "section": {
+        "title": "👥 পর্ব ১: দলটা আগে (Lab 2-এর স্কিল)",
+        "note": "chown-এ group-এর নাম দিতে হলে group-টা আগে থাকতে হবে — তাই মিশন শুরু দলের জন্ম দিয়ে।"
+      },
+      "prompt": "webteam নামে group বানাও।",
+      "check": { "require": ["groupadd"], "groupsExist": ["webteam"] }
+    },
+    {
+      "id": "t02",
+      "points": 4,
+      "prompt": "shajal-কে বানাও — home directory-সহ।",
+      "check": {
+        "require": ["useradd", "-m"],
+        "usersState": [{ "name": "shajal", "hasHome": true }]
+      }
+    },
+    {
+      "id": "t03",
+      "points": 4,
+      "prompt": "minhaz-কেও — home-সহ।",
+      "check": {
+        "require": ["useradd", "-m"],
+        "usersState": [{ "name": "minhaz", "hasHome": true }]
+      }
+    },
+    {
+      "id": "t04",
+      "points": 5,
+      "prompt": "shajal-কে webteam-এ ঢোকাও — supplementary হিসেবে, আগের group অক্ষত রেখে।",
+      "check": {
+        "require": ["usermod", "-a"],
+        "usersState": [{ "name": "shajal", "inGroups": ["webteam"] }]
+      },
+      "hint": "সেই জোড়-বাঁধা দুই অক্ষর… append + Groups"
+    },
+    {
+      "id": "t05",
+      "points": 5,
+      "prompt": "minhaz-কেও webteam-এ।",
+      "check": {
+        "require": ["usermod", "-a"],
+        "usersState": [{ "name": "minhaz", "inGroups": ["webteam"] }]
+      }
+    },
+    {
+      "id": "t06",
+      "points": 4,
+      "section": {
+        "title": "🏗️ পর্ব ২: প্রজেক্ট-ঘর (Lab 1-এর স্কিল)",
+        "note": "এবার চেনা কাজ — directory আর ফাইল। খেয়াল করো জন্মের সময় এদের default permission কী থাকে।"
+      },
+      "prompt": "/var/www/mysite — পুরো path এক কমান্ডে বানাও।",
+      "check": {
+        "require": ["mkdir"],
+        "paths": [{ "path": "/var/www/mysite", "type": "dir" }]
+      }
+    },
+    {
+      "id": "t07",
+      "points": 4,
+      "prompt": "ভেতরে index.html বানাও, লেখা: Hello Team — এক কমান্ডে, editor ছাড়া।",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "/var/www/mysite/index.html",
+            "type": "file",
+            "content": "Hello Team"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t08",
+      "points": 4,
+      "prompt": "এখন ls দিয়ে mysite-এর ভেতরটা বিস্তারিত দেখো (permission-সহ) — জন্মগত তালাটা পড়ো।",
+      "check": { "require": ["ls", "-l"], "ref": "ls -l /var/www/mysite" }
+    },
+    {
+      "id": "t09",
+      "points": 7,
+      "section": {
+        "title": "🏷️ পর্ব ৩: মালিকানা (নতুন অস্ত্র: chown)",
+        "note": "ঘরের গায়ে দলের নাম লেখার পালা — owner থাকবে root, owning group হবে webteam।"
+      },
+      "prompt": "mysite ফোল্ডারটার owner root আর group webteam করে দাও — এক কমান্ডে (এখনো -R না)।",
+      "check": {
+        "require": ["chown", ":"],
+        "pathModes": [
+          { "path": "/var/www/mysite", "owner": "root", "group": "webteam" }
+        ]
+      },
+      "hint": "owner:group — মাঝে কোলন"
+    },
+    {
+      "id": "t10",
+      "points": 4,
+      "prompt": "এবার index.html-টার লাইনটা আলাদা করে দেখো — তার group কি বদলেছে?",
+      "check": {
+        "require": ["ls", "-l"],
+        "ref": "ls -l /var/www/mysite/index.html"
+      }
+    },
+    {
+      "id": "t11",
+      "points": 6,
+      "prompt": "দেখলে তো — ভেতরের ফাইল এখনো root:root! এবার মালিকানাটা ভেতরের সবকিছুতেও দাও।",
+      "check": {
+        "require": ["chown", "-R"],
+        "pathModes": [
+          {
+            "path": "/var/www/mysite/index.html",
+            "owner": "root",
+            "group": "webteam"
+          }
+        ]
+      },
+      "hint": "recursive flag-টা কী ছিল?"
+    },
+    {
+      "id": "t12",
+      "points": 7,
+      "section": {
+        "title": "🔐 পর্ব ৪: তালা — octal (নতুন অস্ত্র: chmod)",
+        "note": "নামতা মনে করো: r=4, w=2, x=1। লক্ষ্য: দল লিখবে, বাইরের লোক শুধু দেখবে/ঢুকবে।"
+      },
+      "prompt": "mysite ফোল্ডারে তালা দাও: owner=সব, group=সব, others=পড়া+ঢোকা (লেখা না) — octal সংখ্যায়।",
+      "check": {
+        "require": ["chmod"],
+        "pathModes": [{ "path": "/var/www/mysite", "mode": "775" }]
+      },
+      "hint": "rwx rwx r-x → হিসাব করো: ৭? ৭? ৫?"
+    },
+    {
+      "id": "t13",
+      "points": 5,
+      "prompt": "index.html-এ: owner আর group দুজনেই পড়বে-লিখবে, others শুধু পড়বে — octal-এ।",
+      "check": {
+        "require": ["chmod"],
+        "pathModes": [{ "path": "/var/www/mysite/index.html", "mode": "664" }]
+      },
+      "hint": "rw- rw- r-- → ?"
+    },
+    {
+      "id": "t14",
+      "points": 4,
+      "prompt": "আবার বিস্তারিত লিস্ট দেখে যাচাই করো — তালাগুলো বসেছে?",
+      "check": { "require": ["ls", "-l"], "ref": "ls -l /var/www/mysite" }
+    },
+    {
+      "id": "t15",
+      "points": 4,
+      "section": {
+        "title": "🤫 পর্ব ৫: গোপন ফাইল",
+        "note": "প্রতিটা প্রজেক্টেই থাকে একটা secret — database password, API key। তার পোশাক একটাই।"
+      },
+      "prompt": "mysite-এর ভেতরে secret.conf বানাও, লেখা: db_pass=1234",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "/var/www/mysite/secret.conf",
+            "type": "file",
+            "content": "db_pass=1234"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t16",
+      "points": 7,
+      "prompt": "secret.conf-এ গোপন জিনিসের তালা — শুধুই মালিক পড়বে-লিখবে, আর কেউ কিছুই না।",
+      "check": {
+        "require": ["chmod"],
+        "pathModes": [{ "path": "/var/www/mysite/secret.conf", "mode": "600" }]
+      },
+      "hint": "SSH key-র নিয়মটা…"
+    },
+    {
+      "id": "t17",
+      "points": 4,
+      "section": {
+        "title": "⚙️ পর্ব ৬: Script আর symbolic ভঙ্গি",
+        "note": "শেষ অস্ত্র: chmod-এর কথায়-বলা রূপ — u+x, a+x। পুরো তালা না বদলে একটা চাবি যোগ।"
+      },
+      "prompt": "mysite-এর ভেতরে deploy.sh বানাও, লেখা: echo Deploying",
+      "check": {
+        "require": ["echo", ">"],
+        "paths": [
+          {
+            "path": "/var/www/mysite/deploy.sh",
+            "type": "file",
+            "content": "echo Deploying"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t18",
+      "points": 7,
+      "prompt": "deploy.sh-কে শুধু owner-এর জন্য executable করো — symbolic ভঙ্গিতে (octal নিষেধ!)।",
+      "check": {
+        "require": ["chmod", "u", "+"],
+        "forbid": ["744"],
+        "pathModes": [{ "path": "/var/www/mysite/deploy.sh", "mode": "744" }]
+      },
+      "hint": "কে(u) + কী দেবে(+) + কোন চাবি(x)"
+    },
+    {
+      "id": "t19",
+      "points": 5,
+      "prompt": "টিম বললো সবাই-ই script-টা চালাবে — এবার সবার জন্য execute যোগ করো, আবারও symbolic-এ।",
+      "check": {
+        "require": ["chmod", "+"],
+        "forbid": ["755"],
+        "pathModes": [{ "path": "/var/www/mysite/deploy.sh", "mode": "755" }]
+      },
+      "hint": "সবাই = a (all)"
+    },
+    {
+      "id": "t20",
+      "points": 4,
+      "section": {
+        "title": "🏁 পর্ব ৭: ফাইনাল পরিদর্শন",
+        "note": "একজন প্রকৃত engineer কাজ শেষে প্রমাণ দেখে — গাছের সব 🔐 ব্যাজ সবুজ তো?"
+      },
+      "prompt": "শেষবারের মতো mysite-এর পুরো বিস্তারিত তালিকা দেখাও — চার ফাইল/ফোল্ডারের চার রকম তালা এক নজরে।",
+      "check": { "require": ["ls", "-l"], "ref": "ls -l /var/www/mysite" }
+    }
+  ]
+}

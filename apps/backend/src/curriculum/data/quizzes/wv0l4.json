@@ -1,0 +1,721 @@
+{
+  "lessonId": "wv0l4",
+  "passPercent": 95,
+  "sample": {
+    "easy": 5,
+    "medium": 7,
+    "hard": 3
+  },
+  "questions": [
+    {
+      "id": "wv0l4-q01",
+      "difficulty": "easy",
+      "question": "Linux user-কে ভেতরে ভেতরে কী দিয়ে চেনে?",
+      "options": [
+        "নামের বানান",
+        "UID (User ID) — একটা সংখ্যা",
+        "email ঠিকানা",
+        "password"
+      ],
+      "answerIndex": 1,
+      "explanation": "Linux সংখ্যায় চেনে — প্রতিটা user-এর একটা UID। নাম শুধু মানুষের সুবিধার জন্য।"
+    },
+    {
+      "id": "wv0l4-q02",
+      "difficulty": "easy",
+      "question": "root user-এর UID কত?",
+      "options": ["1", "100", "0", "1000"],
+      "answerIndex": 2,
+      "explanation": "root = UID 0 — super admin। সাধারণ user-রা শুরু হয় ~1000 থেকে।"
+    },
+    {
+      "id": "wv0l4-q03",
+      "difficulty": "easy",
+      "question": "Group-কে identify করা হয় কী দিয়ে?",
+      "options": [
+        "GID (Group ID)",
+        "group password",
+        "member সংখ্যা",
+        "তৈরির তারিখ"
+      ],
+      "answerIndex": 0,
+      "explanation": "group-এরও নম্বর — GID। id কমান্ডের output-এ gid= অংশটাই primary group-এর GID।"
+    },
+    {
+      "id": "wv0l4-q04",
+      "difficulty": "easy",
+      "question": "নতুন group তৈরির কমান্ড কোনটা?",
+      "options": ["mkgroup", "groupadd", "addgroup -new", "newgrp"],
+      "answerIndex": 1,
+      "explanation": "groupadd <নাম> — যেমন instructor-এর: sudo groupadd minions।"
+    },
+    {
+      "id": "wv0l4-q05",
+      "difficulty": "easy",
+      "question": "নতুন user তৈরির কমান্ড কোনটা?",
+      "options": ["usermod", "useradd", "adduser -x", "newuser"],
+      "answerIndex": 1,
+      "explanation": "useradd <নাম> — basic তৈরি। home directory চাইলে -m।"
+    },
+    {
+      "id": "wv0l4-q06",
+      "difficulty": "easy",
+      "question": "useradd-এ -m flag কী করে?",
+      "options": [
+        "user-কে modify করে",
+        "user-এর home directory তৈরি করে",
+        "password mail করে",
+        "user-কে admin বানায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "-m = make home — /home/<নাম> তৈরি হয় আর /etc/skel-এর টেমপ্লেট কপি হয়।"
+    },
+    {
+      "id": "wv0l4-q07",
+      "difficulty": "easy",
+      "question": "user-এর তথ্য বদলানোর কমান্ড কোনটা?",
+      "options": ["userchange", "moduser", "usermod", "edituser"],
+      "answerIndex": 2,
+      "explanation": "usermod = user modify — primary group (-g), supplementary (-aG), lock (-L) সবই এর কাজ।"
+    },
+    {
+      "id": "wv0l4-q08",
+      "difficulty": "easy",
+      "question": "প্রতিটা user-এর primary group কয়টা থাকে?",
+      "options": ["যত খুশি", "ঠিক একটা", "দুইটা", "শূন্য"],
+      "answerIndex": 1,
+      "explanation": "primary group একটাই। এর বাইরের সব সদস্যপদ = supplementary group।"
+    },
+    {
+      "id": "wv0l4-q09",
+      "difficulty": "easy",
+      "question": "primary group-এর বাইরে user আরও যেসব group-এর সদস্য, সেগুলোকে কী বলে?",
+      "options": [
+        "secondary admin",
+        "supplementary group",
+        "extra group",
+        "sub group"
+      ],
+      "answerIndex": 1,
+      "explanation": "supplementary group — junior engineer-কে পরে devops টিমে নেওয়ার মতো।"
+    },
+    {
+      "id": "wv0l4-q10",
+      "difficulty": "easy",
+      "question": "সব user-এর তালিকা কোন ফাইলে থাকে?",
+      "options": ["/etc/users", "/home/passwd", "/etc/passwd", "/var/users"],
+      "answerIndex": 2,
+      "explanation": "/etc/passwd — সব user-এর রেজিস্টার। এটা file, directory না!"
+    },
+    {
+      "id": "wv0l4-q11",
+      "difficulty": "easy",
+      "question": "সব group আর তাদের সদস্যদের তথ্য কোন ফাইলে?",
+      "options": ["/etc/group", "/etc/groups.d", "/home/groups", "/var/group"],
+      "answerIndex": 0,
+      "explanation": "/etc/group — supplementary membership-এর তথ্যও এখানেই থাকে।"
+    },
+    {
+      "id": "wv0l4-q12",
+      "difficulty": "easy",
+      "question": "user account-এ তালা (lock) দেওয়ার কমান্ড?",
+      "options": [
+        "usermod -L <user>",
+        "userlock <user>",
+        "userdel <user>",
+        "passwd -stop"
+      ],
+      "answerIndex": 0,
+      "explanation": "usermod -L = Lock। খোলার জন্য usermod -U।"
+    },
+    {
+      "id": "wv0l4-q13",
+      "difficulty": "easy",
+      "question": "lock করা user-এর data-র কী হয়?",
+      "options": [
+        "সব মুছে যায়",
+        "কিছুই হয় না — অক্ষত থাকে",
+        "archive হয়ে যায়",
+        "root-এর কাছে চলে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর পয়েন্ট: lock মানে শুধু ঢোকা বন্ধ — কোনো data কোনোভাবে হারায় না। এজন্যই ছুটির সময় delete না করে lock।"
+    },
+    {
+      "id": "wv0l4-q14",
+      "difficulty": "easy",
+      "question": "user মুছে ফেলার কমান্ড?",
+      "options": ["usermod -d", "userdel", "removeuser", "deluser -f"],
+      "answerIndex": 1,
+      "explanation": "userdel <user> — home রেখে; userdel -r দিলে home-সহ।"
+    },
+    {
+      "id": "wv0l4-q15",
+      "difficulty": "easy",
+      "question": "আমি কোন কোন group-এ আছি — দেখার সবচেয়ে ছোট কমান্ড?",
+      "options": ["id -g", "groups", "whoami", "cat /etc/group"],
+      "answerIndex": 1,
+      "explanation": "groups (বা groups <user>) — এক লাইনে সব সদস্যপদ।"
+    },
+    {
+      "id": "wv0l4-q16",
+      "difficulty": "easy",
+      "question": "id shajal-এর output-এ gid= অংশটা কী বোঝায়?",
+      "options": [
+        "সব group",
+        "shajal-এর PRIMARY group",
+        "সবচেয়ে বড় group",
+        "supplementary group"
+      ],
+      "answerIndex": 1,
+      "explanation": "gid = primary group। groups= অংশে primary + সব supplementary।"
+    },
+    {
+      "id": "wv0l4-q17",
+      "difficulty": "easy",
+      "question": "সবচেয়ে ক্ষমতাধর default user কে?",
+      "options": ["admin", "superuser", "root", "sudo"],
+      "answerIndex": 2,
+      "explanation": "root — super admin, tree-র যেকোনো node-এ যেকোনো operation চালাতে পারে।"
+    },
+    {
+      "id": "wv0l4-q18",
+      "difficulty": "easy",
+      "question": "user-কে root-এর মতো ক্ষমতা দিতে কোন group-এ ঢোকাতে হয়?",
+      "options": ["admin", "root", "sudo", "superadmin"],
+      "answerIndex": 2,
+      "explanation": "sudo group-ই default superpower দল — এর সদস্য হলেই root-তুল্য ক্ষমতা।"
+    },
+    {
+      "id": "wv0l4-q19",
+      "difficulty": "easy",
+      "question": "/etc/skel কী?",
+      "options": [
+        "পুরনো user-দের archive",
+        "নতুন user-এর home-এর টেমপ্লেট (blueprint)",
+        "system-এর কঙ্কাল ফাইল",
+        "password-এর ঘর"
+      ],
+      "answerIndex": 1,
+      "explanation": "skel = skeleton — useradd -m চালালে এর সব ফাইল নতুন home-এ কপি হয়। OOP-র class → object।"
+    },
+    {
+      "id": "wv0l4-q20",
+      "difficulty": "easy",
+      "question": "যেকোনো কমান্ডের সব option শেখার দ্রুততম উপায় (instructor-এর মন্ত্র)?",
+      "options": [
+        "Google করা",
+        "<command> --help চালানো",
+        "man page মুখস্থ",
+        "chatGPT"
+      ],
+      "answerIndex": 1,
+      "explanation": "--help — যেমন usermod --help। instructor: 'always remember --help'।"
+    },
+    {
+      "id": "wv0l4-q21",
+      "difficulty": "medium",
+      "question": "sudo groupadd minions আর sudo useradd shajal চালানোর পর shajal কি minions-এর সদস্য?",
+      "options": [
+        "হ্যাঁ, automatic",
+        "না — বানানো আর bind করা আলাদা; usermod দিয়ে bind করতে হবে",
+        "হ্যাঁ, যদি group আগে বানানো হয়",
+        "শুধু root অনুমতি দিলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "useradd কাজ করে user-space-এ, groupadd group-space-এ — সম্পর্ক তৈরি হয় usermod -g/-aG দিয়ে।"
+    },
+    {
+      "id": "wv0l4-q22",
+      "difficulty": "medium",
+      "question": "usermod -g minions shajal — এই -g (ছোট হাতের) কী করে?",
+      "options": [
+        "supplementary যোগ করে",
+        "shajal-এর PRIMARY group minions করে দেয়",
+        "minions-কে মুছে দেয়",
+        "shajal-কে lock করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "ছোট g = primary group সেট/বদল। বড় G = supplementary।"
+    },
+    {
+      "id": "wv0l4-q23",
+      "difficulty": "medium",
+      "question": "shajal-এর primary minions। supplementary হিসেবে devops দিতে সঠিক কমান্ড?",
+      "options": [
+        "usermod -g devops shajal",
+        "usermod -aG devops shajal",
+        "groupadd devops shajal",
+        "useradd -G devops shajal"
+      ],
+      "answerIndex": 1,
+      "explanation": "-aG = append + Groups — আগেরগুলো রেখে devops যোগ। -g দিলে primary-ই বদলে যেত!"
+    },
+    {
+      "id": "wv0l4-q24",
+      "difficulty": "medium",
+      "question": "supplementary যোগ করতে গিয়ে ভুল করে usermod -g devops shajal চালালে কী হবে?",
+      "options": [
+        "কিছুই না",
+        "error আসবে",
+        "shajal-এর primary group minions থেকে সরে devops হয়ে যাবে",
+        "devops মুছে যাবে"
+      ],
+      "answerIndex": 2,
+      "explanation": "instructor-এর সাবধানবাণী: -g সবসময় primary-তে হাত দেয় — supplementary-র জন্য -aG।"
+    },
+    {
+      "id": "wv0l4-q25",
+      "difficulty": "medium",
+      "question": "usermod -G sudo shajal (-a ছাড়া!) — shajal আগে devops-এর supplementary সদস্য ছিল। এখন?",
+      "options": [
+        "devops + sudo দুটোতেই",
+        "শুধু sudo — আগের supplementary list মুছে replace হয়ে গেছে",
+        "শুধু devops",
+        "error আসবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a ছাড়া -G মানে replace। production-এ access উড়ে যাওয়ার ক্লাসিক কারণ।"
+    },
+    {
+      "id": "wv0l4-q26",
+      "difficulty": "medium",
+      "question": "supplementary group-এর তথ্য কোথায় stored থাকে?",
+      "options": [
+        "/etc/passwd-তে",
+        "/etc/group ফাইলে",
+        "/etc/shadow-তে",
+        "user-এর home-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor সরাসরি বললেন: /etc/group — root → etc → group।"
+    },
+    {
+      "id": "wv0l4-q27",
+      "difficulty": "medium",
+      "question": "cat /etc/passwd নিয়ে instructor-এর tree-observation টা কী ছিল?",
+      "options": [
+        "passwd একটা directory",
+        "passwd একটা file — tree-র terminal node (child নেই)",
+        "passwd hidden",
+        "passwd শুধু root পড়তে পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Linux-এ সবই tree: /etc directory (child আছে), passwd file (terminal node)।"
+    },
+    {
+      "id": "wv0l4-q28",
+      "difficulty": "medium",
+      "question": "/etc/passwd-র লাইন: shajal:x:1001:1002::/home/shajal:/bin/bash — 1002 কী?",
+      "options": [
+        "shajal-এর UID",
+        "shajal-এর primary group-এর GID",
+        "password-এর কোড",
+        "ফাইল সংখ্যা"
+      ],
+      "answerIndex": 1,
+      "explanation": "ক্রম: নাম:x:UID:GID(primary):comment:home:shell — তৃতীয় সংখ্যা UID, চতুর্থটা primary GID।"
+    },
+    {
+      "id": "wv0l4-q29",
+      "difficulty": "medium",
+      "question": "/etc/passwd-এ password-এর জায়গায় x লেখা থাকে কেন?",
+      "options": [
+        "password নেই",
+        "আসল password encrypted আকারে /etc/shadow-তে থাকে",
+        "x মানে expired",
+        "admin block করেছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "passwd সবাই পড়তে পারে, তাই আসল hash রাখা হয় /etc/shadow-তে — যেটা শুধু root পড়ে।"
+    },
+    {
+      "id": "wv0l4-q30",
+      "difficulty": "medium",
+      "question": "instructor কোন path-টাকে সার্ভারের 'সবচেয়ে খতরনাক' বললেন, আর কেন?",
+      "options": [
+        "/home — সব ফাইল",
+        "/etc — user, group, password, sudoers সব চাবি এখানে",
+        "/var — log আছে",
+        "/tmp — যে কেউ লিখতে পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "কেউ /etc penetrate করতে পারলেই শেষ — access-দুনিয়ার সব খাতা ওখানে।"
+    },
+    {
+      "id": "wv0l4-q31",
+      "difficulty": "medium",
+      "question": "ছুটিতে যাওয়া employee-র জন্য সঠিক ব্যবস্থা কোনটা?",
+      "options": [
+        "userdel -r",
+        "usermod -L (lock), ফিরলে -U",
+        "password বদলে দেওয়া",
+        "home directory মুছে দেওয়া"
+      ],
+      "answerIndex": 1,
+      "explanation": "সাময়িক বিদায় = lock, data অক্ষত। delete শুধু স্থায়ী বিদায়ে।"
+    },
+    {
+      "id": "wv0l4-q32",
+      "difficulty": "medium",
+      "question": "userdel shajal আর userdel -r shajal-এর পার্থক্য?",
+      "options": [
+        "কোনো পার্থক্য নেই",
+        "-r দিলে home directory-সহ মুছে যায়, না দিলে home থেকে যায়",
+        "-r মানে restore",
+        "-r শুধু lock করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "-r = remove home। offboarding-এ data রাখার policy অনুযায়ী সিদ্ধান্ত।"
+    },
+    {
+      "id": "wv0l4-q33",
+      "difficulty": "medium",
+      "question": "sudo group-এ কাউকে add করা মানে কার্যত কী?",
+      "options": [
+        "সে শুধু sudo কমান্ড দেখতে পারবে",
+        "সে root user-এর মতো file management-এর full ক্ষমতা পেয়ে যায়",
+        "সে নতুন user বানাতে পারবে শুধু",
+        "কিছুই না, নামমাত্র দল"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর সূত্র: sudo group-এর কাছে root-এর access আছে — সদস্য হলেই সেই ক্ষমতা।"
+    },
+    {
+      "id": "wv0l4-q34",
+      "difficulty": "medium",
+      "question": "কে কে superpower পাবে তার খাতা কোন ফাইল?",
+      "options": ["/etc/passwd", "/etc/sudoers", "/etc/group", "/root/access"],
+      "answerIndex": 1,
+      "explanation": "/etc/sudoers — এখানে যার (user বা group) নাম, সে অনুমোদিত কাজ চালাতে পারে।"
+    },
+    {
+      "id": "wv0l4-q35",
+      "difficulty": "medium",
+      "question": "/etc/sudoers edit করার নিরাপদ উপায়?",
+      "options": [
+        "nano /etc/sudoers",
+        "visudo (syntax check করে save করে)",
+        "vim দিয়ে সরাসরি",
+        "cat >> দিয়ে append"
+      ],
+      "answerIndex": 1,
+      "explanation": "syntax ভুল হলে পুরো sudo সিস্টেম ভেঙে যায় — visudo save-এর আগে যাচাই করে। নিজের নিয়ম /etc/sudoers.d/-তে।"
+    },
+    {
+      "id": "wv0l4-q36",
+      "difficulty": "medium",
+      "question": "'একটা user শুধু nginx restart দিতে পারবে, আর কিছু না' — এটা কোথায় সংজ্ঞায়িত করা best practice?",
+      "options": [
+        "/etc/passwd-তে",
+        "/etc/sudoers.d/<নাম> আলাদা ফাইলে নির্দিষ্ট command লিখে",
+        "user-এর .bashrc-তে",
+        "nginx.conf-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর serviceop প্যাটার্ন: sudoers.d-র ফাইলে command-level সীমানা।"
+    },
+    {
+      "id": "wv0l4-q37",
+      "difficulty": "medium",
+      "question": "serviceop-ধরনের সীমিত user বানানোর মূল কারণ কী (instructor-এর যুক্তি)?",
+      "options": [
+        "টাকা বাঁচানো",
+        "automation script-এর হাতে সব permission থাকলে একটা bug-ই disaster — তাই boundary",
+        "সার্ভার দ্রুত চলে",
+        "user-রা বিরক্ত করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "script-কে ঠিক যতটুকু দরকার ততটুকু ক্ষমতা — blast radius ছোট রাখা।"
+    },
+    {
+      "id": "wv0l4-q38",
+      "difficulty": "medium",
+      "question": "superadmin group বানিয়ে user add করলাম — তারা full access পায়নি। পেতে হলে কী করতে হবে?",
+      "options": [
+        "আরো user add করতে হবে",
+        "group-টার নাম বদলাতে হবে",
+        "/etc/sudoers-এ group-টার entry দিতে হবে (বা sudo group-এর সাথে যুক্ত করতে হবে)",
+        "server restart"
+      ],
+      "answerIndex": 2,
+      "explanation": "group শুধু নাম — ক্ষমতার সংজ্ঞা আসে sudoers থেকে। instructor-এর প্রশ্নটা এটাই ছিল।"
+    },
+    {
+      "id": "wv0l4-q39",
+      "difficulty": "medium",
+      "question": "useradd -G superadmin -m serviceop — এই কমান্ডে কী কী হলো?",
+      "options": [
+        "শুধু user তৈরি",
+        "user তৈরি + home তৈরি + জন্মেই superadmin-এ supplementary সদস্যপদ",
+        "group তৈরি হলো",
+        "user lock হলো"
+      ],
+      "answerIndex": 1,
+      "explanation": "-m = home, -G = জন্মের সময়ই group-এ। এক কমান্ডে onboarding-এর অর্ধেক।"
+    },
+    {
+      "id": "wv0l4-q40",
+      "difficulty": "medium",
+      "question": "useradd -m test চালালে /etc/skel-এর সাথে কী ঘটে?",
+      "options": [
+        "skel মুছে যায়",
+        "skel-এর সব ফাইল হুবহু /home/test-এ কপি হয়ে যায়",
+        "skel-এ test-এর নাম লেখা হয়",
+        "কিছুই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "skel = নতুন user-এর ছাঁচ — .bashrc, .profile, custom script সব নতুন home-এ চলে যায়।"
+    },
+    {
+      "id": "wv0l4-q41",
+      "difficulty": "medium",
+      "question": "instructor-এর bastion server গল্পে /etc/skel কী সমস্যা সমাধান করলো?",
+      "options": [
+        "সার্ভার দ্রুত করা",
+        "১২ জন engineer-এর প্রত্যেকের ঘরে logging script হাতে-হাতে বসানোর বদলে টেমপ্লেটে রাখা — নতুন user জন্মেই পায়",
+        "password মনে রাখা",
+        "disk space বাঁচানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "user-এর চেহারা skel দিয়ে shape করা যায় — template automation।"
+    },
+    {
+      "id": "wv0l4-q42",
+      "difficulty": "medium",
+      "question": "id yasin-এর output: uid=1003(yasin) gid=1003(yasin) groups=1003(yasin),27(sudo) — yasin-এর primary group কী?",
+      "options": ["sudo", "yasin (নিজের নামের private group)", "27", "root"],
+      "answerIndex": 1,
+      "explanation": "gid=1003(yasin) — useradd নিজের নামে private group বানায়; sudo এখানে supplementary।"
+    },
+    {
+      "id": "wv0l4-q43",
+      "difficulty": "medium",
+      "question": "groups shajal-এর output: shajal : minions devops — কোনটা primary?",
+      "options": ["devops", "minions (প্রথমটা)", "দুটোই", "বলা যায় না"],
+      "answerIndex": 1,
+      "explanation": "groups-এর output-এ আগে primary, তারপর supplementary গুলো।"
+    },
+    {
+      "id": "wv0l4-q44",
+      "difficulty": "medium",
+      "question": "নতুন user-এর জন্য login-এর প্রথমবারেই password বদলানো বাধ্যতামূলক করতে (onboarding script-এ) কী ব্যবহার হয়?",
+      "options": [
+        "passwd -f",
+        "chage -d 0 <user>",
+        "usermod -p 0",
+        "lock করে দেওয়া"
+      ],
+      "answerIndex": 1,
+      "explanation": "chage -d 0 = last password change শূন্য — পরের login-এই নতুন password দিতে বাধ্য।"
+    },
+    {
+      "id": "wv0l4-q45",
+      "difficulty": "medium",
+      "question": "Docker security-র সাথে আজকের class-এর সংযোগটা কী?",
+      "options": [
+        "Docker-এ user লাগে না",
+        "Dockerfile-এও user/group বানিয়ে বলা হয় — এই user শুধু নিজের node-এই চলবে, অন্য path-এ traverse করতে পারবে না",
+        "Docker-এ শুধু root চলে",
+        "কোনো সংযোগ নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "instructor-এর দর্শন: node → কোন group-এর → কোন user — container-এর ভেতরেও একই চিন্তা।"
+    },
+    {
+      "id": "wv0l4-q46",
+      "difficulty": "hard",
+      "question": "shajal: primary=minions, supplementary=devops,sudo। চালানো হলো usermod -G devops shajal। এখন id shajal-এ কী দেখা যাবে?",
+      "options": [
+        "gid=minions, groups=minions,devops,sudo",
+        "gid=minions, groups=minions,devops — sudo হারিয়ে গেছে",
+        "gid=devops, groups=devops",
+        "error"
+      ],
+      "answerIndex": 1,
+      "explanation": "-a ছাড়া -G পুরো supplementary list replace করে: শুধু devops থাকলো, sudo (superpower!) উড়ে গেলো। primary (-g-র জিনিস) অক্ষত।"
+    },
+    {
+      "id": "wv0l4-q47",
+      "difficulty": "hard",
+      "question": "useradd shajal (কোনো flag ছাড়া) — এরপর কোনটা সত্যি?",
+      "options": [
+        "/home/shajal তৈরি হয়েছে",
+        "/etc/passwd-তে entry হয়েছে কিন্তু home directory নেই",
+        "shajal sudo পেয়েছে",
+        "shajal-এর কোনো UID নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "plain useradd home বানায় না (-m লাগে), কিন্তু user-এর entry ঠিকই /etc/passwd-তে ঢোকে।"
+    },
+    {
+      "id": "wv0l4-q48",
+      "difficulty": "hard",
+      "question": "একজন engineer-এর ৩টা দায়িত্ব: dev টিমের সদস্য (মূল পরিচয়), qa প্রজেক্টে সাহায্য, deploy-এর অনুমতি। সঠিক সেটআপ কোনটা?",
+      "options": [
+        "usermod -g dev,qa,deploy user",
+        "usermod -g dev user && usermod -aG qa,deploy user",
+        "useradd -m dev qa deploy",
+        "তিনটা আলাদা user বানানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "-g একটাই নেয় (primary=dev); বাকি দুটো supplementary — এক কমান্ডে কমা দিয়ে -aG qa,deploy।"
+    },
+    {
+      "id": "wv0l4-q49",
+      "difficulty": "hard",
+      "question": "lock করা account (usermod -L) সম্পর্কে কোনটা সঠিক?",
+      "options": [
+        "user-এর process গুলোও মরে যায়",
+        "password-login বন্ধ হয়, ফাইল/data/membership সব অক্ষত — -U দিলেই আগের অবস্থা",
+        "home directory read-only হয়",
+        "group membership মুছে যায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "lock শুধু authentication আটকায় (shadow-র hash-এর আগে ! বসে) — আর কিছুতে হাত দেয় না।"
+    },
+    {
+      "id": "wv0l4-q50",
+      "difficulty": "hard",
+      "question": "visudo ছাড়া সরাসরি editor দিয়ে /etc/sudoers-এ syntax ভুল লিখে save করলে সবচেয়ে বাস্তব বিপদটা কী?",
+      "options": [
+        "ফাইলটা মুছে যায়",
+        "sudo-ই ভেঙে যায় — ভুল শোধরাতেও sudo লাগবে, কিন্তু sudo আর চলে না (lockout)",
+        "server restart হয়",
+        "শুধু warning আসে"
+      ],
+      "answerIndex": 1,
+      "explanation": "এজন্যই visudo — save-এর আগে syntax verify করে। sudoers ভাঙা মানে নিজেকেই বাইরে তালা দেওয়া।"
+    },
+    {
+      "id": "wv0l4-q51",
+      "difficulty": "hard",
+      "question": "%devops ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart nginx — sudoers-এর এই লাইনের মানে?",
+      "options": [
+        "devops নামের user সব পারবে",
+        "devops GROUP-এর সবাই শুধু ওই নির্দিষ্ট কমান্ডটা password ছাড়া sudo দিয়ে চালাতে পারবে",
+        "সবাই nginx restart পারবে",
+        "devops-রা password ছাড়া login পারবে"
+      ],
+      "answerIndex": 1,
+      "explanation": "% মানে group; তালিকাভুক্ত command-টুকুই তাদের সীমানা — serviceop প্যাটার্নের বাস্তব রূপ।"
+    },
+    {
+      "id": "wv0l4-q52",
+      "difficulty": "hard",
+      "question": "systemctl status nginx চালাতে গিয়ে একজন user 'not allowed' পেলো, অথচ সে sudo দিয়ে অন্য কিছু কাজ পারে। instructor-এর ব্যাখ্যায় কারণটা কোথায়?",
+      "options": [
+        "nginx বন্ধ",
+        "/etc/sudoers.d/-র তার ফাইলে এই কমান্ডটা তার allowed list-এ নেই",
+        "সে lock হয়ে আছে",
+        "nginx group-এ নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "command-level সীমানা: sudoers.d-র ফাইলে যা লেখা, ঠিক ততটুকুই — status কমান্ডটা list-এ না থাকলে সেটাও নিষেধ।"
+    },
+    {
+      "id": "wv0l4-q53",
+      "difficulty": "hard",
+      "question": "নতুন সার্ভারে দাঁড় করানো onboarding script-এ user বানানোর ক্রম কোনটা সঠিক?",
+      "options": [
+        "useradd → groupadd → usermod",
+        "groupadd -f <দল> → useradd -m -G <দল> <নাম> → chage -d 0 → sudoers.d ফাইল + chmod 440",
+        "sudoers আগে, user পরে",
+        "useradd -m সবার শেষে"
+      ],
+      "answerIndex": 1,
+      "explanation": "দল আগে (থাকলে -f চুপ), user জন্মেই দলে, প্রথম login-এ password বদল, তারপর command-সীমানা — instructor-এর script-এর ধাপগুলোই।"
+    },
+    {
+      "id": "wv0l4-q54",
+      "difficulty": "hard",
+      "question": "/etc/skel-এ একটা নতুন alias যোগ করলে কাদের উপর প্রভাব পড়বে?",
+      "options": [
+        "সব existing user-এর",
+        "শুধু এরপরে তৈরি হওয়া user-দের (useradd -m) — পুরনোদের home-এ কিছু বদলায় না",
+        "শুধু root-এর",
+        "কারো না"
+      ],
+      "answerIndex": 1,
+      "explanation": "skel টেমপ্লেট কপি হয় সৃষ্টির মুহূর্তে — পুরনো user-দের home আগেই কপি হয়ে গেছে, তারা পাবে না।"
+    },
+    {
+      "id": "wv0l4-q55",
+      "difficulty": "hard",
+      "question": "instructor-এর File System → Group → User ছবিটা দিয়ে ৩-department access design-এর সারমর্ম কী?",
+      "options": [
+        "সব user-কে সরাসরি সব permission",
+        "প্রতি department = একটা group; tree-র নির্দিষ্ট node-এর access সেই group-কে; user-কে শুধু group-এ ঢোকানো/বের করা",
+        "প্রতি user-এর জন্য আলাদা সার্ভার",
+        "সবাইকে sudo"
+      ],
+      "answerIndex": 1,
+      "explanation": "node → group → user — user বদলালে শুধু membership বদলাও, permission নিজে নিজেই follow করে।"
+    },
+    {
+      "id": "wv0l4-q56",
+      "difficulty": "hard",
+      "question": "id কমান্ডে gid=1002(minions) কিন্তু cat /etc/group-এ minions লাইনের শেষে shajal-এর নাম নেই — এটা কি অসঙ্গতি?",
+      "options": [
+        "হ্যাঁ, bug",
+        "না — primary membership থাকে /etc/passwd-র GID কলামে; /etc/group-এর member list-এ মূলত supplementary-রা থাকে",
+        "হ্যাঁ, usermod আবার চালাতে হবে",
+        "minions মুছে গেছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "দুই খাতার ভাগাভাগি: primary সম্পর্ক passwd-তে (GID), supplementary সম্পর্ক group ফাইলের member list-এ।"
+    },
+    {
+      "id": "wv0l4-q57",
+      "difficulty": "hard",
+      "question": "একটা CI/CD deploy-user compromise হলো। serviceop-প্যাটার্নে সেটআপ করা থাকলে ক্ষতি সীমিত থাকে কেন?",
+      "options": [
+        "password জটিল বলে",
+        "user-টার sudo ক্ষমতা sudoers.d-তে লেখা গুটিকয় command-এ সীমাবদ্ধ — attacker-ও ওই সীমানার বাইরে যেতে পারে না",
+        "CI/CD আলাদা মেশিনে চলে",
+        "logs থাকে বলে"
+      ],
+      "answerIndex": 1,
+      "explanation": "least privilege-এর আসল payoff: চাবি চুরি হলেও সে চাবিতে মাত্র একটা দরজাই খোলে।"
+    },
+    {
+      "id": "wv0l4-q58",
+      "difficulty": "hard",
+      "question": "sudo useradd joker চালানোর পর non-root একজন user কি cat /etc/passwd দিয়ে joker-এর entry দেখতে পারবে?",
+      "options": [
+        "না, শুধু root পারে",
+        "হ্যাঁ — /etc/passwd সবার জন্য readable; গোপন শুধু /etc/shadow",
+        "না, joker hidden",
+        "শুধু sudo group পারে"
+      ],
+      "answerIndex": 1,
+      "explanation": "passwd world-readable (তাই password সেখানে x); shadow-ই কেবল root-only।"
+    },
+    {
+      "id": "wv0l4-q59",
+      "difficulty": "hard",
+      "question": "groupdel minions চালাতে গেলে কখন Linux বাধা দেবে?",
+      "options": [
+        "group খালি থাকলে",
+        "কোনো user-এর PRIMARY group যদি minions হয়",
+        "supplementary সদস্য থাকলে",
+        "কখনোই না"
+      ],
+      "answerIndex": 1,
+      "explanation": "primary group orphan হতে পারে না — আগে usermod -g দিয়ে user-দের primary সরাতে হবে; supplementary সদস্যপদ groupdel-এ আপনি মুছে যায়।"
+    },
+    {
+      "id": "wv0l4-q60",
+      "difficulty": "hard",
+      "question": "তুমি নিজে sudo group-এ আছো কিনা দ্রুততম চেক কোনটা?",
+      "options": [
+        "cat /etc/sudoers পড়া",
+        "id (বা groups) চালিয়ে output-এ sudo খোঁজা",
+        "root হয়ে login করা",
+        "usermod -aG sudo $(whoami) চালানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "id-র groups= অংশে 27(sudo) থাকলেই সদস্য — এক সেকেন্ডের চেক। sudoers পড়তে এমনিতেও root লাগতো।"
+    }
+  ]
+}
