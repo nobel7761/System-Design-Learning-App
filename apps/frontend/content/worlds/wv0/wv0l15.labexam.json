@@ -59,7 +59,7 @@
         "require": ["usermod", "-a"],
         "usersState": [{ "name": "shajal", "inGroups": ["webteam"] }]
       },
-      "hint": "সেই জোড়-বাঁধা দুই অক্ষর… append + Groups"
+      "hints": ["সেই জোড়-বাঁধা দুই অক্ষর… append + Groups"]
     },
     {
       "id": "t05",
@@ -118,7 +118,7 @@
           { "path": "/var/www/mysite", "owner": "root", "group": "webteam" }
         ]
       },
-      "hint": "owner:group — মাঝে কোলন"
+      "hints": ["owner:group — মাঝে কোলন"]
     },
     {
       "id": "t10",
@@ -143,7 +143,7 @@
           }
         ]
       },
-      "hint": "recursive flag-টা কী ছিল?"
+      "hints": ["recursive flag-টা কী ছিল?"]
     },
     {
       "id": "t12",
@@ -157,7 +157,7 @@
         "require": ["chmod"],
         "pathModes": [{ "path": "/var/www/mysite", "mode": "775" }]
       },
-      "hint": "rwx rwx r-x → হিসাব করো: ৭? ৭? ৫?"
+      "hints": ["rwx rwx r-x → হিসাব করো: ৭? ৭? ৫?"]
     },
     {
       "id": "t13",
@@ -167,7 +167,7 @@
         "require": ["chmod"],
         "pathModes": [{ "path": "/var/www/mysite/index.html", "mode": "664" }]
       },
-      "hint": "rw- rw- r-- → ?"
+      "hints": ["rw- rw- r-- → ?"]
     },
     {
       "id": "t14",
@@ -202,7 +202,7 @@
         "require": ["chmod"],
         "pathModes": [{ "path": "/var/www/mysite/secret.conf", "mode": "600" }]
       },
-      "hint": "SSH key-র নিয়মটা…"
+      "hints": ["SSH key-র নিয়মটা…"]
     },
     {
       "id": "t17",
@@ -232,7 +232,7 @@
         "forbid": ["744"],
         "pathModes": [{ "path": "/var/www/mysite/deploy.sh", "mode": "744" }]
       },
-      "hint": "কে(u) + কী দেবে(+) + কোন চাবি(x)"
+      "hints": ["কে(u) + কী দেবে(+) + কোন চাবি(x)"]
     },
     {
       "id": "t19",
@@ -243,7 +243,7 @@
         "forbid": ["755"],
         "pathModes": [{ "path": "/var/www/mysite/deploy.sh", "mode": "755" }]
       },
-      "hint": "সবাই = a (all)"
+      "hints": ["সবাই = a (all)"]
     },
     {
       "id": "t20",

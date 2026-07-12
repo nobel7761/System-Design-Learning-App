@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { Badge, Progress } from "@/components/shared/shadcn";
 import {
@@ -244,6 +245,7 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [taskIdx, setTaskIdx] = useState(0);
   const [attempts, setAttempts] = useState(0);
+  const [revealedHints, setRevealedHints] = useState(0);
   const [results, setResults] = useState<boolean[]>([]); // firstTry per solved task
   const [input, setInput] = useState("");
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
@@ -261,6 +263,14 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
   const scorePercent = Math.round((score / totalPoints) * 100);
   const passed = scorePercent >= spec.passPercent;
   const task = spec.tasks[taskIdx];
+  // Auto-nudge with the first tip after 2 failed attempts; the button lets
+  // the learner pull further tips on their own at any time.
+  const revealedHintCount = !task
+    ? 0
+    : Math.min(
+        task.hints?.length ?? 0,
+        Math.max(revealedHints, attempts >= 2 && task.hints?.length ? 1 : 0),
+      );
 
   const submit = () => {
     if (finished || !input.trim()) return;
@@ -289,6 +299,7 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
       setResults((r) => [...r, attempts === 0]);
       setTaskIdx((i) => i + 1);
       setAttempts(0);
+      setRevealedHints(0);
     } else {
       setAttempts((a) => a + 1);
     }
@@ -306,6 +317,7 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
     setHistory([]);
     setTaskIdx(0);
     setAttempts(0);
+    setRevealedHints(0);
     setResults([]);
     setCmdHistory([]);
     setHistIdx(null);
@@ -378,10 +390,38 @@ export default function LabExam({ spec }: { spec: LabExamSpec }) {
               <p className="mt-1 text-sm font-medium leading-relaxed text-slate-800">
                 {task.prompt}
               </p>
-              {attempts >= 2 && task.hint && (
-                <p className="mt-2 rounded-lg bg-amber-100 px-3 py-1.5 text-xs text-amber-800">
-                  💡 {task.hint}
-                </p>
+              {task.hints && task.hints.length > 0 && (
+                <div className="mt-2 flex flex-col gap-1.5">
+                  <AnimatePresence initial={false}>
+                    {task.hints.slice(0, revealedHintCount).map((h, i) => (
+                      <motion.p
+                        key={i}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="rounded-lg bg-amber-100 px-3 py-1.5 text-xs text-amber-800"
+                      >
+                        💡 {h}
+                      </motion.p>
+                    ))}
+                  </AnimatePresence>
+                  {revealedHintCount < task.hints.length ? (
+                    <button
+                      onClick={() => setRevealedHints(revealedHintCount + 1)}
+                      className="self-start rounded-lg border border-amber-300 bg-white px-3 py-1 text-[11px] font-semibold text-amber-700 transition hover:bg-amber-50"
+                    >
+                      💡{" "}
+                      {revealedHintCount === 0
+                        ? "একটা Tip দাও"
+                        : "আরেকটা Tip দাও"}{" "}
+                      ({revealedHintCount}/{task.hints.length})
+                    </button>
+                  ) : (
+                    <p className="text-[10px] text-slate-400">
+                      এই প্রশ্নের সব tips দেখানো হয়ে গেছে।
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           ) : (

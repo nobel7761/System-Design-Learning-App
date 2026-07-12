@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 import type { LabExamSpec } from "@/lib/lab-exam/types";
+import type { FsExplorerSpec } from "@/lib/fs-explorer/types";
 
 export interface LessonMeta {
   id: string;
@@ -105,6 +106,32 @@ export function loadLabExam(lessonId: string): LabExamSpec | null {
   }
   try {
     return JSON.parse(readFileSync(filePath, "utf-8")) as LabExamSpec;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Loads the lesson's filesystem hierarchy explorer from
+ * content/worlds/<worldId>/<lessonId>.fstree.json — null if absent.
+ */
+export function loadFsExplorer(lessonId: string): FsExplorerSpec | null {
+  const worldId = lessonId.match(/^w[a-z]*\d+/)?.[0];
+  if (!worldId || !/^[a-z0-9]+$/.test(lessonId)) {
+    return null;
+  }
+  const filePath = join(
+    process.cwd(),
+    "content",
+    "worlds",
+    worldId,
+    `${lessonId}.fstree.json`,
+  );
+  if (!existsSync(filePath)) {
+    return null;
+  }
+  try {
+    return JSON.parse(readFileSync(filePath, "utf-8")) as FsExplorerSpec;
   } catch {
     return null;
   }

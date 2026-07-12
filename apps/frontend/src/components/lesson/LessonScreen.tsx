@@ -1,10 +1,16 @@
 import Link from "next/link";
 import CommandsPanel from "@/components/shared/CommandsPanel";
 import LabExam from "@/components/shared/LabExam";
+import FsTreeExplorer from "@/components/shared/FsTreeExplorer";
 import MarkdownContent from "@/components/shared/MarkdownContent";
 import { Badge } from "@/components/shared/shadcn";
 import { AppShell } from "@/components/layout/AppShell";
-import { loadLesson, loadLessonCommands, loadLabExam } from "@/lib/lessons";
+import {
+  loadLesson,
+  loadLessonCommands,
+  loadLabExam,
+  loadFsExplorer,
+} from "@/lib/lessons";
 import { LessonChatRegistrar } from "./LessonChatRegistrar";
 import { QuizSection } from "./QuizSection";
 
@@ -34,6 +40,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const isBoss = meta.type === "boss";
   const commands = loadLessonCommands(lessonId);
   const labExam = loadLabExam(lessonId);
+  const fsExplorer = loadFsExplorer(lessonId);
 
   return (
     <AppShell>
@@ -64,6 +71,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
 
       {/* Lab exam spans the full container — its side-by-side terminal+tree needs the width */}
       {labExam && <LabExam spec={labExam} />}
+      {fsExplorer && <FsTreeExplorer spec={fsExplorer} />}
 
       <article className="w-full">
         <hr className="my-10 border-slate-200" />

@@ -1,0 +1,226 @@
+{
+  "lessonId": "wv0l16",
+  "questions": [
+    {
+      "id": "wv0l16-q01",
+      "difficulty": "easy",
+      "question": "সিস্টেমের প্রায় সব config ফাইল কোন directory-তে থাকে?",
+      "options": ["/var", "/etc", "/usr", "/tmp"],
+      "answerIndex": 1,
+      "explanation": "/etc ('et cetera') হলো সিস্টেমের নিয়মকানুনের ঘর — passwd, group, sudoers, fstab, hosts সবই এখানে।"
+    },
+    {
+      "id": "wv0l16-q02",
+      "difficulty": "easy",
+      "question": "সিস্টেম আর অ্যাপ্লিকেশনের log ফাইল খুঁজতে সবচেয়ে আগে কোন directory-তে যাবে?",
+      "options": ["/var/log", "/etc/log", "/usr/log", "/boot/log"],
+      "answerIndex": 0,
+      "explanation": "production-এ bug/error খোঁজার প্রথম গন্তব্য /var/log — syslog, auth.log সহ সব সার্ভিসের log এখানে জমে।"
+    },
+    {
+      "id": "wv0l16-q03",
+      "difficulty": "easy",
+      "question": "root ইউজারের নিজের home directory কোনটা?",
+      "options": ["/home/root", "/root", "/usr/root", "/home"],
+      "answerIndex": 1,
+      "explanation": "root এত গুরুত্বপূর্ণ যে তার home /home partition-এর উপর নির্ভর করে না — আলাদা /root আছে, যাতে /home mount না হলেও root লগইন করতে পারে।"
+    },
+    {
+      "id": "wv0l16-q04",
+      "difficulty": "easy",
+      "question": "সাধারণ user-দের home directory কোথায় থাকে?",
+      "options": ["/usr/home", "/root", "/home/<username>", "/etc/home"],
+      "answerIndex": 2,
+      "explanation": "প্রতিটা সাধারণ user নিজের /home/<username> ঘরে থাকে — root এখানে থাকে না, তার আলাদা /root।"
+    },
+    {
+      "id": "wv0l16-q05",
+      "difficulty": "easy",
+      "question": "অস্থায়ী ফাইল (সাধারণত রিবুটে মুছে যায়) রাখার জন্য কোন directory?",
+      "options": ["/tmp", "/opt", "/srv", "/boot"],
+      "answerIndex": 0,
+      "explanation": "/tmp world-writable আর রিবুটে সাধারণত ফাঁকা হয়ে যায় — তাই স্থায়ী বা secret কিছু এখানে রাখা বিপজ্জনক অভ্যাস।"
+    },
+    {
+      "id": "wv0l16-q06",
+      "difficulty": "easy",
+      "question": "কার্নেল (vmlinuz) আর bootloader-এর ফাইল কোথায় থাকে?",
+      "options": ["/boot", "/dev", "/proc", "/etc"],
+      "answerIndex": 0,
+      "explanation": "/boot-এ কার্নেল ইমেজ আর GRUB-এর config থাকে — কম্পিউটার চালু হওয়ার প্রথম ধাপে যা লাগে।"
+    },
+    {
+      "id": "wv0l16-q07",
+      "difficulty": "easy",
+      "question": "\"Linux-এ সবকিছুই ফাইল\" — এই দর্শনের সবচেয়ে ভালো উদাহরণ কোন directory?",
+      "options": ["/dev", "/var", "/opt", "/srv"],
+      "answerIndex": 0,
+      "explanation": "/dev-এ হার্ডডিস্ক, কীবোর্ড, র‍্যান্ডম জেনারেটরের মতো হার্ডওয়্যারও একেকটা ফাইল হিসেবে দেখা যায় (যেমন /dev/sda, /dev/null)।"
+    },
+    {
+      "id": "wv0l16-q08",
+      "difficulty": "easy",
+      "question": "/dev/null-এ কিছু লিখলে কী হয়?",
+      "options": [
+        "ফাইলে জমা থাকে",
+        "স্ক্রিনে দেখায়",
+        "চিরতরে হারিয়ে যায় (ব্ল্যাকহোল)",
+        "error দেয়"
+      ],
+      "answerIndex": 2,
+      "explanation": "/dev/null হলো output ফেলে দেওয়ার জায়গা — command > /dev/null মানে 'এই output দেখতে চাই না।'"
+    },
+    {
+      "id": "wv0l16-q09",
+      "difficulty": "medium",
+      "question": "নতুন user বানানোর সময় (useradd -m) তার ডিফল্ট .bashrc, .profile কোথা থেকে কপি হয়?",
+      "options": [
+        "/etc/default",
+        "/etc/skel",
+        "/home/template",
+        "/usr/share/skel"
+      ],
+      "answerIndex": 1,
+      "explanation": "/etc/skel হলো নতুন user-এর টেমপ্লেট — OOP-র class-এর মতো, useradd -m চালালে এখান থেকেই নতুন home-এ ফাইলগুলো কপি হয়।"
+    },
+    {
+      "id": "wv0l16-q10",
+      "difficulty": "medium",
+      "question": "user-দের encrypted password আসলে কোন ফাইলে থাকে (passwd ফাইলে না)?",
+      "options": ["/etc/passwd", "/etc/shadow", "/etc/sudoers", "/etc/group"],
+      "answerIndex": 1,
+      "explanation": "/etc/passwd-এ শুধু x থাকে, আসল encrypted password /etc/shadow-এ — শুধু root এই ফাইল পড়তে পারে।"
+    },
+    {
+      "id": "wv0l16-q11",
+      "difficulty": "medium",
+      "question": "কে sudo চালাতে পারবে তার নিয়ম কোন ফাইলে লেখা থাকে?",
+      "options": ["/etc/sudoers", "/etc/passwd", "/etc/hosts", "/etc/fstab"],
+      "answerIndex": 0,
+      "explanation": "/etc/sudoers-এই sudo-র নিয়ম থাকে — সরাসরি edit বিপজ্জনক বলে সবসময় visudo দিয়ে খোলা হয় (সিনট্যাক্স ভুল হলে sudo-ই বন্ধ হয়ে যেতে পারে)।"
+    },
+    {
+      "id": "wv0l16-q12",
+      "difficulty": "medium",
+      "question": "বুটের সময় কোন disk/partition কোথায় mount হবে তার তালিকা কোন ফাইলে?",
+      "options": ["/etc/fstab", "/etc/hosts", "/etc/hostname", "/etc/mtab"],
+      "answerIndex": 0,
+      "explanation": "/etc/fstab-এ প্রতিটা partition আর তার mount point-এর তালিকা থাকে — বুটের সময় সিস্টেম এই ফাইল পড়েই mount করে।"
+    },
+    {
+      "id": "wv0l16-q13",
+      "difficulty": "medium",
+      "question": "hostname → IP ম্যাপিং-এর জন্য নেটওয়ার্ক ছাড়াই একটা mini lookup ফাইল কোনটা?",
+      "options": [
+        "/etc/hosts",
+        "/etc/hostname",
+        "/etc/resolv.conf",
+        "/etc/network"
+      ],
+      "answerIndex": 0,
+      "explanation": "/etc/hosts-এ hostname থেকে IP-তে সরাসরি ম্যাপিং থাকে — DNS lookup ছাড়াই কাজ করে (যেমন localhost → 127.0.0.1)।"
+    },
+    {
+      "id": "wv0l16-q14",
+      "difficulty": "medium",
+      "question": "নিজে হাতে source থেকে বিল্ড করা সফটওয়্যার কোথায় রাখা উচিত, যাতে apt/yum update সেটা মুছে না দেয়?",
+      "options": ["/usr/bin", "/usr/local", "/bin", "/lib"],
+      "answerIndex": 1,
+      "explanation": "package manager /usr/local ছুঁয়ে দেখে না — তাই নিজের হাতে কম্পাইল করা প্রোগ্রাম রাখলে system update-এ হারানোর ঝুঁকি থাকে না।"
+    },
+    {
+      "id": "wv0l16-q15",
+      "difficulty": "medium",
+      "question": "third-party সফটওয়্যার যেটা package manager দিয়ে আসেনি, নিজস্ব ইনস্টলারে নিজস্ব ফোল্ডার নিয়ে বসে — সেটা কোথায় থাকার কথা?",
+      "options": ["/opt", "/srv", "/mnt", "/media"],
+      "answerIndex": 0,
+      "explanation": "/opt হলো 'optional' সফটওয়্যারের জায়গা — package manager-এর বাইরের অতিথিদের নিজস্ব সম্পূর্ণ ফোল্ডার এখানে।"
+    },
+    {
+      "id": "wv0l16-q16",
+      "difficulty": "medium",
+      "question": "USB ঢোকালে সেটা সাধারণত কোথায় auto-mount হয়, আর কোথায় sysadmin ম্যানুয়ালি mount করে?",
+      "options": [
+        "auto: /mnt, manual: /media",
+        "auto: /media, manual: /mnt",
+        "দুটোই /srv-তে",
+        "দুটোই /run-এ"
+      ],
+      "answerIndex": 1,
+      "explanation": "/media স্বয়ংক্রিয় removable media mount-এর জন্য, /mnt sysadmin-এর হাতে network drive বা extra disk mount করার খালি ঘর।"
+    },
+    {
+      "id": "wv0l16-q17",
+      "difficulty": "medium",
+      "question": "web server (Apache/Nginx)-এর document root — ব্রাউজারে যা দেখা যায় (index.html) — সাধারণত কোথায় থাকে?",
+      "options": ["/srv/www", "/var/www/html", "/opt/www", "/usr/www"],
+      "answerIndex": 1,
+      "explanation": "/var/www/html হলো ডিফল্ট web document root — ব্রাউজারে যা দেখা যায় তার আসল ফাইল এখানে রাখা হয়।"
+    },
+    {
+      "id": "wv0l16-q18",
+      "difficulty": "hard",
+      "question": "আধুনিক (modern) Linux distro-তে /bin আসলে কী?",
+      "options": [
+        "সম্পূর্ণ আলাদা directory, /usr/bin থেকে ভিন্ন কমান্ড রাখে",
+        "/usr/bin-এর symlink",
+        "শুধু root-এর জন্য সংরক্ষিত খালি ফোল্ডার",
+        "ডিলিট করা হয়েছে, আর ব্যবহার হয় না"
+      ],
+      "answerIndex": 1,
+      "explanation": "আধুনিক distro-তে /bin সাধারণত /usr/bin-এর symlink — ঐতিহাসিক কারণে path-টা টিকে আছে, বাস্তবে একই জিনিস।"
+    },
+    {
+      "id": "wv0l16-q19",
+      "difficulty": "hard",
+      "question": "CPU-র তথ্য (/proc/cpuinfo) বা RAM-এর তথ্য (/proc/meminfo) নিয়ে নিচের কোনটা সত্যি?",
+      "options": [
+        "এগুলো ডিস্কে সাধারণ ফাইলের মতো স্থায়ীভাবে সংরক্ষিত",
+        "এগুলো virtual — কার্নেল request আসার মুহূর্তে লাইভ বানিয়ে দেখায়",
+        "শুধু root বুট করার সময় একবার লেখে",
+        "প্রতি ৫ মিনিটে cron job আপডেট করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "/proc একটা virtual filesystem — এর ফাইলগুলো ডিস্কে আসলে নেই, কার্নেল request-এর মুহূর্তে তৈরি করে দেখায় (তাই free/top কমান্ড আসলে এসব ফাইলই পড়ে)।"
+    },
+    {
+      "id": "wv0l16-q20",
+      "difficulty": "hard",
+      "question": "/run directory-র বৈশিষ্ট্য কোনটা?",
+      "options": [
+        "স্থায়ী ডেটা, কখনো মুছে যায় না",
+        "প্রতি বুটে RAM-based tmpfs, রিবুটে খালি হয়ে যায়",
+        "শুধু log ফাইল রাখার জন্য",
+        "শুধু installed package-এর তালিকা রাখে"
+      ],
+      "answerIndex": 1,
+      "explanation": "/run-এ এই বুট থেকে এখন পর্যন্ত runtime data (PID, socket) থাকে — এটা RAM-based, রিবুট করলেই খালি হয়ে যায়।"
+    },
+    {
+      "id": "wv0l16-q21",
+      "difficulty": "hard",
+      "question": "/etc আর /var-এর মূল পার্থক্য কী?",
+      "options": [
+        "/etc static config (কালেভদ্রে বদলায়), /var runtime-এ ক্রমাগত বদলাতে থাকা ডেটা",
+        "/etc শুধু root ব্যবহার করে, /var সবাই",
+        "/etc temporary, /var permanent",
+        "কোনো পার্থক্য নেই, একই জিনিস দুই নামে"
+      ],
+      "answerIndex": 0,
+      "explanation": "/etc হলো নিয়ম বই — বদলায় ইচ্ছাকৃত edit-এ, কালেভদ্রে। /var হলো দিনলিপি — log বাড়ে, cache জমে, প্রতি মুহূর্তে বদলায়।"
+    },
+    {
+      "id": "wv0l16-q22",
+      "difficulty": "hard",
+      "question": "GRUB bootloader-এর boot মেনু তালিকা (কোন kernel/OS চালু হবে) কোন ফাইলে থাকে?",
+      "options": [
+        "/boot/grub/grub.cfg",
+        "/etc/grub.conf",
+        "/boot/vmlinuz",
+        "/etc/fstab"
+      ],
+      "answerIndex": 0,
+      "explanation": "/boot/grub/grub.cfg-এ boot মেনুর প্রতিটা entry (কোন kernel, কোন partition থেকে) লেখা থাকে — GRUB বুট হওয়ার সময় এই ফাইল পড়ে।"
+    }
+  ]
+}

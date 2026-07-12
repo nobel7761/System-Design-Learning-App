@@ -3963,11 +3963,11 @@
       {
         "id": "wv0l3",
         "order": 1,
-        "title": "Orientation Class",
-        "titleEn": "Orientation Class",
+        "title": "Orientation — DevOps-এর পুরো ম্যাপটা একবার দেখে নাও",
+        "titleEn": "Orientation Class — The Big Picture of DevOps",
         "type": "lesson",
         "estMinutes": 30,
-        "contentReady": false
+        "contentReady": true
       },
       {
         "id": "wv0l1",
@@ -3979,8 +3979,17 @@
         "contentReady": true
       },
       {
-        "id": "wv0l4",
+        "id": "wv0l16",
         "order": 3,
+        "title": "Linux File System Hierarchy — পুরো শহরের ম্যাপ, একনজরে",
+        "titleEn": "Linux Filesystem Hierarchy Standard (FHS) — Full Map",
+        "type": "lesson",
+        "estMinutes": 20,
+        "contentReady": true
+      },
+      {
+        "id": "wv0l4",
+        "order": 4,
         "title": "Linux User Management — চাবি কার হাতে কয়টা",
         "titleEn": "Linux User Management",
         "type": "lesson",
@@ -3989,7 +3998,7 @@
       },
       {
         "id": "wv0l2",
-        "order": 4,
+        "order": 5,
         "title": "🔧 LAB EXAM: File System Navigation — নিজে করো",
         "titleEn": "LAB: Mastering Linux File System Navigation",
         "type": "workshop",
@@ -3998,7 +4007,7 @@
       },
       {
         "id": "wv0l5",
-        "order": 5,
+        "order": 6,
         "title": "🔧 LAB EXAM: Linux User and Group Management",
         "titleEn": "LAB: Linux User and Group Management",
         "type": "workshop",
@@ -4007,7 +4016,7 @@
       },
       {
         "id": "wv0l14",
-        "order": 6,
+        "order": 7,
         "title": "[Extra Lesson] File Permissions — তালা, চাবি আর ৭৫৫-র রহস্য",
         "titleEn": "[Extra Lesson] Linux File Permissions",
         "type": "lesson",
@@ -4016,7 +4025,7 @@
       },
       {
         "id": "wv0l15",
-        "order": 7,
+        "order": 8,
         "title": "[Extra Lab] File Permissions — webteam-এর ঘর সাজাও",
         "titleEn": "[Extra Lab] Linux File Permissions",
         "type": "workshop",
@@ -4025,7 +4034,7 @@
       },
       {
         "id": "wv0l6",
-        "order": 8,
+        "order": 9,
         "title": "User Account Management in Linux",
         "titleEn": "LAB: User Account Management in Linux",
         "type": "workshop",
@@ -4034,7 +4043,7 @@
       },
       {
         "id": "wv0l7",
-        "order": 9,
+        "order": 10,
         "title": "Managing Sudo Access for System Administration",
         "titleEn": "LAB: Managing Sudo Access",
         "type": "workshop",
@@ -4043,7 +4052,7 @@
       },
       {
         "id": "wv0l8",
-        "order": 10,
+        "order": 11,
         "title": "Understanding /etc/skel/ in Linux",
         "titleEn": "LAB: Understanding /etc/skel/",
         "type": "workshop",
@@ -4052,7 +4061,7 @@
       },
       {
         "id": "wv0l9",
-        "order": 11,
+        "order": 12,
         "title": "Linux User Modification",
         "titleEn": "LAB: Linux User Modification",
         "type": "workshop",
@@ -4061,7 +4070,7 @@
       },
       {
         "id": "wv0l10",
-        "order": 12,
+        "order": 13,
         "title": "Mastering Linux File Permissions",
         "titleEn": "LAB: Mastering Linux File Permissions",
         "type": "workshop",
@@ -4070,7 +4079,7 @@
       },
       {
         "id": "wv0l11",
-        "order": 13,
+        "order": 14,
         "title": "Linux Performance Analysis",
         "titleEn": "LAB: Linux Performance Analysis",
         "type": "workshop",
@@ -4079,7 +4088,7 @@
       },
       {
         "id": "wv0l12",
-        "order": 14,
+        "order": 15,
         "title": "System Logging and Monitoring",
         "titleEn": "LAB: System Logging and Monitoring",
         "type": "workshop",
@@ -4088,7 +4097,7 @@
       },
       {
         "id": "wv0l13",
-        "order": 15,
+        "order": 16,
         "title": "🎤 Interview Test: Linux User & Access Management",
         "titleEn": "Interview Test: Linux User & Access Management",
         "type": "mock",

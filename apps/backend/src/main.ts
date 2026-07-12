@@ -9,6 +9,10 @@ async function bootstrap() {
     bodyParser: true,
   });
 
+  // Ensures the old process actually releases the port and DB connection
+  // on every `nest start --watch` restart, instead of lingering.
+  app.enableShutdownHooks();
+
   // Increase body size limit for image uploads (base64 can be large)
   app.use(json({ limit: '20mb' }));
   app.use(urlencoded({ limit: '20mb', extended: true }));

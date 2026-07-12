@@ -45,7 +45,7 @@
         "require": ["mkdir"],
         "paths": [{ "path": "~/code/lab/projects/website", "type": "dir" }]
       },
-      "hint": "মাঝের ধাপগুলো (parents) একসাথে বানানোর একটা flag আছে…"
+      "hints": ["মাঝের ধাপগুলো (parents) একসাথে বানানোর একটা flag আছে…"]
     },
     {
       "id": "t02",
@@ -79,7 +79,7 @@
           }
         ]
       },
-      "hint": "echo-র output স্ক্রিনে না পাঠিয়ে ফাইলে ঘুরিয়ে দাও…"
+      "hints": ["echo-র output স্ক্রিনে না পাঠিয়ে ফাইলে ঘুরিয়ে দাও…"]
     },
     {
       "id": "t05",
@@ -167,7 +167,7 @@
       "points": 3,
       "prompt": "এক ধাপ উপরে ফিরে যাও।",
       "check": { "require": ["cd", ".."], "cwd": "~/code/lab" },
-      "hint": "parent directory-র শর্টকাট চিহ্নটা মনে আছে?"
+      "hints": ["parent directory-র শর্টকাট চিহ্নটা মনে আছে?"]
     },
     {
       "id": "t13",
@@ -236,7 +236,7 @@
         "forbid": ["~"],
         "ref": "find . -name \"*.txt\""
       },
-      "hint": "wildcard-টা quote-এ মুড়তে ভুলো না…"
+      "hints": ["wildcard-টা quote-এ মুড়তে ভুলো না…"]
     },
     {
       "id": "t21",
@@ -270,7 +270,7 @@
         "forbid": ["-r", "-R"],
         "ref": "grep \"Plan\" ~/code/lab/documents/*/*.txt"
       },
-      "hint": "documents/-এর পরে 'যেকোনো এক ফোল্ডার' বোঝাতে কী বসে?"
+      "hints": ["documents/-এর পরে 'যেকোনো এক ফোল্ডার' বোঝাতে কী বসে?"]
     },
     {
       "id": "t24",

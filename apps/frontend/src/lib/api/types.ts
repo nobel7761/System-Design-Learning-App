@@ -93,9 +93,17 @@ export interface TrackSummary {
   xpEarned: number;
   totalTimeSec: number;
   sessionsThisWeek: number;
+  totalSessions: number;
+  streak: { current: number; longest: number };
+  level: { level: number; title: string };
   currentLesson: TrackCurrentLesson | null;
   weekDays: TrackWeekDay[];
   worlds: TrackWorldMini[];
+}
+
+export interface HeatmapDay {
+  date: string;
+  count: number;
 }
 
 export interface Dashboard {
@@ -128,7 +136,9 @@ export interface Dashboard {
     totalLessons: number;
     percent: number;
     totalTimeSec: number;
+    totalSessions: number;
   };
+  heatmap: HeatmapDay[];
   worlds: DashboardWorld[];
   activity: { totalLogins: number; lastLoginAt: string | null };
 }

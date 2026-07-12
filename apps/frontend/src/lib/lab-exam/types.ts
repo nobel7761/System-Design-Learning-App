@@ -59,8 +59,12 @@ export interface LabExamTask {
   /** What to do (Bengali) — never contains the command itself */
   prompt: string;
   check: LabExamCheck;
-  /** Shown after 2 failed attempts — a nudge, not the answer */
-  hint?: string;
+  /**
+   * Progressive nudges, vaguest first. Revealed one at a time via the "Tips"
+   * button; the first one also auto-shows after 2 failed attempts. Never the
+   * literal answer command.
+   */
+  hints?: string[];
   /** Starts a new lab section: shown as a header + explanation above the task */
   section?: { title: string; note?: string };
 }

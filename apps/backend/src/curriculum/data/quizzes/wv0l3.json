@@ -1,0 +1,385 @@
+{
+  "lessonId": "wv0l3",
+  "questions": [
+    {
+      "id": "wv0l3-q01",
+      "difficulty": "easy",
+      "question": "DevOps শব্দটা কোন দুটো শব্দের মিলনে তৈরি?",
+      "options": [
+        "Development + Operations",
+        "Design + Optimization",
+        "Deploy + Ops",
+        "Data + Operations"
+      ],
+      "answerIndex": 0,
+      "explanation": "DevOps = Development + Operations — দুই টিমের কাজের সংযোগ ঘটানোর দর্শন।"
+    },
+    {
+      "id": "wv0l3-q02",
+      "difficulty": "easy",
+      "question": "'Works on my machine' সমস্যাটা মূলত কী নির্দেশ করে?",
+      "options": [
+        "Developer অলস",
+        "লোকাল আর প্রোডাকশন পরিবেশের অমিল",
+        "কম্পিউটার পুরনো",
+        "কোড ভুল"
+      ],
+      "answerIndex": 1,
+      "explanation": "লোকাল মেশিনে যেসব library/config/OS আছে, প্রোডাকশনে নাও থাকতে পারে — Docker containerization এই সমস্যার সমাধান।"
+    },
+    {
+      "id": "wv0l3-q03",
+      "difficulty": "easy",
+      "question": "DevOps-এর অসীম লুপে (infinity loop) মোট কয়টা ধাপ থাকে?",
+      "options": ["৪টা", "৬টা", "৮টা", "১০টা"],
+      "answerIndex": 2,
+      "explanation": "Plan, Code, Build, Test, Release, Deploy, Operate, Monitor — মোট ৮টা ধাপ, চক্রাকারে চলে।"
+    },
+    {
+      "id": "wv0l3-q04",
+      "difficulty": "easy",
+      "question": "পুরনো দিনে Dev আর Ops টিমের সম্পর্ক কেমন বর্ণনা করা হয়েছে?",
+      "options": [
+        "সবসময় বন্ধুত্বপূর্ণ",
+        "'দেয়ালের ওপারে ছুড়ে দেওয়া' — একে অপরকে দোষারোপ",
+        "একই ব্যক্তি দুই কাজ করতো",
+        "কোনো সম্পর্ক ছিল না"
+      ],
+      "answerIndex": 1,
+      "explanation": "Dev কোড লিখে ছুড়ে দিতো, Ops চালাতো — সমস্যা হলে একে অপরকে দোষ দিতো। DevOps এই দেয়াল ভাঙে।"
+    },
+    {
+      "id": "wv0l3-q05",
+      "difficulty": "easy",
+      "question": "Docker মূলত কোন সমস্যার সমাধান করে?",
+      "options": [
+        "কোড লেখা দ্রুত করে",
+        "অ্যাপ ও তার পরিবেশকে এক বাক্সে বন্দি করে যেকোনো জায়গায় একইভাবে চালানো",
+        "ডাটাবেস দ্রুত করে",
+        "UI ডিজাইন করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Docker container-এ পুরো environment বন্দি থাকে — তাই 'works on my machine' সমস্যা কমে।"
+    },
+    {
+      "id": "wv0l3-q06",
+      "difficulty": "easy",
+      "question": "Kubernetes মূলত কী করে?",
+      "options": [
+        "কোড লেখে",
+        "অনেক container-কে একসাথে পরিচালনা/orchestrate করে",
+        "শুধু ডাটাবেস চালায়",
+        "শুধু UI বানায়"
+      ],
+      "answerIndex": 1,
+      "explanation": "Kubernetes হলো container-দের 'অটোপাইলট' — স্কেলিং, রিস্টার্ট, লোড-ব্যালেন্সিং সামলায়।"
+    },
+    {
+      "id": "wv0l3-q07",
+      "difficulty": "easy",
+      "question": "CI (Continuous Integration) মূলত কী নিশ্চিত করে?",
+      "options": [
+        "ডিজাইন সুন্দর হয়",
+        "প্রতিটা code push-এ automatic build ও test চলে",
+        "সার্ভার কখনো বন্ধ হয় না",
+        "শুধু ম্যানুয়াল টেস্ট"
+      ],
+      "answerIndex": 1,
+      "explanation": "CI মানেই প্রতিটা change আসার সাথে সাথে automated build+test — bug দ্রুত ধরা পড়ে।"
+    },
+    {
+      "id": "wv0l3-q08",
+      "difficulty": "easy",
+      "question": "Infrastructure as Code (IaC)-এর মূল ধারণা কী?",
+      "options": [
+        "হাতে ক্লিক করে সার্ভার বানানো",
+        "সার্ভার/নেটওয়ার্ককে কোড দিয়ে বর্ণনা করা, যাতে reproducible হয়",
+        "শুধু GUI ব্যবহার",
+        "কোড লেখাই বন্ধ করা"
+      ],
+      "answerIndex": 1,
+      "explanation": "Terraform/Pulumi দিয়ে infrastructure কোডে লেখা হয় — versionable, repeatable, review-করা যায়।"
+    },
+    {
+      "id": "wv0l3-q09",
+      "difficulty": "easy",
+      "question": "Prometheus আর Grafana প্রধানত কোন কাজে ব্যবহৃত হয়?",
+      "options": [
+        "কোড লেখায়",
+        "মেট্রিক্স সংগ্রহ ও ড্যাশবোর্ডে দেখানো (Monitoring)",
+        "ডাটাবেস ব্যাকআপে",
+        "ইমেইল পাঠাতে"
+      ],
+      "answerIndex": 1,
+      "explanation": "Prometheus মেট্রিক্স জমা করে, Grafana সেটা ভিজ্যুয়াল ড্যাশবোর্ডে দেখায় — Monitor ধাপের মূল টুল।"
+    },
+    {
+      "id": "wv0l3-q10",
+      "difficulty": "easy",
+      "question": "Poridhi-র কোর্সে Milestone 1-এ প্রধানত কী শেখানো হয়?",
+      "options": [
+        "Kubernetes Mastery",
+        "Linux, Scripting ও Containerization",
+        "CI/CD ও GitOps",
+        "Observability"
+      ],
+      "answerIndex": 1,
+      "explanation": "Milestone 1 হলো ভিত্তি — Linux fundamentals, scripting, Docker — যা এখন তুমি শিখছো।"
+    },
+    {
+      "id": "wv0l3-q11",
+      "difficulty": "easy",
+      "question": "CNCF Cloud Native Landscape আসলে কী?",
+      "options": [
+        "একটা প্রোগ্রামিং ভাষা",
+        "cloud-native টুলগুলোর একটা বিশাল ক্যাটাগরি-ভিত্তিক মানচিত্র",
+        "একটা ক্লাউড প্রোভাইডার",
+        "একটা অপারেটিং সিস্টেম"
+      ],
+      "answerIndex": 1,
+      "explanation": "CNCF (Kubernetes-এর পেছনের সংস্থা) হাজারো cloud-native টুলকে ক্যাটাগরি ধরে একটা ম্যাপে সাজিয়ে রাখে — landscape.cncf.io।"
+    },
+    {
+      "id": "wv0l3-q12",
+      "difficulty": "easy",
+      "question": "'The Phoenix Project' বইটা কেন বিখ্যাত?",
+      "options": [
+        "এটা একটা প্রোগ্রামিং ম্যানুয়াল",
+        "Dev-Ops দ্বন্দ্ব ও DevOps সমাধানের গল্প বলা একটা উপন্যাস, প্রায় 'DevOps-এর বাইবেল' বলা হয়",
+        "এটা একটা কুকবুক",
+        "এটা Linux-এর ইতিহাস"
+      ],
+      "answerIndex": 1,
+      "explanation": "Gene Kim-এর এই উপন্যাস DevOps culture বোঝানোর জন্য industry-তে classic হয়ে আছে।"
+    },
+    {
+      "id": "wv0l3-q13",
+      "difficulty": "medium",
+      "question": "DevOps লুপের 'বাম দিক' (Plan-Code-Build-Test) মূলত কোন টিমের ঐতিহ্যগত কাজ ছিল?",
+      "options": ["Ops", "Dev", "QA শুধু", "Marketing"],
+      "answerIndex": 1,
+      "explanation": "Plan/Code/Build/Test ঐতিহ্যগতভাবে Dev-এর কাজ; Release/Deploy/Operate/Monitor ছিল Ops-এর — DevOps দুটো মিলিয়ে দেয়।"
+    },
+    {
+      "id": "wv0l3-q14",
+      "difficulty": "medium",
+      "question": "GitOps (যেমন ArgoCD) ঐতিহ্যগত CD থেকে ধারণাগতভাবে কীভাবে আলাদা?",
+      "options": [
+        "এটা Git ব্যবহারই করে না",
+        "Git repository-কেই deployment-এর 'single source of truth' ধরা হয় — merge হলেই auto-deploy",
+        "এটা শুধু লোকাল মেশিনে চলে",
+        "এটা শুধু Windows-এ কাজ করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "GitOps-এ desired state Git-এ লেখা থাকে, tool (ArgoCD) সেটার সাথে actual cluster-কে মিলিয়ে রাখে — deploy মানেই git merge।"
+    },
+    {
+      "id": "wv0l3-q15",
+      "difficulty": "medium",
+      "question": "Ansible আর Terraform — দুটোই automation টুল হলেও মূল পার্থক্য কী?",
+      "options": [
+        "কোনো পার্থক্য নেই",
+        "Terraform মূলত infrastructure তৈরি করে (provisioning), Ansible মূলত existing সার্ভার configure করে",
+        "Ansible শুধু AWS-এ চলে",
+        "Terraform শুধু Docker-এর জন্য"
+      ],
+      "answerIndex": 1,
+      "explanation": "সাধারণ প্যাটার্ন: Terraform দিয়ে সার্ভার/নেটওয়ার্ক বানাও, Ansible দিয়ে সেই সার্ভারের ভেতরে software/config বসাও।"
+    },
+    {
+      "id": "wv0l3-q16",
+      "difficulty": "medium",
+      "question": "'Change Failure Rate' মেট্রিক্সটা কী মাপে?",
+      "options": [
+        "কতজন developer আছে",
+        "কত শতাংশ deployment প্রোডাকশনে সমস্যা তৈরি করে",
+        "সার্ভারের দাম",
+        "কোডের লাইন সংখ্যা"
+      ],
+      "answerIndex": 1,
+      "explanation": "DORA-এর ৪ মেট্রিক্সের একটা — deployment-এর কত অংশ ব্যর্থ হয়ে rollback/hotfix লাগে তার হার।"
+    },
+    {
+      "id": "wv0l3-q17",
+      "difficulty": "medium",
+      "question": "DORA গবেষণার সবচেয়ে counter-intuitive ফলাফলটা কী ছিল?",
+      "options": [
+        "দ্রুত deploy করলে সিস্টেম বেশি ভাঙে",
+        "Elite performer টিম একই সাথে দ্রুত এবং স্থিতিশীল — গতি ও স্থিতিশীলতা পরস্পরবিরোধী না",
+        "ধীরে deploy করাই সবচেয়ে নিরাপদ",
+        "monitoring অপ্রয়োজনীয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "পুরনো ধারণা ছিল 'দ্রুত মানে ভঙ্গুর' — DORA দেখিয়েছে ভালো practice-এ দুটোই একসাথে উন্নত হয়।"
+    },
+    {
+      "id": "wv0l3-q18",
+      "difficulty": "medium",
+      "question": "তোমার MERN অভিজ্ঞতার '.env ফাইল নিয়ে ঝামেলা' — Kubernetes-এ এর সমাধান কোন concept দিয়ে করা হয়?",
+      "options": [
+        "Docker Compose",
+        "ConfigMap ও Secrets",
+        "Git branches",
+        "npm scripts"
+      ],
+      "answerIndex": 1,
+      "explanation": "K8s-এ ConfigMap (সাধারণ config) আর Secrets (sensitive data) দিয়ে environment-নির্ভর মান আলাদা রাখা হয়।"
+    },
+    {
+      "id": "wv0l3-q19",
+      "difficulty": "medium",
+      "question": "একটা request একাধিক microservice ঘুরে কোথায় স্লো হচ্ছে খুঁজতে কোন observability টুল দরকার?",
+      "options": [
+        "Prometheus",
+        "Distributed Tracing (Tempo/Jaeger)",
+        "Git",
+        "Docker"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tracing একটা request-এর পুরো যাত্রাপথ ধরে দেখায় কোন service-এ কত সময় গেল — metrics/logging এটা দেখাতে পারে না।"
+    },
+    {
+      "id": "wv0l3-q20",
+      "difficulty": "medium",
+      "question": "'T-shaped engineer' বলতে কী বোঝানো হয়েছে এই লেসনে?",
+      "options": [
+        "যে শুধু একটা ভাষা জানে",
+        "একটা বিষয়ে গভীর দক্ষতা (যেমন MERN) + পুরো লাইফসাইকেল জুড়ে প্রশস্ত জ্ঞান (DevOps)",
+        "টিমের সবচেয়ে সিনিয়র মানুষ",
+        "যে শুধু ম্যানেজমেন্ট করে"
+      ],
+      "answerIndex": 1,
+      "explanation": "T-এর খাড়া দাগ = গভীরতা (specialization), আনুভূমিক দাগ = প্রশস্ততা (broad DevOps awareness)।"
+    },
+    {
+      "id": "wv0l3-q21",
+      "difficulty": "medium",
+      "question": "Helm-কে Kubernetes-এর প্রেক্ষাপটে কী বলা যায়?",
+      "options": [
+        "একটা cloud provider",
+        "Kubernetes app-এর জন্য package manager (npm-এর মতো, কিন্তু K8s config-এর জন্য)",
+        "একটা programming language",
+        "একটা database"
+      ],
+      "answerIndex": 1,
+      "explanation": "npm যেমন JS package manage করে, Helm তেমন Kubernetes-এর জটিল YAML config গোছায় ও পুনর্ব্যবহারযোগ্য করে।"
+    },
+    {
+      "id": "wv0l3-q22",
+      "difficulty": "medium",
+      "question": "Site Reliability Engineer (SRE) role-টা DevOps-এর সাথে কীভাবে সম্পর্কিত (লেসনের প্রসঙ্গে)?",
+      "options": [
+        "সম্পূর্ণ ভিন্ন, কোনো সম্পর্ক নেই",
+        "এটা একটা career path যেখানে DevOps দর্শন + reliability/monitoring দক্ষতা মিলিয়ে কাজ করা হয়",
+        "এটা শুধু frontend role",
+        "এটা শুধু ম্যানেজার পদ"
+      ],
+      "answerIndex": 1,
+      "explanation": "লেসনে MERN → DevOps স্কিল যোগ হয়ে যে career ladder দেখানো হয়েছে তাতে SRE একটা সম্ভাব্য গন্তব্য — reliability-কেন্দ্রিক DevOps role।"
+    },
+    {
+      "id": "wv0l3-q23",
+      "difficulty": "medium",
+      "question": "Lead Time for Changes মেট্রিক্সটা ঠিক কোন সময়টুকু মাপে?",
+      "options": [
+        "সার্ভার কেনা থেকে ডেলিভারি",
+        "কোড commit করা থেকে প্রোডাকশনে পৌঁছানো পর্যন্ত সময়",
+        "মিটিং-এর দৈর্ঘ্য",
+        "ইউজারের session সময়"
+      ],
+      "answerIndex": 1,
+      "explanation": "এই মেট্রিক্স মাপে idea/commit থেকে বাস্তবে ইউজারের হাতে পৌঁছানো পর্যন্ত কত দ্রুত — কম মানেই দ্রুত delivery pipeline।"
+    },
+    {
+      "id": "wv0l3-q24",
+      "difficulty": "medium",
+      "question": "Poridhi কারিকুলামে Milestone 5 (Observability Stack)-এ প্রধানত কী কী থাকার কথা?",
+      "options": [
+        "শুধু Docker",
+        "Monitoring, Logging, Tracing — Prometheus/Grafana/Loki/Tempo গোত্রের টুল",
+        "শুধু AWS billing",
+        "শুধু Git commands"
+      ],
+      "answerIndex": 1,
+      "explanation": "Milestone 5-এর নামই Observability Stack (Monitoring, Logging, Tracing) — DevOps লুপের Monitor ধাপ।"
+    },
+    {
+      "id": "wv0l3-q25",
+      "difficulty": "hard",
+      "question": "একটা টিমের deployment frequency বেশি কিন্তু change failure rate-ও বেশি। DORA-এর দৃষ্টিতে এই টিমকে কীভাবে ব্যাখ্যা করা হবে?",
+      "options": [
+        "এটাই ideal অবস্থা",
+        "এটা Elite performer-এর প্যাটার্ন না — সত্যিকারের ভালো practice-এ frequency বেশি হলে failure rate কম থাকার কথা, একসাথে দুটোই দুর্বল হলে বোঝায় automation/testing ঘাটতি আছে",
+        "failure rate গুরুত্বপূর্ণ না",
+        "frequency কমানোই একমাত্র সমাধান"
+      ],
+      "answerIndex": 1,
+      "explanation": "DORA-এর মূল ফলাফল অনুযায়ী Elite performer-রা high frequency + low failure rate দুটোই অর্জন করে ভালো CI/CD, automated testing, আর ছোট incremental change-এর মাধ্যমে — শুধু frequency বেশি থাকা যথেষ্ট না।"
+    },
+    {
+      "id": "wv0l3-q26",
+      "difficulty": "hard",
+      "question": "তোমার MERN প্রজেক্টে API response স্লো হচ্ছে, কিন্তু কোনো single service-এ error নেই। DevOps টুলবক্স থেকে কোন সংমিশ্রণ সবচেয়ে কার্যকরভাবে root cause খুঁজবে?",
+      "options": [
+        "শুধু Docker restart করা",
+        "Metrics (Prometheus) দিয়ে কোন সময়ে স্লো হচ্ছে বোঝা + Tracing (Tempo) দিয়ে কোন নির্দিষ্ট service/DB-কলে সময় বেশি লাগছে খুঁজে বের করা",
+        "শুধু git log দেখা",
+        "Terraform দিয়ে নতুন সার্ভার বানানো"
+      ],
+      "answerIndex": 1,
+      "explanation": "Metrics 'কখন' সমস্যা তা ধরে, Tracing 'কোথায়' (কোন service/query) সমস্যা তা দেখায় — এই দুটো একসাথে distributed system debugging-এর মূল অস্ত্র, একা কোনোটাই যথেষ্ট না।"
+    },
+    {
+      "id": "wv0l3-q27",
+      "difficulty": "hard",
+      "question": "একটা কোম্পানি Terraform দিয়ে সার্ভার বানায়, কিন্তু সার্ভারের ভেতরে software install/update হাতে করে SSH করে করা হয়। DevOps পরিপক্বতার দিক থেকে এখানে কোন gap-টা স্পষ্ট?",
+      "options": [
+        "কোনো gap নেই, এটাই সঠিক",
+        "Provisioning (IaC) automate হলেও Configuration Management (Ansible-জাতীয় টুল) অনুপস্থিত — অর্ধেক automation, যা 'works on my machine'-এর সার্ভার-সংস্করণ তৈরি করতে পারে",
+        "Terraform ভুল টুল",
+        "Ansible দরকারই নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "IaC আর Config Management দুটো ভিন্ন স্তরের কাজ — একটা বাদ দিলে সার্ভারগুলো সময়ের সাথে একে অপরের থেকে drift করে, ঠিক যেমন হাতে-করা deployment ভিন্ন ভিন্ন ফল দেয়।"
+    },
+    {
+      "id": "wv0l3-q28",
+      "difficulty": "hard",
+      "question": "এই লেসনের যুক্তি অনুযায়ী, একজন ৫-বছরের MERN developer-এর জন্য DevOps শেখার সবচেয়ে বড় প্রতিযোগিতামূলক সুবিধাটা ঠিক কোথায় (শুধু 'নতুন স্কিল' না, নির্দিষ্টভাবে)?",
+      "options": [
+        "সে দ্রুত টাইপ করতে পারে",
+        "সে deployment-এর ব্যথাটা ইতিমধ্যে ব্যক্তিগতভাবে অনুভব করেছে, তাই abstract concept না হয়ে এটা তার কাছে পরিচিত সমস্যার সমাধান মনে হবে — শেখার গতি ও গভীরতা দুটোই বাড়ে",
+        "সে কম বেতনে কাজ করতে রাজি",
+        "তার কোনো বিশেষ সুবিধা নেই"
+      ],
+      "answerIndex": 1,
+      "explanation": "লেসনের মূল যুক্তি: experiential familiarity (সমস্যাটা বেঁচে আসা) নতুন concept-কে বিমূর্ত তত্ত্বের বদলে চেনা সমাধান বানিয়ে দেয় — এটাই একজন complete-beginner-এর চেয়ে বাস্তব সুবিধা।"
+    },
+    {
+      "id": "wv0l3-q29",
+      "difficulty": "hard",
+      "question": "DevOps ইনফিনিটি লুপের 'Monitor' ধাপ থেকে আবার 'Plan'-এ ফিরে যাওয়ার তীরচিহ্নটা প্রকৃতপক্ষে কী বোঝায়?",
+      "options": [
+        "লুপটা ভুলে ডিজাইন হয়েছে",
+        "Monitoring থেকে পাওয়া insight (error, ব্যবহারকারীর আচরণ, performance bottleneck) পরের Plan-এর ইনপুট হয় — DevOps কখনো 'শেষ' হয় না, প্রতিটা রিলিজ পরের রিলিজকে জানায়",
+        "Monitor ধাপটা আসলে অপ্রয়োজনীয়",
+        "এটা শুধু bug থাকলে সক্রিয় হয়"
+      ],
+      "answerIndex": 1,
+      "explanation": "এটাই 'ইনফিনিটি' নামের কারণ — feedback loop। Monitor-এ যা দেখা যায় (স্লো এন্ডপয়েন্ট, বেশি ব্যবহৃত ফিচার, রিপিটেড এরর) সরাসরি পরের Plan-এর অগ্রাধিকার ঠিক করে — এক-মুখী পাইপলাইন না, চক্রাকার শেখার প্রক্রিয়া।"
+    },
+    {
+      "id": "wv0l3-q30",
+      "difficulty": "hard",
+      "question": "এই কোর্সের Milestone ক্রম (Linux/Docker → AWS → IaC/Ansible → Kubernetes → Observability → CI/CD-GitOps) — এই নির্দিষ্ট ক্রমটার পেছনে কোন যুক্তিটা সবচেয়ে সংগত?",
+      "options": [
+        "ক্রমটা এলোমেলোভাবে বাছা হয়েছে",
+        "প্রতিটা পরের Milestone আগেরটার উপর নির্ভর করে — Kubernetes বোঝার আগে Docker/container লাগে, IaC দিয়ে সার্ভার বানানোর আগে cloud (AWS) বোঝা লাগে, আর CI/CD-GitOps শেষে আসে কারণ সেটা বাকি সব piece-কে একসাথে জোড়া দেয়",
+        "সবচেয়ে সহজ থেকে সবচেয়ে কঠিন এই নিয়মে সাজানো, নির্ভরতার কোনো সম্পর্ক নেই",
+        "বর্ণানুক্রমিকভাবে সাজানো হয়েছে"
+      ],
+      "answerIndex": 1,
+      "explanation": "DevOps শেখার একটা স্বাভাবিক নির্ভরতা-ক্রম আছে: container (Docker) না বুঝলে orchestration (Kubernetes) অর্থহীন; cloud platform না বুঝলে সেই cloud-এর infrastructure কোড দিয়ে বর্ণনা (Terraform) করা কঠিন; আর CI/CD-GitOps সবার শেষে আসে কারণ সেটা আসলে Docker+Cloud+IaC+Kubernetes+Monitoring — সবগুলো piece-কে একটা automated pipeline-এ জোড়া দেওয়ার কাজ।"
+    }
+  ]
+}

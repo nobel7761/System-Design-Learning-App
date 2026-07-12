@@ -1,0 +1,312 @@
+{
+  "lessonId": "wv0l16",
+  "title": "Linux File System Hierarchy — পুরো ম্যাপ",
+  "intro": "নিচের পুরো গাছটাই আসল Linux filesystem — কিছুই বানাতে হবে না, শুধু pwd/cd/ls/cat/find/grep দিয়ে হেঁটে হেঁটে দেখো। যেখানে যাবে (cd/ls) বা যা খুলবে (cat) সেটা সবুজ হয়ে যাবে — আর প্রতিটা ঘরের নিচে এক লাইনে লেখা আছে সেখানে কী থাকে।",
+  "nodes": [
+    {
+      "path": "/",
+      "type": "dir",
+      "desc": "root — পুরো গাছের গোড়া, সবকিছুর শুরু",
+      "detail": "Windows-এর C:\\ বা D:\\ নেই এখানে — একটাই গাছ, সব directory শেষমেশ এই / থেকে নেমেছে।"
+    },
+
+    {
+      "path": "/bin",
+      "type": "dir",
+      "desc": "এসেনশিয়াল ইউজার কমান্ড (ls, cp, cat, bash)",
+      "detail": "আধুনিক distro-তে সাধারণত /usr/bin-এর symlink — পুরনো script আর habit-এর জন্য পথটা টিকে আছে। সিস্টেম বুট না হলেও এই কমান্ডগুলো লাগে, তাই আলাদা রাখা হতো।"
+    },
+    {
+      "path": "/boot",
+      "type": "dir",
+      "desc": "কার্নেল আর bootloader — কম্পিউটার চালু হওয়ার প্রথম ধাপ",
+      "detail": "পাওয়ার বাটন চাপার পর সবার আগে যা লোড হয়, সবই এখানে। এই ফোল্ডার হারালে সিস্টেম বুটই করবে না।"
+    },
+    {
+      "path": "/boot/vmlinuz",
+      "type": "file",
+      "desc": "লিনাক্স কার্নেল নিজেই — বুট হওয়ার সময় প্রথম লোড হয়",
+      "content": "[binary kernel image — compressed executable, ৮-১০MB]"
+    },
+    {
+      "path": "/boot/grub",
+      "type": "dir",
+      "desc": "GRUB bootloader-এর config — boot মেনু এখান থেকেই আসে"
+    },
+    {
+      "path": "/boot/grub/grub.cfg",
+      "type": "file",
+      "desc": "boot মেনুর তালিকা — কোন kernel/OS চালু হবে তার নিয়ম",
+      "content": "menuentry 'Ubuntu' {\n  linux /boot/vmlinuz root=/dev/sda1\n  initrd /boot/initrd.img\n}"
+    },
+
+    {
+      "path": "/dev",
+      "type": "dir",
+      "desc": "ডিভাইস ফাইল — হার্ডওয়্যারও এখানে ফাইল হিসেবে দেখা যায়",
+      "detail": "Linux-এর দর্শন: 'সবকিছু ফাইল।' হার্ডডিস্ক, কীবোর্ড, র‍্যান্ডম নাম্বার জেনারেটর — সবই এখানে একেকটা ফাইল।"
+    },
+    {
+      "path": "/dev/sda",
+      "type": "file",
+      "desc": "প্রথম হার্ডডিস্ক/SSD — পুরো ডিস্কটাই একটা ফাইল হিসেবে"
+    },
+    {
+      "path": "/dev/null",
+      "type": "file",
+      "desc": "ব্ল্যাকহোল — এখানে লিখলে যা লিখবে তা চিরতরে হারিয়ে যায়",
+      "detail": "output ফেলে দেওয়ার জায়গা: `command > /dev/null` মানে 'output দেখতে চাই না।'"
+    },
+    {
+      "path": "/dev/tty1",
+      "type": "file",
+      "desc": "একটা টার্মিনাল/কনসোল স্ক্রিন — কীবোর্ড+ডিসপ্লের প্রতিনিধি"
+    },
+
+    {
+      "path": "/etc",
+      "type": "dir",
+      "desc": "সিস্টেমের সব config ফাইল — নিয়মকানুনের ঘর",
+      "detail": "নাম এসেছে 'et cetera' থেকে (আর যা কিছু, যেগুলো bin/lib-এ পড়ে না)। প্রায় প্রতিটা সার্ভিসের config এখানেই।"
+    },
+    {
+      "path": "/etc/passwd",
+      "type": "file",
+      "desc": "সব user-এর তালিকা — নাম, UID, home, shell",
+      "content": "root:x:0:0:root:/root:/bin/bash\nnobel:x:1000:1000::/home/nobel:/bin/bash",
+      "detail": "x মানে আসল password এখানে নেই — সেটা /etc/shadow-এ, encrypted। useradd/usermod চালালে এই ফাইলই আপডেট হয়।"
+    },
+    {
+      "path": "/etc/shadow",
+      "type": "file",
+      "desc": "আসল (encrypted) password — শুধু root পড়তে পারে",
+      "content": "root:$6$...:19700:0:99999:7:::\nnobel:$6$...:19800:0:99999:7:::"
+    },
+    {
+      "path": "/etc/group",
+      "type": "file",
+      "desc": "group আর তাদের supplementary member-দের তালিকা",
+      "content": "sudo:x:27:nobel\ndevops:x:1001:nobel,shajal"
+    },
+    {
+      "path": "/etc/sudoers",
+      "type": "file",
+      "desc": "কে sudo চালাতে পারবে তার নিয়ম",
+      "content": "root ALL=(ALL:ALL) ALL\n%sudo ALL=(ALL:ALL) ALL",
+      "detail": "সরাসরি edit বিপজ্জনক — সিনট্যাক্স ভুল হলে sudo-ই বন্ধ হয়ে যেতে পারে, তাই সবসময় visudo দিয়ে খুলতে হয়।"
+    },
+    {
+      "path": "/etc/hosts",
+      "type": "file",
+      "desc": "hostname → IP ম্যাপিং — নেটওয়ার্ক ছাড়াই mini lookup",
+      "content": "127.0.0.1 localhost\n::1       localhost"
+    },
+    {
+      "path": "/etc/fstab",
+      "type": "file",
+      "desc": "বুটের সময় কোন disk/partition কোথায় mount হবে",
+      "content": "/dev/sda1  /      ext4  defaults  0 1\n/dev/sda2  /home  ext4  defaults  0 2"
+    },
+    {
+      "path": "/etc/hostname",
+      "type": "file",
+      "desc": "এই মেশিনের নাম — hostname কমান্ড এটাই পড়ে",
+      "content": "server-tower"
+    },
+    {
+      "path": "/etc/skel",
+      "type": "dir",
+      "desc": "নতুন user-এর টেমপ্লেট — useradd -m এখান থেকেই কপি করে",
+      "detail": "OOP-র class আর object মনে করো: /etc/skel হলো class, নতুন user-এর home হলো object — একই ছাঁচ থেকে বানানো।"
+    },
+    {
+      "path": "/etc/skel/.bashrc",
+      "type": "file",
+      "desc": "নতুন user-এর ডিফল্ট shell config — skel থেকে কপি হয়ে home-এ বসে",
+      "content": "# ~/.bashrc: executed by bash for non-login shells\nalias ll='ls -la'"
+    },
+    {
+      "path": "/etc/ssh",
+      "type": "dir",
+      "desc": "SSH সার্ভারের config — রিমোট লগইনের নিয়ম"
+    },
+    {
+      "path": "/etc/ssh/sshd_config",
+      "type": "file",
+      "desc": "SSH সার্ভার কীভাবে চলবে (port, root login allow কিনা)",
+      "content": "Port 22\nPermitRootLogin no\nPasswordAuthentication yes"
+    },
+
+    {
+      "path": "/home",
+      "type": "dir",
+      "desc": "সব সাধারণ user-এর থাকার ফ্লোর",
+      "detail": "প্রতিটা user-এর নিজের ঘর এখানে — /home/<username>। root এখানে থাকে না, তার আলাদা /root আছে।"
+    },
+    {
+      "path": "/home/nobel",
+      "type": "dir",
+      "desc": "একজন user-এর personal home — ফাইল, config, ডাউনলোড"
+    },
+
+    {
+      "path": "/lib",
+      "type": "dir",
+      "desc": "shared library — /bin, /sbin-এর প্রোগ্রাম চালাতে লাগে",
+      "detail": "একটা প্রোগ্রাম নিজে নিজে সব কোড বহন করে না — বারবার-ব্যবহৃত কোড (.so ফাইল) এখান থেকে ধার নেয়। মূলত /usr/lib-এর symlink।"
+    },
+    {
+      "path": "/media",
+      "type": "dir",
+      "desc": "USB/CD-র মতো removable media auto-mount হয় এখানে"
+    },
+    {
+      "path": "/mnt",
+      "type": "dir",
+      "desc": "অস্থায়ীভাবে হাতে mount করা filesystem-এর খালি ঘর",
+      "detail": "/media স্বয়ংক্রিয়, /mnt ম্যানুয়াল — sysadmin নিজে হাতে network drive বা extra disk mount করলে এখানে।"
+    },
+    {
+      "path": "/opt",
+      "type": "dir",
+      "desc": "third-party/optional সফটওয়্যার — package manager-এর বাইরের অতিথি",
+      "detail": "যেমন কোনো কোম্পানির নিজস্ব অ্যাপ্লিকেশন, যেটা apt/yum দিয়ে না এসে নিজস্ব ইনস্টলারে বসেছে — নিজের সম্পূর্ণ ফোল্ডার পায় এখানে।"
+    },
+    {
+      "path": "/proc",
+      "type": "dir",
+      "desc": "virtual filesystem — running kernel/process-এর লাইভ তথ্য",
+      "detail": "ডিস্কে আসলে এই ফাইলগুলো নেই — কার্নেল request আসার মুহূর্তে বানিয়ে দেখায়। তাই size সবসময় 0 দেখাতে পারে, তবু ভেতরে আসল ডেটা।"
+    },
+    {
+      "path": "/proc/cpuinfo",
+      "type": "file",
+      "desc": "CPU-র বিস্তারিত তথ্য — লাইভ, আসল ফাইল ডিস্কে নেই",
+      "content": "processor : 0\nmodel name : Example CPU @ 2.4GHz\ncores : 4"
+    },
+    {
+      "path": "/proc/meminfo",
+      "type": "file",
+      "desc": "RAM-এর লাইভ ব্যবহার — free কমান্ড আসলে এটাই পড়ে",
+      "content": "MemTotal:       8000000 kB\nMemFree:        2100000 kB"
+    },
+
+    {
+      "path": "/root",
+      "type": "dir",
+      "desc": "root ইউজারের নিজের home — /home-এ না রেখে আলাদা",
+      "detail": "root এত গুরুত্বপূর্ণ যে তার home /home partition-এর উপর নির্ভর করে না — /home mount না হলেও root লগইন করতে পারে।"
+    },
+    {
+      "path": "/run",
+      "type": "dir",
+      "desc": "এই বুট থেকে এখনকার runtime data — PID, socket",
+      "detail": "রিবুট করলেই এই ফোল্ডার খালি হয়ে যায় (RAM-based tmpfs) — এখানে যা আছে তা শুধু 'এই মুহূর্তের' অবস্থা।"
+    },
+    {
+      "path": "/sbin",
+      "type": "dir",
+      "desc": "system administration কমান্ড (reboot, fdisk, ifconfig)",
+      "detail": "মূলত root-এর জন্য — সাধারণ user-দের PATH-এ সাধারণত থাকে না। আধুনিক distro-তে /usr/sbin-এর symlink।"
+    },
+    {
+      "path": "/srv",
+      "type": "dir",
+      "desc": "এই মেশিন যেসব service serve করে তার ডেটা (web/ftp)",
+      "detail": "কম ব্যবহৃত, কিন্তু concept-টা সহজ: 'এই সার্ভার অন্যদের যা দেয়' তার ডেটা এখানে রাখার কথা — /var/www একই কাজ বাস্তবে বেশি করে।"
+    },
+    {
+      "path": "/tmp",
+      "type": "dir",
+      "desc": "অস্থায়ী ফাইল — রিবুটে সাধারণত ফাঁকা হয়ে যায়",
+      "detail": "যে কোনো user লিখতে পারে (world-writable), তাই স্থায়ী কিছু বা secret এখানে রাখা বিপজ্জনক অভ্যাস।"
+    },
+
+    {
+      "path": "/usr",
+      "type": "dir",
+      "desc": "'Unix System Resources' — বেশিরভাগ ইনস্টল করা সফটওয়্যার",
+      "detail": "নাম দেখে মনে হয় 'user', কিন্তু আসলে 'Unix System Resources' — সিস্টেমের সবচেয়ে বড় অংশ এখানেই থাকে, /home না।"
+    },
+    {
+      "path": "/usr/bin",
+      "type": "dir",
+      "desc": "বেশিরভাগ user কমান্ডের আসল জায়গা (/bin এর symlink টার্গেট)"
+    },
+    {
+      "path": "/usr/lib",
+      "type": "dir",
+      "desc": "/usr/bin, /usr/sbin-এর প্রোগ্রামের জন্য shared library"
+    },
+    {
+      "path": "/usr/local",
+      "type": "dir",
+      "desc": "নিজে হাতে বিল্ড/ইনস্টল করা সফটওয়্যার",
+      "detail": "package manager (apt/yum) এই ফোল্ডার টাচ করে না — তাই নিজের হাতে কম্পাইল করা প্রোগ্রাম রাখলে system update-এ হারানোর ভয় থাকে না।"
+    },
+    {
+      "path": "/usr/local/bin",
+      "type": "dir",
+      "desc": "হাতে বসানো প্রোগ্রামের executable — PATH-এ প্রায়ই সবার আগে"
+    },
+    {
+      "path": "/usr/sbin",
+      "type": "dir",
+      "desc": "কম-দরকারি system admin কমান্ড, root-কেন্দ্রিক"
+    },
+    {
+      "path": "/usr/share",
+      "type": "dir",
+      "desc": "architecture-independent ডেটা — man page, ডকুমেন্টেশন, আইকন, ফন্ট"
+    },
+
+    {
+      "path": "/var",
+      "type": "dir",
+      "desc": "'variable' — চলতে চলতে বদলাতে থাকা ডেটা (log, cache)",
+      "detail": "/usr-এর কনটেন্ট মোটামুটি স্থির থাকে (ইনস্টল না করলে বদলায় না), কিন্তু /var প্রতি মুহূর্তে বদলায় — log বাড়ে, cache জমে।"
+    },
+    {
+      "path": "/var/log",
+      "type": "dir",
+      "desc": "সব সিস্টেম/অ্যাপ্লিকেশনের log — bug খোঁজার প্রথম গন্তব্য"
+    },
+    {
+      "path": "/var/log/syslog",
+      "type": "file",
+      "desc": "সিস্টেমের general log — সার্ভিস আর kernel মেসেজ",
+      "content": "Jan 26 20:41:03 server-tower systemd[1]: Started Session 12.\nJan 26 20:42:10 server-tower sshd[1042]: Accepted password for nobel"
+    },
+    {
+      "path": "/var/log/auth.log",
+      "type": "file",
+      "desc": "লগইন/sudo চেষ্টার log — security audit-এ জরুরি",
+      "content": "Jan 26 20:42:10 server-tower sshd[1042]: Accepted password for nobel from 10.0.0.5\nJan 26 20:45:00 server-tower sudo: nobel : COMMAND=/usr/bin/apt update"
+    },
+    {
+      "path": "/var/tmp",
+      "type": "dir",
+      "desc": "/tmp-এর মতো, কিন্তু রিবুটেও টিকে থাকে (দীর্ঘ কাজের জন্য)"
+    },
+    {
+      "path": "/var/cache",
+      "type": "dir",
+      "desc": "অ্যাপ্লিকেশনের cache — মুছলেও সিস্টেম ভাঙে না, শুধু আবার বানায়"
+    },
+    {
+      "path": "/var/www",
+      "type": "dir",
+      "desc": "web server (Apache/Nginx)-এর ডিফল্ট document root-এর প্যারেন্ট"
+    },
+    {
+      "path": "/var/www/html",
+      "type": "dir",
+      "desc": "ব্রাউজারে যা দেখা যায় তার আসল ফাইল (index.html) এখানে"
+    },
+    {
+      "path": "/var/lib",
+      "type": "dir",
+      "desc": "প্রোগ্রামের persistent state ডেটা (mysql/, docker/ ইত্যাদি)"
+    }
+  ]
+}

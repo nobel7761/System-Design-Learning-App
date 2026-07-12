@@ -2,7 +2,7 @@
 
 import { AxiosError, AxiosRequestConfig } from "axios";
 import { useRouter } from "next/navigation";
-import { Reducer, useEffect, useReducer } from "react";
+import { Reducer, useEffect, useReducer, useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   RESET,
@@ -17,6 +17,10 @@ interface ApiCallConfig {
   lazy?: boolean; // If true, call is triggered manually
   manual?: boolean; // If true, prevents automatic call on mount
 }
+
+// Backoff schedule (ms) for auto-retrying the initial GET fetch when the
+// backend isn't reachable yet (e.g. right after `pnpm dev` starts).
+const RETRY_DELAYS_MS = [500, 1000, 2000, 3000, 4000, 4000];
 
 type RequestNonObjectValueType =
   | string
@@ -73,7 +77,7 @@ function useAPI<
     message?: string;
   },
 >(
-  config: AxiosRequestConfig<RequestType> & ApiCallConfig & { lazy: true }
+  config: AxiosRequestConfig<RequestType> & ApiCallConfig & { lazy: true },
 ): ApiReturnWithCallApi<ResponseType, RequestType, ErrorType>;
 
 function useAPI<
@@ -91,7 +95,7 @@ function useAPI<
   config: AxiosRequestConfig<RequestType> &
     ApiCallConfig & {
       method: "POST" | "PUT" | "PATCH" | "DELETE";
-    }
+    },
 ): ApiReturnWithCallApi<ResponseType, RequestType, ErrorType>;
 
 function useAPI<
@@ -106,7 +110,7 @@ function useAPI<
     message?: string;
   },
 >(
-  config: AxiosRequestConfig<RequestType> & ApiCallConfig
+  config: AxiosRequestConfig<RequestType> & ApiCallConfig,
 ): BaseApiReturn<ResponseType, ErrorType>;
 
 // Implementation
@@ -228,6 +232,35 @@ function useAPI<
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lazy, manual, state.loading, state.loaded, method]);
+
+  const retryCountRef = useRef(0);
+  useEffect(() => {
+    if (state.data) retryCountRef.current = 0;
+  }, [state.data]);
+
+  // Auto-retry the initial GET fetch on a transient network error (e.g. the
+  // backend is still booting up) so the page recovers on its own instead of
+  // requiring a manual refresh.
+  useEffect(() => {
+    if (lazy || manual || method !== "GET" || !state.error) return;
+    const isNetworkError =
+      (state.error as { statusCode?: number })?.statusCode === 0;
+    if (!isNetworkError || retryCountRef.current >= RETRY_DELAYS_MS.length) {
+      return;
+    }
+
+    const delay = RETRY_DELAYS_MS[retryCountRef.current];
+    retryCountRef.current += 1;
+    const timer = setTimeout(() => {
+      dispatch({
+        action: RESET,
+        payload: { data: null, error: null, loaded: false, loading: false },
+      });
+    }, delay);
+
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.error, lazy, manual, method]);
 
   // Manual resetting of the states
   const reset = () => {

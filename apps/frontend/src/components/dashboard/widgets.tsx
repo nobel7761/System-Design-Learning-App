@@ -1,22 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Badge,
-  Card,
-  CardContent,
-  Progress,
-} from "@/components/shared/shadcn";
-import type {
-  Dashboard,
-  Milestone,
-  TrackSummary,
-  TrackWorldMini,
-} from "@/lib/api/types";
+import { useState } from "react";
+import { Badge, Card, CardContent, Progress } from "@/components/shared/shadcn";
+import type { Dashboard, HeatmapDay, TrackSummary } from "@/lib/api/types";
 
 const DAY_LABELS = ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"];
 
@@ -35,406 +22,416 @@ const LESSON_TYPE_ICON: Record<string, string> = {
   dojo: "🥋",
 };
 
-/** Milestone → Module → Lessons accordion for milestone-based tracks (devops) */
-function MilestoneWorldsTree({ worlds }: { worlds: TrackWorldMini[] }) {
-  const groups: { milestone: Milestone; worlds: TrackWorldMini[] }[] = [];
-  for (const w of worlds) {
-    if (!w.milestone) continue;
-    const g = groups.find((x) => x.milestone.id === w.milestone!.id);
-    if (g) g.worlds.push(w);
-    else groups.push({ milestone: w.milestone, worlds: [w] });
-  }
+const GRID_5 = "grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5";
 
-  return (
-    <Accordion type="multiple" className="space-y-1.5">
-      {groups.map((g) => {
-        const done = g.worlds.reduce((a, w) => a + w.doneCount, 0);
-        const total = g.worlds.reduce((a, w) => a + w.totalCount, 0);
-        const milestoneDone = total > 0 && done === total;
-        return (
-          <AccordionItem
-            key={g.milestone.id}
-            value={g.milestone.id}
-            className="rounded-lg border border-violet-200 bg-violet-50/60 px-2.5"
-          >
-            <AccordionTrigger className="py-2 hover:no-underline">
-              <div className="flex w-full items-center gap-2 pr-2 text-xs">
-                <span className="shrink-0 rounded border border-violet-300 bg-white px-1.5 py-0.5 text-[10px] font-bold text-violet-700">
-                  🏁 Milestone {g.milestone.order}
-                </span>
-                <span className="truncate text-left font-semibold text-slate-700">
-                  {g.milestone.title}
-                </span>
-                {milestoneDone && <span className="shrink-0">✅</span>}
-                <span className="ml-auto shrink-0 text-slate-400">
-                  {done}/{total}
-                </span>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="pb-2">
-              <Accordion type="multiple" className="space-y-1">
-                {g.worlds.map((w) => {
-                  const moduleDone = w.totalCount > 0 && w.percent === 100;
-                  const moduleEmpty = (w.lessons ?? []).length === 0;
-                  return (
-                    <AccordionItem
-                      key={w.id}
-                      value={w.id}
-                      className={`rounded-lg border border-slate-200 px-2.5 ${
-                        moduleEmpty ? "bg-slate-50" : "bg-white"
-                      }`}
-                    >
-                      <AccordionTrigger className="py-1.5 hover:no-underline">
-                        <div className="flex w-full items-center gap-2 pr-2 text-xs">
-                          {w.moduleNo != null && (
-                            <span className="shrink-0 rounded border border-violet-200 bg-violet-50 px-1.5 py-0.5 text-[10px] font-bold text-violet-600">
-                              Module {w.moduleNo}
-                            </span>
-                          )}
-                          <span
-                            className={`truncate text-left font-medium ${
-                              moduleDone
-                                ? "text-emerald-700"
-                                : moduleEmpty
-                                  ? "text-slate-400"
-                                  : "text-slate-700"
-                            }`}
-                          >
-                            {w.title}
-                          </span>
-                          {moduleDone && <span className="shrink-0">✅</span>}
-                          <span className="ml-auto shrink-0 text-slate-400">
-                            {w.totalCount > 0
-                              ? `${w.doneCount}/${w.totalCount}`
-                              : ""}
-                          </span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pb-1.5">
-                        <div className="flex flex-col gap-0.5">
-                          {moduleEmpty && (
-                            <p className="px-2 py-1 text-xs text-slate-400">
-                              🔒 Content আসছে — পেলেই খুলে যাবে
-                            </p>
-                          )}
-                          {(w.lessons ?? []).map((l) => {
-                            const icon = LESSON_TYPE_ICON[l.type] ?? "📖";
-                            const clickable =
-                              l.contentReady && l.status !== "locked";
-                            const inner = (
-                              <>
-                                <span className="flex min-w-0 items-center gap-1.5">
-                                  <span className="shrink-0">{icon}</span>
-                                  <span className="truncate">{l.title}</span>
-                                </span>
-                                {l.status === "done" && (
-                                  <span className="shrink-0">✅</span>
-                                )}
-                              </>
-                            );
-                            return clickable ? (
-                              <Link
-                                key={l.id}
-                                href={`/lesson/${l.id}`}
-                                className="flex items-center justify-between gap-2 rounded px-2 py-1 text-xs text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-700"
-                              >
-                                {inner}
-                              </Link>
-                            ) : (
-                              <div
-                                key={l.id}
-                                className="flex items-center justify-between gap-2 rounded px-2 py-1 text-xs text-slate-300"
-                                title="Content এখনো আসেনি"
-                              >
-                                {inner}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
-              </Accordion>
-            </AccordionContent>
-          </AccordionItem>
-        );
-      })}
-    </Accordion>
-  );
-}
-
-function TrackCard({
-  emoji,
-  title,
-  subtitle,
-  summary,
-  syllabusHref,
-  isDark,
-  streak,
-  xp,
-}: {
+const TRACKS: {
+  key: keyof Dashboard["tracks"];
   emoji: string;
   title: string;
   subtitle: string;
+  syllabusHref: string;
+  isDark: boolean;
+}[] = [
+  {
+    key: "system-design",
+    emoji: "📚",
+    title: "System Design",
+    subtitle: "Internet থেকে Distributed Systems",
+    syllabusHref: "/syllabus?track=system-design",
+    isDark: false,
+  },
+  {
+    key: "docker",
+    emoji: "🐳",
+    title: "Docker",
+    subtitle: "Zero থেকে Production-ready",
+    syllabusHref: "/syllabus?track=docker",
+    isDark: true,
+  },
+  {
+    key: "ai-mastery",
+    emoji: "🤖",
+    title: "AI Mastery",
+    subtitle: "LLM থেকে Production AI Engineer",
+    syllabusHref: "/syllabus?track=ai-mastery",
+    isDark: false,
+  },
+  {
+    key: "dsa",
+    emoji: "🧩",
+    title: "DSA — NeetCode 150",
+    subtitle: "Python-এ Zero থেকে ১৫০ problems",
+    syllabusHref: "/syllabus?track=dsa",
+    isDark: true,
+  },
+  {
+    key: "devops",
+    emoji: "🐧",
+    title: "AWS & DevOps by Poridhi",
+    subtitle: "Season 4 — Milestone ধরে Linux থেকে Production K8s",
+    syllabusHref: "/syllabus?track=devops",
+    isDark: false,
+  },
+];
+
+function SectionHeader({ title, explain }: { title: string; explain: string }) {
+  return (
+    <div className="mb-3 flex items-baseline justify-between gap-3">
+      <h2 className="text-sm font-bold text-slate-700">{title}</h2>
+      <p className="text-right text-xs text-slate-400">{explain}</p>
+    </div>
+  );
+}
+
+function SubLabel({ children }: { children: string }) {
+  return (
+    <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+      {children}
+    </p>
+  );
+}
+
+/**
+ * One self-contained course card: progress, this-week grid, next lesson,
+ * lesson stats and per-course consistency all stacked in a single card.
+ */
+function CourseCard({
+  emoji,
+  title,
+  summary,
+  syllabusHref,
+  isDark,
+}: {
+  emoji: string;
+  title: string;
   summary: TrackSummary;
   syllabusHref: string;
   isDark: boolean;
-  streak: { current: number };
-  xp: { level: number; title: string };
 }) {
   const lesson = summary.currentLesson;
   const borderClass = isDark ? "border-sky-200" : "border-indigo-200";
+  const accentColor = isDark ? "text-sky-700" : "text-indigo-700";
+  const accentBg = isDark ? "bg-sky-50" : "bg-indigo-50";
   const btnGradient = isDark
     ? "linear-gradient(135deg, #0ea5e9, #0369a1)"
     : "linear-gradient(135deg, #6366f1, #4338ca)";
-  const accentColor = isDark ? "text-sky-700" : "text-indigo-700";
-  const accentBg = isDark ? "bg-sky-50" : "bg-indigo-50";
   const studiedDays = summary.weekDays.filter((d) => d.studied).length;
   const weekGoal = 4;
 
   return (
-    <Card className={`border-2 ${borderClass} bg-white shadow-md`}>
-      <CardContent className="flex flex-col gap-4 py-5">
+    <Card className={`border-2 ${borderClass} bg-white shadow-sm`}>
+      <CardContent className="flex flex-col gap-4 py-4">
         {/* ── Header ── */}
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-xl">{emoji}</p>
-            <h2 className="mt-0.5 text-base font-bold text-slate-800">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <p className="text-lg">{emoji}</p>
+            <h3 className="truncate text-sm font-bold text-slate-800">
               {title}
-            </h2>
-            <p className="text-xs text-slate-400">{subtitle}</p>
+            </h3>
           </div>
-          <span className="rounded-full bg-orange-50 px-2.5 py-1 text-xs font-semibold text-orange-600">
-            🔥 {streak.current} সপ্তাহ
+          <span className="shrink-0 rounded-full bg-orange-50 px-2 py-0.5 text-[10px] font-semibold text-orange-600">
+            🔥 {summary.streak.current}
           </span>
         </div>
 
-        {/* ── Top stats: lessons · level · total time ── */}
-        <div className="grid grid-cols-3 divide-x rounded-xl border border-slate-100 bg-slate-50 text-center">
-          <div className="py-2.5">
-            <p className="text-sm font-bold text-slate-800">
-              {summary.done}/{summary.total}
-            </p>
-            <p className="text-[10px] text-slate-500">মোট lessons</p>
-          </div>
-          <div className="py-2.5">
-            <p className={`text-sm font-bold ${accentColor}`}>⭐ {xp.title}</p>
-            <p className="text-[10px] text-slate-500">Level {xp.level}</p>
-          </div>
-          <div className="py-2.5">
-            <p className="text-sm font-bold text-slate-800">
-              {fmtTime(summary.totalTimeSec)}
-            </p>
-            <p className="text-[10px] text-slate-500">মোট সময়</p>
-          </div>
-        </div>
-
-        {/* ── Progress bar ── */}
+        {/* ── Progress ── */}
         <div>
-          <div className="mb-1 flex items-center justify-between text-xs text-slate-500">
-            <span>অগ্রগতি</span>
+          <div className="mb-1 flex items-center justify-between text-[10px] text-slate-500">
+            <span>
+              {summary.done}/{summary.total} lessons
+            </span>
             <span className="font-semibold text-slate-700">
               {summary.percent}%
             </span>
           </div>
-          <Progress value={summary.percent} className="h-2" />
+          <Progress value={summary.percent} className="h-1.5" />
         </div>
 
-        {/* ── Next lesson (before XP grid) ── */}
-        {lesson ? (
-          <Link
-            href={`/lesson/${lesson.id}`}
-            className="block rounded-lg bg-slate-50 px-3 py-2 transition hover:bg-slate-100"
-          >
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-              পরের lesson
-            </p>
-            <p className="mt-0.5 truncate text-sm font-medium text-slate-700">
-              {lesson.type === "boss" ? "⚔️ " : "📖 "}
-              {lesson.title}
-            </p>
-          </Link>
-        ) : (
-          <div className="rounded-lg bg-emerald-50 px-3 py-2">
-            <p className="text-sm font-medium text-emerald-700">
-              🎉 সব lessons শেষ!
-            </p>
-          </div>
-        )}
-
-        {/* ── Per-session stats: XP · সময় · এ সপ্তাহে ── */}
-        <div
-          className={`grid grid-cols-3 divide-x rounded-xl ${accentBg} text-center`}
-        >
-          <div className="py-2.5">
-            <p className={`text-base font-bold ${accentColor}`}>
-              {summary.xpEarned}
-            </p>
-            <p className="text-[10px] text-slate-500">XP</p>
-          </div>
-          <div className="py-2.5">
-            <p className={`text-base font-bold ${accentColor}`}>
-              {fmtTime(summary.totalTimeSec)}
-            </p>
-            <p className="text-[10px] text-slate-500">সময়</p>
-          </div>
-          <div className="py-2.5">
-            <p className={`text-base font-bold ${accentColor}`}>
-              {summary.sessionsThisWeek}
-            </p>
-            <p className="text-[10px] text-slate-500">এ সপ্তাহে</p>
-          </div>
-        </div>
-
-        {/* ── Week tracker (per-track) ── */}
+        {/* ── এই সপ্তাহ ── */}
         <div>
-          <div className="mb-2 flex items-center justify-between">
-            <p className="text-xs font-semibold text-slate-600">এই সপ্তাহ</p>
+          <div className="mb-1.5 flex items-center justify-between">
+            <SubLabel>এই সপ্তাহ</SubLabel>
             <Badge
               variant={studiedDays >= weekGoal ? "default" : "secondary"}
-              className="text-[10px]"
+              className="text-[9px]"
             >
-              {studiedDays}/{weekGoal} দিন
+              {studiedDays}/{weekGoal}
             </Badge>
           </div>
           <div className="grid grid-cols-7 gap-1">
             {summary.weekDays.map((day, i) => (
-              <div key={day.date} className="text-center">
-                <div
-                  className={`mx-auto flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold ${
-                    day.studied
+              <div
+                key={day.date}
+                title={DAY_LABELS[i]}
+                className={`mx-auto flex h-5 w-5 items-center justify-center rounded-full text-[8px] font-semibold ${
+                  day.studied
+                    ? isDark
+                      ? "bg-sky-500 text-white"
+                      : "bg-indigo-500 text-white"
+                    : day.isToday
                       ? isDark
-                        ? "bg-sky-500 text-white"
-                        : "bg-indigo-500 text-white"
-                      : day.isToday
-                        ? isDark
-                          ? "border-2 border-sky-400 text-sky-600"
-                          : "border-2 border-indigo-400 text-indigo-600"
-                        : "bg-slate-100 text-slate-400"
-                  }`}
-                >
-                  {day.studied ? "✓" : DAY_LABELS[i].slice(0, 2)}
-                </div>
-                <p className="mt-0.5 text-[9px] text-slate-400">
-                  {DAY_LABELS[i]}
-                </p>
+                        ? "border-2 border-sky-400 text-sky-600"
+                        : "border-2 border-indigo-400 text-indigo-600"
+                      : "bg-slate-100 text-slate-400"
+                }`}
+              >
+                {day.studied ? "✓" : DAY_LABELS[i].slice(0, 1)}
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── Worlds + syllabus link ── */}
+        {/* ── পরের Lesson ── */}
         <div>
-          <div className="mb-2 flex items-center justify-between">
-            <p className="text-xs font-semibold text-slate-600">Worlds</p>
+          <SubLabel>পরের Lesson</SubLabel>
+          {lesson ? (
             <Link
-              href={syllabusHref}
-              className={`text-xs font-medium hover:underline ${isDark ? "text-sky-600" : "text-indigo-600"}`}
+              href={`/lesson/${lesson.id}`}
+              className="block rounded-lg bg-slate-50 px-3 py-2 transition hover:bg-slate-100"
             >
-              Full Syllabus →
+              <p className="truncate text-xs font-medium text-slate-700">
+                {LESSON_TYPE_ICON[lesson.type] ?? "📖"} {lesson.title}
+              </p>
             </Link>
-          </div>
-          {summary.worlds.some((w) => w.milestone) ? (
-            <MilestoneWorldsTree worlds={summary.worlds} />
           ) : (
-            <div className="space-y-2">
-              {summary.worlds.map((world) => (
-                <div key={world.id}>
-                  <div className="flex items-center justify-between text-xs">
-                    <span
-                      className={
-                        world.percent === 100
-                          ? "font-medium text-emerald-700"
-                          : world.doneCount > 0
-                            ? "font-medium text-slate-700"
-                            : "text-slate-400"
-                      }
-                    >
-                      {world.percent === 100
-                        ? "✅"
-                        : world.doneCount > 0
-                          ? "▶"
-                          : "🔒"}{" "}
-                      {world.title}
-                    </span>
-                    <span className="text-slate-400">
-                      {world.doneCount}/{world.totalCount}
-                    </span>
-                  </div>
-                  <Progress value={world.percent} className="mt-1 h-1.5" />
-                </div>
-              ))}
+            <div className="rounded-lg bg-emerald-50 px-3 py-2">
+              <p className="text-xs font-medium text-emerald-700">
+                🎉 সব lessons শেষ!
+              </p>
             </div>
           )}
         </div>
 
+        {/* ── Lesson Stats ── */}
+        <div>
+          <SubLabel>Lesson Stats</SubLabel>
+          <div className="grid grid-cols-2 gap-1.5 text-center">
+            <div className="rounded-lg bg-slate-50 py-1.5">
+              <p className="text-xs font-bold text-slate-800">
+                {summary.xpEarned}
+              </p>
+              <p className="text-[8px] text-slate-500">XP</p>
+            </div>
+            <div className="rounded-lg bg-slate-50 py-1.5">
+              <p className="text-xs font-bold text-slate-800">
+                {fmtTime(summary.totalTimeSec)}
+              </p>
+              <p className="text-[8px] text-slate-500">সময়</p>
+            </div>
+            <div className="rounded-lg bg-slate-50 py-1.5">
+              <p className="text-xs font-bold text-slate-800">
+                {summary.sessionsThisWeek}
+              </p>
+              <p className="text-[8px] text-slate-500">এ সপ্তাহে</p>
+            </div>
+            <div className="rounded-lg bg-slate-50 py-1.5">
+              <p className={`text-xs font-bold ${accentColor}`}>
+                Lv {summary.level.level}
+              </p>
+              <p className="truncate text-[8px] text-slate-500">
+                {summary.level.title}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Consistency (per-course) ── */}
+        <div>
+          <SubLabel>Consistency</SubLabel>
+          <div className="grid grid-cols-2 gap-1.5 text-center">
+            <div className={`rounded-lg ${accentBg} py-1.5`}>
+              <p className={`text-xs font-bold ${accentColor}`}>
+                🏆 {summary.streak.longest}
+              </p>
+              <p className="text-[8px] text-slate-500">সর্বোচ্চ streak</p>
+            </div>
+            <div className={`rounded-lg ${accentBg} py-1.5`}>
+              <p className={`text-xs font-bold ${accentColor}`}>
+                📚 {summary.totalSessions}
+              </p>
+              <p className="text-[8px] text-slate-500">মোট sessions</p>
+            </div>
+          </div>
+        </div>
+
         {/* ── CTA ── */}
         <Link
-          href={syllabusHref}
-          className="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-bold text-white shadow transition hover:opacity-90"
+          href={lesson ? `/lesson/${lesson.id}` : syllabusHref}
+          className="inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow transition hover:opacity-90"
           style={{ background: btnGradient }}
         >
-          Browse করো →
+          {lesson ? "চালিয়ে যাও →" : "Browse করো →"}
         </Link>
       </CardContent>
     </Card>
   );
 }
 
+const HEATMAP_LEVEL_BG = [
+  "bg-slate-100",
+  "bg-emerald-200",
+  "bg-emerald-400",
+  "bg-emerald-500",
+  "bg-emerald-700",
+];
+
+const MONTH_FMT = new Intl.DateTimeFormat("en", { month: "short" });
+const TOOLTIP_DATE_FMT = new Intl.DateTimeFormat("en", {
+  weekday: "short",
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+const WEEKDAY_ROW_LABELS = ["সোম", "", "বুধ", "", "শুক্র", "", ""];
+
+function dayOfWeekMon0(dateStr: string) {
+  return (new Date(`${dateStr}T12:00:00Z`).getUTCDay() + 6) % 7;
+}
+
+function heatmapLevel(count: number, maxCount: number) {
+  if (count === 0) return 0;
+  const ratio = count / maxCount;
+  if (ratio > 0.75) return 4;
+  if (ratio > 0.5) return 3;
+  if (ratio > 0.25) return 2;
+  return 1;
+}
+
+/** GitHub-style calendar heatmap of the last 90 days, combined across all courses. */
+function ActivityHeatmap({ heatmap }: { heatmap: HeatmapDay[] }) {
+  const [hover, setHover] = useState<{
+    day: HeatmapDay;
+    x: number;
+    y: number;
+  } | null>(null);
+
+  if (heatmap.length === 0) return null;
+
+  const leadingPad = dayOfWeekMon0(heatmap[0].date);
+  const cells: (HeatmapDay | null)[] = [
+    ...Array.from({ length: leadingPad }, () => null),
+    ...heatmap,
+  ];
+  const columns: (HeatmapDay | null)[][] = [];
+  for (let i = 0; i < cells.length; i += 7) columns.push(cells.slice(i, i + 7));
+
+  const maxCount = Math.max(1, ...heatmap.map((d) => d.count));
+  const lastYear = new Date(
+    `${heatmap[heatmap.length - 1].date}T12:00:00Z`,
+  ).getUTCFullYear();
+
+  let lastMonthKey = "";
+  const colLabels = columns.map((col) => {
+    const firstDay = col.find((d): d is HeatmapDay => d !== null);
+    if (!firstDay) return "";
+    const d = new Date(`${firstDay.date}T12:00:00Z`);
+    const key = `${d.getUTCFullYear()}-${d.getUTCMonth()}`;
+    if (key === lastMonthKey) return "";
+    lastMonthKey = key;
+    const label = MONTH_FMT.format(d);
+    return d.getUTCFullYear() !== lastYear
+      ? `${label} '${String(d.getUTCFullYear()).slice(2)}`
+      : label;
+  });
+
+  return (
+    <Card className="relative overflow-visible border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-3 py-5">
+        <div className="overflow-x-auto">
+          <div className="flex w-fit gap-1">
+            <div className="flex flex-col gap-1 pt-4">
+              {WEEKDAY_ROW_LABELS.map((label, i) => (
+                <div
+                  key={i}
+                  className="flex h-[0.85rem] items-center text-[9px] text-slate-400"
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+            {columns.map((col, ci) => (
+              <div key={ci} className="flex flex-col gap-1">
+                <div className="h-4 whitespace-nowrap text-[9px] text-slate-400">
+                  {colLabels[ci]}
+                </div>
+                {col.map((day, ri) =>
+                  day ? (
+                    <div
+                      key={day.date}
+                      onMouseEnter={(e) =>
+                        setHover({ day, x: e.clientX, y: e.clientY })
+                      }
+                      onMouseMove={(e) =>
+                        setHover({ day, x: e.clientX, y: e.clientY })
+                      }
+                      onMouseLeave={() => setHover(null)}
+                      className={`h-[0.85rem] w-[0.85rem] rounded-sm ${HEATMAP_LEVEL_BG[heatmapLevel(day.count, maxCount)]}`}
+                    />
+                  ) : (
+                    <div
+                      key={`pad-${ci}-${ri}`}
+                      className="h-[0.85rem] w-[0.85rem]"
+                    />
+                  ),
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center justify-end gap-1 text-[10px] text-slate-400">
+          <span>কম</span>
+          {HEATMAP_LEVEL_BG.map((bg) => (
+            <div
+              key={bg}
+              className={`h-[0.85rem] w-[0.85rem] rounded-sm ${bg}`}
+            />
+          ))}
+          <span>বেশি</span>
+        </div>
+      </CardContent>
+
+      {hover && (
+        <div
+          className="pointer-events-none fixed z-50 rounded-md bg-slate-800 px-2.5 py-1.5 text-[11px] font-medium text-white shadow-lg"
+          style={{ left: hover.x + 14, top: hover.y - 12 }}
+        >
+          {TOOLTIP_DATE_FMT.format(new Date(`${hover.day.date}T12:00:00Z`))} —{" "}
+          {hover.day.count} session{hover.day.count === 1 ? "" : "s"}
+        </div>
+      )}
+    </Card>
+  );
+}
+
 export function TrackCards({ dashboard }: { dashboard: Dashboard }) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <TrackCard
-        emoji="📚"
-        title="System Design"
-        subtitle="Internet থেকে Distributed Systems"
-        summary={dashboard.tracks["system-design"]}
-        syllabusHref="/syllabus?track=system-design"
-        isDark={false}
-        streak={dashboard.streak}
-        xp={dashboard.xp}
-      />
-      <TrackCard
-        emoji="🐳"
-        title="Docker"
-        subtitle="Zero থেকে Production-ready"
-        summary={dashboard.tracks["docker"]}
-        syllabusHref="/syllabus?track=docker"
-        isDark={true}
-        streak={dashboard.streak}
-        xp={dashboard.xp}
-      />
-      <TrackCard
-        emoji="🤖"
-        title="AI Mastery"
-        subtitle="LLM থেকে Production AI Engineer"
-        summary={dashboard.tracks["ai-mastery"]}
-        syllabusHref="/syllabus?track=ai-mastery"
-        isDark={false}
-        streak={dashboard.streak}
-        xp={dashboard.xp}
-      />
-      <TrackCard
-        emoji="🧩"
-        title="DSA — NeetCode 150"
-        subtitle="Python-এ Zero থেকে ১৫০ problems"
-        summary={dashboard.tracks["dsa"]}
-        syllabusHref="/syllabus?track=dsa"
-        isDark={true}
-        streak={dashboard.streak}
-        xp={dashboard.xp}
-      />
-      <TrackCard
-        emoji="🐧"
-        title="Mastering AWS & DevOps by Poridhi"
-        subtitle="Season 4 — Milestone ধরে Linux থেকে Production K8s"
-        summary={dashboard.tracks["devops"]}
-        syllabusHref="/syllabus?track=devops"
-        isDark={false}
-        streak={dashboard.streak}
-        xp={dashboard.xp}
-      />
+    <div className="flex flex-col gap-8">
+      <section>
+        <SectionHeader
+          title="তোমার Courses"
+          explain="প্রতিটা course-এর সম্পূর্ণ progress, streak ও consistency"
+        />
+        <div className={GRID_5}>
+          {TRACKS.map((t) => (
+            <CourseCard
+              key={t.key}
+              emoji={t.emoji}
+              title={t.title}
+              summary={dashboard.tracks[t.key]}
+              syllabusHref={t.syllabusHref}
+              isDark={t.isDark}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionHeader
+          title="Activity Heatmap"
+          explain="গত ৯০ দিনে কোন দিন কতটা পড়াশোনা করেছো — সব course মিলিয়ে"
+        />
+        <ActivityHeatmap heatmap={dashboard.heatmap} />
+      </section>
     </div>
   );
 }

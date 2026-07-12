@@ -46,7 +46,7 @@
         "require": ["useradd", "-m"],
         "usersState": [{ "name": "yasin", "hasHome": true }]
       },
-      "hint": "home বানানোর flag-টা মনে আছে? make home…"
+      "hints": ["home বানানোর flag-টা মনে আছে? make home…"]
     },
     {
       "id": "t05",
@@ -66,7 +66,7 @@
         "require": ["usermod", "-g"],
         "usersState": [{ "name": "shajal", "primary": "minions" }]
       },
-      "hint": "user modify করার কমান্ড + ছোট হাতের g"
+      "hints": ["user modify করার কমান্ড + ছোট হাতের g"]
     },
     {
       "id": "t07",
@@ -107,7 +107,7 @@
           { "name": "shajal", "primary": "minions", "inGroups": ["devops"] }
         ]
       },
-      "hint": "append + Groups — দুটো অক্ষর একসাথে…"
+      "hints": ["append + Groups — দুটো অক্ষর একসাথে…"]
     },
     {
       "id": "t11",
@@ -147,7 +147,11 @@
       "points": 5,
       "prompt": "পুরো খাতা না পড়ে শুধু shajal-এর লাইনটা বের করো user-খাতা থেকে (আগের lab-এর অস্ত্র মনে করো!)।",
       "check": { "require": ["grep"], "ref": "grep shajal /etc/passwd" },
-      "hint": "ফাইলের ভেতরে খোঁজার কমান্ডটা… target ফাইলটা /etc/passwd"
+      "hints": [
+        "পুরো ফাইল না পড়ে ভেতরে একটা শব্দ/pattern খুঁজতে আগের কোনো lab-এ (log ফাইলে error খুঁজতে) যেই কমান্ডটা ব্যবহার করেছিলে, সেটাই এখানে লাগবে।",
+        "কমান্ডটার নাম শুরু হয় 'g' দিয়ে — সিনট্যাক্স মোটামুটি: <কমান্ড> <যা খুঁজছো> <কোন ফাইলে>।",
+        "যা খুঁজছো = shajal, কোন ফাইলে = user-দের খাতা মানে /etc/passwd। এই দুটো একসাথে বসালেই কমান্ডটা তৈরি।"
+      ]
     },
     {
       "id": "t16",

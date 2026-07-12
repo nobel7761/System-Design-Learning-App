@@ -63,6 +63,61 @@ export class ProgressService {
     return d.toISOString().slice(0, 10);
   }
 
+  private weekMonday(dateStr: string): string {
+    const dow = (new Date(`${dateStr}T12:00:00Z`).getUTCDay() + 6) % 7; // 0 = Monday
+    return this.addDays(dateStr, -dow);
+  }
+
+  /** Per-track weekly streak, computed from that track's own session dates. */
+  private computeWeeklyStreak(
+    dates: string[],
+    today: string,
+  ): { current: number; longest: number } {
+    const perWeekCount = new Map<string, number>();
+    for (const date of new Set(dates)) {
+      const monday = this.weekMonday(date);
+      perWeekCount.set(monday, (perWeekCount.get(monday) ?? 0) + 1);
+    }
+
+    const qualifyingWeeks = Array.from(perWeekCount.entries())
+      .filter(([, count]) => count >= WEEKLY_GOAL)
+      .map(([monday]) => monday)
+      .sort();
+
+    if (qualifyingWeeks.length === 0) return { current: 0, longest: 0 };
+
+    let longest = 1;
+    let run = 1;
+    for (let i = 1; i < qualifyingWeeks.length; i++) {
+      run =
+        this.addDays(qualifyingWeeks[i - 1], 7) === qualifyingWeeks[i]
+          ? run + 1
+          : 1;
+      longest = Math.max(longest, run);
+    }
+
+    const thisWeekMonday = this.weekMonday(today);
+    const lastQualifying = qualifyingWeeks[qualifyingWeeks.length - 1];
+    const gapWeeks =
+      (new Date(`${thisWeekMonday}T00:00:00Z`).getTime() -
+        new Date(`${lastQualifying}T00:00:00Z`).getTime()) /
+      (7 * 24 * 3600 * 1000);
+
+    let current = 0;
+    if (gapWeeks <= 1) {
+      current = 1;
+      for (let i = qualifyingWeeks.length - 1; i > 0; i--) {
+        if (this.addDays(qualifyingWeeks[i - 1], 7) === qualifyingWeeks[i]) {
+          current++;
+        } else {
+          break;
+        }
+      }
+    }
+
+    return { current, longest };
+  }
+
   async getDoneLessonIds(): Promise<Set<string>> {
     const docs = await this.lessonProgressModel
       .find()
@@ -168,6 +223,22 @@ export class ProgressService {
     }
 
     await streak.save();
+  }
+
+  /** Daily session counts for the last `days` days (oldest → newest), for a calendar heatmap */
+  private buildHeatmap(
+    allLogs: { date: string }[],
+    today: string,
+    days: number,
+  ) {
+    const counts = new Map<string, number>();
+    for (const log of allLogs) {
+      counts.set(log.date, (counts.get(log.date) ?? 0) + 1);
+    }
+    return Array.from({ length: days }, (_, i) => {
+      const date = this.addDays(today, -(days - 1 - i));
+      return { date, count: counts.get(date) ?? 0 };
+    });
   }
 
   private levelFromXp(totalXp: number) {
@@ -315,6 +386,9 @@ export class ProgressService {
         isToday: date === today,
       }));
 
+      const { level: trackLevel, title: trackLevelTitle } =
+        this.levelFromXp(xpEarned);
+
       const worlds = trackWorlds.map((w) => ({
         id: w.id,
         title: w.title,
@@ -339,6 +413,12 @@ export class ProgressService {
         xpEarned,
         totalTimeSec: trackTimeSec,
         sessionsThisWeek,
+        totalSessions: trackLogs.length,
+        streak: this.computeWeeklyStreak(
+          trackLogs.map((l) => l.date),
+          today,
+        ),
+        level: { level: trackLevel, title: trackLevelTitle },
         currentLesson,
         weekDays,
         worlds,
@@ -373,7 +453,9 @@ export class ProgressService {
         totalLessons,
         percent: Math.round((doneLessons / totalLessons) * 100),
         totalTimeSec,
+        totalSessions: allLogs.length,
       },
+      heatmap: this.buildHeatmap(allLogs, today, 90),
       worlds: syllabus.map((w) => ({
         id: w.id,
         order: w.order,

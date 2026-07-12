@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev",
+    "free-ports": "lsof -ti:3000,3001 | xargs kill -9 2>/dev/null || true",
+    "dev": "pnpm run free-ports && turbo run dev",
     "build": "turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
