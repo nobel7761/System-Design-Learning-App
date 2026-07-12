@@ -261,7 +261,7 @@ export function FullQuizSection({
                 করো।
               </p>
             )}
-            <div className="mt-4 flex justify-center gap-3">
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
               <CustomButton
                 variant="primary"
                 className="px-6 py-2.5"

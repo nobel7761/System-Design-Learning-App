@@ -22,7 +22,8 @@ const LESSON_TYPE_ICON: Record<string, string> = {
   dojo: "🥋",
 };
 
-const GRID_5 = "grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5";
+const GRID_5 =
+  "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5";
 
 const TRACKS: {
   key: keyof Dashboard["tracks"];

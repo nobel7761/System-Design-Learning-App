@@ -14,14 +14,14 @@ export function FullQuizScreen({
 }) {
   return (
     <AppShell>
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-6 flex flex-wrap items-center gap-3">
         <Link
           href={`/quiz/${track}`}
-          className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
+          className="shrink-0 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
         >
           ← Back
         </Link>
-        <div>
+        <div className="min-w-0">
           <h1 className="text-lg font-bold text-slate-800">Full Quiz Review</h1>
           <p className="text-xs text-slate-500">{lessonId}</p>
         </div>

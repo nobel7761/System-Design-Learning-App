@@ -241,7 +241,7 @@ export function QuizSection({ lessonId }: { lessonId: string }) {
                     !result.isFirstCompletion &&
                     " (replay — XP আগেই পেয়েছো)"}
                 </p>
-                <div className="mt-4 flex justify-center gap-3">
+                <div className="mt-4 flex flex-wrap justify-center gap-3">
                   <Link
                     href="/"
                     className="rounded-xl bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700"

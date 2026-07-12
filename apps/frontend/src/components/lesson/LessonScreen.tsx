@@ -49,7 +49,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
 
       <article className="w-full">
         <header className="mb-2">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Badge variant={isBoss ? "destructive" : "secondary"}>
               {isBoss ? "⚔️ BOSS" : `Lesson ${meta.order}`}
             </Badge>
@@ -60,7 +60,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
               <CommandsPanel commands={commands} />
             </span>
           </div>
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
+          <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
             {meta.title}
           </h1>
           <p className="text-sm text-slate-400">{meta.titleEn}</p>

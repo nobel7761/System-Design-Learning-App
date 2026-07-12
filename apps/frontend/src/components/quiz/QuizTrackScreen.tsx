@@ -143,14 +143,14 @@ export function QuizTrackScreen({ track }: { track: Track }) {
 
   return (
     <AppShell>
-      <div className="mb-5 flex items-center gap-3">
+      <div className="mb-5 flex flex-wrap items-center gap-3">
         <button
           onClick={() => router.push("/quiz")}
-          className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
+          className="shrink-0 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
         >
           ← Back
         </button>
-        <div>
+        <div className="min-w-0">
           <h1 className="text-xl font-bold text-slate-800">
             {meta.emoji} {meta.label} — Quiz Review
           </h1>

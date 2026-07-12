@@ -196,12 +196,12 @@ export function SyllabusScreen() {
       <h1 className="mb-3 text-2xl font-bold text-slate-800">📋 Syllabus</h1>
 
       {/* Track tabs */}
-      <div className="mb-5 flex gap-2">
+      <div className="mb-5 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0">
         {TRACKS.map((t) => (
           <button
             key={t.value}
             onClick={() => router.push(`/syllabus?track=${t.value}`)}
-            className={`flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+            className={`flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition ${
               activeTrack === t.value
                 ? t.value === "docker"
                   ? "border-sky-400 bg-sky-50 text-sky-700 shadow-sm"
@@ -217,7 +217,9 @@ export function SyllabusScreen() {
           >
             <span>{t.emoji}</span>
             <span>{t.label}</span>
-            <span className="text-[10px] font-normal opacity-70">{t.desc}</span>
+            <span className="hidden text-[10px] font-normal opacity-70 md:inline">
+              {t.desc}
+            </span>
           </button>
         ))}
       </div>
